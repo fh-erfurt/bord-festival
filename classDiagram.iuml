@@ -1,0 +1,52 @@
+@startuml
+Event -* Ticket : > owns
+Event -* Band : > has
+Stage *- Event : < has
+Ticket *- Client : > has
+
+class Client{
+-int id
+-String name
+-String phoneNumber
++Client(String name, String phoneNumber, int id)
+}
+class Ticket{
+-int ID
+-boolean available
+-Event event
++Ticket(int iD, boolean available, Event event)
++sell(client c)
+}
+
+class Event{
+-int id
+-String date
+-String name
+-LinkedList<Band> bands
+-LinkedList<Ticket> tickets
+-LinkedList<Stage> stages
++Event(int id, String date, String name)
++addBand(Band band)
++removeBand(Band band)
++addTicket(Ticket ticket)
++removeTicket(Ticket ticket)
++addStage(Stage stage)
++removeStage(Stage stage)
+}
+class Band{
+-int id
+-String name
+-String phoneNumber
++event(int id,String name, String phoneNumber)
+}
+class Stage{
+-int id
+-String name
+-int numberOfPlaces
+-String country
+-String city
+-String street
+-String zip
++stage(int id, String name, int numberOfPlaces, String country, String city, String street,String zip)
+}
+@enduml
