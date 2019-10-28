@@ -1,4 +1,4 @@
-# RoBD- is a festival management system
+# BORD- is a festival management system
 ...
 ## Class diagram
 
