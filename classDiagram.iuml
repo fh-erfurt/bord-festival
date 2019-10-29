@@ -17,13 +17,20 @@ class Client{
 -String name
 -String phoneNumber
 +Client(String name, String phoneNumber, int id)
++Ticket byTicket(TicketType type)
++boolean cancelTicket(Ticket ticket)
++Address getAddress()
 }
 abstract class Ticket{
+enum TicketType{DAY, CAMPING, VIP}
 -int ID
 -String description
 -boolean available
 -Event event
--double stdPrice;
+-double stdPrice
++changePrice(Money money)
++Money getPrice()
++getDescription()
 }
 
 class Event{
@@ -34,7 +41,9 @@ class Event{
 -LineUp lineup
 -LinkedList<Ticket> tickets
 +Event(int id, String date, String name)
-
++LineUp getLineUp()
++void changeBudget(Money money)
++Money getBudget()
 }
 class Band{
 -int id
@@ -42,6 +51,8 @@ class Band{
 -String phoneNumber
 -double priceProEvent;
 +event(int id,String name, String phoneNumber)
++String getPhoneNumber()
++String getName()
 }
 class Stage{
 -int id
@@ -59,6 +70,7 @@ class Address{
 class DayTicket{
 -String date
 +DayTicket(int iD, boolean available, Event event, double price, String description, String date)
++getDate()
 }
 class CampingTicket{
 +String campingPlaceName
@@ -69,6 +81,9 @@ class VIPTicket{
 }
 class LineUp{
 map<TimeSlot, Band>
++boolean addBand(Bang band, TimeSlot timeslot)
++boolean removeBand(Band band)
++LineUp getLineUp()
 }
 class TimeSlot{
 Date date;
