@@ -1,8 +1,16 @@
 @startuml
-Event -* Ticket : > owns
-Event -* Band : > has
-Stage *- Event : < has
-Ticket *- Client : > has
+Event --o Ticket : > has
+Event -- LineUp : > has
+Ticket o-- Client : < has
+CampingTicket --|> Ticket
+VIPTicket --|> Ticket
+DayTicket --|> Ticket
+Stage --o Address : > has
+Client --o Address : > has
+TimeSlot -- Stage : > has
+LineUp --o TimeSlot : > has
+LineUp --o Band : > has
+
 
 class Client{
 -int id
@@ -10,43 +18,60 @@ class Client{
 -String phoneNumber
 +Client(String name, String phoneNumber, int id)
 }
-class Ticket{
+abstract class Ticket{
 -int ID
+-String description
 -boolean available
 -Event event
-+Ticket(int iD, boolean available, Event event)
-+sell(client c)
+-double stdPrice;
 }
 
 class Event{
 -int id
 -String date
 -String name
--LinkedList<Band> bands
+-LineUp lineup
 -LinkedList<Ticket> tickets
--LinkedList<Stage> stages
 +Event(int id, String date, String name)
-+addBand(Band band)
-+removeBand(Band band)
-+addTicket(Ticket ticket)
-+removeTicket(Ticket ticket)
-+addStage(Stage stage)
-+removeStage(Stage stage)
+
 }
 class Band{
 -int id
 -String name
 -String phoneNumber
+-double priceProEvent;
 +event(int id,String name, String phoneNumber)
 }
 class Stage{
 -int id
 -String name
--int numberOfPlaces
+-int capacity
++stage(int id, String name, int capacity)
+}
+class Address{
 -String country
 -String city
 -String street
 -String zip
-+stage(int id, String name, int numberOfPlaces, String country, String city, String street,String zip)
++Address(String country, String city, String street,String zip);
+}
+class DayTicket{
+-String date
++DayTicket(int iD, boolean available, Event event, double price, String description, String date)
+}
+class CampingTicket{
++String campingPlaceName
++CampingTicket(int iD, boolean available, Event event, double price, String description, String campingPlaceName)
+}
+class VIPTicket{
++VIPTicket(int iD, boolean available, Event event, double price, String description)
+}
+class LineUp{
+map<TimeSlot, Band>
+}
+class TimeSlot{
+Date date;
+Stage stage
+boolean free;
 }
 @enduml
