@@ -30,6 +30,7 @@ class Event{
 -int id
 -String date
 -String name
+-Money budget
 -LineUp lineup
 -LinkedList<Ticket> tickets
 +Event(int id, String date, String name)
