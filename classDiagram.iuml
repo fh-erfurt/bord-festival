@@ -52,7 +52,7 @@ class Band{
 -String name
 -String phoneNumber
 -double priceProEvent;
-+event(int id,String name, String phoneNumber)
++Band(int id,String name, String phoneNumber, double priceProEvent)
 +String getPhoneNumber()
 +String getName()
 }
