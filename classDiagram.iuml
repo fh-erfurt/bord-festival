@@ -15,8 +15,10 @@ LineUp --o Band : > has
 class Client{
 -int id
 -String name
+-Address address
 -String phoneNumber
-+Client(String name, String phoneNumber, int id)
+-LinkedList<Ticket> tickets
++Client(String name, String phoneNumber, int id, Address address)
 +Ticket byTicket(TicketType type)
 +boolean cancelTicket(Ticket ticket)
 +Address getAddress()
@@ -57,6 +59,7 @@ class Band{
 class Stage{
 -int id
 -String name
+-Address address
 -int capacity
 +stage(int id, String name, int capacity)
 }
