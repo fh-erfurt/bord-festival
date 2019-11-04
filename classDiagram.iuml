@@ -25,11 +25,11 @@ class Client{
 }
 abstract class Ticket{
 enum TicketType{DAY, CAMPING, VIP}
--int ID
--String description
--boolean available
--Event event
--double stdPrice
+#int ID
+#String description
+#boolean available
+#Event event
+#double stdPrice
 +changePrice(Money money)
 +Money getPrice()
 +getDescription()
