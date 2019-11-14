@@ -1,6 +1,8 @@
 package de.bord.festival;
 
-public class DayTicket extends Ticket{
+import de.bord.festival.ticket.Ticket;
+
+public class DayTicket extends Ticket {
     private String date;
     public DayTicket(TicketType ticketType, int id, String description, boolean available,
                      double standardPrice, Event event, String date){

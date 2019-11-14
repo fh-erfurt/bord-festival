@@ -1,5 +1,7 @@
 package de.bord.festival;
 
+import de.bord.festival.ticket.Ticket;
+
 import java.util.LinkedList;
 
 public class Client {
