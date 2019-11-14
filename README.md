@@ -1,9 +1,9 @@
 # BORD - Festival Management System
 
-##Teammitglieder
+## Teammitglieder
 Olga Klassen, Benjamin Swarovsky, Daniel Depta, Raphael Freybe
 
-##Beschreibung
+## Beschreibung
 
 BORD steht für die Anfangsbuchstaben unserer Vornamen (Benjamin, Olga, Raphael, Daniel)
 
@@ -20,15 +20,17 @@ Für das Event an sich werden Eckdaten wie Datum des Festivals, Maximalkapazität,
 ![ClassDiagramm](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/fh-erfurt/robd-festival/master/classDiagram.iuml)
 
 
-#Ausgangssituation
-##Musskriterien
-###Festivalverwaltung
+# Ausgangssituation
+
+## Musskriterien
+
+### Festivalverwaltung
 
 
-###Ticketverwaltung
+### Ticketverwaltung
 
 
-##Wunschkriterien
+## Wunschkriterien
 
 
-##Abgrenzungskriterien
+## Abgrenzungskriterien
