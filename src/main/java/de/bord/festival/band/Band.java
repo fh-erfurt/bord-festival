@@ -1,4 +1,4 @@
-package de.bord.festival;
+package de.bord.festival.band;
 
 public class Band {
     private int id;

@@ -1,6 +1,6 @@
-package de.bord.festival;
+package de.bord.festival.ticket;
 
-import de.bord.festival.ticket.Ticket;
+import de.bord.festival.eventManagement.Event;
 
 public class DayTicket extends Ticket {
     private String date;

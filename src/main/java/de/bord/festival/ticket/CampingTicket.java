@@ -1,4 +1,6 @@
-package de.bord.festival;
+package de.bord.festival.ticket;
+
+import de.bord.festival.eventManagement.Event;
 
 public class CampingTicket extends Ticket {
     private String campingPlaceName;

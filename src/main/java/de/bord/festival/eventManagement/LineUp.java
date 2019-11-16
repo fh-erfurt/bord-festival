@@ -1,4 +1,7 @@
-package de.bord.festival;
+package de.bord.festival.eventManagement;
+
+import de.bord.festival.band.Band;
+import de.bord.festival.stageManagement.TimeSlot;
 
 import java.util.HashMap;
 import java.util.Map;

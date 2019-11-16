@@ -1,4 +1,4 @@
-package de.bord.festival;
+package de.bord.festival.address;
 
 public class Address {
     private String country;

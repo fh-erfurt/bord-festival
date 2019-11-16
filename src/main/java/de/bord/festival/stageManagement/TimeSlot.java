@@ -1,4 +1,6 @@
-package de.bord.festival;
+package de.bord.festival.stageManagement;
+
+import de.bord.festival.stageManagement.Stage;
 
 import java.util.Date;
 

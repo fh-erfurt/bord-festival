@@ -1,4 +1,6 @@
-package de.bord.festival;
+package de.bord.festival.ticket;
+
+import de.bord.festival.eventManagement.Event;
 
 public abstract class Ticket {
     enum TicketType{DAY, CAMPING, VIP};

@@ -1,5 +1,6 @@
-package de.bord.festival;
+package de.bord.festival.client;
 
+import de.bord.festival.address.Address;
 import de.bord.festival.ticket.Ticket;
 
 import java.util.LinkedList;
