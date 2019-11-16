@@ -11,4 +11,7 @@ public class Band {
         this.phoneNumber=phoneNumber;
         this.priceProEvent=priceProEvent;
     }
+    public double getPriceProEvent(){
+        return priceProEvent;
+    }
 }

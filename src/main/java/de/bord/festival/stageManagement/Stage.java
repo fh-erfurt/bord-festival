@@ -1,8 +1,13 @@
 package de.bord.festival.stageManagement;
 
 import de.bord.festival.address.Address;
+import de.bord.festival.band.Band;
+
+import java.sql.Time;
+import java.util.Map;
 
 public class Stage {
+
     private Address address;
     private int id;
     private String name;
