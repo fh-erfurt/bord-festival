@@ -14,4 +14,17 @@ public class Band {
     public double getPriceProEvent(){
         return priceProEvent;
     }
+
+
+    public boolean isEqualTo(Band band) {
+        //the same names for 2 different bands is not allowed
+        if(this.name==band.getName()){
+            return true;
+        }
+        else return false;
+    }
+
+    public String getName(){
+        return name;
+    }
 }

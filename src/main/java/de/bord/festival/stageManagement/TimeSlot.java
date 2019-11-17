@@ -7,16 +7,16 @@ import java.time.LocalTime;
 
 public class TimeSlot {
     private LocalTime time;
-
     private Band band;
     long minutesOnStage;
 
-    public TimeSlot(LocalTime time, Stage stage, Band band, long minutesOnStage){
+    public TimeSlot(LocalTime time, Band band, long minutesOnStage){
         this.minutesOnStage=minutesOnStage;
         this.band=band;
         this.time=time;
 
     }
+    public String getNameOfBand(){return band.getName();};
     public LocalTime getTime(){
         return time;
     }

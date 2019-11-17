@@ -18,7 +18,11 @@ public class Event {
 
     private int maxCapacity;
     //bur eine Band fur bestimmten TimeSlot
-    public Event(int id, LocalDate startDate, LocalDate endDate, String name, double budget, int maxCapacity, Stage stage){
+    public Event(int id, LocalDate startDate, LocalDate endDate, String name,
+                 double budget, int maxCapacity, Stage stage)throws Exception{
+        if(endDate.isBefore(startDate)){
+            throw new Exception("End date can't be before start date");
+        }
         lineUp=new LineUp(startDate, endDate, stage);
         tickets=new LinkedList<Ticket>();
 
@@ -28,14 +32,21 @@ public class Event {
         this.name=name;
 
     }
-
-    private boolean isNewBandAffordable(Band band){
-        return actualBudget+band.getPriceProEvent()<=budget;
+    public int getNumberOfBands(){
+        return lineUp.getNumberOfBands();
     }
-    public boolean addBand(Band band, long minutesOnStage){
+    public int getNumberOfStages(){
+        return lineUp.getNumberOfStages();
+    }
+    private boolean isNewBandAffordable(Band band){return actualBudget+band.getPriceProEvent()<=budget; }
 
+    public void addStage(Stage stage){
+        lineUp.addStage(stage);
+    }
+
+    public boolean addBand(Band band, long minutesOnStage) throws Exception{
         if(!isNewBandAffordable(band)){
-            return false;
+            throw new Exception("The budget is not enough for this band");
         }
         return lineUp.addBand(band, minutesOnStage);
     }
