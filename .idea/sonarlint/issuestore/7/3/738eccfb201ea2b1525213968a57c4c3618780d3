@@ -1,0 +1,4 @@
+
+]squid:UselessImportCheck"4Remove this unused import 'java.time.LocalDateTime'.(æÃ§ƒüÿÿÿÿ
+Rsquid:EmptyStatementUsageCheck"Remove this empty statement.(Åñ­õþÿÿÿÿ8®Ø×Ðç-
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(òß¿›øÿÿÿÿ

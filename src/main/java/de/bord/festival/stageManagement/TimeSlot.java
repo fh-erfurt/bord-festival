@@ -1,4 +1,5 @@
 package de.bord.festival.stageManagement;
+
 import de.bord.festival.band.Band;
 
 import java.time.LocalDateTime;
@@ -10,17 +11,24 @@ public class TimeSlot {
     private Band band;
     long minutesOnStage;
 
-    public TimeSlot(LocalTime time, Band band, long minutesOnStage){
-        this.minutesOnStage=minutesOnStage;
-        this.band=band;
-        this.time=time;
+    public TimeSlot(LocalTime time, Band band, long minutesOnStage) {
+        this.minutesOnStage = minutesOnStage;
+        this.band = band;
+        this.time = time;
 
     }
-    public String getNameOfBand(){return band.getName();};
-    public LocalTime getTime(){
+
+    public String getNameOfBand() {
+        return band.getName();
+    }
+
+    ;
+
+    public LocalTime getTime() {
         return time;
     }
-    public long getMinutesOnStage(){
+
+    public long getMinutesOnStage() {
         return minutesOnStage;
     }
 }

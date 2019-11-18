@@ -1,14 +1,19 @@
 package de.bord.festival.eventManagement;
+
 import de.bord.festival.band.Band;
+import de.bord.festival.band.EventInfo;
 import de.bord.festival.stageManagement.Stage;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
 
 public class LineUp {
+
     private Map<LocalDate, Program> lineUp;
     private LinkedList<Stage> stages;
     private LinkedList<Band> bands;
@@ -20,13 +25,12 @@ public class LineUp {
     private long breakBetweenTwoBandsInMinutes = 30;
 
     public LineUp(LocalDate startDate, LocalDate endDate, Stage stage) {
-        lineUp = new HashMap<>();//Map is not a collection, it is an interface
+        lineUp = new LinkedHashMap<>();
         stages = new LinkedList<>();
         stages.add(stage);//minimum one stage should exists
         bands = new LinkedList<>();
         this.startDate = startDate;
         this.endDate = endDate;
-
         createProgramsBetweenStartAndEndDates();
 
     }
@@ -35,8 +39,7 @@ public class LineUp {
         if (startDate.equals(endDate)) {
             Program programForStartDate = new Program(stages.getFirst(), this);
             lineUp.put(startDate, programForStartDate);
-        }
-        else{
+        } else {
             for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
                 Program program = new Program(stages.getFirst(), this);
                 lineUp.put(date, program);
@@ -46,6 +49,7 @@ public class LineUp {
         }
 
     }
+
     public void addStage(Stage stage) {
         for (Map.Entry<LocalDate, Program> entry : lineUp.entrySet()) {
             entry.getValue().addStage(stage);
@@ -53,44 +57,54 @@ public class LineUp {
         stages.add(stage);
 
     }
-    public boolean addBand(Band band, long minutesOnStage)throws Exception {
+
+    public EventInfo addBand(Band band, long minutesOnStage) throws Exception {
 
         for (Map.Entry<LocalDate, Program> entry : lineUp.entrySet()) {
             Program programOnCurrentDate = entry.getValue();
-            LocalDate currentDate=entry.getKey();
-            boolean timeSlotFound = programOnCurrentDate.addBand(band,minutesOnStage,currentDate);
-            if (timeSlotFound) {
-                boolean flag=false;
+            LocalDate currentDate = entry.getKey();
+            EventInfo timeSlotWithStage = programOnCurrentDate.addBand(band, minutesOnStage, currentDate);
+            if (timeSlotWithStage!=null) {
+                boolean flag = false;
                 //a band exists in list of bands only once
-                for(int i=0; i<bands.size(); i++){
-                    if(bands.get(i).isEqualTo(band)){
-                        flag=true;
+                for (int i = 0; i < bands.size(); i++) {
+                    if (bands.get(i).isEqualTo(band)) {
+                        flag = true;
                         break;
                     }
                 }
-                if(!flag){bands.add(band);}
-                return true;
+                if (!flag) {
+                    bands.add(band);
+                }
+                timeSlotWithStage.setDate(currentDate);
+                return timeSlotWithStage;
             }
         }
-        return false;
+        return null;
     }
-    public int getNumberOfStages(){return stages.size();}
-    public int getNumberOfBands(){
+
+    public int getNumberOfStages() {
+        return stages.size();
+    }
+
+    public int getNumberOfBands() {
         return bands.size();
     }
 
-    public LocalDate getStartDate(){
-        return startDate;
-    }
-    public LocalDate getEndDate(){
-        return endDate;
-    }
-    public LocalTime getStartTime(){
+    public LocalTime getStartTime() {
         return startTime;
     }
-    public LocalTime getEndTime(){
+
+    public LocalTime getEndTime() {
         return endTime;
     }
-    public long getBreakBetweenTwoBandsInMinutes(){return breakBetweenTwoBandsInMinutes;};
+
+    public long getBreakBetweenTwoBandsInMinutes() {
+        return breakBetweenTwoBandsInMinutes;
+    }
+
+    public int getNumberOfDays() {
+        return lineUp.size();
+    }
 
 }
