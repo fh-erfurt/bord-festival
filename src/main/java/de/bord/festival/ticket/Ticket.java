@@ -16,4 +16,5 @@ public abstract class Ticket {
         this.stdPrice=standardPrice;
         this.event=event;
     }
+    // abstract setTicketprice
 }
