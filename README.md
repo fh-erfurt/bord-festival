@@ -5,15 +5,15 @@ Olga Klassen, Benjamin Swarovsky, Daniel Depta, Raphael Freybe
 
 ## Beschreibung
 
-BORD steht für die Anfangsbuchstaben unserer Vornamen (Benjamin, Olga, Raphael, Daniel)
+BORD steht fÃ¼r die Anfangsbuchstaben unserer Vornamen (Benjamin, Olga, Raphael, Daniel)
 
-Es soll ein Verwaltungs- und Planungssystem für das „BORD-Festival“ entwickelt werden. 
-Das Festival als solches besteht aus mehreren Stages (Bühnen), welche jeweils verschiedene Programme anbieten.
+Es soll ein Verwaltungs- und Planungssystem fÃ¼r das â€BORD-Festivalâ€œ entwickelt werden. 
+Das Festival als solches besteht aus mehreren Stages (BÃ¼hnen), welche jeweils verschiedene Programme anbieten.
 Das System muss Tickets, Kunden, die verschiedenen Bands und Stages sowie das Event an sich verwalten.
-Kunden haben eine (oder mehrere) Adressen und können Tickets für das Festival kaufen. 
+Kunden haben eine (oder mehrere) Adressen und kÃ¶nnen Tickets fÃ¼r das Festival kaufen. 
 Es gibt Tagestickets und verschiedene Campingtickets.
 Im Verwaltungssystem wird erfasst, wann welche Band spielt und auf welcher Stage sie spielen (Programmplanung). 
-Für das Event an sich werden Eckdaten wie Datum des Festivals, Maximalkapazität,Budget noch verfügbare Karten usw. verwaltet.
+FÃ¼r das Event an sich werden Eckdaten wie Datum des Festivals, MaximalkapazitÃ¤t,Budget noch verfÃ¼gbare Karten usw. verwaltet.
 
 ## Klassendiagramm
 
@@ -21,18 +21,18 @@ Für das Event an sich werden Eckdaten wie Datum des Festivals, Maximalkapazität,
 
 
 # Ausgangssituation
-Es soll ein Verwaltungs- und Planungssystem für das „BORD-Festival“ entwickelt werden. Das Festival als solches besteht aus mehreren Stages (Bühnen), welche jeweils verschiedene Programme anbieten.
+Es soll ein Verwaltungs- und Planungssystem fÃ¼r das â€BORD-Festivalâ€œ entwickelt werden. Das Festival als solches besteht aus mehreren Stages (BÃ¼hnen), welche jeweils verschiedene Programme anbieten.
 Das System muss Tickets, Kunden, die verschiedenen Bands und Stages sowie das Event an sich verwalten.
 
-Kunden haben eine Adresse und können Tickets für das Festival kaufen. Es gibt Tagestickets und verschiedene Campingtickets.
+Kunden haben eine Adresse und kÃ¶nnen Tickets fÃ¼r das Festival kaufen. Es gibt Tagestickets und verschiedene Campingtickets.
 Im Verwaltungssystem wird erfasst, wann welche Band spielt und auf welcher Stage sie spielen (Programmplanung). 
-Für das Event an sich werden Eckdaten wie Datum des Festivals, Maximalkapazität und noch verfügbare Karten verwaltet.
+FÃ¼r das Event an sich werden Eckdaten wie Datum des Festivals, MaximalkapazitÃ¤t und noch verfÃ¼gbare Karten verwaltet.
 
 ## Musskriterien
 
 ### Festivalverwaltung
 
-Im Festival existiert ein einheitliches Line-Up in dem alle Bands eingetragen sind, welche auf jeweils Bühne zugeteilt werden. Derzeit sind drei Bühnen geplant, die Bühnenanzahl muss aber variabel sein. Das Festival als solches besitzt außerdem ein Gesamtbudget, zur übersichtlichen Darstellung der Einnahmen und Kosten. Die Einnahmen werden durch gekaufte Tickets generiert, die Kosten entstehen durch gemietete Bands.
+Im Festival existiert ein einheitliches Line-Up in dem alle Bands eingetragen sind, welche auf jeweils BÃ¼hne zugeteilt werden. Derzeit sind drei BÃ¼hnen geplant, die BÃ¼hnenanzahl muss aber variabel sein. Das Festival als solches besitzt auÃŸerdem ein Gesamtbudget, zur Ã¼bersichtlichen Darstellung der Einnahmen und Kosten. Die Einnahmen werden durch gekaufte Tickets generiert, die Kosten entstehen durch gemietete Bands.
 
 ### Ticketverwaltung
 Tickets haben verschiedene Preisklassen und Kategorien:
@@ -40,11 +40,22 @@ Tickets haben verschiedene Preisklassen und Kategorien:
 * Tagesticket (1 Tag)
 * VIP Ticket
 
-Die Preisklasse der Tickets wird über die Zeit, sobald weniger Tickets verfügbar sind, angepasst. Ab einem gewissen Prozentsatz von verfügbaren Tickets wird die Preisklasse angehoben. Die Prozentsätze und das Ticketkontingent können variabel definiert werden.
-Der Ticketverkauf soll über eine geeignete, kompatible Applikation erfolgen.
+Die Preisklasse der Tickets wird Ã¼ber die Zeit, sobald weniger Tickets verfÃ¼gbar sind, angepasst. Ab einem gewissen Prozentsatz von verfÃ¼gbaren Tickets wird die Preisklasse angehoben. Die ProzentsÃ¤tze und das Ticketkontingent kÃ¶nnen variabel definiert werden.
+Der Ticketverkauf soll Ã¼ber eine geeignete, kompatible Applikation erfolgen.
 
 
 ## Wunschkriterien
 
 
 ## Abgrenzungskriterien
+
+
+### Aktuere/Stakeholder
+
+# Aktuere
+* Clients (Kunden beim Erwerb von Tickets, Beschaffen von Informationen Ã¼ber das Festival)
+* Bands (Werden gebucht um auf einer bestimmten Stage in einem bestimmten Timeslot aufzutreten)
+
+# Stakeholder
+* Festival-Veranstalter
+* Bands
