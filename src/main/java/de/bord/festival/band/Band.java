@@ -1,6 +1,5 @@
 package de.bord.festival.band;
 
-import de.bord.festival.eventManagement.Event;
 
 import java.util.LinkedList;
 
@@ -10,8 +9,9 @@ public class Band {
     private String phoneNumber;
     private double priceProEvent;
     private LinkedList<EventInfo> eventInfos;
+
     public Band(int id, String name, String phoneNumber, double priceProEvent) {
-        eventInfos=new LinkedList<>();
+        eventInfos = new LinkedList<>();
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -21,16 +21,15 @@ public class Band {
     public double getPriceProEvent() {
         return priceProEvent;
     }
-    public void addEventInfo(EventInfo eventInfo){
+
+    public void addEventInfo(EventInfo eventInfo) {
         eventInfos.add(eventInfo);
     }
 
 
     public boolean isEqualTo(Band band) {
         //the same names for 2 different bands is not allowed
-        if (this.name == band.getName()) {
-            return true;
-        } else return false;
+        return this.name.equals(band.getName());
     }
 
     public String getName() {

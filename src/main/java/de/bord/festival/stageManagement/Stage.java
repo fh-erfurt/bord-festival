@@ -12,10 +12,19 @@ public class Stage {
     private int id;
     private String name;
     private int capacity;
-    public Stage(int id, String name, int capacity, Address address){
-        this.address=address;
-        this.capacity=capacity;
-        this.id=id;
-        this.name=name;
+
+    public Stage(int id, String name, int capacity, Address address) {
+        this.address = address;
+        this.capacity = capacity;
+        this.id = id;
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return this.address;
+    }
+
+    public boolean equals(Stage stage) {
+        return stage.getAddress().equals(this.address);
     }
 }

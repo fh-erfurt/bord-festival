@@ -2,10 +2,13 @@ package de.bord.festival.stageManagement;
 
 import de.bord.festival.band.Band;
 
-import java.time.LocalDateTime;
+
 import java.time.LocalTime;
 
 
+/**
+ * Contains band, time band should play and stage
+ */
 public class TimeSlot {
     private LocalTime time;
     private Band band;
@@ -21,8 +24,6 @@ public class TimeSlot {
     public String getNameOfBand() {
         return band.getName();
     }
-
-    ;
 
     public LocalTime getTime() {
         return time;
