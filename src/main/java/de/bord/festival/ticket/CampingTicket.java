@@ -12,8 +12,4 @@ public class CampingTicket extends Ticket {
         this.campingPlaceName=campingPlaceName;
     }
 
-    static public void setTicketPrice(double price){
-       ticketPrice = price;
-    }
-
 }
