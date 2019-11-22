@@ -50,12 +50,13 @@ Der Ticketverkauf soll über eine geeignete, kompatible Applikation erfolgen.
 ## Abgrenzungskriterien
 
 
-### Aktuere/Stakeholder
+## Aktuere/Stakeholder
 
-# Aktuere
+### Aktuere
 * Clients (Kunden beim Erwerb von Tickets, Beschaffen von Informationen über das Festival)
 * Bands (Werden gebucht um auf einer bestimmten Stage in einem bestimmten Timeslot aufzutreten)
 
-# Stakeholder
+### Stakeholder
 * Festival-Veranstalter
 * Bands
+* Entwickler
