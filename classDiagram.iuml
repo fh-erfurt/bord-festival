@@ -4,13 +4,12 @@ Event -- LineUp : > has
 Ticket o-- Client : < has
 CampingTicket --|> Ticket
 VIPTicket --|> Ticket
-DayTicket --|> Ticket
+DayTicket -left-|> Ticket
 Stage --o Address : > has
 Client --o Address : > has
 TimeSlot -- Stage : > has
 LineUp --o TimeSlot : > has
 LineUp --o Band : > has
-
 
 class Client{
 -int id
@@ -23,6 +22,7 @@ class Client{
 +boolean cancelTicket(Ticket ticket)
 +Address getAddress()
 }
+
 abstract class Ticket{
 enum TicketType{DAY, CAMPING, VIP}
 #int ID
@@ -30,6 +30,7 @@ enum TicketType{DAY, CAMPING, VIP}
 #boolean available
 #Event event
 #double stdPrice
++Ticket(TicketType ticketType, int id, String description, boolean available, double standardPrice, Event event)
 +changePrice(Money money)
 +Money getPrice()
 +getDescription()
@@ -39,14 +40,16 @@ class Event{
 -int id
 -String date
 -String name
--Money budget
+-double budget
 -LineUp lineup
 -LinkedList<Ticket> tickets
-+Event(int id, String date, String name)
+-int maxCapacity
++Event(int id, String date, String name, double budget, int maxCapacity)
 +LineUp getLineUp()
 +void changeBudget(Money money)
-+Money getBudget()
++double getBudget()
 }
+
 class Band{
 -int id
 -String name
@@ -56,13 +59,15 @@ class Band{
 +String getPhoneNumber()
 +String getName()
 }
+
 class Stage{
 -int id
 -String name
 -Address address
 -int capacity
-+stage(int id, String name, int capacity)
++stage(int id, String name, int capacity, Address address)
 }
+
 class Address{
 -String country
 -String city
@@ -70,27 +75,34 @@ class Address{
 -String zip
 +Address(String country, String city, String street,String zip);
 }
+
 class DayTicket{
 -String date
-+DayTicket(int iD, boolean available, Event event, double price, String description, String date)
++DayTicket(TicketType ticketType, int id, String description, boolean available, double standardPrice, Event event, String date)
 +getDate()
 }
+
 class CampingTicket{
 +String campingPlaceName
-+CampingTicket(int iD, boolean available, Event event, double price, String description, String campingPlaceName)
++CampingTicket(TicketType ticketType, int id, String description, boolean available, double standardPrice, String campingPlaceName, Event event)
 }
+
 class VIPTicket{
-+VIPTicket(int iD, boolean available, Event event, double price, String description)
++VIPTicket(TicketType ticketType, int id, String description, boolean available, double standardPrice, Event event)
 }
+
 class LineUp{
-map<TimeSlot, Band>
+-Map<TimeSlot, Band> lineUp
 +boolean addBand(Bang band, TimeSlot timeslot)
 +boolean removeBand(Band band)
 +LineUp getLineUp()
 }
+
 class TimeSlot{
-Date date;
+Date date
 Stage stage
-boolean free;
+boolean free
++TimeSlot(Date date, Stage stage, boolean free)
 }
+
 @enduml
