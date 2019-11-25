@@ -8,6 +8,7 @@ import de.bord.festival.exception.DateException;
 import de.bord.festival.exception.TimeException;
 import de.bord.festival.stageManagement.Stage;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.annotation.Testable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -285,4 +286,6 @@ class EventTest {
         lineUp.addBand(band4, 300);
         return lineUp;
     }
+
+
 }
