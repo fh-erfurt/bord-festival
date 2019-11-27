@@ -11,7 +11,5 @@ public class VIPTicket extends Ticket {
 
         super(ticketType, id, description, available, standardPrice, event);
     }
-    static public void setTicketPrice(double price){
-        ticketPrice = price;
-    }
+
 }

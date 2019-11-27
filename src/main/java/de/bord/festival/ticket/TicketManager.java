@@ -23,6 +23,23 @@ public class TicketManager {
     private int nCampingtickets;
     private int nViptickets;
 
+    public TicketManager(ArrayList<PriceLevel> priceLevels,
+                         int nPriceLevels,
+                         int nDaytickets,
+                         int nCampingtickets,int nViptickets ){
+
+        this.priceLevels = priceLevels;
+        this.nPriceLevels = nPriceLevels;
+        this.actualPriceLevel = 0;
+        this.nDayticketsLeft = nDaytickets;
+        this.nCampingticketsLeft = nCampingtickets;
+        this.nVipticketsLeft = nViptickets;
+        this.nDaytickets = nDaytickets;
+        this.nCampingtickets = nCampingtickets;
+        this.nViptickets = nViptickets;
+
+    }
+
     /**
      * will be queried after every ticket sale
      * Once a fixed percentage has been exceeded, the next price level starts.
