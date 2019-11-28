@@ -1,8 +1,9 @@
 
-Hsquid:S1068",Remove this unused "capacity" private field.(Ò—àçşÿÿÿÿ
 [squid:UselessImportCheck"7Remove this unused import 'de.bord.festival.band.Band'.(’³õ¶
-Ssquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ
 ?squid:S1068"(Remove this unused "name" private field.(Ë¥¼
+Ssquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òşÿÿÿÿ
 Bsquid:S1068"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ
-Ssquid:UselessImportCheck"*Remove this unused import 'java.sql.Time'.(Üå»‰şÿÿÿÿ
+nsquid:S1206"PThis class overrides "equals()" and should therefore also override "hashCode()".(’ÜÇŞ8œ—‰“ê-
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(òß¿›øÿÿÿÿ
+Ssquid:UselessImportCheck"*Remove this unused import 'java.sql.Time'.(Üå»‰şÿÿÿÿ
+Hsquid:S1068",Remove this unused "capacity" private field.(Ò—àçşÿÿÿÿ

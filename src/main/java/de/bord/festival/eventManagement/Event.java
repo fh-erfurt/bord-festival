@@ -19,8 +19,8 @@ public class Event {
 
     private int id;
     private String name;
-    private double budget;
-    private double actualBudget = 0;
+    private final double budget;//budget for bands
+    private double actualCosts = 0;
     private LineUp lineUp;
     private LinkedList<Ticket> tickets;//bought tickets
     private int maxCapacity;
@@ -59,7 +59,7 @@ public class Event {
      * @return true if the band is affordable for the budget of an event, otherwise false
      */
     private boolean isNewBandAffordable(Band band) {
-        return actualBudget + band.getPriceProEvent() <= budget;
+        return actualCosts + band.getPriceProEvent() <= budget;
     }
 
     /**
@@ -101,7 +101,7 @@ public class Event {
         EventInfo eventInfo = lineUp.addBand(band, minutesOnStage);
         if (eventInfo != null) {
             band.addEventInfo(eventInfo);
-            actualBudget += band.getPriceProEvent();
+            actualCosts += band.getPriceProEvent();
         }
         return eventInfo;
     }
