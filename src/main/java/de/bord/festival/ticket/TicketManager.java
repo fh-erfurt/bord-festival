@@ -2,7 +2,7 @@ package de.bord.festival.ticket;
 
 import de.bord.festival.eventManagement.Event;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *  The class gives information about total number of tickets, current number of tickets,
@@ -29,6 +29,7 @@ public class TicketManager {
                          int nCampingtickets,int nViptickets ){
 
         this.priceLevels = priceLevels;
+        Collections.sort(priceLevels);   //exception
         this.nPriceLevels = nPriceLevels;
         this.actualPriceLevel = 0;
         this.nDayticketsLeft = nDaytickets;
@@ -45,7 +46,9 @@ public class TicketManager {
      * Once a fixed percentage has been exceeded, the next price level starts.
      */
     public void updatePriceLevel(){
-        if(isPercentageOfSoldTicketsExceeded()){
+
+
+        if(isPercentageOfSoldTicketsExceeded()&& this.priceLevels.size() < this.actualPriceLevel+1){
             this.actualPriceLevel++;
             }
         }
@@ -82,9 +85,9 @@ public class TicketManager {
         return nVipticketsLeft;
     }
 
-    public int totalNumberOfTickets(){return getnDaytickets()+getnCampingtickets()+getnViptickets();}
+    public int totalNumberOfTickets(){return nDaytickets+nCampingtickets+nViptickets;}  //variable???
 
-    public int totalNumberOfTicketsLeft(){return getnDayticketsLeft()+getnCampingtickets()+getnVipticketsLeft();}
+    public int totalNumberOfTicketsLeft(){return nDayticketsLeft+nCampingtickets+nVipticketsLeft;}
 
     public int totalNumberOfSoldTickets(){
         return totalNumberOfTickets()-totalNumberOfTicketsLeft();}
@@ -104,4 +107,6 @@ public class TicketManager {
 
         }
         return null;} ///////return the ticket TODO
+
+
 }

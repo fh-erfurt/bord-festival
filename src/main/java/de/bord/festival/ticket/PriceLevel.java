@@ -2,7 +2,8 @@ package de.bord.festival.ticket;
 
 
 
-public class PriceLevel {
+
+public class PriceLevel implements Comparable<PriceLevel>{
 
     /**
      *  Contains all ticket prices for the price level and a percentage for the price level.
@@ -30,6 +31,18 @@ public class PriceLevel {
         this.priceLevel = priceLevel;
     }
 
+    /**
+     * for sorting the pricelevel array
+     * java.lang.Integer.valueOf because a Object is needed
+     * @param
+     * @return
+     */
+    @Override
+    public int compareTo(PriceLevel p) {
+
+        return  java.lang.Double.valueOf(this.percentageOfSoldTickets).compareTo(java.lang.Double.valueOf(p.percentageOfSoldTickets));
+    }
+
     public double getCampingTicketPrice() {
         return CampingTicketPrice;
     }
@@ -37,4 +50,6 @@ public class PriceLevel {
     public double getPercentageOfSoldTickets() {
         return percentageOfSoldTickets;
     }
+    public  int getPriceLevel(){return priceLevel;}
+
 }
