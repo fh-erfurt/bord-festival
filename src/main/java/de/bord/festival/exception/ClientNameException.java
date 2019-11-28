@@ -8,7 +8,8 @@ package de.bord.festival.exception;
  *   doesn't consist of the correct characters (a-z, A-Z, 0-9, .),
  *   is the name already used for the account or
  */
-public class ClientNameException extends Exception{
+public class ClientNameException extends Exception
+{
     private String message;
 
     public ClientNameException(String message) {

@@ -2,6 +2,7 @@ package de.bord.festival.client;
 
 import de.bord.festival.address.Address;
 import de.bord.festival.exception.ClientNameException;
+import de.bord.festival.exception.TicketException;
 import de.bord.festival.ticket.Ticket;
 
 import java.util.LinkedList;
@@ -61,5 +62,14 @@ public class Client {
 
         this._firstname = newFirstName;
         this._lastname = newLastName;
+    }
+
+
+    public void addTicket(Ticket ticket) throws TicketException
+    {
+        if(!ticket.isAvailable()) {
+            throw new TicketException("No more tickets available");
+        }
+        this._tickets.add(ticket);
     }
 }
