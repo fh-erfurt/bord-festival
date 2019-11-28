@@ -12,6 +12,8 @@ public abstract class Ticket {
     protected Event event;
     protected double stdPrice;
 
+    public boolean isAvailable() {return available;}
+
     public Ticket(TicketType ticketType, int id, String description, boolean available, double standardPrice, Event event) {
         this.available = available;
         this.description = description;
@@ -19,4 +21,5 @@ public abstract class Ticket {
         this.stdPrice = standardPrice;
         this.event = event;
     }
+    // abstract setTicketprice
 }

@@ -8,6 +8,7 @@ import de.bord.festival.exception.DateException;
 import de.bord.festival.exception.TimeException;
 import de.bord.festival.stageManagement.Stage;
 import de.bord.festival.ticket.Ticket;
+import de.bord.festival.ticket.TicketManager;
 
 import java.time.LocalDate;
 import java.util.LinkedList;
@@ -16,6 +17,8 @@ import java.util.LinkedList;
  * Represents an festival with required features
  */
 public class Event {
+
+    private TicketManager ticketManager;
 
     private int id;
     private String name;
@@ -39,6 +42,7 @@ public class Event {
         this.name = name;
 
     }
+
 
     public int getNumberOfBands() {
         return lineUp.getNumberOfBands();
