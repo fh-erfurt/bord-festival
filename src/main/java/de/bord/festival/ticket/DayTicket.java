@@ -11,7 +11,5 @@ public class DayTicket extends Ticket {
         super(ticketType, id, description, available, standardPrice, event);
         this.date=date;
     }
-    static public void setTicketPrice(double price){
-        ticketPrice = price;
-    }
+
 }

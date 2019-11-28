@@ -7,11 +7,15 @@ import de.bord.festival.exception.BudgetException;
 import de.bord.festival.exception.DateException;
 import de.bord.festival.exception.TimeException;
 import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.ticket.PriceLevel;
+import de.bord.festival.ticket.TicketManager;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.annotation.Testable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -235,7 +239,9 @@ class EventTest {
         LocalDateTime actualDateTime = LocalDateTime.of(eventInfo.getDate(), eventInfo.getTime());
         //then
         assertEquals(resultDateTime, actualDateTime);
+
     }
+
 
     private Band getBand() {
         return new Band(1, "GOD IS AN ASTRONAUT", "920", 500);
@@ -285,4 +291,20 @@ class EventTest {
         lineUp.addBand(band4, 300);
         return lineUp;
     }
+
+    private TicketManager exampleTicketManager(){
+     PriceLevel p1 = new PriceLevel(20.00, 39.99, 54.99,
+             25.00, 0);
+     PriceLevel p2 = new PriceLevel(30.00, 49.99, 64.99,
+             50.00, 1);
+     PriceLevel p3 = new PriceLevel(40.00, 59.99, 74.99,
+             60.00, 2);
+        ArrayList<PriceLevel> priceLevels = new ArrayList<>();
+        priceLevels.add(p1);
+        priceLevels.add(p2);
+        priceLevels.add(p3);
+
+     return new TicketManager(priceLevels, 3, 1000,20000,300);
+ }
+
 }
