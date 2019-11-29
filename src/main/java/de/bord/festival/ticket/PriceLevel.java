@@ -17,18 +17,18 @@ public class PriceLevel implements Comparable<PriceLevel>{
     /**
      * the price level is valid until the percentage of sold tickets is reached
      */
-    private double percentageOfSoldTickets;
+    private double validPercentageOfSoldTicketsForPricelevel;
 
-    private int priceLevel;
+    //private int priceLevel;
 
     public PriceLevel(double dayTicketPrice, double CampingTicketPrice, double VipTicketPrice,
-                      double percentageOfSoldTickets, int priceLevel) {
+                      double validPercentageOfSoldTicketsForPricelevel) {
 
         this.dayTicketPrice = dayTicketPrice;
         this.CampingTicketPrice = CampingTicketPrice;
         this.VipTicketPrice = VipTicketPrice;
-        this.percentageOfSoldTickets = percentageOfSoldTickets;
-        this.priceLevel = priceLevel;
+        this.validPercentageOfSoldTicketsForPricelevel = validPercentageOfSoldTicketsForPricelevel;
+       // this.priceLevel = priceLevel;
     }
 
     /**
@@ -40,16 +40,16 @@ public class PriceLevel implements Comparable<PriceLevel>{
     @Override
     public int compareTo(PriceLevel p) {
 
-        return  java.lang.Double.valueOf(this.percentageOfSoldTickets).compareTo(java.lang.Double.valueOf(p.percentageOfSoldTickets));
+        return  java.lang.Double.valueOf(this.validPercentageOfSoldTicketsForPricelevel).compareTo(java.lang.Double.valueOf(p.validPercentageOfSoldTicketsForPricelevel));
     }
 
     public double getCampingTicketPrice() {
         return CampingTicketPrice;
     }
 
-    public double getPercentageOfSoldTickets() {
-        return percentageOfSoldTickets;
+    public double getValidPercentageOfSoldTicketsForPricelevel() {
+        return validPercentageOfSoldTicketsForPricelevel;
     }
-    public  int getPriceLevel(){return priceLevel;}
+    //public  int getPriceLevel(){return priceLevel;}
 
 }

@@ -243,6 +243,7 @@ class EventTest {
     }
 
 
+
     private Band getBand() {
         return new Band(1, "GOD IS AN ASTRONAUT", "920", 500);
 
@@ -294,11 +295,11 @@ class EventTest {
 
     private TicketManager exampleTicketManager(){
      PriceLevel p1 = new PriceLevel(20.00, 39.99, 54.99,
-             25.00, 0);
+             70.00);
      PriceLevel p2 = new PriceLevel(30.00, 49.99, 64.99,
-             50.00, 1);
+             50.00);
      PriceLevel p3 = new PriceLevel(40.00, 59.99, 74.99,
-             60.00, 2);
+             60.00);
         ArrayList<PriceLevel> priceLevels = new ArrayList<>();
         priceLevels.add(p1);
         priceLevels.add(p2);

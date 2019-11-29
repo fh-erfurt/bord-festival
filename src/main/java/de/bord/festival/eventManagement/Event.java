@@ -19,7 +19,9 @@ import java.util.LinkedList;
 public class Event {
 
     private TicketManager ticketManager;
-
+// bool automaticPriceLevelChange;    //
+// wenn ich auf automatik wechsel muss das preislevel aktualisiert werden     TODO
+ // im manuellen modus kann ich selbst das pricelevel angeben
     private int id;
     private String name;
     private double budget;

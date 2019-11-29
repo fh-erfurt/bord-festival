@@ -13,8 +13,8 @@ import java.util.*;
 public class TicketManager {
     private ArrayList<PriceLevel> priceLevels;
     private int nPriceLevels;
+   // private double actualPriceLevelPercentage;
     private int actualPriceLevel;
-
     private int nDayticketsLeft;
     private int nCampingticketsLeft;
     private int nVipticketsLeft;
@@ -32,6 +32,7 @@ public class TicketManager {
         Collections.sort(priceLevels);   //exception
         this.nPriceLevels = nPriceLevels;
         this.actualPriceLevel = 0;
+        //this.actualPriceLevelPercentage = priceLevels.get(0).getPercentageOfSoldTickets();
         this.nDayticketsLeft = nDaytickets;
         this.nCampingticketsLeft = nCampingtickets;
         this.nVipticketsLeft = nViptickets;
@@ -55,7 +56,7 @@ public class TicketManager {
 
         public boolean isPercentageOfSoldTicketsExceeded(){
 
-            if(totalNumberOfSoldTicketsInPercent() < priceLevels.get(actualPriceLevel).getPercentageOfSoldTickets()){
+            if(totalNumberOfSoldTicketsInPercent() < getPriceLevel(this.actualPriceLevel).getValidPercentageOfSoldTicketsForPricelevel()){
                 return true;
             }
             return false;
@@ -93,6 +94,13 @@ public class TicketManager {
         return totalNumberOfTickets()-totalNumberOfTicketsLeft();}
 
     public double totalNumberOfSoldTicketsInPercent(){return (totalNumberOfTicketsLeft()/totalNumberOfTickets())*100;}
+
+    public PriceLevel getPriceLevel(int index){
+        return priceLevels.get(index);
+    }
+
+
+
     public Ticket sellTicket(Ticket.TicketType type){
         switch(type){
 
