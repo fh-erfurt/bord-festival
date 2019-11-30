@@ -1,4 +1,5 @@
 
+vsquid:UselessImportCheck"KRemove this unused import 'java.nio.channels.NoConnectionPendingException'.(íäÕÈ8„ â ë-
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(çÿ‚û
-esquid:S1126ƒ"AReplace this if-then-else statement by a single return statement.(¯•Ó¬üÿÿÿÿ8ÄíßËè-
-`squid:UselessImportCheck"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8×ÑòÍè-
+esquid:S1126‰"AReplace this if-then-else statement by a single return statement.(†ÜòÏıÿÿÿÿ8ÄíßËè-
+`squid:UselessImportCheck"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8×ÑòÍè-

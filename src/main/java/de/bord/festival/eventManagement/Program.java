@@ -9,6 +9,7 @@ import de.bord.festival.stageManagement.TimeSlot;
 
 import static java.time.temporal.ChronoUnit.MINUTES;
 
+import java.nio.channels.NoConnectionPendingException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -56,10 +57,15 @@ class Program {
                 // It will be at start time of the first day of festival
                 LocalTime time = this.lineUp.getStartTime();
                 doesAlreadyPlay(band, time);//throws exception
-                TimeSlot timeSlot = new TimeSlot(time, band, minutesOnStage);
-                currentListOfTimeSlots.add(timeSlot);
+                if (canPlayBeforeTheEndOfDay(minutesOnStage, time)){
+                    TimeSlot timeSlot = new TimeSlot(time, band, minutesOnStage);
+                    currentListOfTimeSlots.add(timeSlot);
+                    return new EventInfo(time, currentStage);
+                }
+                else{
+                    return null;
+                }
 
-                return new EventInfo(time, currentStage);
             }
             //else look after the previous timeSlot
             TimeSlot previousTimeSlot = currentListOfTimeSlots.getLast();
@@ -128,7 +134,7 @@ class Program {
         LocalTime endTime = this.lineUp.getEndTime();
 
         LocalTime previousTime = previousTimePlusBreak;
-        if (previousTime.until(endTime, MINUTES) > minutesOnStage) {
+        if (previousTime.until(endTime, MINUTES) >= minutesOnStage) {
             return true;
         }
         return false;
@@ -163,4 +169,46 @@ class Program {
             }
         }
     }
+
+    public void removeBand(Band band) {
+
+        for(Map.Entry<Stage, LinkedList<TimeSlot>> entry: programsForStages.entrySet()){
+            LinkedList<TimeSlot> timeSlotsPerStage=entry.getValue();
+            for (int i=0; i<timeSlotsPerStage.size(); i++){
+                if(isTheSameBand(timeSlotsPerStage.get(i), band)){
+                    timeSlotsPerStage.remove(timeSlotsPerStage.get(i));
+                }
+
+            }
+        }
+    }
+
+    /**
+     * @param timeslot time slot in which the band should be checked
+     * @param band given band should be removed
+     * @return true, if the names are equals
+     */
+    public boolean isTheSameBand(TimeSlot timeslot, Band band){
+        return timeslot.getNameOfBand().equals(band.getName());
+    }
+
+    public boolean removeBand(Band band, LocalTime time) {
+
+        for (Map.Entry<Stage, LinkedList<TimeSlot>> entry: programsForStages.entrySet()){
+            LinkedList<TimeSlot> currentTimeslotsOnStage= entry.getValue();
+            if (currentTimeslotsOnStage.isEmpty()){
+                return false;
+            }
+            for (int i=0; i<currentTimeslotsOnStage.size(); i++){
+
+                if (currentTimeslotsOnStage.get(i).getTime().equals(time)){
+                    currentTimeslotsOnStage.remove(currentTimeslotsOnStage.get(i));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
 }

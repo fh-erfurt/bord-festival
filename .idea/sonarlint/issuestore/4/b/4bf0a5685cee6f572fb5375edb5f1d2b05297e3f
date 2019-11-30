@@ -1,0 +1,10 @@
+
+dsquid:S2184_"HCast one of the operands of this multiplication operation to a "double".(”°öËüÿÿÿÿ
+bsquid:S1301a"KReplace this "switch" statement by "if" statements to increase readability.(ÜŸ•
+’squid:S1319"vThe type of the "priceLevels" object should be an interface such as "List" rather than the implementation "ArrayList".(°á¦şÿÿÿÿ
+ysquid:S4144P"bUpdate this method so that its implementation is not identical to "getnCampingtickets" on line 68.(õî×Ê
+Xsquid:S1126:"AReplace this if-then-else statement by a single return statement.(†êÉ¤
+fsquid:S4275D"ORefactor this getter so that it actually refers to the field "nCampingtickets".(·˜“ 
+‡"squid:SwitchLastCaseIsDefaultChecka"YComplete cases by adding the missing enum constants or add a default case to this switch.(ÜŸ•
+Nsquid:S1135m"2Complete the task associated to this TODO comment.(¡¸†ÿÿÿÿÿÿ
+Gsquid:S1068"0Remove this unused "nPriceLevels" private field.(Ë²™°
