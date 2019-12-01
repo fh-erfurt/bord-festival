@@ -2,6 +2,7 @@ package de.bord.festival.client;
 
 import de.bord.festival.address.Address;
 import de.bord.festival.exception.ClientNameException;
+import de.bord.festival.exception.MailException;
 import de.bord.festival.exception.TicketException;
 import de.bord.festival.ticket.Ticket;
 
@@ -17,17 +18,18 @@ public class Client {
     private String _mail;
     private LinkedList<Ticket> _tickets;
 
-    public Client(String firstname, String lastname, String phoneNumber, int id, Address address) throws ClientNameException
+    public Client(String firstname, String lastname, String mail, int id, Address address) throws ClientNameException, MailException
     {
         nameCheck(firstname);
         nameCheck(lastname);
+        mailCheck(mail);
 
         _tickets = new LinkedList<Ticket>();
         this._id = id;
         this._firstname = firstname;
         this._lastname = lastname;
         this._address = address;
-        this._mail = phoneNumber;
+        this._mail = mail;
     }
 
     /**
@@ -35,17 +37,33 @@ public class Client {
      * @param name
      * @throws ClientNameException
      */
-    public void nameCheck(String name) throws ClientNameException
+    private void nameCheck(String name) throws ClientNameException
     {
-        Pattern p = Pattern.compile("[^äÄöÖüÜßa-zA-Z]*$");
+        Pattern p = Pattern.compile("[^äÄöÖüÜßa-zA-Z/-]*$");
         Matcher m = p.matcher(name);
 
-        if(m.find()) {
+        if(m.find())
+        {
             throw new ClientNameException("Name can only consist of letters");
-        } else if(name.trim().isEmpty()) {
+        }
+        else if(name.trim().isEmpty())
+        {
             throw new ClientNameException("Name can't be empty");
-        } else if(name.length() > 50) {
+        }
+        else if(name.length() > 50)
+        {
             throw new ClientNameException("Name can't be longer than 50 characters");
+        }
+    }
+
+    private void mailCheck(String mail) throws MailException
+    {
+        Pattern p = Pattern.compile("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+        Matcher m = p.matcher(mail);
+
+        if(!m.find())
+        {
+            throw new MailException("Falsche E-Mail-Adresse");
         }
     }
 
@@ -67,7 +85,8 @@ public class Client {
 
     public void addTicket(Ticket ticket) throws TicketException
     {
-        if(!ticket.isAvailable()) {
+        if(!ticket.isAvailable())
+        {
             throw new TicketException("No more tickets available");
         }
         this._tickets.add(ticket);

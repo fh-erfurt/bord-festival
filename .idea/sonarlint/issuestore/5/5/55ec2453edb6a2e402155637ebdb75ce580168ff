@@ -1,6 +1,7 @@
 
-Bsquid:S1068"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ
+Fsquid:S1068"/Remove this unused "maxCapacity" private field.( ¼şÎ
 rsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(çÿ‚û
-?squid:S1068"(Remove this unused "name" private field.(Ë¥¼
-Fsquid:S1068"/Remove this unused "maxCapacity" private field.( ¼şÎ
-Gsquid:S1068"+Remove this unused "tickets" private field.(šµµßøÿÿÿÿ
+Gsquid:S1068"+Remove this unused "tickets" private field.(šµµßøÿÿÿÿ
+Bsquid:S1068"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ
+?squid:S1068"(Remove this unused "name" private field.(Ë¥¼
+Osquid:S1068"1Remove this unused "ticketManager" private field.(ŠıÏŠ8Ñ™ú¶ë-

@@ -33,3 +33,12 @@ a
 1src/main/java/de/bord/festival/client/Client.java,c\e\ce39122ef6bb768de682d03385f439b23e9fefb7
 \
 ,src/test/java/de/bord/festival/MainTest.java,9\e\9ec5eaff65c48d9061078720afe35b2731e057ee
+q
+Asrc/main/java/de/bord/festival/exception/ClientNameException.java,0\3\031ee02c0426fb27bcbe8034c2640e808ec545f6
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+m
+=src/main/java/de/bord/festival/exception/TicketException.java,a\7\a72193603859f019f7cac29815dfc88a709906d8
+e
+5src/test/java/de/bord/festival/client/ClientTest.java,2\4\242070af590d797460e98947573944fcca3546e7
