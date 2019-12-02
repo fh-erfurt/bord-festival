@@ -1,4 +1,9 @@
 
+<<<<<<< HEAD
 nsquid:S12063"PThis class overrides "equals()" and should therefore also override "hashCode()".(’ÜÇŞ8¤ºë-
 Ksquid:S1068"/Remove this unused "phoneNumber" private field.(Ôá“ùÿÿÿÿ
 Bsquid:S1068"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ
+=======
+Bsquid:S1068"&Remove this unused "id" private field.(ôç¼Óşÿÿÿÿ
+Ksquid:S1068	"/Remove this unused "phoneNumber" private field.(Ôá“ùÿÿÿÿ
+>>>>>>> 48a9402291c04ea3dba75b3a73a4879282e5519a
