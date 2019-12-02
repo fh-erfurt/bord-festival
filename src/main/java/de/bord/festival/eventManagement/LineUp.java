@@ -181,7 +181,7 @@ public class LineUp {
     }
 
     /**
-     * Is a help method to removeBand from Event class
+     * It is a help method to removeBand from Event class
      * @param band band should be removed
      * @return true, if the band exists in the event list, false otherwise
      */
@@ -199,6 +199,12 @@ public class LineUp {
         return true;
     }
 
+    /**
+     * It is a help method for Event class method removeBand
+     * @param band band should be removed
+     * @param dateAndTime date and time the band should be removed
+     * @return true, if the timeslot is removed, otherwise false
+     */
     public boolean removeBand(Band band, LocalDateTime dateAndTime) {
         if (!doesBandExistsInTheList(band)){
             return false;
@@ -208,9 +214,7 @@ public class LineUp {
 
         //find program the date should be removed
         Program program =dayPrograms.get(date);
-        if (program==null){
-            return false;
-        }
+        //find time the band should be removed
         LocalTime time =dateAndTime.toLocalTime();
         if(program.removeBand(band, time)){
             if (band.getNumberOfEventInfo()==1){

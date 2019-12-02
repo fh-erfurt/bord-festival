@@ -112,7 +112,7 @@ public class Event {
     }
 
     /**
-     * Removes the band from entire event: from all programs, days and timeslots
+     * Removes the band from entire event: from all programs and timeslots
      * @param band the band, that should be removed
      * @return true, if the band is removed, otherwise false
      */
@@ -135,6 +135,7 @@ public class Event {
 
         if(this.lineUp.removeBand(band, dateAndTime)){
             band.removeEventInfo(dateAndTime);
+            //if band does not play on event anymore
             if (band.getNumberOfEventInfo()==0){
                 actualCosts-=band.getPriceProEvent();
             }
@@ -143,6 +144,11 @@ public class Event {
         return false;
     }
 
+    /**
+     * Adds to costs to the actual costs variable
+     * LineUp calls it, if the band is new on event, because band receives money for entire event
+     * @param amount
+     */
     public void addToTheActualCosts(double amount){
         actualCosts += amount;
     }

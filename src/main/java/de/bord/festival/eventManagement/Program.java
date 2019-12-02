@@ -170,6 +170,11 @@ class Program {
         }
     }
 
+    /**
+     * Is a help method for LineUp class method removeBand
+     * Removes band fromm all time slots
+     * @param band the band should be removed
+     */
     public void removeBand(Band band) {
 
         for(Map.Entry<Stage, LinkedList<TimeSlot>> entry: programsForStages.entrySet()){
@@ -184,6 +189,7 @@ class Program {
     }
 
     /**
+     * Compares the names of two bands: given band and the band, which plays on certain time slot
      * @param timeslot time slot in which the band should be checked
      * @param band given band should be removed
      * @return true, if the names are equals
@@ -192,6 +198,12 @@ class Program {
         return timeslot.getNameOfBand().equals(band.getName());
     }
 
+    /**
+     * Removes band drom certain time slot at certain time
+     * @param band the band, which should be removed
+     * @param time the time, the band should be removed
+     * @return true, if a needed time slot found and the band is equal, otherwise false
+     */
     public boolean removeBand(Band band, LocalTime time) {
 
         for (Map.Entry<Stage, LinkedList<TimeSlot>> entry: programsForStages.entrySet()){
@@ -200,8 +212,10 @@ class Program {
                 return false;
             }
             for (int i=0; i<currentTimeslotsOnStage.size(); i++){
-
-                if (currentTimeslotsOnStage.get(i).getTime().equals(time)){
+                String nameOfCurrentBand=currentTimeslotsOnStage.get(i).getNameOfBand();
+                LocalTime timeInCurrentTimeSlot=currentTimeslotsOnStage.get(i).getTime();
+                //if time and band name corresponse we can remove this time slot
+                if (timeInCurrentTimeSlot.equals(time) && band.getName().equals(nameOfCurrentBand) ){
                     currentTimeslotsOnStage.remove(currentTimeslotsOnStage.get(i));
                     return true;
                 }

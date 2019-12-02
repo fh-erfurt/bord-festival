@@ -49,3 +49,5 @@ a
 1src/test/java/de/bord/festival/band/BandTest.java,f\e\fea8c7c807fcc63a4fe232d90a9349c27d0dce3c
 d
 4src/test/java/de/bord/festival/help/HelpClasses.java,9\e\9e70975c1de63726318cbcf127eb5036c33e6df5
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
