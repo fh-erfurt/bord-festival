@@ -3,16 +3,13 @@ package de.bord.festival.ticket;
 import de.bord.festival.eventManagement.Event;
 
 public abstract class Ticket {
+
     enum TicketType {DAY, CAMPING, VIP}
-
-
     protected int id;
     protected String description;
     protected boolean available;
     protected Event event;
     protected double stdPrice;
-
-    public boolean isAvailable() {return available;}
 
     public Ticket(TicketType ticketType, int id, String description, boolean available, double standardPrice, Event event) {
         this.available = available;
@@ -21,5 +18,9 @@ public abstract class Ticket {
         this.stdPrice = standardPrice;
         this.event = event;
     }
+
+    public boolean isAvailable() {return available;}
+
+    abstract public TicketType getType();
     // abstract setTicketprice
 }

@@ -12,4 +12,9 @@ public class VIPTicket extends Ticket {
         super(ticketType, id, description, available, standardPrice, event);
     }
 
+    @Override
+    public TicketType getType() {
+        return TicketType.VIP;
+    }
+
 }
