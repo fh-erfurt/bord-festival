@@ -37,7 +37,7 @@ public class Client {
      * @param name
      * @throws ClientNameException
      */
-    private void nameCheck(String name) throws ClientNameException
+    protected void nameCheck(String name) throws ClientNameException
     {
         Pattern p = Pattern.compile("[^äÄöÖüÜßa-zA-Z/-]*$");
         Matcher m = p.matcher(name);
@@ -56,7 +56,7 @@ public class Client {
         }
     }
 
-    private void mailCheck(String mail) throws MailException
+    protected void mailCheck(String mail) throws MailException
     {
         Pattern p = Pattern.compile("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
         Matcher m = p.matcher(mail);
