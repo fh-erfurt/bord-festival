@@ -42,3 +42,7 @@ m
 =src/main/java/de/bord/festival/exception/TicketException.java,a\7\a72193603859f019f7cac29815dfc88a709906d8
 e
 5src/test/java/de/bord/festival/client/ClientTest.java,2\4\242070af590d797460e98947573944fcca3546e7
+k
+;src/main/java/de/bord/festival/exception/MailException.java,4\7\471affe56105f584cb165bf49e669c940a601203
+h
+8src/main/java/de/bord/festival/ticket/TicketManager.java,4\b\4bf0a5685cee6f572fb5375edb5f1d2b05297e3f
