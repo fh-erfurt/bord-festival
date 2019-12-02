@@ -25,12 +25,12 @@ public class ClientTest {
     @Test
     void should_throw_exception_for_name_with_specialchars() throws ClientNameException {
         String testname = "!";
-        /*
+
         assertThrows(ClientNameException.class, () -> {
             client.nameCheck("serfsdfsdf");
         });
 
-         */
+
     }
 
     @Test

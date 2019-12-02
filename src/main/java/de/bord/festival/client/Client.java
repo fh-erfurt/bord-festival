@@ -39,10 +39,10 @@ public class Client {
      */
     protected void nameCheck(String name) throws ClientNameException
     {
-        Pattern p = Pattern.compile("[^äÄöÖüÜßa-zA-Z/-]*$");
+        Pattern p = Pattern.compile("^[a-zA-Z+äÄöÖüÜß]*$");
         Matcher m = p.matcher(name);
 
-        if(m.find())
+        if(!m.find())
         {
             throw new ClientNameException("Name can only consist of letters");
         }
