@@ -1,5 +1,7 @@
 package de.bord.festival.address;
 
+import java.util.Objects;
+
 public class Address {
     private String country;
     private String city;
@@ -13,9 +15,15 @@ public class Address {
         this.zip = zip;
     }
 
-    public boolean equals(Address address) {
-        return this.country.equals(address.getCountry()) && this.city.equals(address.getCity()) &&
-                this.zip.equals(address.getZip()) && this.street.equals(address.getStreet());
+
+    @Override
+    public boolean equals(Object object) {
+        if(object instanceof Address) {
+            Address address = (Address)object;
+            return this.country.equals(address.getCountry()) && this.city.equals(address.getCity()) &&
+                    this.zip.equals(address.getZip()) && this.street.equals(address.getStreet());
+        }
+        return false;
     }
 
     private String getStreet() {

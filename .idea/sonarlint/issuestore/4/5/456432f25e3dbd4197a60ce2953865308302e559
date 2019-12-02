@@ -1,5 +1,14 @@
 
 Ssquid:UselessImportCheck"*Remove this unused import 'java.util.Map'.(¼è½Òþÿÿÿÿ
+<<<<<<< HEAD
+Ssquid:UselessImportCheck"*Remove this unused import 'java.sql.Time'.(Üå»‰þÿÿÿÿ
+?squid:S1068"(Remove this unused "name" private field.(Ë¥¼
+wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(òß¿›øÿÿÿÿ
+nsquid:S1206"PThis class overrides "equals()" and should therefore also override "hashCode()".(’ÜÇÞ8œ—‰“ê-
+[squid:UselessImportCheck"7Remove this unused import 'de.bord.festival.band.Band'.(’³õ¶
+Bsquid:S1068"&Remove this unused "id" private field.(ôç¼Óþÿÿÿÿ
+Hsquid:S1068",Remove this unused "capacity" private field.(Ò—àçþÿÿÿÿ
+=======
 Bsquid:S1068"&Remove this unused "id" private field.(ôç¼Óþÿÿÿÿ
 Ssquid:UselessImportCheck"*Remove this unused import 'java.sql.Time'.(Üå»‰þÿÿÿÿ
 ?squid:S1068"(Remove this unused "name" private field.(Ë¥¼
@@ -7,3 +16,4 @@ Ssquid:UselessImportCheck"*Remove this unused import 'java.sql.Time'.(Üå»‰þÿ
 Hsquid:S1068",Remove this unused "capacity" private field.(Ò—àçþÿÿÿÿ
 wsquid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(òß¿›øÿÿÿÿ
 xsquid:S1201"UEither override Object.equals(Object), or rename the method to prevent any confusion.(Õ¿Àœøÿÿÿÿ8Á™ú¶ë-
+>>>>>>> 48a9402291c04ea3dba75b3a73a4879282e5519a

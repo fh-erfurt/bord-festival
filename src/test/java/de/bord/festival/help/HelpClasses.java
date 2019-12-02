@@ -1,0 +1,80 @@
+package de.bord.festival.help;
+
+import de.bord.festival.address.Address;
+import de.bord.festival.band.Band;
+import de.bord.festival.band.EventInfo;
+import de.bord.festival.eventManagement.Event;
+import de.bord.festival.eventManagement.LineUp;
+import de.bord.festival.exception.BudgetException;
+import de.bord.festival.exception.DateException;
+import de.bord.festival.exception.TimeException;
+import de.bord.festival.stageManagement.Stage;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public class HelpClasses {
+    public Band getBand() {
+        return new Band(1, "GOD IS AN ASTRONAUT", "920", 500);
+
+    }
+
+    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateException{
+        Stage stage = getStage();
+        return new LineUp(startDate, endDate, stage, getValidNDaysEvent(1));
+
+    }
+
+    public Band getBand(String name, double priceProEvent) {
+        return new Band(5, name, "911", priceProEvent);
+
+    }
+
+    public Stage getStage() {
+        Address address = new Address("Moldawien", "Chisinau", "Heln 12", "7829");
+        return new Stage(1, "stage1", 300, address);
+
+    }
+
+    public Event getValidNDaysEvent(int numberOfDays) throws DateException {
+
+        return new Event(1, LocalDate.of(2018, 01, 01),
+                LocalDate.of(2018, 01, numberOfDays), "Bord", 2019, 1000,
+                getStage());
+
+
+    }
+
+    public LineUp exampleLineUp() throws TimeException, BudgetException, DateException {
+        //lineUp for 3 days with 2 stages and 4 bands. Each band plays 5 hours
+        LineUp lineUp = getLineUp(LocalDate.of(2020, 3, 1),
+                LocalDate.of(2020, 3, 3));
+        lineUp.addStage(getStage());
+
+
+        Band band1 = getBand("band1", 40);
+        Band band2 = getBand("band2", 40);
+        Band band3 = getBand("band3", 40);
+        Band band4 = getBand("band4", 40);
+        lineUp.addBand(band1, 300);
+        lineUp.addBand(band2, 300);
+        lineUp.addBand(band3, 300);
+        lineUp.addBand(band4, 300);
+        return lineUp;
+    }
+
+    public Band getBandWith3EventPlays(){
+        Band band =getBand();
+        EventInfo eventInfo = new EventInfo(LocalTime.of(12,00), getStage());
+        eventInfo.setDate(LocalDate.of(2020, 12,12));
+        EventInfo eventInfo1 = new EventInfo(LocalTime.of(12,00), getStage());
+        eventInfo1.setDate(LocalDate.of(2020, 11,12));
+        EventInfo eventInfo2 = new EventInfo(LocalTime.of(12,00), getStage());
+        eventInfo2.setDate(LocalDate.of(2020, 11,12));
+
+        band.addEventInfo(eventInfo);
+        band.addEventInfo(eventInfo1);
+        band.addEventInfo(eventInfo2);
+        return band;
+    }
+}

@@ -11,6 +11,7 @@ import de.bord.festival.ticket.Ticket;
 import de.bord.festival.ticket.TicketManager;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 /**
@@ -22,8 +23,8 @@ public class Event {
 
     private int id;
     private String name;
-    private double budget;
-    private double actualBudget = 0;
+    private final double budget;//budget for bands
+    private double actualCosts = 0;
     private LineUp lineUp;
     private LinkedList<Ticket> tickets;//bought tickets
     private int maxCapacity;
@@ -34,7 +35,7 @@ public class Event {
         if (endDate.isBefore(startDate)) {
             throw new DateException("End date can't be before start date");
         }
-        lineUp = new LineUp(startDate, endDate, stage);
+        lineUp = new LineUp(startDate, endDate, stage, this);
         tickets = new LinkedList<>();
         this.maxCapacity = maxCapacity;
         this.budget = budget;
@@ -63,7 +64,7 @@ public class Event {
      * @return true if the band is affordable for the budget of an event, otherwise false
      */
     private boolean isNewBandAffordable(Band band) {
-        return actualBudget + band.getPriceProEvent() <= budget;
+        return actualCosts + band.getPriceProEvent() <= budget;
     }
 
     /**
@@ -105,10 +106,50 @@ public class Event {
         EventInfo eventInfo = lineUp.addBand(band, minutesOnStage);
         if (eventInfo != null) {
             band.addEventInfo(eventInfo);
-            actualBudget += band.getPriceProEvent();
+
         }
         return eventInfo;
     }
 
+    /**
+     * Removes the band from entire event: from all programs and timeslots
+     * @param band the band, that should be removed
+     * @return true, if the band is removed, otherwise false
+     */
+    public boolean removeBand(Band band){
+        if(lineUp.removeBand(band)){
+            actualCosts-=band.getPriceProEvent();
+            band.removeEventInfo();
+            return true;
+        }
+        return false;
+    }
 
+    /**
+     * Removes the band only from given date, time and stage
+     * @param band the band, that should be removed
+     * @param dateAndTime date and time, on which the band should be removed
+     * @return
+     */
+    public boolean removeBand(Band band, LocalDateTime dateAndTime){
+
+        if(this.lineUp.removeBand(band, dateAndTime)){
+            band.removeEventInfo(dateAndTime);
+            //if band does not play on event anymore
+            if (band.getNumberOfEventInfo()==0){
+                actualCosts-=band.getPriceProEvent();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Adds to costs to the actual costs variable
+     * LineUp calls it, if the band is new on event, because band receives money for entire event
+     * @param amount
+     */
+    public void addToTheActualCosts(double amount){
+        actualCosts += amount;
+    }
 }
