@@ -1,7 +1,7 @@
 
 fsquid:UselessImportCheck"=Remove this unused import 'de.bord.festival.address.Address'.(Ğ©è…şÿÿÿÿ
-gsquid:UselessImportCheck"CRemove this unused import 'de.bord.festival.stageManagement.Stage'.(ú¬¾ß
-lsquid:UselessImportCheck"CRemove this unused import 'de.bord.festival.eventManagement.Event'.(ïçĞ£úÿÿÿÿ
-˜squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘
 Ysquid:UselessImportCheck"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ
+gsquid:UselessImportCheck"CRemove this unused import 'de.bord.festival.stageManagement.Stage'.(ú¬¾ß
+˜squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Çµí‘
+lsquid:UselessImportCheck"CRemove this unused import 'de.bord.festival.eventManagement.Event'.(ïçĞ£úÿÿÿÿ
 dsquid:UselessImportCheck";Remove this unused import 'de.bord.festival.ticket.Ticket'.(ÛµŠüÿÿÿÿ

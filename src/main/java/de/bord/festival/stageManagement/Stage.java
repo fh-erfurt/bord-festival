@@ -24,7 +24,11 @@ public class Stage {
         return this.address;
     }
 
-    public boolean equals(Stage stage) {
-        return stage.getAddress().equals(this.address);
+    public boolean equals(Object object) {
+        if (object instanceof Stage){
+            Stage stage=(Stage)object;
+            return stage.getAddress().equals(this.address);
+        }
+        return false;
     }
 }

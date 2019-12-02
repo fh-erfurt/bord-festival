@@ -16,6 +16,7 @@ public class EventInfo {
     public EventInfo(LocalTime time, Stage stage) {
         this.stage = stage;
         this.time = time;
+
     }
 
     public void setDate(LocalDate date) {

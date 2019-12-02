@@ -1,5 +1,6 @@
 package de.bord.festival.eventManagement;
 
+import de.bord.festival.help.HelpClasses;
 import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
@@ -10,7 +11,7 @@ import de.bord.festival.stageManagement.Stage;
 import de.bord.festival.ticket.PriceLevel;
 import de.bord.festival.ticket.TicketManager;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.annotation.Testable;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,9 +21,11 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EventTest {
+    HelpClasses help=new HelpClasses();
     @Test
     void should_throw_exception_start_end_date() {
-        Stage stage = getStage();
+        Stage stage = help.getStage();
+
         try {
             //invalid date couple(start date> end date)
             Event event = new Event(1, LocalDate.of(2018, 1, 1),
@@ -37,22 +40,22 @@ class EventTest {
     @Test
     void should_return_1_number_of_stages() throws DateException {
 
-        Event event = getValidNDaysEvent(3);
+        Event event = help.getValidNDaysEvent(3);
         assertEquals(1, event.getNumberOfStages());
     }
 
     @Test
     void should_return_2_number_of_stages() throws DateException {
-        Event event = getValidNDaysEvent(3);
-        Stage stage = getStage();
+        Event event = help.getValidNDaysEvent(3);
+        Stage stage = help.getStage();
         event.addStage(stage);
         assertEquals(1, event.getNumberOfStages());
     }
 
     @Test
     void should_return_1_number_of_stages_because_of_removed_one() throws DateException {
-        Event event = getValidNDaysEvent(3);
-        Stage stage = getStage();
+        Event event = help.getValidNDaysEvent(3);
+        Stage stage = help.getStage();
         event.addStage(stage);
         event.removeStage(stage.getAddress());
         assertEquals(1, event.getNumberOfStages());
@@ -60,22 +63,22 @@ class EventTest {
 
     @Test
     void should_return_1_number_of_bands() throws TimeException, BudgetException, DateException {
-        Event event = getValidNDaysEvent(3);
-        Band band = getBand();
+        Event event = help.getValidNDaysEvent(3);
+        Band band = help.getBand();
         event.addBand(band, 60);
         assertEquals(1, event.getNumberOfBands());
     }
 
     @Test
     void should_return_0_number_of_bands() throws DateException {
-        Event event = getValidNDaysEvent(3);
+        Event event = help.getValidNDaysEvent(3);
         assertEquals(0, event.getNumberOfBands());
     }
 
     @Test
     void should_throw_exception_budget() throws TimeException, DateException {
-        Event event = getValidNDaysEvent(3);
-        Band band = getBand("The Doors", 5000);
+        Event event = help.getValidNDaysEvent(3);
+        Band band = help.getBand("The Doors", 5000);
         try {
             event.addBand(band, 60);
         } catch (BudgetException exception) {
@@ -85,13 +88,13 @@ class EventTest {
     }
 
     @Test
-    void should_throw_exception_band() throws BudgetException, DateException, DateException {
-        Event event = getValidNDaysEvent(3);
-        Stage stage = getStage();
+    void should_throw_exception_band() throws BudgetException, DateException {
+        Event event = help.getValidNDaysEvent(3);
+        Stage stage = help.getStage();
         event.addStage(stage);
         try {
             for (int i = 0; i < 4; i++) {
-                Band band = getBand();
+                Band band = help.getBand();
                 event.addBand(band, 300);
             }
         } catch (TimeException exception) {
@@ -101,23 +104,23 @@ class EventTest {
 
     @Test
     void should_return_3_days() throws DateException {
-        Event event = getValidNDaysEvent(3);
+        Event event = help.getValidNDaysEvent(3);
         assertEquals(3, event.getNumberOfDays());
     }
 
     @Test
     void should_return_1_day() throws DateException {
-        Event event = getValidNDaysEvent(1);
+        Event event = help.getValidNDaysEvent(1);
         assertEquals(1, event.getNumberOfDays());
     }
 
     @Test
     void should_return_false() throws TimeException, BudgetException, DateException {
         //Given
-        Event event = getValidNDaysEvent(1);
-        Band band1 = getBand("first band", 30);
-        Band band2 = getBand("second band", 30);
-        Band band3 = getBand("third band", 30);
+        Event event = help.getValidNDaysEvent(1);
+        Band band1 = help.getBand("first band", 30);
+        Band band2 = help.getBand("second band", 30);
+        Band band3 = help.getBand("third band", 30);
         //if
         event.addBand(band1, 300);
         event.addBand(band2, 300);
@@ -130,10 +133,9 @@ class EventTest {
     @Test
     void should_return_false_because_on_stage_should_play_band() throws TimeException, BudgetException, DateException {
         //Given
-        Event event = getValidNDaysEvent(1);
-        Band band1 = getBand("first band", 30);
-        Band band2 = getBand("second band", 30);
-        Band band3 = getBand("third band", 30);
+        Event event = help.getValidNDaysEvent(1);
+        Band band1 = help.getBand("first band", 30);
+        Band band2 = help.getBand("second band", 30);
         //if
         event.addBand(band1, 300);
         event.addBand(band2, 300);
@@ -147,9 +149,9 @@ class EventTest {
     @Test
     void should_return_true() throws TimeException, BudgetException, DateException {
         //Given
-        Event event = getValidNDaysEvent(1);
-        Band band1 = getBand("first band", 30);
-        Band band3 = getBand("third band", 30);
+        Event event = help.getValidNDaysEvent(1);
+        Band band1 = help.getBand("first band", 30);
+        Band band3 = help.getBand("third band", 30);
         //if
         event.addBand(band1, 300);
         //then
@@ -161,9 +163,9 @@ class EventTest {
     @Test
     void should_return_date2020_03_01_time10_30() throws TimeException, DateException {
         //Given 3 days of festival
-        LineUp lineUp = getLineUp(LocalDate.of(2020, 3, 1),
+        LineUp lineUp = help.getLineUp(LocalDate.of(2020, 3, 1),
                 LocalDate.of(2020, 3, 3));
-        Band band = getBand();
+        Band band = help.getBand();
         LocalDate resultDate = LocalDate.of(2020, 3, 1);
         LocalTime resultTime = LocalTime.of(10, 30);
         LocalDateTime resultDateTime = LocalDateTime.of(resultDate, resultTime);
@@ -175,12 +177,12 @@ class EventTest {
     }
 
     @Test
-    void should_return_date2020_03_01_time12_05() throws TimeException {
+    void should_return_date2020_03_01_time12_05() throws TimeException, DateException {
         //Given 3 days of festival with 1 stage
-        LineUp lineUp = getLineUp(LocalDate.of(2020, 3, 1),
+        LineUp lineUp = help.getLineUp(LocalDate.of(2020, 3, 1),
                 LocalDate.of(2020, 3, 3));
-        Band band = getBand();
-        Band band2 = getBand();
+        Band band = help.getBand();
+        Band band2 = help.getBand();
         LocalDate resultDate = LocalDate.of(2020, 3, 1);
         LocalTime resultTime = LocalTime.of(12, 5);
         LocalDateTime resultDateTime = LocalDateTime.of(resultDate, resultTime);
@@ -193,28 +195,28 @@ class EventTest {
     }
 
     @Test
-    void should_return_false_for_added_stage() {
+    void should_return_false_for_added_stage() throws DateException{
 
-        LineUp lineUp = getLineUp(LocalDate.of(2020, 12, 12),
+        LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
-        Stage stage = getStage();
+        Stage stage = help.getStage();
         //this function is used in creation of lineUp
         assertFalse(lineUp.addStage(stage));
     }
 
     @Test
-    void should_return_true_for_added_stage() {
+    void should_return_true_for_added_stage() throws DateException {
 
-        LineUp lineUp = getLineUp(LocalDate.of(2020, 12, 12),
+        LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
         Address address = new Address("G", "b", "f", "93");
         assertTrue(lineUp.addStage(new Stage(1, "name", 12, address)));
     }
 
     @Test
-    void should_return_2_for_number_of_stages() {
+    void should_return_2_for_number_of_stages() throws DateException{
         //Given
-        LineUp lineUp = getLineUp(LocalDate.of(2020, 12, 12),
+        LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
         Address address = new Address("G", "b", "f", "93");
         Stage stage = new Stage(1, "name", 12, address);
@@ -227,10 +229,10 @@ class EventTest {
     @Test
     void should_return_date2020_03_01_time21_30() throws TimeException, BudgetException, DateException {
         //Given 3 days of festival with 2 stages and 4 bands
-        LineUp lineUp = exampleLineUp();
+        LineUp lineUp = help.exampleLineUp();
 
         //When
-        Band band = getBand();
+        Band band = help.getBand();
         EventInfo eventInfo = lineUp.addBand(band, 30);
 
         LocalDate resultDate = LocalDate.of(2020, 3, 1);
@@ -241,6 +243,15 @@ class EventTest {
         assertEquals(resultDateTime, actualDateTime);
 
     }
+    @Test
+    void should_return_null_because_of_long_playing_time_of_band() throws TimeException, DateException{
+        //Given a new Program
+        Program program =new Program(help.getStage(), help.getLineUp(LocalDate.of(2020,12,12),
+                LocalDate.of(2020, 12, 12)));
+        //When
+        EventInfo eventInfo= program.addBand(help.getBand(), 5000);
+        //Then
+        assertNull(eventInfo);
 
 
 
@@ -249,50 +260,62 @@ class EventTest {
 
     }
 
-    private LineUp getLineUp(LocalDate startDate, LocalDate endDate) {
-        Stage stage = getStage();
-        return new LineUp(startDate, endDate, stage);
+    @Test
+    void should_return_not_null_because_the_playing_time_of_band_is_not_till_end_of_day() throws TimeException, DateException{
+        //Given a new Program
+        Program program =new Program(help.getStage(), help.getLineUp(LocalDate.of(2020,12,12),
+                LocalDate.of(2020, 12, 12)));
+        //When
+        EventInfo eventInfo= program.addBand(help.getBand(), 809);
+        //Then
+        assertNotNull(eventInfo);
 
     }
 
-    private Band getBand(String name, double priceProEvent) {
-        return new Band(5, name, "911", priceProEvent);
-
+    @Test
+    void should_return_false_because_the_band_doesnt_exist_in_event_list() throws DateException{
+        //Given
+        Event event =help.getValidNDaysEvent(1);
+        //When
+        boolean check=event.removeBand(help.getBand());
+        assertFalse(check);
     }
 
-    private Stage getStage() {
-        Address address = new Address("Moldawien", "Chisinau", "Heln 12", "7829");
-        return new Stage(1, "stage1", 300, address);
-
+    @Test
+    void should_return_true_because_the_band_exists_in_event_list() throws DateException, BudgetException, TimeException{
+        //Given
+        Event event =help.getValidNDaysEvent(1);
+        Band band=help.getBand();
+        event.addBand(band, 45);
+        //When
+        boolean check=event.removeBand(band);
+        assertTrue(check);
     }
 
-    private Event getValidNDaysEvent(int numberOfDays) throws DateException {
-
-        return new Event(1, LocalDate.of(2018, 01, 01),
-                LocalDate.of(2018, 01, numberOfDays), "Bord", 2019, 1000,
-                getStage());
-
-
+    @Test
+    void should_remove_band_because_time_and_date_are_valid_returns_true() throws DateException, BudgetException, TimeException{
+        Event event =help.getValidNDaysEvent(1);
+        Band band = help.getBand("Band1", 60);
+        Band band2 = help.getBand("band2", 60);
+        event.addBand(band, 60);
+        event.addBand(band2, 60);
+        event.addBand(band, 60);
+        event.addBand(band2, 60);
+        LocalDateTime dateAndTime= LocalDateTime.of(2018, 01,01, 12, 00);
+        assertTrue(event.removeBand(band2, dateAndTime));
     }
-
-    private LineUp exampleLineUp() throws TimeException, BudgetException, DateException {
-        //lineUp for 3 days with 2 stages and 4 bands. Each band plays 5 hours
-        LineUp lineUp = getLineUp(LocalDate.of(2020, 3, 1),
-                LocalDate.of(2020, 3, 3));
-        lineUp.addStage(getStage());
-
-
-        Band band1 = getBand("band1", 40);
-        Band band2 = getBand("band2", 40);
-        Band band3 = getBand("band3", 40);
-        Band band4 = getBand("band4", 40);
-        lineUp.addBand(band1, 300);
-        lineUp.addBand(band2, 300);
-        lineUp.addBand(band3, 300);
-        lineUp.addBand(band4, 300);
-        return lineUp;
+    @Test
+    void should_not_remove_band_because_time_is_not_valid_returns_false() throws DateException, BudgetException, TimeException{
+        Event event =help.getValidNDaysEvent(1);
+        Band band = help.getBand("Band1", 60);
+        Band band2 = help.getBand("band2", 60);
+        event.addBand(band, 60);
+        event.addBand(band2, 60);
+        event.addBand(band, 60);
+        event.addBand(band2, 60);
+        LocalDateTime dateAndTime= LocalDateTime.of(2018, 01,01, 12, 30);
+        assertFalse(event.removeBand(band2, dateAndTime));
     }
-
     private TicketManager exampleTicketManager(){
      PriceLevel p1 = new PriceLevel(20.00, 39.99, 54.99,
              70.00);
