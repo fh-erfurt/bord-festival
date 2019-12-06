@@ -14,7 +14,7 @@ public class CampingTicket extends Ticket {
     }
 
     @Override
-    public TicketType getType() {
+    public TicketType getTicketType() {
         return TicketType.CAMPING;
     }
 }

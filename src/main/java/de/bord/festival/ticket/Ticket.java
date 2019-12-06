@@ -21,6 +21,5 @@ public abstract class Ticket {
 
     public boolean isAvailable() {return available;}
 
-    abstract public TicketType getType();
-    // abstract setTicketprice
+    abstract public TicketType getTicketType();
 }

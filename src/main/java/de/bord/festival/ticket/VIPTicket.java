@@ -13,7 +13,7 @@ public class VIPTicket extends Ticket {
     }
 
     @Override
-    public TicketType getType() {
+    public TicketType getTicketType() {
         return TicketType.VIP;
     }
 

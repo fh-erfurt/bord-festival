@@ -40,7 +40,7 @@ public class Client implements IClient {
      * @throws ClientNameException
      */
     public void nameCheck(String name) throws ClientNameException {
-        Pattern p = Pattern.compile("^[a-zA-Z+äÄöÖüÜß]*$");
+        Pattern p = Pattern.compile("^[a-zA-ZäÄöÖüÜß]*$");
         Matcher m = p.matcher(name);
 
         if(!m.find()) {
@@ -93,6 +93,6 @@ public class Client implements IClient {
             throw new TicketException("No more tickets available");
         }
         this._tickets.add(ticket);
-        ticketmanager.sellTicket(ticket.getType());
+        ticketmanager.sellTicket(ticket.getTicketType());
     }
 }
