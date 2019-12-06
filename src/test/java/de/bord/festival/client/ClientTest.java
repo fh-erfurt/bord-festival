@@ -2,6 +2,7 @@ package de.bord.festival.client;
 
 import de.bord.festival.address.Address;
 import de.bord.festival.exception.ClientNameException;
+import de.bord.festival.exception.MailException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +19,7 @@ public class ClientTest {
     Address address = new Address("Deutschland", "Jena", "Anger 1", "07745");
     Client client = new Client(firstname, lastname, phoneNumber, id, address);
 
-    public ClientTest() throws ClientNameException {
+    public ClientTest() throws ClientNameException, MailException {
     }
 
     @Test

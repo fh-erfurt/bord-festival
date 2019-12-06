@@ -1,7 +1,7 @@
 package de.bord.festival.ticket;
 
-
-
+import de.bord.festival.exception.PriceLevelException;
+import de.bord.festival.exception.PriceLevelException;
 
 public class PriceLevel implements Comparable<PriceLevel>{
 
@@ -17,17 +17,23 @@ public class PriceLevel implements Comparable<PriceLevel>{
     /**
      * the price level is valid until the percentage of sold tickets is reached
      */
-    private double validPercentageOfSoldTicketsForPricelevel;
+    private double PercentageForPricelevel;
 
     //private int priceLevel;
 
     public PriceLevel(double dayTicketPrice, double CampingTicketPrice, double VipTicketPrice,
-                      double validPercentageOfSoldTicketsForPricelevel) {
+                      double PercentageForPricelevel) throws PriceLevelException {
 
+        if(PercentageForPricelevel > 100 || PercentageForPricelevel < 0){
+            throw new PriceLevelException("PercentageForPricelevel not valid");
+        }
+        this.PercentageForPricelevel = PercentageForPricelevel;
         this.dayTicketPrice = dayTicketPrice;
         this.CampingTicketPrice = CampingTicketPrice;
         this.VipTicketPrice = VipTicketPrice;
-        this.validPercentageOfSoldTicketsForPricelevel = validPercentageOfSoldTicketsForPricelevel;
+
+
+
        // this.priceLevel = priceLevel;
     }
 
@@ -38,17 +44,17 @@ public class PriceLevel implements Comparable<PriceLevel>{
      * @return
      */
     @Override
-    public int compareTo(PriceLevel p) {
+    public int compareTo(PriceLevel priceLevel) {
 
-        return  java.lang.Double.valueOf(this.validPercentageOfSoldTicketsForPricelevel).compareTo(java.lang.Double.valueOf(p.validPercentageOfSoldTicketsForPricelevel));
+        return  java.lang.Double.valueOf(this.PercentageForPricelevel).compareTo(java.lang.Double.valueOf(priceLevel.PercentageForPricelevel));
     }
 
     public double getCampingTicketPrice() {
         return CampingTicketPrice;
     }
 
-    public double getValidPercentageOfSoldTicketsForPricelevel() {
-        return validPercentageOfSoldTicketsForPricelevel;
+    public double getPercentageForPricelevel() {
+        return PercentageForPricelevel;
     }
     //public  int getPriceLevel(){return priceLevel;}
 

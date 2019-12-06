@@ -91,4 +91,8 @@ public class Client {
         }
         this._tickets.add(ticket);
     }
+
+    public LinkedList<Ticket> get_tickets() {
+        return _tickets;
+    }
 }

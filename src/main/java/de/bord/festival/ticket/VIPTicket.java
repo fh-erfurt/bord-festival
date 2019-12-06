@@ -10,6 +10,7 @@ public class VIPTicket extends Ticket {
                      boolean available, double standardPrice, Event event){
 
         super(ticketType, id, description, available, standardPrice, event);
+        this.ticketType = TicketType.VIP;
     }
 
 }

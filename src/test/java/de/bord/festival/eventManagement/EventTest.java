@@ -244,15 +244,15 @@ class EventTest {
 
     }
     @Test
-    void should_return_null_because_of_long_playing_time_of_band() throws TimeException, DateException{
+    void should_return_null_because_of_long_playing_time_of_band() throws TimeException, DateException {
         //Given a new Program
-        Program program =new Program(help.getStage(), help.getLineUp(LocalDate.of(2020,12,12),
+        Program program = new Program(help.getStage(), help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12)));
         //When
-        EventInfo eventInfo= program.addBand(help.getBand(), 5000);
+        EventInfo eventInfo = program.addBand(help.getBand(), 5000);
         //Then
         assertNull(eventInfo);
-
+    }
 
 
     private Band getBand() {
@@ -316,19 +316,8 @@ class EventTest {
         LocalDateTime dateAndTime= LocalDateTime.of(2018, 01,01, 12, 30);
         assertFalse(event.removeBand(band2, dateAndTime));
     }
-    private TicketManager exampleTicketManager(){
-     PriceLevel p1 = new PriceLevel(20.00, 39.99, 54.99,
-             70.00);
-     PriceLevel p2 = new PriceLevel(30.00, 49.99, 64.99,
-             50.00);
-     PriceLevel p3 = new PriceLevel(40.00, 59.99, 74.99,
-             60.00);
-        ArrayList<PriceLevel> priceLevels = new ArrayList<>();
-        priceLevels.add(p1);
-        priceLevels.add(p2);
-        priceLevels.add(p3);
 
-     return new TicketManager(priceLevels, 3, 1000,20000,300);
- }
+
+
 
 }
