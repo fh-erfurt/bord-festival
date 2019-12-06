@@ -2,6 +2,8 @@ package de.bord.festival.client;
 
 import de.bord.festival.address.Address;
 import de.bord.festival.exception.ClientNameException;
+import de.bord.festival.exception.MailException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,9 +18,12 @@ public class ClientTest {
     String lastname = "b";
 
     Address address = new Address("Deutschland", "Jena", "Anger 1", "07745");
-    Client client = new Client(firstname, lastname, phoneNumber, id, address);
+    Client client;
 
-    public ClientTest() throws ClientNameException {
+
+    @BeforeEach
+    void setUp() throws MailException, ClientNameException {
+        new Client(firstname, lastname, phoneNumber, id, address);
     }
 
     @Test

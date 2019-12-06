@@ -8,33 +8,30 @@ import de.bord.festival.exception.BudgetException;
 import de.bord.festival.exception.DateException;
 import de.bord.festival.exception.TimeException;
 import de.bord.festival.stageManagement.Stage;
-import de.bord.festival.ticket.PriceLevel;
-import de.bord.festival.ticket.TicketManager;
 import org.junit.jupiter.api.Test;
 
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EventTest {
-    HelpClasses help=new HelpClasses();
+    HelpClasses help = new HelpClasses();
+
     @Test
     void should_throw_exception_start_end_date() {
-        Stage stage = help.getStage();
 
-        try {
-            //invalid date couple(start date> end date)
+        //invalid date couple(start date> end date)
+        assertThrows(DateException.class, () -> {
+            Stage stage = help.getStage();
             Event event = new Event(1, LocalDate.of(2018, 1, 1),
                     LocalDate.of(2017, 1, 1), "Bord", 2019, 1000,
                     stage);
+        });
 
-        } catch (DateException exception) {
-            assertEquals("End date can't be before start date", exception.getMessage());
-        }
     }
 
     @Test
@@ -195,7 +192,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_false_for_added_stage() throws DateException{
+    void should_return_false_for_added_stage() throws DateException {
 
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
@@ -214,7 +211,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_2_for_number_of_stages() throws DateException{
+    void should_return_2_for_number_of_stages() throws DateException {
         //Given
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
@@ -243,87 +240,74 @@ class EventTest {
         assertEquals(resultDateTime, actualDateTime);
 
     }
+
     @Test
-    void should_return_null_because_of_long_playing_time_of_band() throws TimeException, DateException{
+    void should_return_null_because_of_long_playing_time_of_band() throws TimeException, DateException {
         //Given a new Program
-        Program program =new Program(help.getStage(), help.getLineUp(LocalDate.of(2020,12,12),
+        Program program = new Program(help.getStage(), help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12)));
         //When
-        EventInfo eventInfo= program.addBand(help.getBand(), 5000);
+        EventInfo eventInfo = program.addBand(help.getBand(), 5000);
         //Then
         assertNull(eventInfo);
 
     }
 
     @Test
-    void should_return_not_null_because_the_playing_time_of_band_is_not_till_end_of_day() throws TimeException, DateException{
+    void should_return_not_null_because_the_playing_time_of_band_is_not_till_end_of_day() throws TimeException, DateException {
         //Given a new Program
-        Program program =new Program(help.getStage(), help.getLineUp(LocalDate.of(2020,12,12),
+        Program program = new Program(help.getStage(), help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12)));
         //When
-        EventInfo eventInfo= program.addBand(help.getBand(), 809);
+        EventInfo eventInfo = program.addBand(help.getBand(), 809);
         //Then
         assertNotNull(eventInfo);
 
     }
 
     @Test
-    void should_return_false_because_the_band_doesnt_exist_in_event_list() throws DateException{
+    void should_return_false_because_the_band_doesnt_exist_in_event_list() throws DateException {
         //Given
-        Event event =help.getValidNDaysEvent(1);
+        Event event = help.getValidNDaysEvent(1);
         //When
-        boolean check=event.removeBand(help.getBand());
+        boolean check = event.removeBand(help.getBand());
         assertFalse(check);
     }
 
     @Test
-    void should_return_true_because_the_band_exists_in_event_list() throws DateException, BudgetException, TimeException{
+    void should_return_true_because_the_band_exists_in_event_list() throws DateException, BudgetException, TimeException {
         //Given
-        Event event =help.getValidNDaysEvent(1);
-        Band band=help.getBand();
+        Event event = help.getValidNDaysEvent(1);
+        Band band = help.getBand();
         event.addBand(band, 45);
         //When
-        boolean check=event.removeBand(band);
+        boolean check = event.removeBand(band);
         assertTrue(check);
     }
 
     @Test
-    void should_remove_band_because_time_and_date_are_valid_returns_true() throws DateException, BudgetException, TimeException{
-        Event event =help.getValidNDaysEvent(1);
+    void should_remove_band_because_time_and_date_are_valid_returns_true() throws DateException, BudgetException, TimeException {
+        Event event = help.getValidNDaysEvent(1);
         Band band = help.getBand("Band1", 60);
         Band band2 = help.getBand("band2", 60);
         event.addBand(band, 60);
         event.addBand(band2, 60);
         event.addBand(band, 60);
         event.addBand(band2, 60);
-        LocalDateTime dateAndTime= LocalDateTime.of(2018, 01,01, 12, 00);
+        LocalDateTime dateAndTime = LocalDateTime.of(2018, 01, 01, 12, 00);
         assertTrue(event.removeBand(band2, dateAndTime));
     }
+
     @Test
-    void should_not_remove_band_because_time_is_not_valid_returns_false() throws DateException, BudgetException, TimeException{
-        Event event =help.getValidNDaysEvent(1);
+    void should_not_remove_band_because_time_is_not_valid_returns_false() throws DateException, BudgetException, TimeException {
+        Event event = help.getValidNDaysEvent(1);
         Band band = help.getBand("Band1", 60);
         Band band2 = help.getBand("band2", 60);
         event.addBand(band, 60);
         event.addBand(band2, 60);
         event.addBand(band, 60);
         event.addBand(band2, 60);
-        LocalDateTime dateAndTime= LocalDateTime.of(2018, 01,01, 12, 30);
+        LocalDateTime dateAndTime = LocalDateTime.of(2018, 01, 01, 12, 30);
         assertFalse(event.removeBand(band2, dateAndTime));
     }
-    private TicketManager exampleTicketManager(){
-     PriceLevel p1 = new PriceLevel(20.00, 39.99, 54.99,
-             25.00, 0);
-     PriceLevel p2 = new PriceLevel(30.00, 49.99, 64.99,
-             50.00, 1);
-     PriceLevel p3 = new PriceLevel(40.00, 59.99, 74.99,
-             60.00, 2);
-        ArrayList<PriceLevel> priceLevels = new ArrayList<>();
-        priceLevels.add(p1);
-        priceLevels.add(p2);
-        priceLevels.add(p3);
-
-     return new TicketManager(priceLevels, 3, 1000,20000,300);
- }
-
 }
