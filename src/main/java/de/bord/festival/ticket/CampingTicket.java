@@ -1,6 +1,7 @@
 package de.bord.festival.ticket;
 
 import de.bord.festival.eventManagement.Event;
+import de.bord.festival.ticket.Ticket.TicketType;
 
 public class CampingTicket extends Ticket {
 
@@ -14,4 +15,8 @@ public class CampingTicket extends Ticket {
         this.ticketType = TicketType.CAMPING;
     }
 
+    @Override
+    public TicketType getTicketType() {
+        return TicketType.CAMPING;
+    }
 }

@@ -13,4 +13,9 @@ public class VIPTicket extends Ticket {
         this.ticketType = TicketType.VIP;
     }
 
+    @Override
+    public TicketType getTicketType() {
+        return TicketType.VIP;
+    }
+
 }
