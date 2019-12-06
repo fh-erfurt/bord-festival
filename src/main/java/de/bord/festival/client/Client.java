@@ -93,7 +93,6 @@ public class Client implements IClient {
             throw new TicketException("No more tickets available");
         }
         this._tickets.add(ticket);
-        ticketmanager.sellTicket(ticket.getTicketType());
     }
 
     public LinkedList<Ticket> get_tickets() {

@@ -1,5 +1,6 @@
 package de.bord.festival.eventManagement;
 
+import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.help.HelpClasses;
 import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
@@ -30,9 +31,9 @@ class EventTest {
             //invalid date couple(start date> end date)
             Event event = new Event(1, LocalDate.of(2018, 1, 1),
                     LocalDate.of(2017, 1, 1), "Bord", 2019, 1000,
-                    stage);
+                    stage, help.exampleTicketManager());
 
-        } catch (DateException exception) {
+        } catch (DateException | PriceLevelException exception) {
             assertEquals("End date can't be before start date", exception.getMessage());
         }
     }
