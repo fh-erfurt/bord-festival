@@ -19,6 +19,7 @@ public class Client implements IClient {
     private Address _address;
     private String _mail;
     private LinkedList<Ticket> _tickets;
+    private LinkedList<Ticket> _cart;
 
     public Client(String firstname, String lastname, String mail, int id, Address address)
             throws ClientNameException, MailException {
@@ -27,6 +28,7 @@ public class Client implements IClient {
         mailCheck(mail);
 
         _tickets = new LinkedList<Ticket>();
+        _cart = new LinkedList<Ticket>();
         this._id = id;
         this._firstname = firstname;
         this._lastname = lastname;
