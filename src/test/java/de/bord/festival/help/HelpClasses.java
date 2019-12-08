@@ -23,7 +23,7 @@ public class HelpClasses {
 
     }
 
-    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateException{
+    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateException, PriceLevelException{
         Stage stage = getStage();
         return new LineUp(startDate, endDate, stage, getValidNDaysEvent(1));
 
@@ -49,7 +49,7 @@ public class HelpClasses {
 
     }
 
-    public LineUp exampleLineUp() throws TimeException, BudgetException, DateException {
+    public LineUp exampleLineUp() throws TimeException, DateException, PriceLevelException {
         //lineUp for 3 days with 2 stages and 4 bands. Each band plays 5 hours
         LineUp lineUp = getLineUp(LocalDate.of(2020, 3, 1),
                 LocalDate.of(2020, 3, 3));

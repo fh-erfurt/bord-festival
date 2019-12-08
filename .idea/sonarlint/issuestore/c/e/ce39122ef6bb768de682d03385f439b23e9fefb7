@@ -1,28 +1,0 @@
-
-<<<<<<< HEAD
-msquid:S00116"NRename this field "_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äî››8‡¼êë-
-tsquid:S00116"URename this field "_firstname" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³ÅÖ8‡¼êë-
-xsquid:S00116"TRename this field "_lastname" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÓÌÿşÿÿÿÿ8‡¼êë-
-rsquid:S00116"SRename this field "_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í³£8‡¼êë-
-osquid:S00116"PRename this field "_mail" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş–’‚8‡¼êë-
-rsquid:S00116"SRename this field "_tickets" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÃË¹8‡¼êë-
-|squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(×Óªçøÿÿÿÿ8‡¼êë-
-Esquid:S1068"'Remove this unused "_id" private field.(äî››8‡¼êë-
-Lsquid:S1068".Remove this unused "_firstname" private field.(³ÅÖ8‡¼êë-
-Psquid:S1068"-Remove this unused "_lastname" private field.(ÓÓÌÿşÿÿÿÿ8‡¼êë-
-Jsquid:S1068",Remove this unused "_address" private field.(Í³£8‡¼êë-
-Gsquid:S1068")Remove this unused "_mail" private field.(Ş–’‚8‡¼êë-
-=======
-xsquid:S00116"TRename this field "_lastname" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÓÓÌÿşÿÿÿÿ8»™ú¶ë-
-osquid:S00116"PRename this field "_mail" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ş–’‚8»™ú¶ë-
-Esquid:S1068"'Remove this unused "_id" private field.(äî››8»™ú¶ë-
-rsquid:S00116"SRename this field "_tickets" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÃË¹8»™ú¶ë-
-Gsquid:S1068")Remove this unused "_mail" private field.(Ş–’‚8»™ú¶ë-
-msquid:S00116"NRename this field "_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(äî››8»™ú¶ë-
-Jsquid:S1068",Remove this unused "_address" private field.(Í³£8»™ú¶ë-
-rsquid:S00116"SRename this field "_address" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Í³£8»™ú¶ë-
-Psquid:S1068"-Remove this unused "_lastname" private field.(ÓÓÌÿşÿÿÿÿ8»™ú¶ë-
-tsquid:S00116"URename this field "_firstname" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³ÅÖ8»™ú¶ë-
-Lsquid:S1068".Remove this unused "_firstname" private field.(³ÅÖ8»™ú¶ë-
-|squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(×Óªçøÿÿÿÿ8»™ú¶ë-
->>>>>>> 48a9402291c04ea3dba75b3a73a4879282e5519a
