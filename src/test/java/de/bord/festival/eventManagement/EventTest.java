@@ -29,7 +29,7 @@ class EventTest {
             Stage stage = help.getStage();
             Event event = new Event(1, LocalDate.of(2018, 1, 1),
                     LocalDate.of(2017, 1, 1), "Bord", 2019, 1000,
-                    stage, help.exampleTicketManager());
+                    stage, help.exampleTicketManager(), help.getAddress());
         });
 
 

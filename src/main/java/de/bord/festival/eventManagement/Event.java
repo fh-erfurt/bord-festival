@@ -5,7 +5,6 @@ import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.exception.BudgetException;
 import de.bord.festival.exception.DateException;
-import de.bord.festival.exception.TicketManagerException;
 import de.bord.festival.exception.TimeException;
 import de.bord.festival.stageManagement.Stage;
 import de.bord.festival.ticket.Ticket;
@@ -32,7 +31,7 @@ public class Event {
     private Address address;
 
     public Event(int id, LocalDate startDate, LocalDate endDate, String name,
-                 double budget, int maxCapacity, Stage stage, TicketManager ticketManager) throws DateException {
+                 double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateException {
         if (endDate.isBefore(startDate)) {
             throw new DateException("End date can't be before start date");
         }
@@ -43,6 +42,7 @@ public class Event {
         this.id = id;
         this.name = name;
         this.ticketManager = ticketManager;
+        this.address=address;
 
     }
 

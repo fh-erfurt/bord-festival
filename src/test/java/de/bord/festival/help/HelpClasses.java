@@ -44,9 +44,12 @@ public class HelpClasses {
 
         return new Event(1, LocalDate.of(2018, 01, 01),
                 LocalDate.of(2018, 01, numberOfDays), "Bord", 2019, 1000,
-                getStage(),exampleTicketManager());
+                getStage(),exampleTicketManager(), getAddress());
 
 
+    }
+    public Address getAddress(){
+        return new Address("Germany", "Berlin", "Nordwez 1", "8803");
     }
 
     public LineUp exampleLineUp() throws TimeException, DateException, PriceLevelException {
