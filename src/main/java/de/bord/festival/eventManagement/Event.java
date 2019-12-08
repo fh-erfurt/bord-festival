@@ -3,6 +3,7 @@ package de.bord.festival.eventManagement;
 import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
+import de.bord.festival.client.Client;
 import de.bord.festival.exception.BudgetException;
 import de.bord.festival.exception.DateException;
 import de.bord.festival.exception.TimeException;
@@ -26,7 +27,7 @@ public class Event {
     private final double budget;//budget for bands
     private double actualCosts = 0;
     private LineUp lineUp;
-    private LinkedList<Ticket> tickets;//bought tickets
+    private LinkedList<Client> client;
     private int maxCapacity;
     private Address address;
 
@@ -36,7 +37,7 @@ public class Event {
             throw new DateException("End date can't be before start date");
         }
         lineUp = new LineUp(startDate, endDate, stage, this);
-        tickets = new LinkedList<>();
+        client = new LinkedList<>();
         this.maxCapacity = maxCapacity;
         this.budget = budget;
         this.id = id;
