@@ -1,7 +1,7 @@
 package de.bord.festival.ticket;
 
-
-
+import de.bord.festival.exception.PriceLevelException;
+import de.bord.festival.exception.PriceLevelException;
 
 public class PriceLevel implements Comparable<PriceLevel>{
 
@@ -17,18 +17,24 @@ public class PriceLevel implements Comparable<PriceLevel>{
     /**
      * the price level is valid until the percentage of sold tickets is reached
      */
-    private double percentageOfSoldTickets;
+    private double PercentageForPricelevel;
 
-    private int priceLevel;
+    //private int priceLevel;
 
     public PriceLevel(double dayTicketPrice, double CampingTicketPrice, double VipTicketPrice,
-                      double percentageOfSoldTickets, int priceLevel) {
+                      double PercentageForPricelevel) throws PriceLevelException {
 
+        if(PercentageForPricelevel > 100 || PercentageForPricelevel < 0){
+            throw new PriceLevelException("PercentageForPricelevel not valid");
+        }
+        this.PercentageForPricelevel = PercentageForPricelevel;
         this.dayTicketPrice = dayTicketPrice;
         this.CampingTicketPrice = CampingTicketPrice;
         this.VipTicketPrice = VipTicketPrice;
-        this.percentageOfSoldTickets = percentageOfSoldTickets;
-        this.priceLevel = priceLevel;
+
+
+
+       // this.priceLevel = priceLevel;
     }
 
     /**
@@ -38,18 +44,18 @@ public class PriceLevel implements Comparable<PriceLevel>{
      * @return
      */
     @Override
-    public int compareTo(PriceLevel p) {
+    public int compareTo(PriceLevel priceLevel) {
 
-        return  java.lang.Double.valueOf(this.percentageOfSoldTickets).compareTo(java.lang.Double.valueOf(p.percentageOfSoldTickets));
+        return  java.lang.Double.valueOf(this.PercentageForPricelevel).compareTo(java.lang.Double.valueOf(priceLevel.PercentageForPricelevel));
     }
 
     public double getCampingTicketPrice() {
         return CampingTicketPrice;
     }
 
-    public double getPercentageOfSoldTickets() {
-        return percentageOfSoldTickets;
+    public double getPercentageForPricelevel() {
+        return PercentageForPricelevel;
     }
-    public  int getPriceLevel(){return priceLevel;}
+    //public  int getPriceLevel(){return priceLevel;}
 
 }

@@ -1,7 +1,7 @@
 package de.bord.festival.eventManagement;
 
+import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.help.HelpClasses;
-import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.exception.BudgetException;
@@ -25,12 +25,13 @@ class EventTest {
     void should_throw_exception_start_end_date() {
 
         //invalid date couple(start date> end date)
-        assertThrows(DateException.class, () -> {
+        assertThrows(DateException.class,PriceLevelException.class () -> {
             Stage stage = help.getStage();
             Event event = new Event(1, LocalDate.of(2018, 1, 1),
                     LocalDate.of(2017, 1, 1), "Bord", 2019, 1000,
                     stage);
         });
+
 
     }
 
@@ -197,7 +198,6 @@ class EventTest {
                 LocalDate.of(2020, 12, 12));
         Stage stage = help.getStage();
         //this function is used in creation of lineUp
-        boolean check=lineUp.addStage(stage);
         assertFalse(lineUp.addStage(stage));
     }
 

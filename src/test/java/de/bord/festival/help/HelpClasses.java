@@ -7,11 +7,15 @@ import de.bord.festival.eventManagement.Event;
 import de.bord.festival.eventManagement.LineUp;
 import de.bord.festival.exception.BudgetException;
 import de.bord.festival.exception.DateException;
+import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.exception.TimeException;
 import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.ticket.PriceLevel;
+import de.bord.festival.ticket.TicketManager;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class HelpClasses {
     public Band getBand() {
@@ -36,11 +40,11 @@ public class HelpClasses {
 
     }
 
-    public Event getValidNDaysEvent(int numberOfDays) throws DateException {
+    public Event getValidNDaysEvent(int numberOfDays) throws DateException, PriceLevelException {
 
         return new Event(1, LocalDate.of(2018, 01, 01),
                 LocalDate.of(2018, 01, numberOfDays), "Bord", 2019, 1000,
-                getStage());
+                getStage(),exampleTicketManager());
 
 
     }
@@ -76,5 +80,20 @@ public class HelpClasses {
         band.addEventInfo(eventInfo1);
         band.addEventInfo(eventInfo2);
         return band;
+    }
+
+    public TicketManager exampleTicketManager() throws PriceLevelException {
+        PriceLevel p1 = new PriceLevel(20.00, 39.99, 54.99,
+                70.00);
+        PriceLevel p2 = new PriceLevel(30.00, 49.99, 64.99,
+                50.00);
+        PriceLevel p3 = new PriceLevel(40.00, 59.99, 74.99,
+                60.00);
+        ArrayList<PriceLevel> priceLevels = new ArrayList<>();
+        priceLevels.add(p1);
+        priceLevels.add(p2);
+        priceLevels.add(p3);
+
+        return new TicketManager(priceLevels, 3, 10,20,30);
     }
 }
