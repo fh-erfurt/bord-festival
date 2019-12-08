@@ -54,7 +54,7 @@ class EventTest {
         Event event = help.getValidNDaysEvent(3);
         Stage stage = help.getStage();
         event.addStage(stage);
-        event.removeStage(stage.getAddress());
+        event.removeStage(stage.getId());
         assertEquals(1, event.getNumberOfStages());
     }
 
@@ -76,12 +76,11 @@ class EventTest {
     void should_throw_exception_budget() throws TimeException, DateException {
         Event event = help.getValidNDaysEvent(3);
         Band band = help.getBand("The Doors", 5000);
-        try {
-            event.addBand(band, 60);
-        } catch (BudgetException exception) {
 
-            assertEquals("The budget is not enough for this band", exception.getMessage());
-        }
+        assertThrows(BudgetException.class, () -> {
+            event.addBand(band, 60);
+
+        });
     }
 
     @Test
@@ -137,8 +136,8 @@ class EventTest {
         event.addBand(band1, 300);
         event.addBand(band2, 300);
         //then
-        Address address = new Address("Moldawien", "Chisinau", "Heln 12", "7829");
-        assertFalse(event.removeStage(address));
+
+        assertFalse(event.removeStage(1));
 
 
     }
@@ -198,6 +197,7 @@ class EventTest {
                 LocalDate.of(2020, 12, 12));
         Stage stage = help.getStage();
         //this function is used in creation of lineUp
+        boolean check=lineUp.addStage(stage);
         assertFalse(lineUp.addStage(stage));
     }
 
@@ -206,8 +206,8 @@ class EventTest {
 
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
-        Address address = new Address("G", "b", "f", "93");
-        assertTrue(lineUp.addStage(new Stage(1, "name", 12, address)));
+        Stage stage=new Stage(2, "name", 12);//stages with different index are not the same
+        assertTrue(lineUp.addStage(stage));
     }
 
     @Test
@@ -215,8 +215,7 @@ class EventTest {
         //Given
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
-        Address address = new Address("G", "b", "f", "93");
-        Stage stage = new Stage(1, "name", 12, address);
+        Stage stage = new Stage(2, "name", 12);//stages with different index are not the same
         //When
         lineUp.addStage(stage);
         //Than

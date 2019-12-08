@@ -28,7 +28,7 @@ public class Event {
     private LineUp lineUp;
     private LinkedList<Ticket> tickets;//bought tickets
     private int maxCapacity;
-
+    private Address address;
 
     public Event(int id, LocalDate startDate, LocalDate endDate, String name,
                  double budget, int maxCapacity, Stage stage) throws DateException {
@@ -82,11 +82,11 @@ public class Event {
      * Removes stage, but only then, if it has no plays on it and if it is not a last stage
      * Condition: only one stage exists in the list with the same address
      *
-     * @param address the address, on which the stage should be removed
+     * @param id id, on which the stage should be removed
      * @return true, if the stage is removed, otherwise false
      */
-    public boolean removeStage(Address address) {
-        return lineUp.removeStage(address);
+    public boolean removeStage(int id) {
+        return lineUp.removeStage(id);
     }
 
     /**

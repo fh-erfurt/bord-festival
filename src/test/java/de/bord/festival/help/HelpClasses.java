@@ -31,8 +31,8 @@ public class HelpClasses {
     }
 
     public Stage getStage() {
-        Address address = new Address("Moldawien", "Chisinau", "Heln 12", "7829");
-        return new Stage(1, "stage1", 300, address);
+
+        return new Stage(1, "stage1", 300);
 
     }
 

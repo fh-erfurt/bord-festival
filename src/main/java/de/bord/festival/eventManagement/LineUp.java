@@ -67,7 +67,8 @@ public class LineUp {
      * @return true, if the stage with the same doesn't exist in event, otherwise return false
      */
     public boolean addStage(Stage stage) {
-        if (this.findStage(stage.getAddress()) != null) {
+
+        if (findStage(stage.getId())!=null){
             return false;
         }
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
@@ -138,27 +139,27 @@ public class LineUp {
      * Condition: only one stage exists in the list with the same address
      * Removes stage, but only then, if it has no plays on it and if it is not a last stage
      *
-     * @param address the address, on which the stage should be removed
+     * @param id id, on which the stage should be removed
      * @return true, if the stage is removed, otherwise false
      */
-    public boolean removeStage(Address address) {
+    public boolean removeStage(int id) {
         //in the event should exist minimum one stage
         if (stages.size() == 1) {
             return false;
         }
-        Stage foundStage = findStage(address);
+        Stage foundStage = findStage(id);
 
         if (foundStage == null) {
             return false;
         }
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
-            if (entry.getValue().existOnStageTimeSlots(address)) {
+            if (entry.getValue().existOnStageTimeSlots(id)) {
                 return false;
             }
         }
         //if the stage exists and is free, than we can remove it
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
-            entry.getValue().removeStage(address);
+            entry.getValue().removeStage(id);
         }
         stages.remove(foundStage);
         return true;
@@ -167,13 +168,13 @@ public class LineUp {
     /**
      * Looks for a stage with the address from the parameter
      *
-     * @param address address of the stage
+     * @param id id if the stage of the stage
      * @return object of the class Stage, if the stage with the address is in the list of event
      * otherwise returns null
      */
-    public Stage findStage(Address address) {
+    public Stage findStage(int id) {
         for (int i = 0; i < stages.size(); i++) {
-            if (stages.get(i).getAddress().equals(address)) {
+            if (stages.get(i).getId()==id) {
                 return stages.get(i);
             }
         }

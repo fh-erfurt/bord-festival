@@ -8,27 +8,17 @@ import java.util.Map;
 
 public class Stage {
 
-    private Address address;
     private int id;
     private String name;
     private int capacity;
 
-    public Stage(int id, String name, int capacity, Address address) {
-        this.address = address;
+    public Stage(int id, String name, int capacity) {
         this.capacity = capacity;
         this.id = id;
         this.name = name;
     }
-
-    public Address getAddress() {
-        return this.address;
+    public int getId(){
+        return this.id;
     }
 
-    public boolean equals(Object object) {
-        if (object instanceof Stage){
-            Stage stage=(Stage)object;
-            return stage.getAddress().equals(this.address);
-        }
-        return false;
-    }
 }

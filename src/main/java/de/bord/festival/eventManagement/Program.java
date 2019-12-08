@@ -143,13 +143,13 @@ class Program {
     /**
      * Checks if on the stage already plays someone
      *
-     * @param address address of the stage
+     * @param id id of the stage
      * @return true if on the stage already plays someone, otherwise false
      */
-    public boolean existOnStageTimeSlots(Address address) {
+    public boolean existOnStageTimeSlots(int id) {
         for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
             Stage currentStage = entry.getKey();
-            if (currentStage.getAddress().equals(address)) {
+            if (currentStage.getId()==id) {
                 return entry.getValue().isEmpty();
             }
         }
@@ -160,11 +160,11 @@ class Program {
      * Removes stage from program
      * Condition: only one stage exists in the list with the same address
      *
-     * @param address address of the stage
+     * @param id id of the stage
      */
-    public void removeStage(Address address) {
+    public void removeStage(int id) {
         for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
-            if (entry.getKey().getAddress().equals(address)) {
+            if (entry.getKey().getId()==id) {
                 programsForStages.remove(entry.getKey());
             }
         }
