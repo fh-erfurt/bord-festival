@@ -3,6 +3,7 @@ package de.bord.festival.client;
 import de.bord.festival.address.Address;
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
+import de.bord.festival.help.HelpClasses;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,7 +17,9 @@ public class ClientTest {
     String lastname = "b";
     String mail = "ab@c.de";
     int id = 999;
-    Address address = new Address("Deutschland", "Jena", "Anger 1", "07745");
+
+    HelpClasses helper = new HelpClasses();
+    Address address = helper.getAddress();
 
     public ClientTest() throws ClientNameException, MailException {
     }
