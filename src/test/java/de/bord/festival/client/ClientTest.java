@@ -126,10 +126,9 @@ public class ClientTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "John..Doe@example.com", "john.doe@example..com", " johndoe@example.com", "johndoe@example.com ", "john@doe@example.com", "a\"b(c)d,e:f;gi[j\\k]l@example.com" })
-    void should_throw_exception_for_invalid_mail() throws MailException {
-        String testmail = "test@test";
+    void should_throw_exception_for_invalid_mail(String input) throws MailException {
         assertThrows(MailException.class, () -> {
-            Client client = new Client(firstname, lastname, testmail, id, address);
+            Client client = new Client(firstname, lastname, input, id, address);
         });
     }
 
