@@ -74,9 +74,9 @@ public class Band {
      * @param dateAndTime
      */
     public void removeEventInfo(LocalDateTime dateAndTime){
-        LocalDate date =dateAndTime.toLocalDate();
-        LocalTime time =dateAndTime.toLocalTime();
-        for (int i = 0; i < eventInfos.size(); i++) {
+        LocalDate date = dateAndTime.toLocalDate();
+        LocalTime time = dateAndTime.toLocalTime();
+        for (int i = eventInfos.size() - 1; i >= 0; i--) {
             EventInfo currentEventInfo = eventInfos.get(i);
             if (currentEventInfo.getDate().equals(date) && currentEventInfo.getTime().equals(time)){
                 eventInfos.remove(currentEventInfo);
