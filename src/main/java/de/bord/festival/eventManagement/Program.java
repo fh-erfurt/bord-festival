@@ -1,24 +1,23 @@
 package de.bord.festival.eventManagement;
 
-import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.exception.TimeException;
 import de.bord.festival.stageManagement.Stage;
 import de.bord.festival.stageManagement.TimeSlot;
 
-import static java.time.temporal.ChronoUnit.MINUTES;
-
-import java.nio.channels.NoConnectionPendingException;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+import static java.time.temporal.ChronoUnit.MINUTES;
+
 /**
  * It is a help class to the class LineUp, should not be used outside of package
  * Contains collection of timeSlots with corresponding stages
+ *
+ * @author klass
  */
 class Program {
     private Map<Stage, LinkedList<TimeSlot>> programsForStages;

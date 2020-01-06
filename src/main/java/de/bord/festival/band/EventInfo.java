@@ -9,9 +9,9 @@ import java.time.LocalTime;
  * Contains information should be saved in Band class: date, time, stage
  */
 public class EventInfo {
-    LocalDate date;
-    LocalTime time;
-    Stage stage;
+    private LocalDate date;
+    private LocalTime time;
+    private Stage stage;
 
     public EventInfo(LocalTime time, Stage stage) {
         this.stage = stage;

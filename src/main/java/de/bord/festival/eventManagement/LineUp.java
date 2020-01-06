@@ -1,6 +1,5 @@
 package de.bord.festival.eventManagement;
 
-import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.exception.TimeException;
@@ -97,7 +96,7 @@ public class LineUp {
                 boolean flag = false;
 
                 //a band exists in list of bands only once
-                if (!doesBandExistsInTheList(band)) {
+                if (!containsBand(band)) {
                     bands.add(band);
                     //the price for event should be changed only if the band is new
                     // band get money for whole event
@@ -207,7 +206,7 @@ public class LineUp {
      * @return true, if the timeslot is removed, otherwise false
      */
     public boolean removeBand(Band band, LocalDateTime dateAndTime) {
-        if (!doesBandExistsInTheList(band)){
+        if (!containsBand(band)){
             return false;
         }
         //take date the band should be removed
@@ -226,10 +225,10 @@ public class LineUp {
         return false;
 
     }
-    private boolean doesBandExistsInTheList(Band band){
+    private boolean containsBand(Band band){
         boolean flag=false;
-        for (int i = 0; i < bands.size(); i++) {
-            if (bands.get(i).equals(band)) {
+        for (Band value : bands) {
+            if (value.equals(band)) {
                 flag = true;
                 break;
             }
