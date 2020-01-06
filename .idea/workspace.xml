@@ -1,82 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9de73aea-e69c-4426-a13d-7fc6504b4476" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/bord-festival.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_junit_jupiter_junit_jupiter_5_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/classDiagram.iuml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/address/Address.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/band/Band.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/band/EventInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/client/Client.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/client/IClient.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/eventManagement/Event.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/eventManagement/LineUp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/eventManagement/Program.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/BudgetException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/ClientNameException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/DateException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/MailException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/PriceLevelException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/TicketException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/TicketManagerException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/TimeException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/stageManagement/Stage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/stageManagement/TimeSlot.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/CampingTicket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/DayTicket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/PriceLevel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/Ticket$TicketType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/Ticket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/TicketManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/VIPTicket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/MainTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/band/BandTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/client/ClientTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/eventManagement/EventTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/help/HelpClasses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/stageManagement/StageTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/ticket/TicketTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/address/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/band/Band.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/band/EventInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/client/IClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Event.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/LineUp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Program.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/BudgetException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/ClientNameException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/DateException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/MailException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/PriceLevelException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/TicketException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/TicketManagerException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/TimeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/stageManagement/Stage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/stageManagement/TimeSlot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/CampingTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/DayTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/PriceLevel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/Ticket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/TicketManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/VIPTicket.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/MainTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/band/BandTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/client/ClientTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/eventManagement/EventTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/help/HelpClasses.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/stageManagement/StageTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/ticket/TicketTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="9de73aea-e69c-4426-a13d-7fc6504b4476" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -233,22 +158,34 @@
       <workItem from="1578230732670" duration="891000" />
       <workItem from="1578253236413" duration="2889000" />
       <workItem from="1578259359227" duration="3691000" />
-      <workItem from="1578309744112" duration="2336000" />
+      <workItem from="1578309744112" duration="2726000" />
     </task>
+    <task id="LOCAL-00001" summary="TicketManager updated, sellTickets() updated">
+      <created>1578312286779</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1578312286779</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="TicketManager updated, sellTickets() updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="TicketManager updated, sellTickets() updated" />
   </component>
   <component name="WindowStateProjectService">
     <state x="596" y="289" width="408" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1578007116536">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="596" y="289" width="408" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860@0.0.1600.860" timestamp="1578007116536" />
-    <state x="425" y="19" key="CommitChangelistDialog2" timestamp="1578312235627">
+    <state x="425" y="19" key="CommitChangelistDialog2" timestamp="1578312285186">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="425" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1578312235627" />
+    <state x="425" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1578312285186" />
     <state x="496" y="143" key="FileChooserDialogImpl" timestamp="1576061843517">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -301,9 +238,9 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="609" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1578221360635" />
-    <state x="601" y="221" key="git4idea.merge.GitPullDialog" timestamp="1576061860042">
+    <state x="601" y="221" key="git4idea.merge.GitPullDialog" timestamp="1578312420254">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="601" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1576061860042" />
+    <state x="601" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1578312420254" />
   </component>
 </project>
