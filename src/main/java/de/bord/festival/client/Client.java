@@ -21,8 +21,10 @@ public class Client implements IClient {
     private LinkedList<Ticket> _tickets;
     private LinkedList<Ticket> _cart;
 
+
     //benjamin
     private double expenditure = 0.0;
+
 
     public Client(String firstname, String lastname, String mail, int id, Address address)
             throws ClientNameException, MailException {
@@ -101,6 +103,7 @@ public class Client implements IClient {
     }
 
 
+
     //benjamin////////
     public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketException {
         if(!ticketmanager.getTicket(type).isAvailable()) {
@@ -147,4 +150,5 @@ public class Client implements IClient {
         this.expenditure += expenditure;
     }
     public double getExpenditure(){return expenditure;}
+
 }

@@ -3,6 +3,7 @@ package de.bord.festival.client;
 import de.bord.festival.address.Address;
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
+import de.bord.festival.help.HelpClasses;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,7 +17,11 @@ public class ClientTest {
     String lastname = "b";
     String mail = "ab@c.de";
     int id = 999;
-    Address address = new Address("Deutschland", "Jena", "Anger 1", "07745");
+
+
+    HelpClasses helper = new HelpClasses();
+    Address address = helper.getAddress();
+
 
     public ClientTest() throws ClientNameException, MailException {
     }
@@ -126,10 +131,10 @@ public class ClientTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "John..Doe@example.com", "john.doe@example..com", " johndoe@example.com", "johndoe@example.com ", "john@doe@example.com", "a\"b(c)d,e:f;gi[j\\k]l@example.com" })
-    void should_throw_exception_for_invalid_mail() throws MailException {
-        String testmail = "test@test";
+
+    void should_throw_exception_for_invalid_mail(String input) throws MailException {
         assertThrows(MailException.class, () -> {
-            Client client = new Client(firstname, lastname, testmail, id, address);
+            Client client = new Client(firstname, lastname, input, id, address);
         });
     }
 

@@ -3,12 +3,19 @@ package de.bord.festival.help;
 import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
+
 import de.bord.festival.client.Client;
 import de.bord.festival.eventManagement.Event;
 import de.bord.festival.eventManagement.LineUp;
 import de.bord.festival.exception.*;
 import de.bord.festival.stageManagement.Stage;
 import de.bord.festival.ticket.*;
+
+import de.bord.festival.exception.DateException;
+import de.bord.festival.exception.PriceLevelException;
+import de.bord.festival.exception.TimeException;
+import de.bord.festival.ticket.PriceLevel;
+
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -133,7 +140,7 @@ public class HelpClasses {
     }
 
     public Client exampleClient() throws MailException, ClientNameException {
-       return new Client("Max", "Muster","max@test.de",1,getAddress());
+        return new Client("Max", "Muster","max@test.de",1,getAddress());
     }
 
 }

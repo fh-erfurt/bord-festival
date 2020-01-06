@@ -55,6 +55,7 @@ public class PriceLevel implements Comparable<PriceLevel>{
     }
     //public  int getPriceLevel(){return priceLevel;}
 
+
     public double getDayTicketPrice(){return dayTicketPrice;}
     public double getCampingTicketPrice(){return CampingTicketPrice;}
     public double getVipTicketPrice(){return VipTicketPrice;}

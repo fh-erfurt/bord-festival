@@ -10,7 +10,7 @@ public abstract class Ticket {
     protected int id;
     protected String description;
     protected boolean available;
-   // protected Event event;
+    // protected Event event;
     protected double stdPrice;
 
 
@@ -26,17 +26,17 @@ public abstract class Ticket {
 
     abstract public TicketType getTicketType();
 
-   public void setAvailable(boolean available){
+    public void setAvailable(boolean available){
         this.available = available;
     }
-   public void idCounter(){
+    public void idCounter(){
         this.id ++;
     }
     public void setDescription(String description){
-       this.description = description;
+        this.description = description;
     }
     public void setStdPrice(double stdPrice){
-       this.stdPrice = stdPrice;
+        this.stdPrice = stdPrice;
     }
 
     public double getStdPrice() { return stdPrice; }

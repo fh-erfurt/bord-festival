@@ -6,7 +6,9 @@ import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;
 import de.bord.festival.exception.BudgetException;
 import de.bord.festival.exception.DateException;
+
 import de.bord.festival.exception.TicketManagerException;
+
 import de.bord.festival.exception.TimeException;
 import de.bord.festival.stageManagement.Stage;
 import de.bord.festival.ticket.Ticket;
@@ -28,7 +30,10 @@ public class Event {
     private final double budget;//budget for bands
     private double actualCosts = 0;
     private LineUp lineUp;
+
     private LinkedList<Client> client;  ///// KANN WEG ????????
+
+
     private int maxCapacity;
     private Address address;
 

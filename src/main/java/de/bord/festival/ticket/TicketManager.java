@@ -15,7 +15,7 @@ import java.util.*;
 public class TicketManager {
     private ArrayList<PriceLevel> priceLevels;
     private int nPriceLevels;
-   // private double actualPriceLevelPercentage;
+    // private double actualPriceLevelPercentage;
 
     private DayTicket dayTicket;
     private CampingTicket campingTicket;
@@ -87,11 +87,11 @@ public class TicketManager {
 
     public void setAvailable(boolean available, Ticket.TicketType type){
         if (type == Ticket.TicketType.DAY) {
-           this.dayTicket.setAvailable(available);
+            this.dayTicket.setAvailable(available);
         } else if (type == Ticket.TicketType.CAMPING) {
             this.campingTicket.setAvailable(available);
         } else if (type == Ticket.TicketType.VIP) {
-           this.vipTicket.setAvailable(available);
+            this.vipTicket.setAvailable(available);
         }
     }
 
@@ -132,23 +132,22 @@ public class TicketManager {
         if(isPercentageOfSoldTicketsExceeded()&& this.priceLevels.size() > this.actualPriceLevel+1){
             this.actualPriceLevel++;
             setTicketPrices();
-            }
+        }
       /*  else if(){
-
         }
         else{
             throw new TicketManagerException("no valid price level available");
             }
       */  }
 
-        private boolean isPercentageOfSoldTicketsExceeded(){
+    private boolean isPercentageOfSoldTicketsExceeded(){
 
-            if(totalNumberOfSoldTicketsInPercent() > priceLevels.get(this.actualPriceLevel).getPercentageForPricelevel()){
-                /*getPriceLevel(this.actualPriceLevel).getPercentageForPricelevel()*/
-                return true;
-            }
-            return false;
+        if(totalNumberOfSoldTicketsInPercent() > priceLevels.get(this.actualPriceLevel).getPercentageForPricelevel()){
+            /*getPriceLevel(this.actualPriceLevel).getPercentageForPricelevel()*/
+            return true;
         }
+        return false;
+    }
 
 
     /**
@@ -181,8 +180,9 @@ public class TicketManager {
     public int getnSoldViptickets(){ return nViptickets - nVipticketsLeft;}
     public int totalNumberOfSoldTickets(){ return totalNumberOfTickets()-totalNumberOfTicketsLeft();}
     public double totalNumberOfSoldTicketsInPercent(){
-
-        return (double)(totalNumberOfTicketsLeft() / totalNumberOfTickets()*100);
+        double totalNumberOfTicketsLeft = (double)totalNumberOfTicketsLeft();   // /totalNumberOfTickets()*100;
+        double totalNumberOfTickets = (double)totalNumberOfTickets();
+        return 100 - (totalNumberOfTicketsLeft/totalNumberOfTickets*100);
     }
 
 
@@ -215,7 +215,7 @@ public class TicketManager {
                 updatePriceLevel();
             }
         }
-            this.automaticPriceLevelChange = isPriceLevelChangeAutomatic;
+        this.automaticPriceLevelChange = isPriceLevelChangeAutomatic;
 
     }
 
@@ -234,7 +234,7 @@ public class TicketManager {
         }
     }
 
-/////////////////////client zurückgeben
+    /////////////////////client zurückgeben
     public Client sellTickets(Client client /*, LocalDate date*/) throws TicketManagerException {
 
         int nDayTicketsSold = 0;
