@@ -1,0 +1,218 @@
+@startuml
+Event --o Ticket : > has
+Event -- LineUp : > has
+Event --o Address : > has
+Ticket o-- Client : < has
+CampingTicket --|> Ticket
+VIPTicket --|> Ticket
+DayTicket -left-|> Ticket
+Client --o Address : > has
+TimeSlot -- Stage : > has
+LineUp --o TimeSlot : > has
+LineUp --o Band : > has
+
+class Client{
+-int id
+-String firstname
+-String lastname
+-String mail
+-Address address
+-LinkedList<Ticket> tickets
+-LinkedList<Ticket> cart
++Client(String firstname, String lastname, String mail, int id, Address address)
++Ticket byTicket(TicketType type)
++boolean cancelTicket(Ticket ticket)
++Address getAddress()
+}
+
+abstract class Ticket{
+enum TicketType{DAY, CAMPING, VIP}
+#int ID
+#String description
+#boolean available
+#Event event
+#double stdPrice
++Ticket(int id, String description, boolean available, double standardPrice, Event event)
++boolean isAvailable()
++TicketType getTicketType()
+}
+
+class Event{
+-int id
+-String date
+-String name
+-double budget
+-double actualCosts
+-LineUp lineup
+-LinkedList<Ticket> tickets
+-int maxCapacity
+-Address address
++Event(int id, LocalDate startDate, LocalDate endDate, String name, double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address)
++int getNumberOfBands()
++int getNumberOfStages()
++int getNumberOfDays()
+-boolean isNewBandAffordable(Band band)
++boolean addStage(Stage stage)
++boolean removeStage(int id)
++EventInfo addBand(Band band, long minutesOnStage)
++boolean removeBand(Band band)
++boolean removeBand(Band band, LocalDateTime dateAndTime)
++addToTheActualCosts(double amount)
+}
+
+class EventInfo{
+LocalDate date
+LocalTime time
+Stage stage
++EventInfo(LocalTime time, Stage stage)
++setDate(LocalDate date)
++LocalTime getTime()
++LocalDate getDate()
+}
+
+class Band{
+-int id
+-String name
+-String phoneNumber
+-double priceProEvent;
+-LinkedList<EventInfo> eventInfos
++Band(int id,String name, String phoneNumber, double priceProEvent)
++double getPriceProEvent()
++int getNumberOfEventInfo()
++addEventInfo(EventInfo eventInfo)
++boolean equals(Object object)
++String getName()
++removeEventInfo()
++removeEventInfo(LocalDateTime dateAndTime)
+}
+
+class Stage{
+-int id
+-String name
+-int capacity
++stage(int id, String name, int capacity)
++int getId()
+}
+
+class Program{
+-Map<Stage, LinkedList<TimeSlot>> programsForStages
+-LineUp lineUp
++Program(Stage stage, LineUp lineUp)
++addStage(Stage stage)
++EventInfo addBand(Band band, long minutesOnStage)
+-doesAlreadyPlay(Band band, LocalTime time)
+-LocalTime getNewTime(TimeSlot previousTimeSlot, long minutesOnStage)
+-boolean canPlayBeforeTheEndOfDay(long minutesOnStage, LocalTime previousTimePlusBreak)
+-boolean existOnStageTimeSlots(int id)
++removeStage(int id)
++removeBand(Band band)
++boolean isTheSameBand(TimeSlot timeslot, Band band)
++boolean removeBand(Band band, LocalTime time)
+}
+
+class Address{
+-String country
+-String city
+-String street
+-String zip
++Address(String country, String city, String street,String zip);
++boolean equals(Object object)
+-String getStreet()
+-String getZip()
+-String getCity()
+-String getCountry()
+}
+
+class DayTicket{
+-String date
+-TicketType ticketType
++DayTicket(TicketType ticketType, int id, String description, boolean available, double standardPrice, Event event, String date)
++TicketType getTicketType()()
+}
+
+class CampingTicket{
+-String campingPlaceName
+-TicketType ticketType
++CampingTicket(TicketType ticketType, int id, String description, boolean available, double standardPrice, String campingPlaceName, Event event)
++TicketType getTicketType()()
+}
+
+class VIPTicket{
+-TicketType ticketType
++VIPTicket(TicketType ticketType, int id, String description, boolean available, double standardPrice, Event event)
++TicketType getTicketType()()
+}
+
+class PriceLevel{
+-double dayTicketPrice
+-double CampingTicketPrice
+-double VipTicketPrice
+-double PercentageForPricelevel
++PriceLevel(double dayTicketPrice, double CampingTicketPrice, double VipTicketPrice, double PercentageForPricelevel)
++int compareTo(PriceLevel priceLevel)
++double getCampingTicketPrice()
++double getPercentageForPricelevel()
+}
+
+class TicketManager{
+-ArrayList<PriceLevel> priceLevels
+-int nPriceLevels
+-int actualPriceLevel
+-int nDayticketsLeft
+-int nCampingticketsLeft
+-int nVipticketsLeft
+-int nDaytickets
+-int nCampingtickets
+-int nViptickets
+-boolean automaticPriceLevelChange
++TicketManager(ArrayList<PriceLevel> priceLevels, int nPriceLevels, int nDaytickets, int nCampingtickets,int nViptickets)
++updatePriceLevel()
++boolean isPercentageOfSoldTicketsExceeded()
++int getnDaytickets()
++int getnCampingtickets()
++int getnViptickets()
++int totalNumberOfTickets()
++int getnDayticketsLeft()
++int getnCampingticketsLeft()
++int getnVipticketsLeft()
++int totalNumberOfTicketsLeft()
+}
+
+class LineUp{
+-Map<LocalDate, Program> dayPrograms
+-LinkedList<Stage> stages
+-LinkedList<Band> bands
+-Event event
+-LocalDate startDate
+-LocalDate endDate
+-LocalTime startTime
+-LocalTime endTime
+-long breakBetweenTwoBandsInMinutes
++LineUp(LocalDate startDate, LocalDate endDate, Stage stage, Event event)
+-createProgramsBetweenStartAndEndDates()
++boolean addStage(Stage stage)
++EventInfo addBand(Band band, long minutesOnStage)
++int getNumberOfStages()
++int getNumberOfBands()
++LocalTime getStartTime()
++LocalTime getEndTime()
++long getBreakBetweenTwoBandsInMinutes()
++int getNumberOfDays()
++boolean removeStage(int id)
++Stage findStage(int id)
++boolean removeBand(Band band)
++boolean removeBand(Band band, LocalDateTime dateAndTime)
+-boolean doesBandExistsInTheList(Band band)
+}
+
+class TimeSlot{
+-LocalTime time
+-Band band
+-long minutesOnStage
++TimeSlot(LocalTime time, Band band, long minutesOnStage)
++String getNameOfBand()
++LocalTime getTime()
++long getMinutesOnStage()
+}
+
+@enduml

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9de73aea-e69c-4426-a13d-7fc6504b4476" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/bord-festival.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_junit_jupiter_junit_jupiter_5_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/classDiagram.iuml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/address/Address.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/band/Band.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/band/EventInfo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/client/Client.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/client/IClient.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/eventManagement/Event.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/eventManagement/LineUp.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/eventManagement/Program.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/BudgetException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/ClientNameException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/DateException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/MailException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/PriceLevelException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/TicketException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/TicketManagerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/exception/TimeException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/stageManagement/Stage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/stageManagement/TimeSlot.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/CampingTicket.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/DayTicket.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/PriceLevel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/Ticket$TicketType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/Ticket.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/TicketManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/bord-festival/de/bord/festival/ticket/VIPTicket.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/MainTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/band/BandTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/client/ClientTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/eventManagement/EventTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/help/HelpClasses.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/stageManagement/StageTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/test/bord-festival/de/bord/festival/ticket/TicketTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/address/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/band/Band.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/band/EventInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/client/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/client/IClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Event.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/LineUp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Program.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/BudgetException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/ClientNameException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/DateException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/MailException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/PriceLevelException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/TicketException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/TicketManagerException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/exception/TimeException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/stageManagement/Stage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/stageManagement/TimeSlot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/CampingTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/DayTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/PriceLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/Ticket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/TicketManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/VIPTicket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/MainTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/band/BandTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/client/ClientTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/eventManagement/EventTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/help/HelpClasses.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/stageManagement/StageTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/ticket/TicketTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1UpkMP1Br7M6o1lfPJVsed8CHFM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RunManager" selected="JUnit.TicketTest.should_return_0_for_ticketManager1_getPriceLevelIndex">
+    <configuration name="TicketTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bord-festival" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.bord.festival.ticket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.bord.festival.ticket" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.ticket.TicketTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TicketTest.should_return_0_for_ticketManager1_getPriceLevelIndex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bord-festival" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.bord.festival.ticket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.bord.festival.ticket" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.ticket.TicketTest" />
+      <option name="METHOD_NAME" value="should_return_0_for_ticketManager1_getPriceLevelIndex" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TicketTest.should_return_182_47000000000003_for_c2_getExpenditure" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bord-festival" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.bord.festival.ticket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.bord.festival.ticket" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.ticket.TicketTest" />
+      <option name="METHOD_NAME" value="should_return_182_47000000000003_for_c2_getExpenditure" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TicketTest.should_return_1_for_ticketManager1_getPriceLevelIndex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bord-festival" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.bord.festival.ticket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.bord.festival.ticket" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.ticket.TicketTest" />
+      <option name="METHOD_NAME" value="should_return_1_for_ticketManager1_getPriceLevelIndex" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TicketTest.should_return_4_for_c2_get_ticketsSize" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bord-festival" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.bord.festival.ticket.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.bord.festival.ticket" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.ticket.TicketTest" />
+      <option name="METHOD_NAME" value="should_return_4_for_c2_get_ticketsSize" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.TicketTest.should_return_0_for_ticketManager1_getPriceLevelIndex" />
+        <item itemvalue="JUnit.TicketTest.should_return_1_for_ticketManager1_getPriceLevelIndex" />
+        <item itemvalue="JUnit.TicketTest" />
+        <item itemvalue="JUnit.TicketTest.should_return_4_for_c2_get_ticketsSize" />
+        <item itemvalue="JUnit.TicketTest.should_return_182_47000000000003_for_c2_getExpenditure" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9de73aea-e69c-4426-a13d-7fc6504b4476" name="Default Changelist" comment="" />
+      <created>1576060875948</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576060875948</updated>
+      <workItem from="1576060882530" duration="402000" />
+      <workItem from="1576061350651" duration="1172000" />
+      <workItem from="1576799852600" duration="58000" />
+      <workItem from="1577483311744" duration="1216000" />
+      <workItem from="1577744436793" duration="592000" />
+      <workItem from="1577790576040" duration="2373000" />
+      <workItem from="1577886969629" duration="3194000" />
+      <workItem from="1577964164073" duration="5537000" />
+      <workItem from="1577972744037" duration="1944000" />
+      <workItem from="1578005650180" duration="1650000" />
+      <workItem from="1578049904426" duration="8533000" />
+      <workItem from="1578166877324" duration="8395000" />
+      <workItem from="1578220501117" duration="8239000" />
+      <workItem from="1578230732670" duration="891000" />
+      <workItem from="1578253236413" duration="2889000" />
+      <workItem from="1578259359227" duration="3691000" />
+      <workItem from="1578309744112" duration="2336000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="596" y="289" width="408" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1578007116536">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="596" y="289" width="408" height="291" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860@0.0.1600.860" timestamp="1578007116536" />
+    <state x="425" y="19" key="CommitChangelistDialog2" timestamp="1578312235627">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="425" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1578312235627" />
+    <state x="496" y="143" key="FileChooserDialogImpl" timestamp="1576061843517">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="496" y="143" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1576061843517" />
+    <state width="1557" height="14" key="GridCell.Tab.0.bottom" timestamp="1578312235689">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="14" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1578312235689" />
+    <state width="1557" height="14" key="GridCell.Tab.0.center" timestamp="1578312235689">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="14" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1578312235689" />
+    <state width="1557" height="14" key="GridCell.Tab.0.left" timestamp="1578312235689">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="14" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1578312235689" />
+    <state width="1557" height="14" key="GridCell.Tab.0.right" timestamp="1578312235689">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="14" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1578312235689" />
+    <state width="1557" height="14" key="GridCell.Tab.1.bottom" timestamp="1578312235689">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="14" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1578312235689" />
+    <state width="1557" height="14" key="GridCell.Tab.1.center" timestamp="1578312235689">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="14" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1578312235689" />
+    <state width="1557" height="14" key="GridCell.Tab.1.left" timestamp="1578312235689">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="14" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1578312235689" />
+    <state width="1557" height="14" key="GridCell.Tab.1.right" timestamp="1578312235689">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="14" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1578312235689" />
+    <state x="301" y="8" key="SettingsEditor" timestamp="1577791028959">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="301" y="8" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1577791028959" />
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1578309744350">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1578309744350" />
+    <state x="525" y="327" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1576061601907">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="525" y="327" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1600.860@0.0.1600.860" timestamp="1576061601907" />
+    <state x="609" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1578221360635">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="609" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1578221360635" />
+    <state x="601" y="221" key="git4idea.merge.GitPullDialog" timestamp="1576061860042">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="601" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1576061860042" />
+  </component>
+</project>
