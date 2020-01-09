@@ -18,8 +18,10 @@ public class ClientTest {
     String mail = "ab@c.de";
     int id = 999;
 
+
     HelpClasses helper = new HelpClasses();
     Address address = helper.getAddress();
+
 
     public ClientTest() throws ClientNameException, MailException {
     }
@@ -129,6 +131,7 @@ public class ClientTest {
 
     @ParameterizedTest
     @ValueSource(strings = { "John..Doe@example.com", "john.doe@example..com", " johndoe@example.com", "johndoe@example.com ", "john@doe@example.com", "a\"b(c)d,e:f;gi[j\\k]l@example.com" })
+
     void should_throw_exception_for_invalid_mail(String input) throws MailException {
         assertThrows(MailException.class, () -> {
             Client client = new Client(firstname, lastname, input, id, address);

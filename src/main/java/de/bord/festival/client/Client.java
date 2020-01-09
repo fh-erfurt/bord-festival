@@ -21,6 +21,11 @@ public class Client implements IClient {
     private LinkedList<Ticket> _tickets;
     private LinkedList<Ticket> _cart;
 
+
+    //benjamin
+    private double expenditure = 0.0;
+
+
     public Client(String firstname, String lastname, String mail, int id, Address address)
             throws ClientNameException, MailException {
         nameCheck(firstname);
@@ -97,7 +102,53 @@ public class Client implements IClient {
         this._tickets.add(ticket);
     }
 
-    public LinkedList<Ticket> get_tickets() {
-        return _tickets;
+
+
+    //benjamin////////
+    public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketException {
+        if(!ticketmanager.getTicket(type).isAvailable()) {
+            throw new TicketException("No more tickets available");
+        }
+            if(ticketmanager.getTicket(type)!= null) {
+                this._cart.add(ticketmanager.getTicket(type));
+            }
     }
+
+
+    public int get_id(){
+        return _id;
+    }
+
+    public Ticket get_ticket(int index) {
+        return _tickets.get(index);
+    }
+
+    public void add_cartToTickets(){
+        _tickets.addAll(_cart);
+    }
+
+
+    public Ticket get_cartItem(int index) {
+        return _cart.get(index);
+    }
+
+    public int get_cartSize(){
+        return _cart.size();
+    }
+
+    public int get_ticketsSize(){
+        return _tickets.size();
+    }
+
+    public void clear_cart(){
+
+        this._cart.clear();
+
+    }
+
+    public void setExpenditure(double expenditure) {
+        this.expenditure += expenditure;
+    }
+    public double getExpenditure(){return expenditure;}
+
 }

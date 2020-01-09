@@ -8,9 +8,9 @@ public class DayTicket extends Ticket {
     private TicketType ticketType;
 
     public DayTicket(TicketType ticketType, int id, String description, boolean available,
-                     double standardPrice, Event event, String date){
+                     double standardPrice /*, Event event*/, String date){
 
-        super(id, description, available, standardPrice, event);
+        super(id, description, available, standardPrice/*, event*/);
         this.date=date;
         this.ticketType = TicketType.DAY;
     }

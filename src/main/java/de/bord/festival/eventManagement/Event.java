@@ -4,6 +4,12 @@ import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;
+import de.bord.festival.exception.BudgetException;
+import de.bord.festival.exception.DateException;
+
+import de.bord.festival.exception.TicketManagerException;
+
+import de.bord.festival.exception.TimeException;
 import de.bord.festival.exception.BudgetOverflowException;
 import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
@@ -165,5 +171,69 @@ public class Event {
         actualCosts += amount;
     }
 
+    /**
+     * number of tickets
+     * @return
+     */
+    public int getnDaytickets() { return ticketManager.getnDaytickets(); }
+    public int getnCampingtickets() { return ticketManager.getnCampingtickets(); }
+    public int getnViptickets() { return ticketManager.getnViptickets(); }
+    public int totalNumberOfTickets(){return ticketManager.totalNumberOfTickets();}
+
+    /**
+     *  number of sold Tickets
+     * @return
+     */
+    public int getnSoldDaytickets(){ return ticketManager.getnSoldDaytickets();}
+    public int getnSoldCampingtickets(){ return ticketManager.getnSoldCampingtickets();}
+    public int getnSoldViptickets(){ return ticketManager.getnSoldViptickets();}
+    public int totalNumberOfSoldTickets(){ return ticketManager.totalNumberOfSoldTickets();}
+    public double totalNumberOfSoldTicketsInPercent(){return ticketManager.totalNumberOfSoldTicketsInPercent();}
+
+    /**
+     *  number of tickets left
+     *
+     */
+    public int getnDayticketsLeft() { return ticketManager.getnDayticketsLeft(); }
+    public int getnCampingticketsLeft() { return ticketManager.getnCampingticketsLeft(); }
+    public int getnVipticketsLeft() { return ticketManager.getnVipticketsLeft(); }
+    public int totalNumberOfTicketsLeft(){return ticketManager.totalNumberOfTicketsLeft();}
+
+
+    public Client sellTickets(Client client /* ,LocalDate date */) throws TicketManagerException{
+        return ticketManager.sellTickets(client /* ,LocalDate date */);
+    }
+
+
+    /**
+     *  shows the income from sold tickets
+     */
+    public double getIncomeTicketSales(){
+        return ticketManager.getIncomeTicketSales();
+    }
+
+    /**
+     *  the index of the actual price level
+     */
+    public int getActualPriceLevelIndex(){return ticketManager.getActualPriceLevelIndex();}
+
+
+    /**
+     *
+     * @param isPriceLevelChangeAutomatic true for automatic, false for manually price level change
+     */
+    public void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic) throws TicketManagerException {
+        ticketManager.setAutomaticPriceLevelChange(isPriceLevelChangeAutomatic);
+    }
+
+    /**
+     * shows whether the price level changes automatically
+     * @return
+     */
+    public boolean getAutomaticPriceLevelChange(){
+        return ticketManager.getAutomaticPriceLevelChange();
+    }
+
+    public boolean setPriceLevel(int index){return ticketManager.setPriceLevel(index);}
 
 }

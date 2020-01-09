@@ -49,13 +49,15 @@ public class PriceLevel implements Comparable<PriceLevel>{
         return  java.lang.Double.valueOf(this.PercentageForPricelevel).compareTo(java.lang.Double.valueOf(priceLevel.PercentageForPricelevel));
     }
 
-    public double getCampingTicketPrice() {
-        return CampingTicketPrice;
-    }
 
     public double getPercentageForPricelevel() {
         return PercentageForPricelevel;
     }
     //public  int getPriceLevel(){return priceLevel;}
+
+
+    public double getDayTicketPrice(){return dayTicketPrice;}
+    public double getCampingTicketPrice(){return CampingTicketPrice;}
+    public double getVipTicketPrice(){return VipTicketPrice;}
 
 }

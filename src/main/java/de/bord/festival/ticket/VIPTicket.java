@@ -7,9 +7,9 @@ public class VIPTicket extends Ticket {
     private TicketType ticketType;
 
     public VIPTicket(TicketType ticketType, int id, String description,
-                     boolean available, double standardPrice, Event event){
+                     boolean available, double standardPrice/*, Event event*/){
 
-        super(id, description, available, standardPrice, event);
+        super(id, description, available, standardPrice/*, event*/);
         this.ticketType = TicketType.VIP;
     }
 
