@@ -1,14 +1,13 @@
 package de.bord.festival.exception;
 
-
 /**
  * It is an Exception child class
- * Should be thrown, if a band gets the same timeSlot on more than one stage
+ * Should be thrown, if the start event day is bigger then end event day
  */
-public class TimeException extends Exception {
+public class DateDisorderException extends Exception {
     private String message;
 
-    public TimeException(String message) {
+    public DateDisorderException(String message) {
         this.message = message;
     }
 

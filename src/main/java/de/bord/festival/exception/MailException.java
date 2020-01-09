@@ -1,7 +1,7 @@
 package de.bord.festival.exception;
 
 /**
- * Should be thrown when a wrong email adress is entered
+ * Should be thrown when a wrong email address is entered
  * */
 public class MailException extends Exception
 {

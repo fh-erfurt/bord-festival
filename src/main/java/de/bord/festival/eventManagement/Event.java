@@ -4,11 +4,10 @@ import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;
-import de.bord.festival.exception.BudgetException;
-import de.bord.festival.exception.DateException;
-import de.bord.festival.exception.TimeException;
+import de.bord.festival.exception.BudgetOverflowException;
+import de.bord.festival.exception.DateDisorderException;
+import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.stageManagement.Stage;
-import de.bord.festival.ticket.Ticket;
 import de.bord.festival.ticket.TicketManager;
 
 import java.time.LocalDate;
@@ -32,9 +31,9 @@ public class Event {
     private Address address;
 
     public Event(int id, LocalDate startDate, LocalDate endDate, String name,
-                 double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateException {
+                 double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException {
         if (endDate.isBefore(startDate)) {
-            throw new DateException("End date can't be before start date");
+            throw new DateDisorderException("End date can't be before start date");
         }
         lineUp = new LineUp(startDate, endDate, stage, this);
         client = new LinkedList<>();
@@ -99,19 +98,23 @@ public class Event {
      * @param minutesOnStage minutes the given band wants play on the stage
      * @return the information, which is relevant for band: stage, date, time, if the timeSlot is found,
      * otherwise null
-     * @throws BudgetException, if the band is to expensive
-     * @throws TimeException,   if the band plays on another stage at the same time
+     * @throws BudgetOverflowException, if the band is to expensive
+     * @throws TimeSlotCantBeFoundException,   if the band plays on another stage at the same time
      */
-    public EventInfo addBand(Band band, long minutesOnStage) throws BudgetException, TimeException {
+    public EventInfo addBand(Band band, long minutesOnStage) throws BudgetOverflowException, TimeSlotCantBeFoundException {
         if (!isNewBandAffordable(band)) {
-            throw new BudgetException("The budget is not enough for this band");
+            throw new BudgetOverflowException("The budget is not enough for this band");
         }
         EventInfo eventInfo = lineUp.addBand(band, minutesOnStage);
         if (eventInfo != null) {
             band.addEventInfo(eventInfo);
+            return eventInfo;
 
         }
-        return eventInfo;
+        else{
+            throw new TimeSlotCantBeFoundException("There is not found any time slot");
+        }
+
     }
 
     /**
@@ -141,12 +144,15 @@ public class Event {
         if (this.lineUp.removeBand(band, dateAndTime)) {
             band.removeEventInfo(dateAndTime);
             //if band does not play on event anymore
-            if (band.getNumberOfEventInfo() == 0) {
+            if (playsBandOnEvent(band)) {
                 actualCosts -= band.getPriceProEvent();
             }
             return true;
         }
         return false;
+    }
+    public boolean playsBandOnEvent(Band band){
+        return (band.getNumberOfEventInfo() == 0);
     }
 
     /**

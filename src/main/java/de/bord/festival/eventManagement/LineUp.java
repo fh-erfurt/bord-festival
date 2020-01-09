@@ -2,7 +2,7 @@ package de.bord.festival.eventManagement;
 
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
-import de.bord.festival.exception.TimeException;
+import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.stageManagement.Stage;
 
 import java.time.LocalDate;
@@ -37,7 +37,7 @@ public class LineUp {
         this.startDate = startDate;
         this.endDate = endDate;
         createProgramsBetweenStartAndEndDates();
-        this.event=event;
+        this.event = event;
 
     }
 
@@ -46,17 +46,27 @@ public class LineUp {
      */
     private void createProgramsBetweenStartAndEndDates() {
         if (startDate.equals(endDate)) {
-            Program programForStartDate = new Program(stages.getFirst(), this);
-            dayPrograms.put(startDate, programForStartDate);
+            createProgramForOneDay();
         } else {
-            for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
-                Program program = new Program(stages.getFirst(), this);
-                dayPrograms.put(date, program);
-            }
-            Program program = new Program(stages.getFirst(), this);
-            dayPrograms.put(endDate, program);
+            createProgramForMoreDays();
         }
 
+    }
+
+    private void createProgramForOneDay() {
+        createProgramPutIntoMapWithDays(startDate);
+    }
+
+    private void createProgramForMoreDays() {
+        for (LocalDate date = startDate; date.isBefore(endDate); date = date.plusDays(1)) {
+            createProgramPutIntoMapWithDays(date);
+        }
+        createProgramPutIntoMapWithDays(endDate);
+    }
+
+    private void createProgramPutIntoMapWithDays(LocalDate date) {
+        Program program = new Program(stages.getFirst(), this);
+        dayPrograms.put(date, program);
     }
 
     /**
@@ -67,7 +77,7 @@ public class LineUp {
      */
     public boolean addStage(Stage stage) {
 
-        if (findStage(stage.getId())!=null){
+        if (findStage(stage.getId()) != null) {
             return false;
         }
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
@@ -84,29 +94,40 @@ public class LineUp {
      * @param minutesOnStage minutes the given band wants play on the stage
      * @return the information, which is relevant for band: stage, date, time, if the timeSlot is found,
      * otherwise null
-     * @throws TimeException, if the band plays on another stage at the same time
+     * @throws TimeSlotCantBeFoundException, if the band plays on another stage at the same time
      */
-    public EventInfo addBand(Band band, long minutesOnStage) throws TimeException {
+    public EventInfo addBand(Band band, long minutesOnStage) throws TimeSlotCantBeFoundException {
 
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
             Program programOnCurrentDate = entry.getValue();
             LocalDate currentDate = entry.getKey();
             EventInfo timeSlotWithStage = programOnCurrentDate.addBand(band, minutesOnStage);
             if (timeSlotWithStage != null) {
-                boolean flag = false;
-
-                //a band exists in list of bands only once
-                if (!containsBand(band)) {
-                    bands.add(band);
-                    //the price for event should be changed only if the band is new
-                    // band get money for whole event
-                    this.event.addToTheActualCosts(band.getPriceProEvent());
-                }
-                timeSlotWithStage.setDate(currentDate);
-                return timeSlotWithStage;
+                return actionIfTimeSlotFound(band, timeSlotWithStage, currentDate);
             }
         }
         return null;
+    }
+
+    /**
+     * Generates a complete event info, which will be saved to band
+     * Checked is band is already in list present
+     * adds to actual budget of event
+     *
+     * @param band              should be checked if band is already in the list of bands
+     * @param timeSlotWithStage time slot which has received time and stage from program
+     *                          and now will be with date completed
+     * @param currentDate       date will be saved to @param timeSlotWithStage
+     * @return complete event info
+     */
+    private EventInfo actionIfTimeSlotFound(Band band, EventInfo timeSlotWithStage, LocalDate currentDate) {
+        if (!containsBand(band)) {
+            bands.add(band);
+            //the price for event should be changed only if the band is new
+            this.event.addToTheActualCosts(band.getPriceProEvent());
+        }
+        timeSlotWithStage.setDate(currentDate);
+        return timeSlotWithStage;
     }
 
     public int getNumberOfStages() {
@@ -143,24 +164,36 @@ public class LineUp {
      */
     public boolean removeStage(int id) {
         //in the event should exist minimum one stage
-        if (stages.size() == 1) {
+        if (isStageLast()) {
             return false;
         }
         Stage foundStage = findStage(id);
-
-        if (foundStage == null) {
+        if ((foundStage == null) || !isStageInAllProgramsEmpty(id)) {
             return false;
         }
-        for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
-            if (entry.getValue().existOnStageTimeSlots(id)) {
-                return false;
-            }
-        }
         //if the stage exists and is free, than we can remove it
+        removeStageFromAllPrograms(id);
+        stages.remove(foundStage);
+        return true;
+    }
+
+    private void removeStageFromAllPrograms(int id) {
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
             entry.getValue().removeStage(id);
         }
-        stages.remove(foundStage);
+    }
+
+    private boolean isStageLast() {
+        return (stages.size() == 1);
+    }
+
+    private boolean isStageInAllProgramsEmpty(int stageId) {
+
+        for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
+            if (entry.getValue().existOnStageTimeSlots(stageId)) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -173,7 +206,7 @@ public class LineUp {
      */
     public Stage findStage(int id) {
         for (int i = 0; i < stages.size(); i++) {
-            if (stages.get(i).getId()==id) {
+            if (stages.get(i).getId() == id) {
                 return stages.get(i);
             }
         }
@@ -182,51 +215,57 @@ public class LineUp {
 
     /**
      * It is a help method to removeBand from Event class
+     *
      * @param band band should be removed
      * @return true, if the band exists in the event list, false otherwise
      */
     public boolean removeBand(Band band) {
 
-        boolean doesBandExistsInEventList=bands.remove(band);
-        if (!doesBandExistsInEventList){
+        boolean doesBandExistsInEventList = bands.remove(band);
+        if (!doesBandExistsInEventList) {
             return false;
         }
-
-        for(Map.Entry<LocalDate, Program> entry: dayPrograms.entrySet()){
-            Program currentProgram=entry.getValue();
+        removeBandFromAllPrograms(band);
+        return true;
+    }
+    private void removeBandFromAllPrograms(Band band){
+        for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
+            Program currentProgram = entry.getValue();
             currentProgram.removeBand(band);
         }
-        return true;
     }
 
     /**
      * It is a help method for Event class method removeBand
-     * @param band band should be removed
+     *
+     * @param band        band should be removed
      * @param dateAndTime date and time the band should be removed
      * @return true, if the timeslot is removed, otherwise false
      */
     public boolean removeBand(Band band, LocalDateTime dateAndTime) {
-        if (!containsBand(band)){
+        if (!containsBand(band)) {
             return false;
         }
         //take date the band should be removed
-        LocalDate date =dateAndTime.toLocalDate();
+        LocalDate date = dateAndTime.toLocalDate();
 
         //find program the date should be removed
-        Program program =dayPrograms.get(date);
+        Program program = dayPrograms.get(date);
         //find time the band should be removed
-        LocalTime time =dateAndTime.toLocalTime();
-        if(program.removeBand(band, time)){
-            if (band.getNumberOfEventInfo()==1){
+        LocalTime time = dateAndTime.toLocalTime();
+        if (program.removeBand(band, time)) {
+            if (isBandLast(band)) {
                 bands.remove(band);
             }
             return true;
         }
         return false;
-
     }
-    private boolean containsBand(Band band){
-        boolean flag=false;
+    private boolean isBandLast(Band band){
+        return(band.getNumberOfEventInfo() == 1);
+    }
+    private boolean containsBand(Band band) {
+        boolean flag = false;
         for (Band value : bands) {
             if (value.equals(band)) {
                 flag = true;

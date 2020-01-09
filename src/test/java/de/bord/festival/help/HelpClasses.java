@@ -5,10 +5,9 @@ import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.eventManagement.Event;
 import de.bord.festival.eventManagement.LineUp;
-import de.bord.festival.exception.BudgetException;
-import de.bord.festival.exception.DateException;
+import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.PriceLevelException;
-import de.bord.festival.exception.TimeException;
+import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.stageManagement.Stage;
 import de.bord.festival.ticket.PriceLevel;
 import de.bord.festival.ticket.TicketManager;
@@ -23,7 +22,7 @@ public class HelpClasses {
 
     }
 
-    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateException, PriceLevelException{
+    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateDisorderException, PriceLevelException{
         Stage stage = getStage();
         return new LineUp(startDate, endDate, stage, getValidNDaysEvent(1));
 
@@ -40,7 +39,7 @@ public class HelpClasses {
 
     }
 
-    public Event getValidNDaysEvent(int numberOfDays) throws DateException, PriceLevelException {
+    public Event getValidNDaysEvent(int numberOfDays) throws DateDisorderException, PriceLevelException {
 
         return new Event(1, LocalDate.of(2018, 01, 01),
                 LocalDate.of(2018, 01, numberOfDays), "Bord", 2019, 1000,
@@ -52,7 +51,7 @@ public class HelpClasses {
         return new Address("Germany", "Berlin", "Nordwez 1", "8803");
     }
 
-    public LineUp exampleLineUp() throws TimeException, DateException, PriceLevelException {
+    public LineUp exampleLineUp() throws TimeSlotCantBeFoundException, DateDisorderException, PriceLevelException {
         //lineUp for 3 days with 2 stages and 4 bands. Each band plays 5 hours
         LineUp lineUp = getLineUp(LocalDate.of(2020, 3, 1),
                 LocalDate.of(2020, 3, 3));

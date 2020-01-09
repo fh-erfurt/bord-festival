@@ -4,9 +4,9 @@ import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.help.HelpClasses;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
-import de.bord.festival.exception.BudgetException;
-import de.bord.festival.exception.DateException;
-import de.bord.festival.exception.TimeException;
+import de.bord.festival.exception.BudgetOverflowException;
+import de.bord.festival.exception.DateDisorderException;
+import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.stageManagement.Stage;
 import org.junit.jupiter.api.Test;
 
@@ -22,10 +22,10 @@ class EventTest {
     HelpClasses help = new HelpClasses();
 
     @Test
-    void should_throw_exception_start_end_date() throws PriceLevelException {
+    void should_throw_exception_start_end_date() {
 
         //invalid date couple(start date> end date)
-        assertThrows(DateException.class, () -> {
+        assertThrows(DateDisorderException.class, () -> {
             Stage stage = help.getStage();
             Event event = new Event(1, LocalDate.of(2018, 1, 1),
                     LocalDate.of(2017, 1, 1), "Bord", 2019, 1000,
@@ -36,14 +36,14 @@ class EventTest {
     }
 
     @Test
-    void should_return_1_number_of_stages() throws DateException, PriceLevelException {
+    void should_return_1_number_of_stages() throws DateDisorderException, PriceLevelException {
 
         Event event = help.getValidNDaysEvent(3);
         assertEquals(1, event.getNumberOfStages());
     }
 
     @Test
-    void should_return_2_number_of_stages() throws DateException, PriceLevelException {
+    void should_return_2_number_of_stages() throws DateDisorderException, PriceLevelException {
         Event event = help.getValidNDaysEvent(3);
         Stage stage = help.getStage();
         event.addStage(stage);
@@ -51,7 +51,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_1_number_of_stages_because_of_removed_one() throws DateException, PriceLevelException {
+    void should_return_1_number_of_stages_because_of_removed_one() throws DateDisorderException, PriceLevelException {
         Event event = help.getValidNDaysEvent(3);
         Stage stage = help.getStage();
         event.addStage(stage);
@@ -60,7 +60,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_1_number_of_bands() throws TimeException, BudgetException, DateException, PriceLevelException {
+    void should_return_1_number_of_bands() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException {
         Event event = help.getValidNDaysEvent(3);
         Band band = help.getBand();
         event.addBand(band, 60);
@@ -68,24 +68,24 @@ class EventTest {
     }
 
     @Test
-    void should_return_0_number_of_bands() throws DateException, PriceLevelException {
+    void should_return_0_number_of_bands() throws DateDisorderException, PriceLevelException {
         Event event = help.getValidNDaysEvent(3);
         assertEquals(0, event.getNumberOfBands());
     }
 
     @Test
-    void should_throw_exception_budget() throws DateException, PriceLevelException {
+    void should_throw_exception_budget() throws DateDisorderException, PriceLevelException {
         Event event = help.getValidNDaysEvent(3);
         Band band = help.getBand("The Doors", 5000);
 
-        assertThrows(BudgetException.class, () -> {
+        assertThrows(BudgetOverflowException.class, () -> {
             event.addBand(band, 60);
 
         });
     }
 
     @Test
-    void should_throw_exception_band() throws BudgetException, DateException, PriceLevelException {
+    void should_throw_exception_band() throws BudgetOverflowException, DateDisorderException, PriceLevelException {
         Event event = help.getValidNDaysEvent(3);
         Stage stage = help.getStage();
         event.addStage(stage);
@@ -94,25 +94,25 @@ class EventTest {
                 Band band = help.getBand();
                 event.addBand(band, 300);
             }
-        } catch (TimeException exception) {
+        } catch (TimeSlotCantBeFoundException exception) {
             assertEquals("This band plays already on another stage", exception.getMessage());
         }
     }
 
     @Test
-    void should_return_3_days() throws DateException, PriceLevelException {
+    void should_return_3_days() throws DateDisorderException, PriceLevelException {
         Event event = help.getValidNDaysEvent(3);
         assertEquals(3, event.getNumberOfDays());
     }
 
     @Test
-    void should_return_1_day() throws DateException, PriceLevelException {
+    void should_return_1_day() throws DateDisorderException, PriceLevelException {
         Event event = help.getValidNDaysEvent(1);
         assertEquals(1, event.getNumberOfDays());
     }
 
     @Test
-    void should_return_false() throws TimeException, BudgetException, DateException, PriceLevelException {
+    void should_return_false() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException {
         //Given
         Event event = help.getValidNDaysEvent(1);
         Band band1 = help.getBand("first band", 30);
@@ -122,13 +122,15 @@ class EventTest {
         event.addBand(band1, 300);
         event.addBand(band2, 300);
         //then
-        assertNull(event.addBand(band3, 300));
+        assertThrows(TimeSlotCantBeFoundException.class, () -> {
+            event.addBand(band3, 300);
+        });
 
 
     }
 
     @Test
-    void should_return_false_because_on_stage_should_play_band() throws TimeException, BudgetException, DateException, PriceLevelException {
+    void should_return_false_because_on_stage_should_play_band() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException {
         //Given
         Event event = help.getValidNDaysEvent(1);
         Band band1 = help.getBand("first band", 30);
@@ -144,7 +146,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_true() throws TimeException, BudgetException, DateException, PriceLevelException {
+    void should_return_true() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException {
         //Given
         Event event = help.getValidNDaysEvent(1);
         Band band1 = help.getBand("first band", 30);
@@ -158,7 +160,7 @@ class EventTest {
 
 
     @Test
-    void should_return_date2020_03_01_time10_30() throws TimeException, DateException, PriceLevelException {
+    void should_return_date2020_03_01_time10_30() throws TimeSlotCantBeFoundException, DateDisorderException, PriceLevelException {
         //Given 3 days of festival
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 3, 1),
                 LocalDate.of(2020, 3, 3));
@@ -174,7 +176,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_date2020_03_01_time12_05() throws TimeException, DateException, PriceLevelException {
+    void should_return_date2020_03_01_time12_05() throws TimeSlotCantBeFoundException, DateDisorderException, PriceLevelException {
         //Given 3 days of festival with 1 stage
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 3, 1),
                 LocalDate.of(2020, 3, 3));
@@ -192,8 +194,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_false_for_added_stage() throws DateException, PriceLevelException {
-
+    void should_return_false_for_added_stage() throws DateDisorderException, PriceLevelException {
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
         Stage stage = help.getStage();
@@ -202,7 +203,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_true_for_added_stage() throws DateException, PriceLevelException {
+    void should_return_true_for_added_stage() throws DateDisorderException, PriceLevelException {
 
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
@@ -211,7 +212,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_2_for_number_of_stages() throws DateException, PriceLevelException {
+    void should_return_2_for_number_of_stages() throws DateDisorderException, PriceLevelException {
         //Given
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
@@ -223,7 +224,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_date2020_03_01_time21_30() throws TimeException, BudgetException, DateException, PriceLevelException {
+    void should_return_date2020_03_01_time21_30() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException {
         //Given 3 days of festival with 2 stages and 4 bands
         LineUp lineUp = help.exampleLineUp();
 
@@ -241,7 +242,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_null_because_of_long_playing_time_of_band() throws TimeException, DateException, PriceLevelException {
+    void should_return_null_because_of_long_playing_time_of_band() throws TimeSlotCantBeFoundException, DateDisorderException, PriceLevelException {
         //Given a new Program
         Program program = new Program(help.getStage(), help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12)));
@@ -253,7 +254,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_not_null_because_the_playing_time_of_band_is_not_till_end_of_day() throws TimeException, DateException, PriceLevelException {
+    void should_return_not_null_because_the_playing_time_of_band_is_not_till_end_of_day() throws TimeSlotCantBeFoundException, DateDisorderException, PriceLevelException {
         //Given a new Program
         Program program = new Program(help.getStage(), help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12)));
@@ -265,7 +266,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_false_because_the_band_doesnt_exist_in_event_list() throws DateException, PriceLevelException {
+    void should_return_false_because_the_band_doesnt_exist_in_event_list() throws DateDisorderException, PriceLevelException {
         //Given
         Event event = help.getValidNDaysEvent(1);
         //When
@@ -274,7 +275,7 @@ class EventTest {
     }
 
     @Test
-    void should_return_true_because_the_band_exists_in_event_list() throws DateException, BudgetException, TimeException, PriceLevelException {
+    void should_return_true_because_the_band_exists_in_event_list() throws DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException {
         //Given
         Event event = help.getValidNDaysEvent(1);
         Band band = help.getBand();
@@ -285,7 +286,7 @@ class EventTest {
     }
 
     @Test
-    void should_remove_band_because_time_and_date_are_valid_returns_true() throws DateException, BudgetException, TimeException, PriceLevelException {
+    void should_remove_band_because_time_and_date_are_valid_returns_true() throws DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException {
         Event event = help.getValidNDaysEvent(1);
         Band band = help.getBand("Band1", 60);
         Band band2 = help.getBand("band2", 60);
@@ -298,7 +299,7 @@ class EventTest {
     }
 
     @Test
-    void should_not_remove_band_because_time_is_not_valid_returns_false() throws DateException, BudgetException, TimeException, PriceLevelException {
+    void should_not_remove_band_because_time_is_not_valid_returns_false() throws DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException {
         Event event = help.getValidNDaysEvent(1);
         Band band = help.getBand("Band1", 60);
         Band band2 = help.getBand("band2", 60);
