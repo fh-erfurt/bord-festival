@@ -4,12 +4,7 @@ import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;
-import de.bord.festival.exception.BudgetException;
-import de.bord.festival.exception.DateException;
-
 import de.bord.festival.exception.TicketManagerException;
-
-import de.bord.festival.exception.TimeException;
 import de.bord.festival.exception.BudgetOverflowException;
 import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
@@ -36,11 +31,9 @@ public class Event {
     private int maxCapacity;
     private Address address;
 
-    public Event(int id, LocalDate startDate, LocalDate endDate, String name,
-                 double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException {
-        if (endDate.isBefore(startDate)) {
-            throw new DateDisorderException("End date can't be before start date");
-        }
+    private Event(int id, LocalDate startDate, LocalDate endDate, String name,
+                 double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address){
+
         lineUp = new LineUp(startDate, endDate, stage, this);
         client = new LinkedList<>();
         this.maxCapacity = maxCapacity;
@@ -51,8 +44,15 @@ public class Event {
         this.address=address;
 
     }
+    public  static Event getNewEvent(int id, LocalDate startDate, LocalDate endDate, String name,
+                                     double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException{
+        if (endDate.isBefore(startDate)) {
+            throw new DateDisorderException("End date can't be before start date");
+        }
 
+        return new Event(id, startDate, endDate, name, budget, maxCapacity, stage, ticketManager, address);
 
+    }
     public int getNumberOfBands() {
         return lineUp.getNumberOfBands();
     }
