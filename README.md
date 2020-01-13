@@ -1,5 +1,5 @@
 [![Build Status](https://github.com/fh-erfurt/bord-festival/workflows/bord-festival/badge.svg)](https://github.com/fh-erfurt/bord-festival/actions)
-
+[![Build Status](https://travis-ci.org/fh-erfurt/bord-festival.svg?branch=master)](https://travis-ci.org/fh-erfurt/bord-festival)
 
 # BORD - Festival Management System
 
