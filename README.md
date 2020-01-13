@@ -1,3 +1,6 @@
+[![Build Status](https://github.com/fh-erfurt/bord-festival/workflows/bord-festival/badge.svg)](https://github.com/fh-erfurt/bord-festival/actions)
+
+
 # BORD - Festival Management System
 
 ## Teammitglieder
