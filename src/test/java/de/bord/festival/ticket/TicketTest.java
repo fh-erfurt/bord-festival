@@ -266,6 +266,7 @@ public class TicketTest {
 
     }
 
+    /*
     @Test
     void should_return_1_for_ticketManager1_getPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
         // given
@@ -287,5 +288,7 @@ public class TicketTest {
         assertEquals(1, ticketManager1.getActualPriceLevelIndex());
 
     }
+
+     */
 
 }
