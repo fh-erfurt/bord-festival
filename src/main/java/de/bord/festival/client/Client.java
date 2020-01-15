@@ -14,12 +14,12 @@ import java.util.regex.Matcher;
 public class Client implements IClient {
 
     private int _id;
-    private String _firstname;
-    private String _lastname;
-    private Address _address;
-    private String _mail;
-    private LinkedList<Ticket> _tickets;
-    private LinkedList<Ticket> _cart;
+    private String firstname;
+    private String lastname;
+    private Address address;
+    private String mail;
+    private LinkedList<Ticket> tickets;
+    private LinkedList<Ticket> cart;
 
 
     //benjamin
@@ -32,13 +32,13 @@ public class Client implements IClient {
         nameCheck(lastname);
         mailCheck(mail);
 
-        _tickets = new LinkedList<Ticket>();
-        _cart = new LinkedList<Ticket>();
+        tickets = new LinkedList<Ticket>();
+        cart = new LinkedList<Ticket>();
         this._id = id;
-        this._firstname = firstname;
-        this._lastname = lastname;
-        this._address = address;
-        this._mail = mail;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.mail = mail;
     }
 
     /**
@@ -85,8 +85,8 @@ public class Client implements IClient {
         nameCheck(newFirstName);
         nameCheck(newLastName);
 
-        this._firstname = newFirstName;
-        this._lastname = newLastName;
+        this.firstname = newFirstName;
+        this.lastname = newLastName;
     }
 
     /**
@@ -99,7 +99,7 @@ public class Client implements IClient {
         if(!ticket.isAvailable()) {
             throw new TicketException("No more tickets available");
         }
-        this._tickets.add(ticket);
+        this.tickets.add(ticket);
     }
 
 
@@ -110,7 +110,7 @@ public class Client implements IClient {
             throw new TicketException("No more tickets available");
         }
             if(ticketmanager.getTicket(type)!= null) {
-                this._cart.add(ticketmanager.getTicket(type));
+                this.cart.add(ticketmanager.getTicket(type));
             }
     }
 
@@ -120,29 +120,29 @@ public class Client implements IClient {
     }
 
     public Ticket get_ticket(int index) {
-        return _tickets.get(index);
+        return tickets.get(index);
     }
 
-    public void add_cartToTickets(){
-        _tickets.addAll(_cart);
+    public void addCartToTickets(){
+        tickets.addAll(cart);
     }
 
 
-    public Ticket get_cartItem(int index) {
-        return _cart.get(index);
+    public Ticket getCartItem(int index) {
+        return cart.get(index);
     }
 
-    public int get_cartSize(){
-        return _cart.size();
+    public int getCartSize(){
+        return cart.size();
     }
 
-    public int get_ticketsSize(){
-        return _tickets.size();
+    public int getTicketsSize(){
+        return tickets.size();
     }
 
-    public void clear_cart(){
+    public void clearCart(){
 
-        this._cart.clear();
+        this.cart.clear();
 
     }
 

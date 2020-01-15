@@ -243,19 +243,19 @@ public class TicketManager {
         double ticketIncome = 0.0;
 
         int i = 0;
-        while (i < client.get_cartSize()) {
-            if (client.get_cartItem(i).getTicketType() == Ticket.TicketType.DAY && getnDayticketsLeft() >= 1) {
+        while (i < client.getCartSize()) {
+            if (client.getCartItem(i).getTicketType() == Ticket.TicketType.DAY && getnDayticketsLeft() >= 1) {
                 nDayTicketsSold++;
                 /*ticketIncome += priceLevels.get(actualPriceLevel).getDayTicketPrice();*/
-                ticketIncome += client.get_cartItem(i).getStdPrice();
-            } else if (client.get_cartItem(i).getTicketType() == Ticket.TicketType.CAMPING && getnCampingticketsLeft() >= 1) {
+                ticketIncome += client.getCartItem(i).getStdPrice();
+            } else if (client.getCartItem(i).getTicketType() == Ticket.TicketType.CAMPING && getnCampingticketsLeft() >= 1) {
                 nCampingTicketsSold++;
                 /*ticketIncome += priceLevels.get(actualPriceLevel).getCampingTicketPrice();*/
-                ticketIncome += client.get_cartItem(i).getStdPrice();
-            } else if (client.get_cartItem(i).getTicketType() == Ticket.TicketType.VIP && getnVipticketsLeft() >= 1) {
+                ticketIncome += client.getCartItem(i).getStdPrice();
+            } else if (client.getCartItem(i).getTicketType() == Ticket.TicketType.VIP && getnVipticketsLeft() >= 1) {
                 nVIPTicketsSold++;
                 /*ticketIncome += priceLevels.get(actualPriceLevel).getVipTicketPrice();*/
-                ticketIncome += client.get_cartItem(i).getStdPrice();
+                ticketIncome += client.getCartItem(i).getStdPrice();
             } else {
                 return null;
             }
@@ -265,8 +265,8 @@ public class TicketManager {
         this.nCampingticketsLeft -= nCampingTicketsSold;
         this.nVipticketsLeft -= nVIPTicketsSold;
 
-        client.add_cartToTickets();
-        client.clear_cart();
+        client.addCartToTickets();
+        client.clearCart();
         updateIncomeTicketSales(ticketIncome);
         client.setExpenditure(ticketIncome);
 
