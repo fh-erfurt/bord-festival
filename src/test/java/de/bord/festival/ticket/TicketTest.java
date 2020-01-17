@@ -203,7 +203,7 @@ public class TicketTest {
 
         Client c1 = helpClasses.exampleClientWith4Tickets();
 
-        assertEquals(4, c1.get_cartSize());
+        assertEquals(4, c1.getCartSize());
 
     }
 
@@ -218,7 +218,7 @@ public class TicketTest {
         Client c2 = ticketManager1.sellTickets(c1);
 
         // then
-        assertEquals(0, c2.get_cartSize());
+        assertEquals(0, c2.getCartSize());
 
     }
 
@@ -248,7 +248,7 @@ public class TicketTest {
         Client c2 = ticketManager1.sellTickets(c1);
 
         // then
-        assertEquals(4, c2.get_ticketsSize());
+        assertEquals(4, c2.getTicketsSize());
 
     }
 
