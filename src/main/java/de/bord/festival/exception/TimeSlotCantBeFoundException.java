@@ -4,7 +4,7 @@ package de.bord.festival.exception;
 /**
  * It is an Exception child class
  * Should be thrown, if a band gets the same time slot on more than one stage
- *                  ,if there is not found any time slot for new band
+ *                  ,if there is not found any time slot for new band(minutesOnStage> end time of day)
  */
 public class TimeSlotCantBeFoundException extends Exception {
     private String message;

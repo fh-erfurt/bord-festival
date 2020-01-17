@@ -1,0 +1,8 @@
+de\bord\festival\help\HelpClasses.class
+de\bord\festival\address\addressTest.class
+de\bord\festival\band\BandTest.class
+de\bord\festival\eventManagement\EventTest.class
+de\bord\festival\stageManagement\StageTest.class
+de\bord\festival\MainTest.class
+de\bord\festival\client\ClientTest.class
+de\bord\festival\ticket\TicketTest.class
