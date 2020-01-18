@@ -168,7 +168,7 @@ public class TicketManager {
     public int getnDayticketsLeft() { return nDayticketsLeft; }
     public int getnCampingticketsLeft() { return nCampingticketsLeft; }
     public int getnVipticketsLeft() { return nVipticketsLeft; }
-    public int totalNumberOfTicketsLeft(){return nDayticketsLeft+nCampingtickets+nVipticketsLeft;}
+    public int totalNumberOfTicketsLeft(){return nDayticketsLeft+nCampingticketsLeft+nVipticketsLeft;}
 
 
     /**
@@ -182,7 +182,7 @@ public class TicketManager {
     public double totalNumberOfSoldTicketsInPercent(){
         double totalNumberOfTicketsLeft = (double)totalNumberOfTicketsLeft();   // /totalNumberOfTickets()*100;
         double totalNumberOfTickets = (double)totalNumberOfTickets();
-        return 100 - (totalNumberOfTicketsLeft/totalNumberOfTickets*100);
+        return 100-((totalNumberOfTicketsLeft/totalNumberOfTickets)*100);
     }
 
 

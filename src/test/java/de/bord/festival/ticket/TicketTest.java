@@ -266,7 +266,62 @@ public class TicketTest {
 
     }
 
-    /*
+
+    @Test
+    void should_return_40_for_ticketManager1_totalNumberOfSoldTicketsInPercent() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+        // given
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.example2TicketManager();
+        Client c1 = helpClasses.exampleClient();
+
+
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        c1.addTicket(Ticket.TicketType.VIP,ticketManager1);
+        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+
+        //when
+        ticketManager1.sellTickets(c1);
+
+        //then
+        assertEquals(40, ticketManager1.totalNumberOfSoldTicketsInPercent());
+
+    }
+
+
+    @Test
+    void should_return_2_for_ticketManager1_getPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+        // given
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.example2TicketManager();
+        Client c1 = helpClasses.exampleClient();
+
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+
+
+
+
+        //when
+        ticketManager1.sellTickets(c1);
+
+        c1.addTicket(Ticket.TicketType.VIP,ticketManager1);
+        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+
+        ticketManager1.sellTickets(c1);
+
+        double test = ticketManager1.totalNumberOfSoldTicketsInPercent();
+
+        //then
+        assertEquals(2, ticketManager1.getActualPriceLevelIndex());
+
+    }
+
+
     @Test
     void should_return_1_for_ticketManager1_getPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
         // given
@@ -281,14 +336,40 @@ public class TicketTest {
         c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
         c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
 
+
+        //when
         ticketManager1.sellTickets(c1);
 
-        double test = ticketManager1.totalNumberOfSoldTicketsInPercent();
-
+        //then
         assertEquals(1, ticketManager1.getActualPriceLevelIndex());
 
     }
 
-     */
+    @Test
+    void should_return_0_for_ticketManager1_getPriceLevelIndexAfter_4_Sells() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+        // given
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.example2TicketManager();
+        Client c1 = helpClasses.exampleClient();
+
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+
+
+        //when
+        ticketManager1.sellTickets(c1);
+        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        ticketManager1.sellTickets(c1);
+        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        ticketManager1.sellTickets(c1);
+        c1.addTicket(Ticket.TicketType.VIP,ticketManager1);
+        ticketManager1.sellTickets(c1);
+
+        //then
+        assertEquals(0, ticketManager1.getActualPriceLevelIndex());
+
+    }
+
+
 
 }
