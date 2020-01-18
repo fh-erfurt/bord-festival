@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58bb82cc-669b-46b0-a59b-f9421ff30d2e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/TicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/TicketManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/ticket/TicketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/ticket/TicketTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/client/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/TicketManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/TicketManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/ticket/TicketTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/ticket/TicketTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="58bb82cc-669b-46b0-a59b-f9421ff30d2e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,7 +40,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.EventTest">
+  <component name="RunManager" selected="JUnit.TicketTest">
     <configuration name="BandTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bord-festival" />
       <extension name="coverage">
@@ -125,11 +118,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TicketTest" />
         <item itemvalue="JUnit.EventTest" />
         <item itemvalue="JUnit.addressTest" />
         <item itemvalue="JUnit.BandTest" />
         <item itemvalue="JUnit.ClientTest" />
-        <item itemvalue="JUnit.TicketTest" />
       </list>
     </recent_temporary>
   </component>
@@ -160,6 +153,7 @@
       <workItem from="1579268303343" duration="467000" />
       <workItem from="1579286811015" duration="1026000" />
       <workItem from="1579294348478" duration="4329000" />
+      <workItem from="1579373993675" duration="281000" />
     </task>
     <task id="LOCAL-00001" summary="maven">
       <created>1579260861392</created>
@@ -168,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579260861392</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ticket tests updated">
+      <created>1579374184747</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1579374184747</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,17 +177,18 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="maven" />
-    <option name="LAST_COMMIT_MESSAGE" value="maven" />
+    <MESSAGE value="ticket tests updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="ticket tests updated" />
   </component>
   <component name="WindowStateProjectService">
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578924151923">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1578924151923" />
-    <state x="399" y="19" key="CommitChangelistDialog2" timestamp="1579374118167">
+    <state x="399" y="19" key="CommitChangelistDialog2" timestamp="1579374183086">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="399" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579374118167" />
+    <state x="399" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579374183086" />
     <state width="1557" height="213" key="GridCell.Tab.0.bottom" timestamp="1579301042919">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -219,6 +221,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="213" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1579301042919" />
+    <state x="152" y="67" key="MergeDialog" timestamp="1579374243243">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="152" y="67" key="MergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579374243243" />
+    <state x="512" y="145" key="MultipleFileMergeDialog" timestamp="1579374262282">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="512" y="145" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579374262282" />
     <state x="280" y="4" key="SettingsEditor" timestamp="1578924059799">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -227,10 +237,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1579373993923" />
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1579260877266">
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1579374200841">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1579260877266" />
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1579374200841" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1578924052248">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
