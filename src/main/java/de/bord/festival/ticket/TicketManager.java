@@ -7,8 +7,35 @@ import java.time.LocalDate;
 import java.util.*;
 
 /**
- *  The class gives information about total number of tickets, current number of tickets,
- *  the total number of price-levels and the actual price-level. It consists all price-levels for the Event.
+ *  The class is created together with the event
+ *
+ *  It uses the following types of tickets: DAY, CAMPING, VIP
+ *
+ *  The class gives information about:
+ *  -total number of tickets
+ *  -current number of available tickets,
+ *  -all price-levels for the Event
+ *  -the total number of price-levels
+ *  -the actual price-level (index)
+ *     * Integer from 0 to n
+ *     * example: 3 pricelevels with index 0,1,2
+ *  -income from tickets sold
+ *  -the change of the price level (automatic / manual)
+ *   example: boolean automaticPriceLevelChange = true (for automatic change)
+ *            boolean automaticPriceLevelChange = false (for manuel change with setPriceLevel(int index) )
+ *
+ *  Every price level has its own ticket prices.
+ *  The individual price levels are sorted in ascending order
+ *  when the class is created according to the percentage of the price level
+ *  (tickets sold as a percentage).
+ *  The user is responsible for a sensible distribution of ticket prices
+ *  when creating the event (price level creation).
+ *
+ *  The attributes DayTicket dayTicket, CampingTicket campingTicket, VIPTicket vipTicket
+ *  give information about the actual ticket prices and ticket description.
+ *  The ticket attributes change in sync with the price level.
+ *
+ *
  *
  */
 
@@ -59,6 +86,11 @@ public class TicketManager {
         setTicketPrices();
     }
 
+    /**
+     *
+     * @param type
+     * @return the ticket of the appropriate type of the actual price level
+     */
     public Ticket getTicket(Ticket.TicketType type){
         if (type == Ticket.TicketType.DAY) {
             ticketIdCounter(type);
@@ -95,6 +127,11 @@ public class TicketManager {
         }
     }
 
+    /**
+     * changes the description for the ticket of the appropriate type from the actual pricelevel
+     * @param description
+     * @param type
+     */
     public void setDescription(String description, Ticket.TicketType type){
         if (type == Ticket.TicketType.DAY) {
             this.dayTicket.setDescription(description);
@@ -104,6 +141,13 @@ public class TicketManager {
             this.vipTicket.setDescription(description);
         }
     }
+
+    /**
+     *
+     *  changes the standard price for the ticket of the appropriate type from the actual price level
+     *  @param stdPrice
+     *  @param type
+     */
     public void setStdPrice(double stdPrice, Ticket.TicketType type){
         if (type == Ticket.TicketType.DAY) {
             this.dayTicket.setStdPrice(stdPrice);
@@ -114,8 +158,9 @@ public class TicketManager {
         }
     }
 
-
-
+    /**
+     *  Change The ticket attributes in sync with the price level.
+     */
     public void setTicketPrices(){
         dayTicket.setStdPrice(priceLevels.get(actualPriceLevel).getDayTicketPrice());
         campingTicket.setStdPrice(priceLevels.get(actualPriceLevel).getCampingTicketPrice());
@@ -140,6 +185,10 @@ public class TicketManager {
             }
       */  }
 
+    /**
+     *
+     * @return returns whether the expected percentage has been reached
+     */
     private boolean isPercentageOfSoldTicketsExceeded(){
 
         if(totalNumberOfSoldTicketsInPercent() > priceLevels.get(this.actualPriceLevel).getPercentageForPricelevel()){
@@ -203,7 +252,9 @@ public class TicketManager {
 
 
     /**
-     *
+     * determines whether the price level changes automatically.
+     * If this is not the case, it can only be changed manually with
+     * @see #setPriceLevel(int).
      * @param isPriceLevelChangeAutomatic true for automatic, false for manually price level change
      */
     public void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic) throws TicketManagerException {
@@ -223,6 +274,11 @@ public class TicketManager {
         return automaticPriceLevelChange;
     }
 
+    /**
+     *
+     * @param index
+     * @return returns whether the change was successful
+     */
     public boolean setPriceLevel(int index){    /////////exception
         if(!getAutomaticPriceLevelChange() && index >= 0 && index < priceLevels.size()){
             actualPriceLevel = index;
@@ -234,8 +290,20 @@ public class TicketManager {
         }
     }
 
-    /////////////////////client zurückgeben
-    public Client sellTickets(Client client /*, LocalDate date*/) throws TicketManagerException {
+    /**
+     *
+     * If the tickets are available from the customer's shopping cart, the tickets are removed from the customer's shopping cart
+     * when tickets are sold and added to his inventory.
+     * The attributes ticketsLeft are adjusted by the number of tickets sold.
+     * The income from tickets sold to the ticket manager and the expenditure from tickets to the client
+     * are adjusted by the total price of the tickets sold.
+     * At the end it is checked whether the price level should change and if necessary adjusted.
+     *
+     * @param client
+     * @return returns whether the tickets from the customer's basket were available
+     * @throws TicketManagerException
+     */
+    public boolean sellTickets(Client client /*, LocalDate date*/) throws TicketManagerException {
 
         int nDayTicketsSold = 0;
         int nCampingTicketsSold = 0;
@@ -257,7 +325,7 @@ public class TicketManager {
                 /*ticketIncome += priceLevels.get(actualPriceLevel).getVipTicketPrice();*/
                 ticketIncome += client.getCartItem(i).getStdPrice();
             } else {
-                return null;
+                return false;
             }
             i++;
         }
@@ -273,6 +341,6 @@ public class TicketManager {
         if(automaticPriceLevelChange){
             updatePriceLevel();
         }
-        return client;
+        return true;
     }
 }

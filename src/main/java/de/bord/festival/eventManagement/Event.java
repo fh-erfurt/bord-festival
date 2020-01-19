@@ -200,7 +200,7 @@ public class Event {
     public int totalNumberOfTicketsLeft(){return ticketManager.totalNumberOfTicketsLeft();}
 
 
-    public Client sellTickets(Client client /* ,LocalDate date */) throws TicketManagerException{
+    public boolean sellTickets(Client client /* ,LocalDate date */) throws TicketManagerException{
         return ticketManager.sellTickets(client /* ,LocalDate date */);
     }
 
