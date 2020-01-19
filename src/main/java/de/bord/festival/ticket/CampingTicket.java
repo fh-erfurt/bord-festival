@@ -3,6 +3,11 @@ package de.bord.festival.ticket;
 import de.bord.festival.eventManagement.Event;
 import de.bord.festival.ticket.Ticket.TicketType;
 
+/**
+ * gives information about ticket price and description of the current price level
+ * ticketType = TicketType.CAMPING
+ */
+
 public class CampingTicket extends Ticket {
 
     //private String campingPlaceName;

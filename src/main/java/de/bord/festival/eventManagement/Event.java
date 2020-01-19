@@ -17,6 +17,15 @@ import java.util.LinkedList;
 
 /**
  * Represents an festival with required features
+ *
+ * example (ArrayList<PriceLevel> priceLevels) for sensible TicketManager creation:
+ * TicketManager
+ * PriceLevels[0]: PercentageForPricelevel=25.00, dayTicketPrice=30.00, CampingTicketPrice=40.00, VipTicketPrice=60.00
+ * PriceLevels[1]: PercentageForPricelevel=52.25, dayTicketPrice=30.00, CampingTicketPrice=49.00, VipTicketPrice=80.00
+ * PriceLevels[2]: PercentageForPricelevel=89.99, dayTicketPrice=40.99, CampingTicketPrice=51.49, VipTicketPrice=89.55
+ * PriceLevels[3]: PercentageForPricelevel=100.00, dayTicketPrice=45.00, CampingTicketPrice=55.00, VipTicketPrice=101.12
+ *
+ * it is recommended to set the last PercentageForPricelevel to 100.00
  */
 public class Event {
 

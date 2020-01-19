@@ -2,6 +2,11 @@ package de.bord.festival.ticket;
 
 import de.bord.festival.eventManagement.Event;
 
+/**
+ * gives information about ticket price and description of the current price level
+ * ticketType = TicketType.VIP
+ */
+
 public class VIPTicket extends Ticket {
 
     private TicketType ticketType;

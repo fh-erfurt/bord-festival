@@ -4,7 +4,11 @@
     <list default="true" id="58bb82cc-669b-46b0-a59b-f9421ff30d2e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/TicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/TicketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/CampingTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/CampingTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/DayTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/DayTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/PriceLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/PriceLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/VIPTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/VIPTicket.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,7 +162,8 @@
       <workItem from="1579286811015" duration="1026000" />
       <workItem from="1579294348478" duration="4329000" />
       <workItem from="1579373993675" duration="418000" />
-      <workItem from="1579453207125" duration="5775000" />
+      <workItem from="1579453207125" duration="6064000" />
+      <workItem from="1579464452816" duration="2904000" />
     </task>
     <task id="LOCAL-00001" summary="maven">
       <created>1579260861392</created>
@@ -181,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579374340406</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Ticketmanager javadoc">
+      <created>1579459113052</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1579459113052</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,17 +202,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="maven" />
     <MESSAGE value="ticket tests updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="ticket tests updated" />
+    <MESSAGE value="Ticketmanager javadoc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ticketmanager javadoc" />
   </component>
   <component name="WindowStateProjectService">
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578924151923">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1578924151923" />
-    <state x="399" y="19" key="CommitChangelistDialog2" timestamp="1579374338456">
+    <state x="399" y="19" key="CommitChangelistDialog2" timestamp="1579459111552">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="399" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579374338456" />
+    <state x="399" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579459111552" />
     <state width="1557" height="236" key="GridCell.Tab.0.bottom" timestamp="1579374414458">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -245,18 +258,18 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="4" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1578924059799" />
-    <state x="392" y="162" key="Vcs.Push.Dialog.v2" timestamp="1579374360536">
+    <state x="392" y="162" key="Vcs.Push.Dialog.v2" timestamp="1579459257526">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="162" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1579374360536" />
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1579453228744">
+    <state x="392" y="162" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1579459257526" />
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1579464452207">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1579453228744" />
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1579374200841">
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1579464452207" />
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1579459242418">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1579374200841" />
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1579459242418" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1578924052248">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
