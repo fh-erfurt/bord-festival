@@ -21,8 +21,6 @@ public class PriceLevel implements Comparable<PriceLevel>{
      */
     private double PercentageForPricelevel;
 
-    //private int priceLevel;
-
     public PriceLevel(double dayTicketPrice, double CampingTicketPrice, double VipTicketPrice,
                       double PercentageForPricelevel) throws PriceLevelException {
 
@@ -41,7 +39,7 @@ public class PriceLevel implements Comparable<PriceLevel>{
      * -java.lang.double.valueOf because a Object is needed for Collections.sort()
      * @param  priceLevel
      * @return returns a double value as an object so that they can be compared and sorted
-     * @see TicketManager Collections.sort(priceLevels);
+     * @see TicketManager Collections.sort(priceLevels)
      */
     @Override
     public int compareTo(PriceLevel priceLevel) {

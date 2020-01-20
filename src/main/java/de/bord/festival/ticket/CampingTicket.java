@@ -10,14 +10,11 @@ import de.bord.festival.ticket.Ticket.TicketType;
 
 public class CampingTicket extends Ticket {
 
-    //private String campingPlaceName;
     private TicketType ticketType;
 
-    public CampingTicket(TicketType ticketType, int id, String description,
-                         boolean available, double standardPrice/*, String campingPlaceName , Event event*/){
+    public CampingTicket(TicketType ticketType, String description, double standardPrice){
 
-        super(id, description, available, standardPrice/*, event*/);
-        //this.campingPlaceName=campingPlaceName;
+        super(description, standardPrice);
         this.ticketType = TicketType.CAMPING;
     }
 

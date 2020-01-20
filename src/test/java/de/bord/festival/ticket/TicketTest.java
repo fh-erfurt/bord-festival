@@ -27,12 +27,12 @@ public class TicketTest {
         priceLevels.add(level2);
         priceLevels.add(level3);
 
-        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, 0, "day test", true, 01,"01.01.2020");
-        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, 1000, "camping test", true, 02 );
-        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, 5000, "vip test", true, 100.00);
+        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY,"day test" , 50.00);
+        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 80.00 );
+        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, "vip test", 100.00);
 
         // when ( Collections.sort(priceLevels) in Constructor )
-        TicketManager ticketManager1 = new TicketManager(priceLevels, 3, 1000,20000,300,dayTicket,campingTicket,vipTicket);
+        TicketManager ticketManager1 = new TicketManager(priceLevels, 1000,20000,300,dayTicket,campingTicket,vipTicket);
 
         //then
         assertEquals(50, ticketManager1.getPriceLevel(0).getPercentageForPricelevel());
@@ -53,12 +53,12 @@ public class TicketTest {
         priceLevels.add(level2);
         priceLevels.add(level3);
 
-        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, 0, "day test", true, 01,"01.01.2020");
-        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, 1000, "camping test", true, 02 );
-        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, 5000, "vip test", true, 100.00);
+        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, "day test", 40);
+        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 70.00);
+        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, "vip test", 99.99);
 
         // when ( Collections.sort(priceLevels) in Constructor )
-        TicketManager ticketManager1 = new TicketManager(priceLevels, 3, 1000,20000,300, dayTicket, campingTicket ,vipTicket);
+        TicketManager ticketManager1 = new TicketManager(priceLevels, 1000,20000,300, dayTicket, campingTicket ,vipTicket);
         //then
         assertEquals(70, ticketManager1.getPriceLevel(2).getPercentageForPricelevel());
     }
@@ -215,10 +215,10 @@ public class TicketTest {
         Client c1 = helpClasses.exampleClientWith4Tickets();
 
         // when
-        Client c2 = ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(c1);
 
         // then
-        assertEquals(0, c2.getCartSize());
+        assertEquals(0, c1.getCartSize());
 
     }
 
@@ -230,10 +230,10 @@ public class TicketTest {
         Client c1 = helpClasses.exampleClientWith4Tickets();
 
         // when
-        Client c2 = ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(c1);
 
         // then
-        assertEquals(182.47000000000003, c2.getExpenditure());
+        assertEquals(182.47000000000003, c1.getExpenditure());
 
     }
 
@@ -245,10 +245,10 @@ public class TicketTest {
         Client c1 = helpClasses.exampleClientWith4Tickets();
 
         // when
-        Client c2 = ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(c1);
 
         // then
-        assertEquals(4, c2.getTicketsSize());
+        assertEquals(4, c1.getTicketsSize());
 
     }
 
@@ -369,7 +369,6 @@ public class TicketTest {
         assertEquals(0, ticketManager1.getActualPriceLevelIndex());
 
     }
-
 
 
 }

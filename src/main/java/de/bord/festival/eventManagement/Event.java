@@ -9,6 +9,7 @@ import de.bord.festival.exception.BudgetOverflowException;
 import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.ticket.Ticket;
 import de.bord.festival.ticket.TicketManager;
 
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 /**
- * Represents an festival with required features
+ * Represents a festival with required features
  *
  * example (ArrayList<PriceLevel> priceLevels) for sensible TicketManager creation:
  * TicketManager
@@ -208,6 +209,14 @@ public class Event {
     public int getnVipticketsLeft() { return ticketManager.getnVipticketsLeft(); }
     public int totalNumberOfTicketsLeft(){return ticketManager.totalNumberOfTicketsLeft();}
 
+
+    public void setTicketStdPrice(double stdPrice, Ticket.TicketType type){
+        this.ticketManager.setTicketStdPrice(stdPrice, type);
+    }
+
+    public void setTicketDescription(String description, Ticket.TicketType type){
+        this.ticketManager.setTicketDescription(description, type);
+    }
 
     public boolean sellTickets(Client client /* ,LocalDate date */) throws TicketManagerException{
         return ticketManager.sellTickets(client /* ,LocalDate date */);

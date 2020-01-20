@@ -92,21 +92,12 @@ public class Client implements IClient {
     /**
      * Called when a Client buys a ticket
      * Adds ticket to ticket-array of Client,
-     * @param ticket
+     * @param Ticket.TicketType type, TicketManager ticketmanager
      * @throws TicketException
      */
-    public void addTicket(Ticket ticket, TicketManager ticketmanager) throws TicketException {
-        if(!ticket.isAvailable()) {
-            throw new TicketException("No more tickets available");
-        }
-        this.tickets.add(ticket);
-    }
-
-
-
     //benjamin////////
     public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketException {
-        if(!ticketmanager.getTicket(type).isAvailable()) {
+        if(!ticketmanager.isAvailable(type)) {
             throw new TicketException("No more tickets available");
         }
             if(ticketmanager.getTicket(type)!= null) {
@@ -114,14 +105,6 @@ public class Client implements IClient {
             }
     }
 
-
-    public int get_id(){
-        return _id;
-    }
-
-    public Ticket get_ticket(int index) {
-        return tickets.get(index);
-    }
 
     public void addCartToTickets(){
         tickets.addAll(cart);

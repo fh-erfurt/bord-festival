@@ -14,6 +14,6 @@ public interface IClient {
 
     public void changeName(String newFirstName, String newLastName) throws ClientNameException;
 
-    public void addTicket(Ticket ticket, TicketManager ticketmanager) throws TicketException;
+
 
 }
