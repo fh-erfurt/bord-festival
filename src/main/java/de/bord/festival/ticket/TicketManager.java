@@ -325,7 +325,7 @@ public class TicketManager {
         this.numberOfCampingTicketsLeft -= numberOfCampingTicketsSold;
         this.numberOfVipTicketsLeft -= numberOfVipTicketsSold;
 
-        client.addCartToTickets();
+        client.addCartToInventory();
         client.clearCart();
         updateIncomeTicketSales(ticketIncome);
         client.setExpenditure(ticketIncome);

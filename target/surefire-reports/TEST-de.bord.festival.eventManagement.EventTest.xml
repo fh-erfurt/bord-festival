@@ -1,65 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="de.bord.festival.eventManagement.EventTest" time="0.062" tests="25" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="de.bord.festival.eventManagement.EventTest" time="0.063" tests="25" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
-    <property name="java.specification.version" value="12"/>
+    <property name="java.specification.version" value="11"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\bswar\Desktop\git\bord-festival\target\test-classes;C:\Users\bswar\Desktop\git\bord-festival\target\classes;C:\Users\bswar\.m2\repository\org\junit\jupiter\junit-jupiter\5.5.2\junit-jupiter-5.5.2.jar;C:\Users\bswar\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\bswar\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\bswar\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\bswar\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\bswar\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.5.2\junit-jupiter-params-5.5.2.jar;C:\Users\bswar\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\bswar\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.class.path" value="C:\Users\Raphael Freybe\IdeaProjects\bord-festival\target\test-classes;C:\Users\Raphael Freybe\IdeaProjects\bord-festival\target\classes;C:\Users\Raphael Freybe\.m2\repository\org\junit\jupiter\junit-jupiter\5.5.2\junit-jupiter-5.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Raphael Freybe\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.5.2\junit-jupiter-params-5.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;"/>
+    <property name="java.vm.vendor" value="JetBrains s.r.o"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="java.vendor.url" value="https://www.jetbrains.com/"/>
     <property name="user.timezone" value="Europe/Berlin"/>
-    <property name="user.country.format" value="DE"/>
+    <property name="java.vm.specification.version" value="11"/>
     <property name="os.name" value="Windows 10"/>
-    <property name="java.vm.specification.version" value="12"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="user.country" value="GB"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-12.0.2\bin"/>
-    <property name="sun.java.command" value="C:\Users\bswar\AppData\Local\Temp\surefire16489136858933231479\surefirebooter7952904681855930698.jar C:\Users\bswar\AppData\Local\Temp\surefire16489136858933231479 2020-01-20T13-58-36_962-jvmRun1 surefire7598788283216058303tmp surefire_06815223884047510566tmp"/>
+    <property name="user.country" value="DE"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.2.3\jbr\bin"/>
+    <property name="sun.java.command" value="C:\Users\RAPHAE~1\AppData\Local\Temp\surefire8948258806190278606\surefirebooter13759708586019316412.jar C:\Users\Raphael Freybe\AppData\Local\Temp\surefire8948258806190278606 2020-01-21T15-56-17_101-jvmRun1 surefire12882119264711165185tmp surefire_017868721550186946014tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\bswar\Desktop\git\bord-festival\target\test-classes;C:\Users\bswar\Desktop\git\bord-festival\target\classes;C:\Users\bswar\.m2\repository\org\junit\jupiter\junit-jupiter\5.5.2\junit-jupiter-5.5.2.jar;C:\Users\bswar\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\bswar\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\bswar\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\bswar\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\bswar\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.5.2\junit-jupiter-params-5.5.2.jar;C:\Users\bswar\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\bswar\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\Raphael Freybe\IdeaProjects\bord-festival\target\test-classes;C:\Users\Raphael Freybe\IdeaProjects\bord-festival\target\classes;C:\Users\Raphael Freybe\.m2\repository\org\junit\jupiter\junit-jupiter\5.5.2\junit-jupiter-5.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.5.2\junit-jupiter-api-5.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Raphael Freybe\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\platform\junit-platform-commons\1.5.2\junit-platform-commons-1.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.5.2\junit-jupiter-params-5.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.5.2\junit-jupiter-engine-5.5.2.jar;C:\Users\Raphael Freybe\.m2\repository\org\junit\platform\junit-platform-engine\1.5.2\junit-platform-engine-1.5.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\bswar"/>
-    <property name="user.language" value="en"/>
+    <property name="user.home" value="C:\Users\Raphael Freybe"/>
+    <property name="user.language" value="de"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.version.date" value="2019-07-16"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-12.0.2"/>
+    <property name="java.home" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.2.3\jbr"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\bswar\Desktop\git\bord-festival"/>
+    <property name="basedir" value="C:\Users\Raphael Freybe\IdeaProjects\bord-festival"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="idea.version2019.2.3" value="true"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="C:\Users\bswar\AppData\Local\Temp\surefire16489136858933231479\surefirebooter7952904681855930698.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\RAPHAE~1\AppData\Local\Temp\surefire8948258806190278606\surefirebooter13759708586019316412.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="12.0.2+10"/>
-    <property name="user.name" value="bswar"/>
+    <property name="java.runtime.version" value="11.0.4+10-b304.69"/>
+    <property name="user.name" value="Raphael Freybe"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
-    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="Cp1252"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="localRepository" value="C:\Users\bswar\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="C:\Users\bswar\AppData\Local\Temp\"/>
-    <property name="java.version" value="12.0.2"/>
-    <property name="user.dir" value="C:\Users\bswar\Desktop\git\bord-festival"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\Raphael Freybe\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://youtrack.jetbrains.com"/>
+    <property name="java.io.tmpdir" value="C:\Users\RAPHAE~1\AppData\Local\Temp\"/>
+    <property name="java.version" value="11.0.4"/>
+    <property name="user.dir" value="C:\Users\Raphael Freybe\IdeaProjects\bord-festival"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.language.format" value="de"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="sun.os.patch.level" value=""/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-12.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\ProgramData\chocolatey\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.3\bin;C:\Users\bswar\AppData\Local\Microsoft\WindowsApps;;C:\Programme\JetBrains\IntelliJ IDEA Community Edition 2019.2.3\bin;;C:\Users\bswar\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.2.3\jbr\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Microsoft MPI\Bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\Tools\Binn\;C:\Program Files\Microsoft SQL Server\140\DTS\Binn\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\130\DTS\Binn\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\ProgramData\chocolatey\lib\maven\apache-maven-3.6.3\bin;C:\Users\Raphael Freybe\AppData\Local\Microsoft\WindowsApps;;C:\Users\Raphael Freybe\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.vendor" value="JetBrains s.r.o"/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.version" value="12.0.2+10"/>
-    <property name="idea.version2019.3" value="true"/>
+    <property name="java.vm.version" value="11.0.4+10-b304.69"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="56.0"/>
+    <property name="java.class.version" value="55.0"/>
   </properties>
   <testcase name="should_return_not_null_because_the_playing_time_of_band_is_not_till_end_of_day" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
   <testcase name="should_return_false_because_on_stage_should_play_band" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
@@ -76,14 +75,14 @@
   <testcase name="should_return_null_because_of_long_playing_time_of_band" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
   <testcase name="should_not_remove_band_because_time_is_not_valid_returns_false" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
   <testcase name="should_return_false_because_the_band_doesnt_exist_in_event_list" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
-  <testcase name="should_return_1_number_of_stages_because_of_removed_one" classname="de.bord.festival.eventManagement.EventTest" time="0.016"/>
+  <testcase name="should_return_1_number_of_stages_because_of_removed_one" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
   <testcase name="should_throw_exception_start_end_date" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
   <testcase name="should_return_1_day" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
-  <testcase name="should_return_false" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
+  <testcase name="should_return_false" classname="de.bord.festival.eventManagement.EventTest" time="0.016"/>
   <testcase name="should_return_2_for_number_of_stages" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
-  <testcase name="should_return_2_number_of_stages" classname="de.bord.festival.eventManagement.EventTest" time="0.016"/>
+  <testcase name="should_return_2_number_of_stages" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
   <testcase name="should_return_true_because_the_band_exists_in_event_list" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
   <testcase name="should_remove_band_because_time_and_date_are_valid_returns_true" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
   <testcase name="should_throw_exception_budget" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
-  <testcase name="should_return_1_number_of_stages" classname="de.bord.festival.eventManagement.EventTest" time="0"/>
+  <testcase name="should_return_1_number_of_stages" classname="de.bord.festival.eventManagement.EventTest" time="0.016"/>
 </testsuite>
