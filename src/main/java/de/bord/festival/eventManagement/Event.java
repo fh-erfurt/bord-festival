@@ -185,18 +185,18 @@ public class Event {
      * number of tickets
      * @return
      */
-    public int getnDaytickets() { return ticketManager.getnDaytickets(); }
-    public int getnCampingtickets() { return ticketManager.getnCampingtickets(); }
-    public int getnViptickets() { return ticketManager.getnViptickets(); }
+    public int getNumberOfDayTickets() { return ticketManager.getNumberOfDayTickets(); }
+    public int getNumberOfCampingTickets() { return ticketManager.getNumberOfCampingTickets(); }
+    public int getNumberOfVipTickets() { return ticketManager.getNumberOfVipTickets(); }
     public int totalNumberOfTickets(){return ticketManager.totalNumberOfTickets();}
 
     /**
      *  number of sold Tickets
      * @return
      */
-    public int getnSoldDaytickets(){ return ticketManager.getnSoldDaytickets();}
-    public int getnSoldCampingtickets(){ return ticketManager.getnSoldCampingtickets();}
-    public int getnSoldViptickets(){ return ticketManager.getnSoldViptickets();}
+    public int getNumberOfSoldDaytickets(){ return ticketManager.getNumberOfSoldDayTickets();}
+    public int getNumberOfSoldCampingtickets(){ return ticketManager.getNumberOfSoldCampingTickets();}
+    public int getNumberOfSoldViptickets(){ return ticketManager.getNumberOfSoldVipTickets();}
     public int totalNumberOfSoldTickets(){ return ticketManager.totalNumberOfSoldTickets();}
     public double totalNumberOfSoldTicketsInPercent(){return ticketManager.totalNumberOfSoldTicketsInPercent();}
 
@@ -204,9 +204,9 @@ public class Event {
      *  number of tickets left
      *
      */
-    public int getnDayticketsLeft() { return ticketManager.getnDayticketsLeft(); }
-    public int getnCampingticketsLeft() { return ticketManager.getnCampingticketsLeft(); }
-    public int getnVipticketsLeft() { return ticketManager.getnVipticketsLeft(); }
+    public int getNumberOfDayTicketsLeft() { return ticketManager.getNumberOfDayTicketsLeft(); }
+    public int getNumberOfCampingTicketsLeft() { return ticketManager.getNumberOfCampingTicketsLeft(); }
+    public int getNumberOfVipTicketsLeft() { return ticketManager.getNumberOfVipTicketsLeft(); }
     public int totalNumberOfTicketsLeft(){return ticketManager.totalNumberOfTicketsLeft();}
 
 
@@ -218,8 +218,8 @@ public class Event {
         this.ticketManager.setTicketDescription(description, type);
     }
 
-    public boolean sellTickets(Client client /* ,LocalDate date */) throws TicketManagerException{
-        return ticketManager.sellTickets(client /* ,LocalDate date */);
+    public boolean sellTickets(Client client) throws TicketManagerException{
+        return ticketManager.sellTickets(client);
     }
 
 

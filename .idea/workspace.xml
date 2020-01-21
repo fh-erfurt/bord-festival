@@ -2,22 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="58bb82cc-669b-46b0-a59b-f9421ff30d2e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/bord-festival.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.address.addressTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.address.addressTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.band.BandTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.band.BandTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.client.ClientTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.client.ClientTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.eventManagement.EventTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.eventManagement.EventTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.ticket.TicketTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-de.bord.festival.ticket.TicketTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.address.addressTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.address.addressTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.band.BandTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.band.BandTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.client.ClientTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.client.ClientTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.eventManagement.EventTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.eventManagement.EventTest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.ticket.TicketTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/de.bord.festival.ticket.TicketTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bord-festival.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bord-festival.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/PriceLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/PriceLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/TicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/TicketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/ticket/TicketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/ticket/TicketTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/client/IClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/client/IClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/PriceLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/PriceLevel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/TicketManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/TicketManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/client/ClientTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/client/ClientTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/help/HelpClasses.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/help/HelpClasses.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/ticket/TicketTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/ticket/TicketTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,12 +48,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager" selected="JUnit.All in bord-festival">
@@ -169,7 +172,8 @@
       <workItem from="1579464452816" duration="3076000" />
       <workItem from="1579518867819" duration="7056000" />
       <workItem from="1579613716112" duration="368000" />
-      <workItem from="1579614112917" duration="591000" />
+      <workItem from="1579614112917" duration="4412000" />
+      <workItem from="1579628615274" duration="8582000" />
     </task>
     <task id="LOCAL-00001" summary="maven">
       <created>1579260861392</created>
@@ -213,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1579524694091</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ticket updated">
+      <created>1579614757127</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1579614757127</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -224,33 +235,38 @@
     <MESSAGE value="ticket tests updated" />
     <MESSAGE value="Ticketmanager javadoc" />
     <MESSAGE value="Ticket, PriceLevel javadoc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ticket, PriceLevel javadoc" />
+    <MESSAGE value="Ticket updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ticket updated" />
   </component>
   <component name="WindowStateProjectService">
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579524986351">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1579524986351" />
-    <state x="399" y="19" key="CommitChangelistDialog2" timestamp="1579524692825">
+    <state x="93" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1579629216701">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="399" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579524692825" />
-    <state width="1557" height="101" key="GridCell.Tab.0.bottom" timestamp="1579526030643">
+    <state x="93" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1579629216701" />
+    <state x="399" y="19" key="CommitChangelistDialog2" timestamp="1579614755189">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="101" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579526030643" />
-    <state width="1557" height="101" key="GridCell.Tab.0.center" timestamp="1579526030643">
+    <state x="399" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1579614755189" />
+    <state width="1557" height="101" key="GridCell.Tab.0.bottom" timestamp="1579639912352">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="101" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579526030643" />
-    <state width="1557" height="101" key="GridCell.Tab.0.left" timestamp="1579526030643">
+    <state width="1557" height="101" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1579639912352" />
+    <state width="1557" height="101" key="GridCell.Tab.0.center" timestamp="1579639912352">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="101" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579526030643" />
-    <state width="1557" height="101" key="GridCell.Tab.0.right" timestamp="1579526030643">
+    <state width="1557" height="101" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1579639912352" />
+    <state width="1557" height="101" key="GridCell.Tab.0.left" timestamp="1579639912352">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="101" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579526030643" />
+    <state width="1557" height="101" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1579639912352" />
+    <state width="1557" height="101" key="GridCell.Tab.0.right" timestamp="1579639912352">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state width="1557" height="101" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1579639912352" />
     <state width="1557" height="213" key="GridCell.Tab.1.bottom" timestamp="1579301042919">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -275,22 +291,30 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="512" y="145" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1579524724151" />
-    <state x="280" y="4" key="SettingsEditor" timestamp="1579614291404">
+    <state x="580" y="84" width="440" height="756" key="RefactorJ.IntroduceParameterObject" timestamp="1579638739963">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="280" y="4" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1579614291404" />
+    <state x="580" y="84" width="440" height="756" key="RefactorJ.IntroduceParameterObject/0.0.1600.860@0.0.1600.860" timestamp="1579638739963" />
+    <state x="280" y="4" key="SettingsEditor" timestamp="1579618537269">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="280" y="4" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1579618537269" />
     <state x="392" y="162" key="Vcs.Push.Dialog.v2" timestamp="1579525025844">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="392" y="162" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1579525025844" />
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1579614113204">
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1579628616704">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1579614113204" />
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1579614679079">
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1579628616704" />
+    <state x="504" y="323" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1579618529582">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1579614679079" />
+    <state x="504" y="323" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1600.860@0.0.1600.860" timestamp="1579618529582" />
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1579614770376">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1579614770376" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1579614606974">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
