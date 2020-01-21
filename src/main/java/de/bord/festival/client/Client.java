@@ -18,7 +18,7 @@ public class Client implements IClient {
     private String lastname;
     private Address address;
     private String mail;
-    private LinkedList<Ticket> tickets;
+    private LinkedList<Ticket> inventory;
     private LinkedList<Ticket> cart;
 
 
@@ -28,7 +28,7 @@ public class Client implements IClient {
 
     private Client(String firstname, String lastname, String mail, int id, Address address)
     {
-        tickets = new LinkedList<Ticket>();
+        inventory = new LinkedList<Ticket>();
         cart = new LinkedList<Ticket>();
         this._id = id;
         this.firstname = firstname;
@@ -112,8 +112,8 @@ public class Client implements IClient {
     }
 
 
-    public void addCartToTickets(){
-        tickets.addAll(cart);
+    public void addCartToInventory(){
+        inventory.addAll(cart);
     }
 
 
@@ -125,8 +125,8 @@ public class Client implements IClient {
         return cart.size();
     }
 
-    public int getTicketsSize(){
-        return tickets.size();
+    public int getInventorySize(){
+        return inventory.size();
     }
 
     public void clearCart(){

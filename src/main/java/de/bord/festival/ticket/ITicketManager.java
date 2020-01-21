@@ -17,5 +17,7 @@ public interface ITicketManager {
 
     public boolean setPriceLevel(int index);
 
+    public PriceLevel getPriceLevel(int index);
+
     public boolean sellTickets(Client client) throws TicketManagerException;
 }

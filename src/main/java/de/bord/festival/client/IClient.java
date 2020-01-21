@@ -12,7 +12,7 @@ public interface IClient {
 
     public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketException;
 
-    public void addCartToTickets();
+    public void addCartToInventory();
 
     public Ticket getCartItem(int index);
 

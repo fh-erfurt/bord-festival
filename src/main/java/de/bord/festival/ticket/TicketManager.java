@@ -315,7 +315,7 @@ public class TicketManager {
         this.nCampingticketsLeft -= nCampingTicketsSold;
         this.nVipticketsLeft -= nVIPTicketsSold;
 
-        client.addCartToTickets();
+        client.addCartToInventory();
         client.clearCart();
         updateIncomeTicketSales(ticketIncome);
         client.setExpenditure(ticketIncome);

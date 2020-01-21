@@ -248,7 +248,7 @@ public class TicketTest {
         ticketManager1.sellTickets(c1);
 
         // then
-        assertEquals(4, c1.getTicketsSize());
+        assertEquals(4, c1.getInventorySize());
 
     }
 
