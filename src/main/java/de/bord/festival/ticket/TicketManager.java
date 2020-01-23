@@ -1,7 +1,10 @@
 package de.bord.festival.ticket;
 
 import de.bord.festival.client.Client;
+import de.bord.festival.exception.ClientNameException;
+import de.bord.festival.exception.PriceLevelNotAvailableException;
 import de.bord.festival.exception.TicketManagerException;
+import de.bord.festival.exception.TicketNotAvailableException;
 
 import java.util.*;
 
@@ -153,26 +156,21 @@ public class TicketManager {
      * will be queried after every ticket sale
      * Once a fixed percentage has been exceeded, the next price level starts.
      */
-    private void updatePriceLevel() throws TicketManagerException {
-
+    private void updatePriceLevel(){
 
         if(isPercentageOfSoldTicketsExceededAndIsTheNextPriceLevelExisting()){
             this.actualPriceLevel++;
             setTicketPrices();
         }
-      /*  else if(){
-        }
-        else{
-            throw new TicketManagerException("no valid price level available");
-            }
-      */  }
+
+    }
 
     /**
      * helper function for if statement
      * @see updatePriceLevel()
      * @return returns whether the expected percentage has been reached
      */
-    private boolean isPercentageOfSoldTicketsExceededAndIsTheNextPriceLevelExisting(){
+   private boolean isPercentageOfSoldTicketsExceededAndIsTheNextPriceLevelExisting(){
 
         if(totalNumberOfSoldTicketsInPercent() > priceLevels.get(this.actualPriceLevel).getPercentageForPriceLevel()
                 && this.priceLevels.size() > this.actualPriceLevel+1){
@@ -233,7 +231,14 @@ public class TicketManager {
         return actualPriceLevel;
     }
 
-    public PriceLevel getPriceLevel(int index){return priceLevels.get(index);}
+    public double getPercentageForPriceLevel(int index) throws PriceLevelNotAvailableException {
+        if(PriceLevelIndexInOnlyValueArea(index)){
+            return priceLevels.get(index).getPercentageForPriceLevel();
+        }
+        else{
+            throw new PriceLevelNotAvailableException("The index is invalid"); ////ist das richtig?
+        }
+    }
 
 
     /**
@@ -249,6 +254,7 @@ public class TicketManager {
             int i = 0;
             while (i < priceLevels.size()) {
                 updatePriceLevel();
+                i++;
             }
         }
         this.automaticPriceLevelChange = isPriceLevelChangeAutomatic;
@@ -264,7 +270,7 @@ public class TicketManager {
      * @param index
      * @return returns whether the change was successful
      */
-    public boolean setPriceLevel(int index){    /////////exception
+ /*VOID???*/ public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {
         if(isPriceLevelUpdateManualAndThePriceLevelIndexInOnlyValueArea(index)){
             actualPriceLevel = index;
             setTicketPrices();
@@ -275,9 +281,21 @@ public class TicketManager {
         }
     }
 
-    private boolean isPriceLevelUpdateManualAndThePriceLevelIndexInOnlyValueArea(int index){
-        if(!getAutomaticPriceLevelChange() && index >= 0 && index < priceLevels.size()){
+    private boolean isPriceLevelUpdateManualAndThePriceLevelIndexInOnlyValueArea(int index) throws PriceLevelNotAvailableException {
+        if(!PriceLevelIndexInOnlyValueArea(index)){
+            throw new PriceLevelNotAvailableException("The index is invalid"); ////ist das richtig?
+        }
+       else if(!getAutomaticPriceLevelChange()){
 
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    private boolean PriceLevelIndexInOnlyValueArea(int index){
+        if(index >= 0 && index < priceLevels.size()){
             return true;
         }
         else {
@@ -298,7 +316,7 @@ public class TicketManager {
      * @return returns whether the tickets from the customer's basket were available
      * @throws TicketManagerException
      */
-    public boolean sellTickets(Client client) throws TicketManagerException {
+    public boolean sellTickets(Client client) throws TicketManagerException, TicketNotAvailableException {
 
         int numberOfDayTicketsSold = 0;
         int numberOfCampingTicketsSold = 0;
@@ -317,7 +335,7 @@ public class TicketManager {
                 numberOfVipTicketsSold++;
                 ticketIncome += client.getCartItem(index).getStdPrice();
             } else {
-                return false;
+                throw new TicketNotAvailableException("There are Tickets not Available in order");
             }
             index++;
         }

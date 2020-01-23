@@ -4,11 +4,9 @@ import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;
-import de.bord.festival.exception.TicketManagerException;
-import de.bord.festival.exception.BudgetOverflowException;
-import de.bord.festival.exception.DateDisorderException;
-import de.bord.festival.exception.TimeSlotCantBeFoundException;
+import de.bord.festival.exception.*;
 import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.ticket.PriceLevel;
 import de.bord.festival.ticket.Ticket;
 import de.bord.festival.ticket.TicketManager;
 
@@ -218,7 +216,7 @@ public class Event {
         this.ticketManager.setTicketDescription(description, type);
     }
 
-    public boolean sellTickets(Client client) throws TicketManagerException{
+    public boolean sellTickets(Client client) throws TicketManagerException, TicketNotAvailableException {
         return ticketManager.sellTickets(client);
     }
 
@@ -235,6 +233,14 @@ public class Event {
      */
     public int getActualPriceLevelIndex(){return ticketManager.getActualPriceLevelIndex();}
 
+    /**
+     *
+     * @param index
+     * @return the percentage of the selected priceLevel that must be exceeded to activate the next price level
+     */
+    public double getPercentageForPriceLevel(int index) throws PriceLevelNotAvailableException {
+        return ticketManager.getPercentageForPriceLevel(index);
+    }
 
     /**
      *
@@ -252,6 +258,6 @@ public class Event {
         return ticketManager.getAutomaticPriceLevelChange();
     }
 
-    public boolean setPriceLevel(int index){return ticketManager.setPriceLevel(index);}
+    public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {return ticketManager.setPriceLevel(index);}
 
 }

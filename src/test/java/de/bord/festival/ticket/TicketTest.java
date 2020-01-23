@@ -12,7 +12,7 @@ import de.bord.festival.help.HelpClasses;
 
 public class TicketTest {
     @Test
-    void should_return_50_for_level1_getPercentageForPriceLevel() throws PriceLevelException {
+    void should_return_50_for_level1_getPercentageForPriceLevel() throws PriceLevelException, PriceLevelNotAvailableException {
 
         // given 3 price levels for TicketManager1
 
@@ -35,10 +35,10 @@ public class TicketTest {
         TicketManager ticketManager1 = new TicketManager(priceLevels, 1000,20000,300,dayTicket,campingTicket,vipTicket);
 
         //then
-        assertEquals(50, ticketManager1.getPriceLevel(0).getPercentageForPriceLevel());
+        assertEquals(50, ticketManager1.getPercentageForPriceLevel(0));
     }
     @Test
-    void should_return_70_for_level1_getPercentageForPriceLevel() throws PriceLevelException {
+    void should_return_70_for_level1_getPercentageForPriceLevel() throws PriceLevelException, PriceLevelNotAvailableException {
 
         // given 3 price levels for TicketManager1
 
@@ -60,7 +60,7 @@ public class TicketTest {
         // when ( Collections.sort(priceLevels) in Constructor )
         TicketManager ticketManager1 = new TicketManager(priceLevels, 1000,20000,300, dayTicket, campingTicket ,vipTicket);
         //then
-        assertEquals(70, ticketManager1.getPriceLevel(2).getPercentageForPriceLevel());
+        assertEquals(70, ticketManager1.getPercentageForPriceLevel(2));
     }
 
     @Test
@@ -79,7 +79,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_59_99_for_ticketManager1_campingTicket_getStdPrice_after_setPricelevel_() throws PriceLevelException, TicketManagerException {
+    void should_return_59_99_for_ticketManager1_campingTicket_getStdPrice_after_setPricelevel_() throws PriceLevelException, TicketManagerException, PriceLevelNotAvailableException {
 
         // given
         HelpClasses helpClasses = new HelpClasses();
@@ -107,7 +107,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_182_47000000000003_for_ticketManager1_getIncomeTicketSales() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_182_47000000000003_for_ticketManager1_getIncomeTicketSales() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given ( exampleTicketManager.vipTicket.stdPrice = 100.00 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -122,7 +122,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_10_for_ticketManager1_getNumberOfDayTickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_10_for_ticketManager1_getNumberOfDayTickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
 
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -137,7 +137,7 @@ public class TicketTest {
 
 
     @Test
-    void should_return_9_for_ticketManager1_getNumberOfDayticketsLeft() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_9_for_ticketManager1_getNumberOfDayticketsLeft() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given ( exampleTicketManager.getnDaytickets = 10 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -152,7 +152,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_1_for_ticketManager1_getNumberOfSoldDaytickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_1_for_ticketManager1_getNumberOfSoldDaytickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given ( exampleTicketManager.getnDaytickets = 10 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -167,7 +167,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_2_for_ticketManager1_getNumberOfSoldCampingtickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_2_for_ticketManager1_getNumberOfSoldCampingtickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given ( exampleTicketManager.getnCampingtickets = 20 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -182,7 +182,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_18_for_ticketManager1_getNumberOfCampingticketsLeft() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_18_for_ticketManager1_getNumberOfCampingticketsLeft() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given ( exampleTicketManager.getnCampingtickets = 20 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -208,7 +208,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_0_for_c2_getCartSize() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_0_for_c2_getCartSize() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -223,7 +223,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_182_47000000000003_for_c2_getExpenditure() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_182_47000000000003_for_c2_getExpenditure() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -238,7 +238,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_4_for_c2_get_ticketsSize() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_4_for_c2_get_ticketsSize() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -253,7 +253,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_0_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_0_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
@@ -268,7 +268,7 @@ public class TicketTest {
 
 
     @Test
-    void should_return_40_for_ticketManager1_totalNumberOfSoldTicketsInPercent() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_40_for_ticketManager1_totalNumberOfSoldTicketsInPercent() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
@@ -290,7 +290,7 @@ public class TicketTest {
 
 
     @Test
-    void should_return_2_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_2_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
@@ -323,7 +323,7 @@ public class TicketTest {
 
 
     @Test
-    void should_return_1_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_1_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
@@ -346,7 +346,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_0_for_ticketManager1_getActualPriceLevelIndexAfter_4_Sells() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_0_for_ticketManager1_getActualPriceLevelIndexAfter_4_Sells() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
