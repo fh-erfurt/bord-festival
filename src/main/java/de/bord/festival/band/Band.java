@@ -27,9 +27,6 @@ public class Band {
         return priceProEvent;
     }
 
-    /**
-     * @return number of plays on certain event
-     */
     public int getNumberOfEventInfo(){
         return eventInfos.size();
     }
@@ -43,8 +40,8 @@ public class Band {
 
 
     /**
-     * The same names for 2 different bands is not allowed
-     * @param object another band should be compared
+     * Checks if the given band-name is equal to band-name of this
+     * @param object the band this band should be compared to
      * @return true, if the given band has the same name, as this
      */
     @Override
@@ -61,7 +58,7 @@ public class Band {
     }
 
     /**
-     * removes all event info from the list
+     * removes all event-infos from the list
      */
     public void removeEventInfo() {
         if (!eventInfos.isEmpty()){
@@ -70,7 +67,7 @@ public class Band {
     }
 
     /**
-     * Removes an event info at certain date and time
+     * Removes an event-info at a certain date and time
      * @param dateAndTime
      */
     public void removeEventInfo(LocalDateTime dateAndTime){

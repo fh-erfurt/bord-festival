@@ -52,6 +52,7 @@ public class Event {
 
     /**
      * Using static function to avoid exception in constructor of event
+     *
      * @throws DateDisorderException if end date<start date
      */
     public static Event getNewEvent(LocalDate startDate, LocalDate endDate, String name,
@@ -78,7 +79,7 @@ public class Event {
     /**
      * detects if the price of band is affordable for the event budget
      *
-     * @param band provide the price (with the function getPrice), which should be compared in the method
+     * @param band provides the price (with the function getPrice), which should be compared in method
      * @return true if the band is affordable for the budget of an event, otherwise false
      */
     private boolean isNewBandAffordable(Band band) {
@@ -87,16 +88,17 @@ public class Event {
 
     /**
      * see lineUp.addStage(Stage stage)
-     * @param stage the object should be added
-     * @return true, if the stage with the same doesn't exist in event, otherwise return false
+     *
+     * @param stage
+     * @return true, if the stage already exist in event, otherwise return false
      */
     public boolean addStage(Stage stage) {
         return lineUp.addStage(stage);
     }
 
     /**
+     * Removes stage from all programs and from the list of stages
      * Removes stage, if it has no set time slots and the number of stages > 1
-     * Condition: only one stage exists in the list with the same address
      *
      * @param id id, on which the stage should be removed
      * @return true, if the stage is removed, otherwise false
@@ -170,8 +172,8 @@ public class Event {
     }
 
     /**
-     * Adds to costs to the actual costs variable
-     * LineUp calls it, if the band is new on event, because band receives money for entire event
+     * Adds to the actual costs variable
+     * called by Lineup when a new band is added to the event
      *
      * @param amount
      */
@@ -179,34 +181,21 @@ public class Event {
         actualCosts += amount;
     }
 
-    /**
-     * number of tickets
-     * @return
-     */
     public int getNumberOfDayTickets() { return ticketManager.getNumberOfDayTickets(); }
     public int getNumberOfCampingTickets() { return ticketManager.getNumberOfCampingTickets(); }
     public int getNumberOfVipTickets() { return ticketManager.getNumberOfVipTickets(); }
     public int totalNumberOfTickets(){return ticketManager.totalNumberOfTickets();}
 
-    /**
-     *  number of sold Tickets
-     * @return
-     */
     public int getNumberOfSoldDaytickets(){ return ticketManager.getNumberOfSoldDayTickets();}
     public int getNumberOfSoldCampingtickets(){ return ticketManager.getNumberOfSoldCampingTickets();}
     public int getNumberOfSoldViptickets(){ return ticketManager.getNumberOfSoldVipTickets();}
     public int totalNumberOfSoldTickets(){ return ticketManager.totalNumberOfSoldTickets();}
     public double totalNumberOfSoldTicketsInPercent(){return ticketManager.totalNumberOfSoldTicketsInPercent();}
 
-    /**
-     *  number of tickets left
-     *
-     */
     public int getNumberOfDayTicketsLeft() { return ticketManager.getNumberOfDayTicketsLeft(); }
     public int getNumberOfCampingTicketsLeft() { return ticketManager.getNumberOfCampingTicketsLeft(); }
     public int getNumberOfVipTicketsLeft() { return ticketManager.getNumberOfVipTicketsLeft(); }
     public int totalNumberOfTicketsLeft(){return ticketManager.totalNumberOfTicketsLeft();}
-
 
     public void setTicketStdPrice(double stdPrice, Ticket.TicketType type){
         this.ticketManager.setTicketStdPrice(stdPrice, type);
@@ -220,17 +209,10 @@ public class Event {
         ticketManager.sellTickets(client);
     }
 
-
-    /**
-     *  shows the income from sold tickets
-     */
     public double getIncomeTicketSales(){
         return ticketManager.getIncomeTicketSales();
     }
 
-    /**
-     *  the index of the actual price level
-     */
     public int getActualPriceLevelIndex(){return ticketManager.getActualPriceLevelIndex();}
 
     /**
