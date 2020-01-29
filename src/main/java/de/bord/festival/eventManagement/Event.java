@@ -216,8 +216,8 @@ public class Event {
         this.ticketManager.setTicketDescription(description, type);
     }
 
-    public boolean sellTickets(Client client) throws TicketManagerException, TicketNotAvailableException {
-        return ticketManager.sellTickets(client);
+    public void sellTickets(Client client) throws TicketManagerException, TicketNotAvailableException {
+        ticketManager.sellTickets(client);
     }
 
 

@@ -70,7 +70,7 @@ public class TicketManager {
         this.campingTicket = campingTicket;
         this.vipTicket = vipTicket;
         this.priceLevels = priceLevels;
-        Collections.sort(priceLevels);   //exception
+        Collections.sort(priceLevels);
         this.numberOfDayTicketsLeft = numberOfDayTickets;
         this.numberOfCampingTicketsLeft = numberOfCampingTickets;
         this.numberOfVipTicketsLeft = numberOfVipTickets;
@@ -83,7 +83,7 @@ public class TicketManager {
     /**
      *
      * @param type
-     * @return the ticket of the appropriate type of the actual price level
+     * @return the ticket of the corresponding type of the actual price level
      */
     public Ticket getTicket(Ticket.TicketType type){
         if (type == Ticket.TicketType.DAY) {
@@ -113,7 +113,7 @@ public class TicketManager {
     }
 
     /**
-     * changes the description for the ticket of the appropriate type from the actual pricelevel
+     * changes the description for the ticket of the corresponding type from the actual pricelevel
      * @param description
      * @param type
      */
@@ -129,7 +129,7 @@ public class TicketManager {
 
     /**
      *
-     *  changes the standard price for the ticket of the appropriate type from the actual price level
+     *  changes the standard price for the ticket of the corresponding type from the actual price level
      *  @param stdPrice
      *  @param type
      */
@@ -167,7 +167,7 @@ public class TicketManager {
 
     /**
      * helper function for if statement
-     * @see updatePriceLevel()
+     * @see #updatePriceLevel
      * @return returns whether the expected percentage has been reached
      */
    private boolean isPercentageOfSoldTicketsExceededAndIsTheNextPriceLevelExisting(){
@@ -181,32 +181,16 @@ public class TicketManager {
         return false;
     }
 
-
-    /**
-     * total number of Tickets
-     *
-     */
     public int getNumberOfDayTickets() { return numberOfDayTickets; }
     public int getNumberOfCampingTickets() { return numberOfCampingTickets; }
     public int getNumberOfVipTickets() { return numberOfVipTickets; }
     public int totalNumberOfTickets(){return numberOfDayTickets + numberOfCampingTickets + numberOfVipTickets;}  //variable???
 
-
-
-    /**
-     * get tickets left
-     *
-     */
     public int getNumberOfDayTicketsLeft() { return numberOfDayTicketsLeft; }
     public int getNumberOfCampingTicketsLeft() { return numberOfCampingTicketsLeft; }
     public int getNumberOfVipTicketsLeft() { return numberOfVipTicketsLeft; }
     public int totalNumberOfTicketsLeft(){return numberOfDayTicketsLeft + numberOfCampingTicketsLeft + numberOfVipTicketsLeft;}
 
-
-    /**
-     * sold tickets
-     *
-     */
     public int getNumberOfSoldDayTickets(){ return numberOfDayTickets - numberOfDayTicketsLeft;}
     public int getNumberOfSoldCampingTickets(){ return numberOfCampingTickets - numberOfCampingTicketsLeft;}
     public int getNumberOfSoldVipTickets(){ return numberOfVipTickets - numberOfVipTicketsLeft;}
@@ -217,7 +201,6 @@ public class TicketManager {
         return 100-((totalNumberOfTicketsLeft/totalNumberOfTickets)*100);
     }
 
-
     private void updateIncomeTicketSales(double ticketPrice){
         this.incomeTicketSales += ticketPrice;
     }
@@ -225,7 +208,6 @@ public class TicketManager {
     public double getIncomeTicketSales(){
         return incomeTicketSales;
     }
-
 
     public int getActualPriceLevelIndex(){   //Exception
         return actualPriceLevel;
@@ -236,7 +218,7 @@ public class TicketManager {
             return priceLevels.get(index).getPercentageForPriceLevel();
         }
         else{
-            throw new PriceLevelNotAvailableException("The index is invalid"); ////ist das richtig?
+            throw new PriceLevelNotAvailableException("The index is invalid");
         }
     }
 
@@ -270,7 +252,7 @@ public class TicketManager {
      * @param index
      * @return returns whether the change was successful
      */
- /*VOID???*/ public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {
+    public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {
         if(isPriceLevelUpdateManualAndThePriceLevelIndexInOnlyValueArea(index)){
             actualPriceLevel = index;
             setTicketPrices();
@@ -283,7 +265,7 @@ public class TicketManager {
 
     private boolean isPriceLevelUpdateManualAndThePriceLevelIndexInOnlyValueArea(int index) throws PriceLevelNotAvailableException {
         if(!PriceLevelIndexInOnlyValueArea(index)){
-            throw new PriceLevelNotAvailableException("The index is invalid"); ////ist das richtig?
+            throw new PriceLevelNotAvailableException("The index is invalid");
         }
        else if(!getAutomaticPriceLevelChange()){
 
@@ -305,18 +287,18 @@ public class TicketManager {
 
     /**
      *
-     * If the tickets are available from the customer's shopping cart, the tickets are removed from the customer's shopping cart
+     * Tickets inside the customer's shopping cart are removed
      * when tickets are sold and added to his inventory.
-     * The attributes ticketsLeft are adjusted by the number of tickets sold.
-     * The income from tickets sold to the ticket manager and the expenditure from tickets to the client
-     * are adjusted by the total price of the tickets sold.
-     * At the end it is checked whether the price level should change and if necessary adjusted.
+     * The attribute ...ticketsLeft is decreased by the number of tickets sold.
+     * The income in TicketManager and the expenditure in client
+     * are increased by the total price of the tickets sold.
+     * At the end it is checked whether the price level should change and is if necessary adjusted.
      *
      * @param client
      * @return returns whether the tickets from the customer's basket were available
      * @throws TicketManagerException
      */
-    public boolean sellTickets(Client client) throws TicketManagerException, TicketNotAvailableException {
+    public void sellTickets(Client client) throws TicketNotAvailableException {
 
         int numberOfDayTicketsSold = 0;
         int numberOfCampingTicketsSold = 0;
@@ -335,7 +317,7 @@ public class TicketManager {
                 numberOfVipTicketsSold++;
                 ticketIncome += client.getCartItem(index).getStdPrice();
             } else {
-                throw new TicketNotAvailableException("There are Tickets not Available in order");
+                throw new TicketNotAvailableException("Not all tickets are available in the cart");
             }
             index++;
         }
@@ -351,13 +333,12 @@ public class TicketManager {
         if(automaticPriceLevelChange){
             updatePriceLevel();
         }
-        return true;
     }
 
 
     /**
      * helper functions for if statement
-     * @see sellTickets(Client client)
+     * @see #sellTickets(Client client)
      * @param client
      * @param index
      * @return true if the ticket type is correct and the corresponding ticket type is available

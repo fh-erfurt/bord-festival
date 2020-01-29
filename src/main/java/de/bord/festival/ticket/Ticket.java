@@ -3,14 +3,13 @@ package de.bord.festival.ticket;
 import de.bord.festival.eventManagement.Event;
 
 /**
- * gives information about ticket price and description of the current price level
+ * gives information about ticket price and current price level
  * for the selected ticket type (DAY, CAMPING, VIP)
  */
 
 public abstract class Ticket {
 
     public enum TicketType {DAY, CAMPING, VIP}
-
 
     protected String description;
     protected double stdPrice;

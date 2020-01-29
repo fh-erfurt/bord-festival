@@ -5,19 +5,20 @@ import de.bord.festival.exception.PriceLevelException;
 
 import java.util.Collections;
 
+/**
+ *  Contains all ticket prices for the price level and a percentage for the price level.
+ *  if the percentage is exceeded, the next price level starts.
+ */
+
 public class PriceLevel implements Comparable<PriceLevel>{
 
-    /**
-     *  Contains all ticket prices for the price level and a percentage for the price level.
-     *  if the percentage is exceeded, the next price level starts.
-     */
 
    private double dayTicketPrice;
    private double CampingTicketPrice;
    private double VipTicketPrice;
 
     /**
-     * the price level is valid until the percentage of sold tickets exceeded
+     * the price level is valid until the percentage of sold tickets is exceeded
      */
     private double PercentageForPriceLevel;
 
@@ -36,7 +37,7 @@ public class PriceLevel implements Comparable<PriceLevel>{
 
     /**
      * -for sorting the pricelevel arrayList in TicketManager constructor
-     * -java.lang.double.valueOf because a Object is needed for Collections.sort()
+     * -java.lang.double.valueOf because an object is needed for Collections.sort()
      * @param  priceLevel
      * @return returns a double value as an object so that they can be compared and sorted
      * @see TicketManager Collections.sort(priceLevels)
@@ -52,10 +53,6 @@ public class PriceLevel implements Comparable<PriceLevel>{
         return PercentageForPriceLevel;
     }
 
-    /**
-     *
-     * ticket prices
-     */
     public double getDayTicketPrice(){return dayTicketPrice;}
     public double getCampingTicketPrice(){return CampingTicketPrice;}
     public double getVipTicketPrice(){return VipTicketPrice;}
