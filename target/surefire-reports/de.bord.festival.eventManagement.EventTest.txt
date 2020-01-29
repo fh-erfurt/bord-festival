@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: de.bord.festival.eventManagement.EventTest
--------------------------------------------------------------------------------
-Tests run: 25, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 s - in de.bord.festival.eventManagement.EventTest
