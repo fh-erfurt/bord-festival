@@ -27,7 +27,7 @@ class EventTest {
         //invalid date couple(start date> end date)
         assertThrows(DateDisorderException.class, () -> {
             Stage stage = help.getStage();
-            Event event = Event.getNewEvent(1, LocalDate.of(2018, 1, 1),
+            Event event = Event.getNewEvent(LocalDate.of(2018, 1, 1),
                     LocalDate.of(2017, 1, 1), "Bord", 2019, 1000,
                     stage, help.exampleTicketManager(), help.getAddress());
         });
@@ -207,7 +207,7 @@ class EventTest {
 
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
-        Stage stage=new Stage(2, "name", 12);//stages with different index are not the same
+        Stage stage=new Stage(2,"name");//stages with different index are not the same
         assertTrue(lineUp.addStage(stage));
     }
 
@@ -216,7 +216,7 @@ class EventTest {
         //Given
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
-        Stage stage = new Stage(2, "name", 12);//stages with different index are not the same
+        Stage stage = new Stage(2, "name");//stages with different index are not the same
         //When
         lineUp.addStage(stage);
         //Than

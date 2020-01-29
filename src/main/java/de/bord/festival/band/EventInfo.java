@@ -13,6 +13,13 @@ public class EventInfo {
     private LocalTime time;
     private Stage stage;
 
+    /**
+     * date is not known, when the EventInfo object is created  in program
+     * it will be added in lineUp object, is known only there
+     *
+     * @param time
+     * @param stage
+     */
     public EventInfo(LocalTime time, Stage stage) {
         this.stage = stage;
         this.time = time;
