@@ -28,13 +28,12 @@ import java.util.LinkedList;
  */
 public class Event {
 
-
     private TicketManager ticketManager;
     private String name;
     private final double budget;//budget for bands
     private double actualCosts = 0;
     private LineUp lineUp;
-    private LinkedList<Client> client;
+    private LinkedList<Client> client;// will be implemented in 4th semester
     private int maxCapacity;
     private Address address;
 
@@ -87,9 +86,7 @@ public class Event {
     }
 
     /**
-     * Adds new stage to the event
-     * Condition: only one stage exists in the list with the same address
-     *
+     * see lineUp.addStage(Stage stage)
      * @param stage the object should be added
      * @return true, if the stage with the same doesn't exist in event, otherwise return false
      */
@@ -98,7 +95,7 @@ public class Event {
     }
 
     /**
-     * Removes stage, but only then, if it has no plays on it and if it is not a last stage
+     * Removes stage, if it has no set time slots and the number of stages > 1
      * Condition: only one stage exists in the list with the same address
      *
      * @param id id, on which the stage should be removed
