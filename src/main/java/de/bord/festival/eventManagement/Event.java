@@ -4,11 +4,10 @@ import de.bord.festival.address.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;
-import de.bord.festival.exception.TicketManagerException;
-import de.bord.festival.exception.BudgetOverflowException;
-import de.bord.festival.exception.DateDisorderException;
-import de.bord.festival.exception.TimeSlotCantBeFoundException;
+import de.bord.festival.exception.*;
 import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.ticket.PriceLevel;
+import de.bord.festival.ticket.Ticket;
 import de.bord.festival.ticket.TicketManager;
 
 import java.time.LocalDate;
@@ -16,7 +15,16 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 
 /**
- * Represents an festival with required features
+ * Represents a festival with required features
+ *
+ * example (ArrayList<PriceLevel> priceLevels) for sensible TicketManager creation:
+ * TicketManager
+ * PriceLevels[0]: PercentageForPricelevel=25.00, dayTicketPrice=30.00, CampingTicketPrice=40.00, VipTicketPrice=60.00
+ * PriceLevels[1]: PercentageForPricelevel=52.25, dayTicketPrice=30.00, CampingTicketPrice=49.00, VipTicketPrice=80.00
+ * PriceLevels[2]: PercentageForPricelevel=89.99, dayTicketPrice=40.99, CampingTicketPrice=51.49, VipTicketPrice=89.55
+ * PriceLevels[3]: PercentageForPricelevel=100.00, dayTicketPrice=45.00, CampingTicketPrice=55.00, VipTicketPrice=101.12
+ *
+ * it is recommended to set the last PercentageForPricelevel to 100.00
  */
 public class Event {
 
@@ -178,18 +186,18 @@ public class Event {
      * number of tickets
      * @return
      */
-    public int getnDaytickets() { return ticketManager.getnDaytickets(); }
-    public int getnCampingtickets() { return ticketManager.getnCampingtickets(); }
-    public int getnViptickets() { return ticketManager.getnViptickets(); }
+    public int getNumberOfDayTickets() { return ticketManager.getNumberOfDayTickets(); }
+    public int getNumberOfCampingTickets() { return ticketManager.getNumberOfCampingTickets(); }
+    public int getNumberOfVipTickets() { return ticketManager.getNumberOfVipTickets(); }
     public int totalNumberOfTickets(){return ticketManager.totalNumberOfTickets();}
 
     /**
      *  number of sold Tickets
      * @return
      */
-    public int getnSoldDaytickets(){ return ticketManager.getnSoldDaytickets();}
-    public int getnSoldCampingtickets(){ return ticketManager.getnSoldCampingtickets();}
-    public int getnSoldViptickets(){ return ticketManager.getnSoldViptickets();}
+    public int getNumberOfSoldDaytickets(){ return ticketManager.getNumberOfSoldDayTickets();}
+    public int getNumberOfSoldCampingtickets(){ return ticketManager.getNumberOfSoldCampingTickets();}
+    public int getNumberOfSoldViptickets(){ return ticketManager.getNumberOfSoldVipTickets();}
     public int totalNumberOfSoldTickets(){ return ticketManager.totalNumberOfSoldTickets();}
     public double totalNumberOfSoldTicketsInPercent(){return ticketManager.totalNumberOfSoldTicketsInPercent();}
 
@@ -197,14 +205,22 @@ public class Event {
      *  number of tickets left
      *
      */
-    public int getnDayticketsLeft() { return ticketManager.getnDayticketsLeft(); }
-    public int getnCampingticketsLeft() { return ticketManager.getnCampingticketsLeft(); }
-    public int getnVipticketsLeft() { return ticketManager.getnVipticketsLeft(); }
+    public int getNumberOfDayTicketsLeft() { return ticketManager.getNumberOfDayTicketsLeft(); }
+    public int getNumberOfCampingTicketsLeft() { return ticketManager.getNumberOfCampingTicketsLeft(); }
+    public int getNumberOfVipTicketsLeft() { return ticketManager.getNumberOfVipTicketsLeft(); }
     public int totalNumberOfTicketsLeft(){return ticketManager.totalNumberOfTicketsLeft();}
 
 
-    public Client sellTickets(Client client /* ,LocalDate date */) throws TicketManagerException{
-        return ticketManager.sellTickets(client /* ,LocalDate date */);
+    public void setTicketStdPrice(double stdPrice, Ticket.TicketType type){
+        this.ticketManager.setTicketStdPrice(stdPrice, type);
+    }
+
+    public void setTicketDescription(String description, Ticket.TicketType type){
+        this.ticketManager.setTicketDescription(description, type);
+    }
+
+    public boolean sellTickets(Client client) throws TicketManagerException, TicketNotAvailableException {
+        return ticketManager.sellTickets(client);
     }
 
 
@@ -220,6 +236,14 @@ public class Event {
      */
     public int getActualPriceLevelIndex(){return ticketManager.getActualPriceLevelIndex();}
 
+    /**
+     *
+     * @param index
+     * @return the percentage of the selected priceLevel that must be exceeded to activate the next price level
+     */
+    public double getPercentageForPriceLevel(int index) throws PriceLevelNotAvailableException {
+        return ticketManager.getPercentageForPriceLevel(index);
+    }
 
     /**
      *
@@ -237,6 +261,6 @@ public class Event {
         return ticketManager.getAutomaticPriceLevelChange();
     }
 
-    public boolean setPriceLevel(int index){return ticketManager.setPriceLevel(index);}
+    public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {return ticketManager.setPriceLevel(index);}
 
 }

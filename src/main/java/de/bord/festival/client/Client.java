@@ -18,7 +18,7 @@ public class Client implements IClient {
     private String lastname;
     private Address address;
     private String mail;
-    private LinkedList<Ticket> tickets;
+    private LinkedList<Ticket> inventory;
     private LinkedList<Ticket> cart;
 
 
@@ -26,13 +26,9 @@ public class Client implements IClient {
     private double expenditure = 0.0;
 
 
-    public Client(String firstname, String lastname, String mail, int id, Address address)
-            throws ClientNameException, MailException {
-        nameCheck(firstname);
-        nameCheck(lastname);
-        mailCheck(mail);
-
-        tickets = new LinkedList<Ticket>();
+    private Client(String firstname, String lastname, String mail, int id, Address address)
+    {
+        inventory = new LinkedList<Ticket>();
         cart = new LinkedList<Ticket>();
         this._id = id;
         this.firstname = firstname;
@@ -41,12 +37,21 @@ public class Client implements IClient {
         this.mail = mail;
     }
 
+    public static Client getNewClient(String firstname, String lastname, String mail, int id, Address address)
+            throws ClientNameException, MailException {
+        nameCheck(firstname);
+        nameCheck(lastname);
+        mailCheck(mail);
+
+        return new Client(firstname, lastname, mail, id, address);
+    }
+
     /**
-     * Checks if an entered name is within given restictions
+     * Checks if an entered name is within given restrictions
      * @param name
      * @throws ClientNameException
      */
-    public void nameCheck(String name) throws ClientNameException {
+    public static void nameCheck(String name) throws ClientNameException {
         Pattern p = Pattern.compile("^[a-zA-ZäÄöÖüÜß]*$");
         Matcher m = p.matcher(name);
 
@@ -66,7 +71,7 @@ public class Client implements IClient {
      * @param mail
      * @throws MailException
      */
-    public void mailCheck(String mail) throws MailException {
+    public static void mailCheck(String mail) throws MailException {
         Pattern p = Pattern.compile("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
         Matcher m = p.matcher(mail);
 
@@ -92,21 +97,13 @@ public class Client implements IClient {
     /**
      * Called when a Client buys a ticket
      * Adds ticket to ticket-array of Client,
-     * @param ticket
+     * @param type type
+     * @param ticketmanager ticketmanager
      * @throws TicketException
      */
-    public void addTicket(Ticket ticket, TicketManager ticketmanager) throws TicketException {
-        if(!ticket.isAvailable()) {
-            throw new TicketException("No more tickets available");
-        }
-        this.tickets.add(ticket);
-    }
-
-
-
     //benjamin////////
     public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketException {
-        if(!ticketmanager.getTicket(type).isAvailable()) {
+        if(!ticketmanager.isAvailable(type)) {
             throw new TicketException("No more tickets available");
         }
             if(ticketmanager.getTicket(type)!= null) {
@@ -115,16 +112,8 @@ public class Client implements IClient {
     }
 
 
-    public int get_id(){
-        return _id;
-    }
-
-    public Ticket get_ticket(int index) {
-        return tickets.get(index);
-    }
-
-    public void addCartToTickets(){
-        tickets.addAll(cart);
+    public void addCartToInventory(){
+        inventory.addAll(cart);
     }
 
 
@@ -136,8 +125,8 @@ public class Client implements IClient {
         return cart.size();
     }
 
-    public int getTicketsSize(){
-        return tickets.size();
+    public int getInventorySize(){
+        return inventory.size();
     }
 
     public void clearCart(){

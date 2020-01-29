@@ -2,16 +2,21 @@ package de.bord.festival.ticket;
 
 import de.bord.festival.eventManagement.Event;
 
+/**
+ * gives information about ticket price and description of the current price level
+ * ticketType = TicketType.DAY
+ */
+
 public class DayTicket extends Ticket {
 
-    private String date;
+
     private TicketType ticketType;
 
-    public DayTicket(TicketType ticketType, int id, String description, boolean available,
-                     double standardPrice /*, Event event*/, String date){
+    public DayTicket(TicketType ticketType, String description,
+                     double standardPrice ){
 
-        super(id, description, available, standardPrice/*, event*/);
-        this.date=date;
+        super(description, standardPrice);
+
         this.ticketType = TicketType.DAY;
     }
 

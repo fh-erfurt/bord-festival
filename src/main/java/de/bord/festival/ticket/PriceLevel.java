@@ -3,11 +3,13 @@ package de.bord.festival.ticket;
 import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.exception.PriceLevelException;
 
+import java.util.Collections;
+
 public class PriceLevel implements Comparable<PriceLevel>{
 
     /**
      *  Contains all ticket prices for the price level and a percentage for the price level.
-     * if the percentage is exceeded, the next price level starts.
+     *  if the percentage is exceeded, the next price level starts.
      */
 
    private double dayTicketPrice;
@@ -15,47 +17,45 @@ public class PriceLevel implements Comparable<PriceLevel>{
    private double VipTicketPrice;
 
     /**
-     * the price level is valid until the percentage of sold tickets is reached
+     * the price level is valid until the percentage of sold tickets exceeded
      */
-    private double PercentageForPricelevel;
-
-    //private int priceLevel;
+    private double PercentageForPriceLevel;
 
     public PriceLevel(double dayTicketPrice, double CampingTicketPrice, double VipTicketPrice,
-                      double PercentageForPricelevel) throws PriceLevelException {
+                      double PercentageForPriceLevel) throws PriceLevelException {
 
-        if(PercentageForPricelevel > 100 || PercentageForPricelevel < 0){
+        if(PercentageForPriceLevel > 100 || PercentageForPriceLevel < 0){
             throw new PriceLevelException("PercentageForPricelevel not valid");
         }
-        this.PercentageForPricelevel = PercentageForPricelevel;
+        this.PercentageForPriceLevel = PercentageForPriceLevel;
         this.dayTicketPrice = dayTicketPrice;
         this.CampingTicketPrice = CampingTicketPrice;
         this.VipTicketPrice = VipTicketPrice;
 
-
-
-       // this.priceLevel = priceLevel;
     }
 
     /**
-     * for sorting the pricelevel array
-     * java.lang.Integer.valueOf because a Object is needed
-     * @param
-     * @return
+     * -for sorting the pricelevel arrayList in TicketManager constructor
+     * -java.lang.double.valueOf because a Object is needed for Collections.sort()
+     * @param  priceLevel
+     * @return returns a double value as an object so that they can be compared and sorted
+     * @see TicketManager Collections.sort(priceLevels)
      */
     @Override
     public int compareTo(PriceLevel priceLevel) {
 
-        return  java.lang.Double.valueOf(this.PercentageForPricelevel).compareTo(java.lang.Double.valueOf(priceLevel.PercentageForPricelevel));
+        return  java.lang.Double.valueOf(this.PercentageForPriceLevel).compareTo(java.lang.Double.valueOf(priceLevel.PercentageForPriceLevel));
     }
 
 
-    public double getPercentageForPricelevel() {
-        return PercentageForPricelevel;
+    public double getPercentageForPriceLevel() {
+        return PercentageForPriceLevel;
     }
-    //public  int getPriceLevel(){return priceLevel;}
 
-
+    /**
+     *
+     * ticket prices
+     */
     public double getDayTicketPrice(){return dayTicketPrice;}
     public double getCampingTicketPrice(){return CampingTicketPrice;}
     public double getVipTicketPrice(){return VipTicketPrice;}

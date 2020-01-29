@@ -31,7 +31,7 @@ public class ClientTest {
     @ValueSource(strings = {" ", "!", "\"", "§", "$", "%", "&", "/", "(", ")", "=", "?", "´", "`", "*", "+", "'", "#", ";", ",", "_", "~", "@", "€", "[", "]", "{", "}"})
     void should_throw_exception_for_firstname_with_specialchars(String input) throws ClientNameException {
         assertThrows(ClientNameException.class, () -> {
-            Client client = new Client(input, lastname, mail, id, address);
+            Client client = Client.getNewClient(input, lastname, mail, id, address);
         });
     }
 
@@ -39,7 +39,7 @@ public class ClientTest {
     @ValueSource(strings = {" ", "!", "\"", "§", "$", "%", "&", "/", "(", ")", "=", "?", "´", "`", "*", "+", "'", "#", ";", ",", "_", "~", "@", "€", "[", "]", "{", "}"})
     void should_throw_exception_for_lastname_with_specialchars(String input) throws ClientNameException {
         assertThrows(ClientNameException.class, () -> {
-            Client client = new Client(firstname, input, mail, id, address);
+            Client client = Client.getNewClient(firstname, input, mail, id, address);
         });
     }
 
@@ -47,7 +47,7 @@ public class ClientTest {
     @ValueSource(strings = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" })
     void should_throw_exception_for_firstname_with_numbers(String input) throws ClientNameException {
         assertThrows(ClientNameException.class, () -> {
-            Client client = new Client(input, lastname, mail, id, address);
+            Client client = Client.getNewClient(input, lastname, mail, id, address);
         });
     }
 
@@ -55,7 +55,7 @@ public class ClientTest {
     @ValueSource(strings = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" })
     void should_throw_exception_for_lastname_with_numbers(String input) throws ClientNameException {
         assertThrows(ClientNameException.class, () -> {
-            Client client = new Client(firstname, input, mail, id, address);
+            Client client = Client.getNewClient(firstname, input, mail, id, address);
         });
     }
 
@@ -64,7 +64,7 @@ public class ClientTest {
         String testname = "";
 
         assertThrows(ClientNameException.class, () -> {
-            Client client = new Client(testname, lastname, mail, id, address);
+            Client client = Client.getNewClient(testname, lastname, mail, id, address);
         });
     }
 
@@ -73,7 +73,7 @@ public class ClientTest {
         String testname = "";
 
         assertThrows(ClientNameException.class, () -> {
-            Client client = new Client(firstname, testname, mail, id, address);
+            Client client = Client.getNewClient(firstname, testname, mail, id, address);
         });
     }
 
@@ -82,7 +82,7 @@ public class ClientTest {
         String testname = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY";
 
         assertThrows(ClientNameException.class, () -> {
-            Client client = new Client(testname, lastname, mail, id, address);
+            Client client = Client.getNewClient(testname, lastname, mail, id, address);
         });
     }
 
@@ -91,7 +91,7 @@ public class ClientTest {
         String testname = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXY";
 
         assertThrows(ClientNameException.class, () -> {
-            Client client = new Client(firstname, testname, mail, id, address);
+            Client client = Client.getNewClient(firstname, testname, mail, id, address);
         });
     }
 
@@ -100,7 +100,7 @@ public class ClientTest {
         String testname = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX";
 
         assertDoesNotThrow(() -> {
-            Client client = new Client(testname, lastname, mail, id, address);
+            Client client = Client.getNewClient(testname, lastname, mail, id, address);
         });
     }
 
@@ -109,7 +109,7 @@ public class ClientTest {
         String testname = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX";
 
         assertDoesNotThrow(() -> {
-            Client client = new Client(firstname, testname, mail, id, address);
+            Client client = Client.getNewClient(firstname, testname, mail, id, address);
         });
     }
 
@@ -117,7 +117,7 @@ public class ClientTest {
     void should_throw_exception_for_mail_with_missing_at_symbol() throws MailException {
         String testmail = "testtest.de";
         assertThrows(MailException.class, () -> {
-            Client client = new Client(firstname, lastname, testmail, id, address);
+            Client client = Client.getNewClient(firstname, lastname, testmail, id, address);
         });
     }
 
@@ -125,7 +125,7 @@ public class ClientTest {
     void should_throw_exception_for_mail_with_missing_domain() throws MailException {
         String testmail = "test@test";
         assertThrows(MailException.class, () -> {
-            Client client = new Client(firstname, lastname, testmail, id, address);
+            Client client = Client.getNewClient(firstname, lastname, testmail, id, address);
         });
     }
 
@@ -134,7 +134,7 @@ public class ClientTest {
 
     void should_throw_exception_for_invalid_mail(String input) throws MailException {
         assertThrows(MailException.class, () -> {
-            Client client = new Client(firstname, lastname, input, id, address);
+            Client client = Client.getNewClient(firstname, lastname, input, id, address);
         });
     }
 

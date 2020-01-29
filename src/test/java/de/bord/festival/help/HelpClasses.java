@@ -95,11 +95,11 @@ public class HelpClasses {
         priceLevels.add(p2);
         priceLevels.add(p3);
 
-        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, 0, "day test", true, 01,"01.01.2020");
-        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, 1000, "camping test", true, 02 );
-        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, 5000, "vip test", true, 100.00);
+        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, "day test", 30.99);
+        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 80.00);
+        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, "vip test", 101.99);
 
-        return new TicketManager(priceLevels, 3, 10,20,30, dayTicket, campingTicket, vipTicket);
+        return new TicketManager(priceLevels, 10,20,30, dayTicket, campingTicket, vipTicket);
     }
 
     public TicketManager example2TicketManager() throws PriceLevelException {
@@ -114,11 +114,11 @@ public class HelpClasses {
         priceLevels.add(p2);
         priceLevels.add(p3);
 
-        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, 0, "day test", true, 01,"01.01.2020");
-        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, 1000, "camping test", true, 02 );
-        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, 5000, "vip test", true, 100.00);
+        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, "day test", 30.99);
+        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 80.00);
+        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, "vip test", 101.99);
 
-        return new TicketManager(priceLevels, 3, 2,6,2, dayTicket, campingTicket, vipTicket);
+        return new TicketManager(priceLevels, 2,6,2, dayTicket, campingTicket, vipTicket);
     }
 
     public Client exampleClientWith4Tickets() throws MailException, ClientNameException, PriceLevelException, TicketException {
@@ -134,7 +134,7 @@ public class HelpClasses {
     }
 
     public Client exampleClient() throws MailException, ClientNameException {
-        return new Client("Max", "Muster","max@test.de",1,getAddress());
+        return Client.getNewClient("Max", "Muster","max@test.de",1,getAddress());
     }
 
 }
