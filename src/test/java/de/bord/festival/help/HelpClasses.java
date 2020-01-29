@@ -34,13 +34,13 @@ public class HelpClasses {
 
     public Stage getStage() {
 
-        return new Stage(1, "stage1", 300);
+        return new Stage(1, "stage1");
 
     }
 
     public Event getValidNDaysEvent(int numberOfDays) throws DateDisorderException, PriceLevelException {
 
-        return Event.getNewEvent(1, LocalDate.of(2018, 01, 01),
+        return Event.getNewEvent( LocalDate.of(2018, 01, 01),
                 LocalDate.of(2018, 01, numberOfDays), "Bord", 2019, 1000,
                 getStage(),exampleTicketManager(), getAddress());
 

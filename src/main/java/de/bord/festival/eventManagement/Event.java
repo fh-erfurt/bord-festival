@@ -28,37 +28,39 @@ import java.util.LinkedList;
  */
 public class Event {
 
-
     private TicketManager ticketManager;
-    private int id;
     private String name;
     private final double budget;//budget for bands
     private double actualCosts = 0;
     private LineUp lineUp;
-    private LinkedList<Client> client;
+    private LinkedList<Client> client;// will be implemented in 4th semester
     private int maxCapacity;
     private Address address;
 
-    private Event(int id, LocalDate startDate, LocalDate endDate, String name,
+    private Event(LocalDate startDate, LocalDate endDate, String name,
                  double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address){
 
         lineUp = new LineUp(startDate, endDate, stage, this);
         client = new LinkedList<>();
         this.maxCapacity = maxCapacity;
         this.budget = budget;
-        this.id = id;
         this.name = name;
         this.ticketManager = ticketManager;
         this.address=address;
 
     }
-    public  static Event getNewEvent(int id, LocalDate startDate, LocalDate endDate, String name,
-                                     double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException{
+
+    /**
+     * Using static function to avoid exception in constructor of event
+     * @throws DateDisorderException if end date<start date
+     */
+    public static Event getNewEvent(LocalDate startDate, LocalDate endDate, String name,
+                                    double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException {
         if (endDate.isBefore(startDate)) {
             throw new DateDisorderException("End date can't be before start date");
         }
 
-        return new Event(id, startDate, endDate, name, budget, maxCapacity, stage, ticketManager, address);
+        return new Event(startDate, endDate, name, budget, maxCapacity, stage, ticketManager, address);
 
     }
     public int getNumberOfBands() {
@@ -84,9 +86,7 @@ public class Event {
     }
 
     /**
-     * Adds new stage to the event
-     * Condition: only one stage exists in the list with the same address
-     *
+     * see lineUp.addStage(Stage stage)
      * @param stage the object should be added
      * @return true, if the stage with the same doesn't exist in event, otherwise return false
      */
@@ -95,7 +95,7 @@ public class Event {
     }
 
     /**
-     * Removes stage, but only then, if it has no plays on it and if it is not a last stage
+     * Removes stage, if it has no set time slots and the number of stages > 1
      * Condition: only one stage exists in the list with the same address
      *
      * @param id id, on which the stage should be removed
