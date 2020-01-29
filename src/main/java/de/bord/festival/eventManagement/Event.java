@@ -30,7 +30,6 @@ public class Event {
 
 
     private TicketManager ticketManager;
-    private int id;
     private String name;
     private final double budget;//budget for bands
     private double actualCosts = 0;
@@ -39,26 +38,30 @@ public class Event {
     private int maxCapacity;
     private Address address;
 
-    private Event(int id, LocalDate startDate, LocalDate endDate, String name,
+    private Event(LocalDate startDate, LocalDate endDate, String name,
                  double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address){
 
         lineUp = new LineUp(startDate, endDate, stage, this);
         client = new LinkedList<>();
         this.maxCapacity = maxCapacity;
         this.budget = budget;
-        this.id = id;
         this.name = name;
         this.ticketManager = ticketManager;
         this.address=address;
 
     }
-    public  static Event getNewEvent(int id, LocalDate startDate, LocalDate endDate, String name,
-                                     double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException{
+
+    /**
+     * Using static function to avoid exception in constructor of event
+     * @throws DateDisorderException if end date<start date
+     */
+    public static Event getNewEvent(LocalDate startDate, LocalDate endDate, String name,
+                                    double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException {
         if (endDate.isBefore(startDate)) {
             throw new DateDisorderException("End date can't be before start date");
         }
 
-        return new Event(id, startDate, endDate, name, budget, maxCapacity, stage, ticketManager, address);
+        return new Event(startDate, endDate, name, budget, maxCapacity, stage, ticketManager, address);
 
     }
     public int getNumberOfBands() {
