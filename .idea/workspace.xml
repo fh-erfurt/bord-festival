@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="58bb82cc-669b-46b0-a59b-f9421ff30d2e" name="Default Changelist" comment="" />
+    <list default="true" id="58bb82cc-669b-46b0-a59b-f9421ff30d2e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -172,6 +174,8 @@
       <workItem from="1580304587471" duration="701000" />
       <workItem from="1580306255786" duration="406000" />
       <workItem from="1580306692331" duration="370000" />
+      <workItem from="1580307090674" duration="211000" />
+      <workItem from="1580385400832" duration="277000" />
     </task>
     <task id="LOCAL-00001" summary="maven">
       <created>1579260861392</created>
@@ -250,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580306446878</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="description updated">
+      <created>1580307177483</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1580307177483</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,26 +291,26 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="93" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.860@0.0.1600.860" timestamp="1579629216701" />
-    <state x="399" y="19" key="CommitChangelistDialog2" timestamp="1580306442909">
+    <state x="399" y="19" key="CommitChangelistDialog2" timestamp="1580307175546">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="399" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1580306442909" />
-    <state width="1557" height="243" key="GridCell.Tab.0.bottom" timestamp="1580307144001">
+    <state x="399" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1580307175546" />
+    <state width="1557" height="243" key="GridCell.Tab.0.bottom" timestamp="1580307303614">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="243" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1580307144001" />
-    <state width="1557" height="243" key="GridCell.Tab.0.center" timestamp="1580307144001">
+    <state width="1557" height="243" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1580307303614" />
+    <state width="1557" height="243" key="GridCell.Tab.0.center" timestamp="1580307303614">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="243" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1580307144001" />
-    <state width="1557" height="243" key="GridCell.Tab.0.left" timestamp="1580307144001">
+    <state width="1557" height="243" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1580307303614" />
+    <state width="1557" height="243" key="GridCell.Tab.0.left" timestamp="1580307303614">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="243" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1580307144001" />
-    <state width="1557" height="243" key="GridCell.Tab.0.right" timestamp="1580307144001">
+    <state width="1557" height="243" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1580307303614" />
+    <state width="1557" height="243" key="GridCell.Tab.0.right" timestamp="1580307303614">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="243" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1580307144001" />
+    <state width="1557" height="243" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1580307303614" />
     <state width="1557" height="213" key="GridCell.Tab.1.bottom" timestamp="1579301042919">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -332,22 +343,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="4" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1580306982251" />
-    <state x="392" y="162" key="Vcs.Push.Dialog.v2" timestamp="1579808102188">
+    <state x="392" y="162" key="Vcs.Push.Dialog.v2" timestamp="1580307228526">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="162" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1579808102188" />
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1580307090769">
+    <state x="392" y="162" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1580307228526" />
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1580385632346">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1580307090769" />
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1580385632346" />
     <state x="504" y="323" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1580306947492">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="504" y="323" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1600.860@0.0.1600.860" timestamp="1580306947492" />
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1580306457236">
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1580307210418">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1580306457236" />
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1580307210418" />
     <state x="456" y="195" key="run.anything.popup" timestamp="1579614606974">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
