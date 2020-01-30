@@ -42,7 +42,7 @@ public class LineUp {
     }
 
     /**
-     * creates programs for each day of event and saves it to the collection with corresponding dates
+     * creates programs for each day of event and saves it to the collection
      */
     private void createProgramsBetweenStartAndEndDates() {
         if (startDate.equals(endDate)) {
@@ -73,7 +73,7 @@ public class LineUp {
      * Adds new stage to the event
      *
      * @param stage the object should be added
-     * @return true, if the stage with the same doesn't exist in event, otherwise return false
+     * @return true, if the stage with the same name doesn't exist in event, otherwise return false
      */
     public boolean addStage(Stage stage) {
 
@@ -111,13 +111,12 @@ public class LineUp {
 
     /**
      * Generates a complete event info, which will be saved to band
-     * Checked is band is already in list present
-     * adds to actual budget of event
+     * Checks if band is already assigned a timeslot, if yes the band won't be paid extra
+     * adds to the actual costs of event
      *
-     * @param band              should be checked if band is already in the list of bands
+     * @param band
      * @param timeSlotWithStage time slot which has received time and stage from program
-     *                          and now will be with date completed
-     * @param currentDate       date will be saved to @param timeSlotWithStage
+     * @param currentDate       date will be saved to timeSlotWithStage
      * @return complete event info
      */
     private EventInfo actionIfTimeSlotFound(Band band, EventInfo timeSlotWithStage, LocalDate currentDate) {
@@ -156,8 +155,7 @@ public class LineUp {
 
     /**
      * Removes stage from all programs and from the list of stages
-     * Condition: only one stage exists in the list with the same address
-     * Removes stage, but only then, if it has no plays on it and if it is not a last stage
+     * Removes stage, if it has no set time slots and the number of stages > 1
      *
      * @param id id, on which the stage should be removed
      * @return true, if the stage is removed, otherwise false
@@ -198,11 +196,10 @@ public class LineUp {
     }
 
     /**
-     * Looks for a stage with the address from the parameter
+     * Looks for a stage with given id
      *
-     * @param id id if the stage of the stage
-     * @return object of the class Stage, if the stage with the address is in the list of event
-     * otherwise returns null
+     * @param id
+     * @return if stage exists in event: Stage, otherwise: null
      */
     public Stage findStage(int id) {
         for (int i = 0; i < stages.size(); i++) {
@@ -214,10 +211,10 @@ public class LineUp {
     }
 
     /**
-     * It is a help method to removeBand from Event class
+     * removes band from all timeslots it was assigned on
      *
-     * @param band band should be removed
-     * @return true, if the band exists in the event list, false otherwise
+     * @param band band that should be removed
+     * @return if the band exists in the event list: true, otherwise: false
      */
     public boolean removeBand(Band band) {
 
@@ -236,11 +233,11 @@ public class LineUp {
     }
 
     /**
-     * It is a help method for Event class method removeBand
+     * removes band from specified timeslot
      *
-     * @param band        band should be removed
+     * @param band        band that should be removed
      * @param dateAndTime date and time the band should be removed
-     * @return true, if the timeslot is removed, otherwise false
+     * @return if the band is removed: true, otherwise: false
      */
     public boolean removeBand(Band band, LocalDateTime dateAndTime) {
         if (!containsBand(band)) {
@@ -264,14 +261,21 @@ public class LineUp {
     private boolean isBandLast(Band band){
         return(band.getNumberOfEventInfo() == 1);
     }
+
+    /**
+     * Checks if given band is currently participating in event
+     *
+     * @param band
+     * @return if band is already subscribed to a timeslot: true, otherwise: false
+     * */
     private boolean containsBand(Band band) {
-        boolean flag = false;
+        boolean check = false;
         for (Band value : bands) {
             if (value.equals(band)) {
-                flag = true;
+                check = true;
                 break;
             }
         }
-        return flag;
+        return check;
     }
 }

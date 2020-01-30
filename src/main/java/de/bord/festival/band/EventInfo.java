@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**
- * Contains information should be saved in Band class: date, time, stage
+ * Contains information, that should be saved in Band-class: date, time, stage
  */
 public class EventInfo {
     private LocalDate date;
@@ -14,8 +14,8 @@ public class EventInfo {
     private Stage stage;
 
     /**
-     * date is not known, when the EventInfo object is created  in program
-     * it will be added in lineUp object, is known only there
+     * date is not known, when the EventInfo-object is created in program
+     * it will be added in lineUp-object, is known only there
      *
      * @param time
      * @param stage
