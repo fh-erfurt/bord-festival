@@ -100,7 +100,7 @@ public class Client implements IClient {
      * @throws TicketException
      */
     public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketException {
-        if(!ticketmanager.isAvailable(type)) {
+        if(!ticketmanager.isAvailable(type, 1)) {
             throw new TicketException("No more tickets available");
         }
             if(ticketmanager.getTicket(type)!= null) {
