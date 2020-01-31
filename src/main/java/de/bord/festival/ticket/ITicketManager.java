@@ -6,7 +6,7 @@ public interface ITicketManager {
 
     public Ticket getTicket(Ticket.TicketType type);
 
-    public boolean isAvailable(Ticket.TicketType type);
+    public boolean isAvailable(Ticket.TicketType type, int numberOfCartTickets);
 
     public void setTicketDescription(String description, Ticket.TicketType type);
 

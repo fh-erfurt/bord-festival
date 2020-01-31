@@ -99,8 +99,9 @@ public class Client implements IClient {
      * @param ticketmanager ticketmanager
      * @throws TicketNotAvailableException
      */
+
     public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketNotAvailableException {
-        if(!ticketmanager.isAvailable(type)) {
+        if(!ticketmanager.isAvailable(type, 1)) {
             throw new TicketNotAvailableException("No more tickets available");
         }
             if(ticketmanager.getTicket(type)!= null) {

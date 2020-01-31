@@ -97,17 +97,20 @@ public class TicketManager {
     }
 
 
-    public boolean isAvailable(Ticket.TicketType type) {
-        if (type == Ticket.TicketType.DAY && this.numberOfDayTicketsLeft > 0) {
+    /**
+     * Checks, if enough tickets of the given TicketType are available for purchasing
+     * @param type
+     * @return boolean whether there are enough tickets available
+     */
+    public boolean isAvailable(Ticket.TicketType type, int numberOfCartTickets) {
+        if (type == Ticket.TicketType.DAY && this.numberOfDayTicketsLeft - numberOfCartTickets >= 0) {
             return true;
-        } else if (type == Ticket.TicketType.CAMPING && this.numberOfCampingTicketsLeft > 0) {
+        } else if (type == Ticket.TicketType.CAMPING && this.numberOfCampingTicketsLeft - numberOfCartTickets >= 0) {
             return true;
-        } else if (type == Ticket.TicketType.VIP && this.numberOfVipTicketsLeft > 0) {
+        } else if (type == Ticket.TicketType.VIP && this.numberOfVipTicketsLeft - numberOfCartTickets >= 0) {
             return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -304,17 +307,28 @@ public class TicketManager {
 
         int index = 0;
         while (index < client.getCartSize()) {
-            if (ticketTypeIsDayAndTicketIsAvailable(client, index)) {
-                numberOfDayTicketsSold++;
-                ticketIncome += client.getCartItem(index).getStdPrice();
-            } else if (ticketTypeIsCampingAndTicketIsAvailable(client, index)) {
-                numberOfCampingTicketsSold++;
-                ticketIncome += client.getCartItem(index).getStdPrice();
-            } else if (ticketTypeIsVipAndTicketIsAvailable(client, index)) {
-                numberOfVipTicketsSold++;
-                ticketIncome += client.getCartItem(index).getStdPrice();
-            } else {
-                throw new TicketNotAvailableException("Not all tickets are available in the cart");
+            Ticket.TicketType ticketType = client.getCartItem(index).getTicketType();
+            if (ticketType == Ticket.TicketType.DAY) {
+                if (isAvailable(ticketType, numberOfDayTicketsSold)) {
+                    numberOfDayTicketsSold++;
+                    ticketIncome += client.getCartItem(index).getStdPrice();
+                } else {
+                    throw new TicketNotAvailableException("Not all tickets are available in the cart");
+                }
+            } else if (ticketType == Ticket.TicketType.CAMPING) {
+                if (isAvailable(ticketType, numberOfCampingTicketsSold)) {
+                    numberOfCampingTicketsSold++;
+                    ticketIncome += client.getCartItem(index).getStdPrice();
+                } else {
+                    throw new TicketNotAvailableException("Not all tickets are available in the cart");
+                }
+            } else if(ticketType == Ticket.TicketType.VIP) {
+                if (isAvailable(ticketType, numberOfVipTicketsSold)) {
+                    numberOfVipTicketsSold++;
+                    ticketIncome += client.getCartItem(index).getStdPrice();
+                } else {
+                    throw new TicketNotAvailableException("Not all tickets are available in the cart");
+                }
             }
             index++;
         }
@@ -331,44 +345,5 @@ public class TicketManager {
             updatePriceLevel();
         }
     }
-
-
-    /**
-     * helper functions for if statement
-     * @see #sellTickets(Client client)
-     * @param client
-     * @param index
-     * @return true if the ticket type is correct and the corresponding ticket type is available
-     */
-    private boolean ticketTypeIsDayAndTicketIsAvailable(Client client, int index){
-        if(client.getCartItem(index).getTicketType() == Ticket.TicketType.DAY && isAvailable(Ticket.TicketType.DAY)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    private boolean ticketTypeIsCampingAndTicketIsAvailable(Client client, int index){
-        if(client.getCartItem(index).getTicketType() == Ticket.TicketType.CAMPING && isAvailable(Ticket.TicketType.CAMPING)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    private boolean ticketTypeIsVipAndTicketIsAvailable(Client client, int index){
-        if(client.getCartItem(index).getTicketType() == Ticket.TicketType.VIP && isAvailable(Ticket.TicketType.VIP)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-
-
-
 }
 
