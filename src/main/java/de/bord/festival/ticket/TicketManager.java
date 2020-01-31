@@ -1,9 +1,7 @@
 package de.bord.festival.ticket;
 
 import de.bord.festival.client.Client;
-import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.PriceLevelNotAvailableException;
-import de.bord.festival.exception.TicketManagerException;
 import de.bord.festival.exception.TicketNotAvailableException;
 
 import java.util.*;
@@ -229,7 +227,7 @@ public class TicketManager {
      * @see #setPriceLevel(int).
      * @param isPriceLevelChangeAutomatic true for automatic, false for manually price level change
      */
-    public void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic) throws TicketManagerException {
+    public void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic) {
 
         if (isPriceLevelChangeAutomatic) {
             actualPriceLevel = 0;
@@ -296,7 +294,6 @@ public class TicketManager {
      *
      * @param client
      * @return returns whether the tickets from the customer's basket were available
-     * @throws TicketManagerException
      */
     public void sellTickets(Client client) throws TicketNotAvailableException {
 

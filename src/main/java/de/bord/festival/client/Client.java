@@ -3,7 +3,7 @@ package de.bord.festival.client;
 import de.bord.festival.address.Address;
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
-import de.bord.festival.exception.TicketException;
+import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.Ticket;
 import de.bord.festival.ticket.TicketManager;
 
@@ -97,11 +97,11 @@ public class Client implements IClient {
      *
      * @param type type
      * @param ticketmanager ticketmanager
-     * @throws TicketException
+     * @throws TicketNotAvailableException
      */
-    public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketException {
+    public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketNotAvailableException {
         if(!ticketmanager.isAvailable(type)) {
-            throw new TicketException("No more tickets available");
+            throw new TicketNotAvailableException("No more tickets available");
         }
             if(ticketmanager.getTicket(type)!= null) {
                 this.cart.add(ticketmanager.getTicket(type));

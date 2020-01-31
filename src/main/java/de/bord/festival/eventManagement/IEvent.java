@@ -4,7 +4,6 @@ import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;
 import de.bord.festival.exception.BudgetOverflowException;
-import de.bord.festival.exception.TicketManagerException;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.stageManagement.Stage;
 
@@ -24,7 +23,7 @@ public interface IEvent {
 
     public void addToTheActualCosts(double amount);
 
-    public boolean sellTickets(Client client) throws TicketManagerException;
+    public boolean sellTickets(Client client);
 
     public boolean setPriceLevel(int index);
 }

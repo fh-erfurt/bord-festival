@@ -186,9 +186,9 @@ public class Event {
     public int getNumberOfVipTickets() { return ticketManager.getNumberOfVipTickets(); }
     public int totalNumberOfTickets(){return ticketManager.totalNumberOfTickets();}
 
-    public int getNumberOfSoldDaytickets(){ return ticketManager.getNumberOfSoldDayTickets();}
-    public int getNumberOfSoldCampingtickets(){ return ticketManager.getNumberOfSoldCampingTickets();}
-    public int getNumberOfSoldViptickets(){ return ticketManager.getNumberOfSoldVipTickets();}
+    public int getNumberOfSoldDayTickets(){ return ticketManager.getNumberOfSoldDayTickets();}
+    public int getNumberOfSoldCampingTickets(){ return ticketManager.getNumberOfSoldCampingTickets();}
+    public int getNumberOfSoldVipTickets(){ return ticketManager.getNumberOfSoldVipTickets();}
     public int totalNumberOfSoldTickets(){ return ticketManager.totalNumberOfSoldTickets();}
     public double totalNumberOfSoldTicketsInPercent(){return ticketManager.totalNumberOfSoldTicketsInPercent();}
 
@@ -205,7 +205,7 @@ public class Event {
         this.ticketManager.setTicketDescription(description, type);
     }
 
-    public void sellTickets(Client client) throws TicketManagerException, TicketNotAvailableException {
+    public void sellTickets(Client client) throws TicketNotAvailableException {
         ticketManager.sellTickets(client);
     }
 
@@ -228,7 +228,7 @@ public class Event {
      *
      * @param isPriceLevelChangeAutomatic true for automatic, false for manually price level change
      */
-    public void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic) throws TicketManagerException {
+    public void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic) {
         ticketManager.setAutomaticPriceLevelChange(isPriceLevelChangeAutomatic);
     }
 
