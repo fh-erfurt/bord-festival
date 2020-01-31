@@ -153,7 +153,7 @@ public class TicketTest {
 
     @Test
     void should_return_true_for_ticketManager1_isAvailable() throws  MailException, PriceLevelException, ClientNameException, TicketNotAvailableException {
-        // given ( exampleTicketManager.getNumberOfDayTickets = 10 )
+        // given ( exampleTicketManager.getNumberOfDayTickets = 2 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
         Client client1 = helpClasses.exampleClientWith4Tickets(); //1 * DayTicket in Cart
@@ -162,7 +162,7 @@ public class TicketTest {
         ticketManager1.sellTickets(client1);
 
         // then
-        assertEquals(true, ticketManager1.isAvailable(Ticket.TicketType.DAY));
+        assertEquals(true, ticketManager1.isAvailable(Ticket.TicketType.DAY, 1));
 
     }
 
@@ -178,7 +178,7 @@ public class TicketTest {
         ticketManager1.sellTickets(client1);
 
         // then
-        assertEquals(false, ticketManager1.isAvailable(Ticket.TicketType.DAY));
+        assertEquals(false, ticketManager1.isAvailable(Ticket.TicketType.DAY, 2));
 
     }
 
