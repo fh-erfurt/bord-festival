@@ -19,9 +19,7 @@ Im Verwaltungssystem wird erfasst, wann welche Band spielt und auf welcher Stage
 
 ## Klassendiagramm
 
-<!--
-![ClassDiagramm](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/fh-erfurt/robd-festival/master/classDiagram.iuml)
--->
+![ClassDiagram](https://raw.githubusercontent.com/fh-erfurt/bord-festival/master/docs/UML_farbe.png)
 
 # 2. Ausgangssituation
 
@@ -63,11 +61,12 @@ Gekaufte Tickets können nicht vom Kunden zurückgegeben werden.
 
 # 3. Akteure/Stakeholder
 
+![Akteure](https://raw.githubusercontent.com/fh-erfurt/bord-festival/master/docs/usecase.PNG)
+
 ## 3.1 Akteure
 * Clients (sind die Kunden des Festivals, können einen Account erstellen und Tickets kaufen)
 * Organizer (verwaltet und plant das Festival, legt Ticketpreise fest)
 
-Bild einfügen
 
 ## 3.2 Stakeholder
 * Festival-Veranstalter
