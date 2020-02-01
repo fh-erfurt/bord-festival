@@ -69,7 +69,7 @@ public class Client implements IClient {
      * @throws MailException
      */
     public static void mailCheck(String mail) throws MailException {
-        Pattern p = Pattern.compile("^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
+        Pattern p = Pattern.compile("^[\\w!#$%&’*+/=?_`(){|}~\"@<>,:;.^-]+(?:\\.[\\w!#$%&’*+/=?_`(){|}~\"@<>,:;.^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$");
         Matcher m = p.matcher(mail);
 
         if(!m.find()) {
