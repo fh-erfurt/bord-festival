@@ -2,6 +2,8 @@
 
 # BORD - Festival Management System
 
+Im Rahmen des Moduls "Java 1" haben wir ein Festival-Management-System entwickelt.
+
 ## Teammitglieder
 Olga Klassen, Benjamin Swarovsky, Daniel Depta, Raphael Freybe
 
@@ -95,7 +97,15 @@ Das Festival als solches besitzt außerdem ein Gesamtbudget, zur übersichtliche
 Das Programm
 * Besteht aus Stage und zugewiesener Liste von TimeSlots
 
-### 4.1.1 Geschäftsregeln
+### 4.1.1 Bühnenverwaltung
+* Stages können erfasst, geändert und gelöscht werden
+* Die ID entspricht der Bühnennummer und kann zurückgegeben werden
+* Bühnen sind im Tagesprogramm erfasst, den Bühnen können Bands zugewiesen werden
+
+### 4.1.2 TimeSlot
+* Besteht aus Startzeit (Stunden, Minuten, Sekunden), Dauer und spielende Band
+
+### 4.1.3 Geschäftsregeln
 * Event verfügt über Start und Enddatum, Start und Endzeit für jeden Tag und eine einheitliche Pause in Minuten (z.B. 30Min.).
 * Zwischen zwei Timeslots gibt es immer eine Pause mit gleicher Länge
 * Im Line-Up sind die Start- und die Endzeit eines Bandauftritts konfigurierbar.
@@ -109,9 +119,9 @@ Das Programm
 
 ## 4.2 Ticketverwaltung
 Tickets haben verschiedene Preisklassen und Kategorien:
-* Campingticket (3 Tage)
-* Tagesticket (1 Tag)
-* VIP Ticket (3 Tage, besseres Festival- und Campingerlebnis)
+* Campingticket (gültig an allen Tagen)
+* Tagesticket (Gültigkeit: 1 Tag)
+* VIP Ticket (gültig an allen Tagen, besseres Festival- und Campingerlebnis)
 
 Bei einer Überschreitung eines gewissen Prozentsatzes von verfügbaren Tickets wird die Preisklasse angehoben. Die Prozentsätze und das Ticketkontingent und die einzelnen Ticketpreise können variabel definiert werden. Außerdem können Preisklassen manuell nach der Eventerstellung angepasst werden.
 
@@ -135,20 +145,12 @@ Die Kundenverwaltung bietet folgende Funktionalitäten:
 * Hinzufügen von gekauften Tickets zum Kundeninventar
 * Hinzufügen einer Adresse
 
-### 4.3.1 Geschäftsregeln
-* Beim Ticketverkauf wird der Warenkorb des Kunden geleert und die gekauften Tickets werden seinem Inventar hinzugefügt
-* Die Ausgaben des Kunden werden erfasst
-* Die Kosten für den Ticketkauf werden seinen Ausgaben hinzugerechnet
-
-### 4.4 Adressverwaltung
+### 4.3.1 Adressverwaltung
 Die Adressverwaltung bietet folgende Funktionalitäten:
 * Adressinformationen können erfasst, geändert, gelöscht und zurückgegeben werden
 * Zwei Adressen können zur Überprüfung miteinander verglichen werden
 
-## 4.5 Bühnenverwaltung
-* Stages können erfasst, geändert und gelöscht werden
-* Die ID entspricht der Bühnennummer und kann zurückgegeben werden
-* Bühnen sind im Tagesprogramm erfasst, den Bühnen können Bands zugewiesen werden
-
-### 4.5.1 TimeSlot
-* Besteht aus Startzeit (Stunden, Minuten, Sekunden), Dauer und spielende Band
+### 4.3.2 Geschäftsregeln
+* Beim Ticketverkauf wird der Warenkorb des Kunden geleert und die gekauften Tickets werden seinem Inventar hinzugefügt
+* Die Ausgaben des Kunden werden erfasst
+* Die Kosten für den Ticketkauf werden seinen Ausgaben hinzugerechnet
