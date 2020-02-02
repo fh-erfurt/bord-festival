@@ -313,21 +313,21 @@ public class TicketManager {
                     numberOfDayTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {
-                    throw new TicketNotAvailableException("Not all tickets are available in the cart");
+                    throw new TicketNotAvailableException("Not enough day-tickets available");
                 }
             } else if (ticketType == Ticket.TicketType.CAMPING) {
                 if (isAvailable(ticketType, numberOfCampingTicketsSold)) {
                     numberOfCampingTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {
-                    throw new TicketNotAvailableException("Not all tickets are available in the cart");
+                    throw new TicketNotAvailableException("Not enough camping-tickets available");
                 }
             } else if(ticketType == Ticket.TicketType.VIP) {
                 if (isAvailable(ticketType, numberOfVipTicketsSold)) {
                     numberOfVipTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {
-                    throw new TicketNotAvailableException("Not all tickets are available in the cart");
+                    throw new TicketNotAvailableException("Not enough VIP-tickets available");
                 }
             }
             index++;
