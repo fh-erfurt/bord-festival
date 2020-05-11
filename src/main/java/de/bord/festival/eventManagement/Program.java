@@ -14,7 +14,7 @@ import java.util.Map;
 import static java.time.temporal.ChronoUnit.MINUTES;
 
 /**
- * It is a help class to the class LineUp, should not be used outside of package
+ * Help class of LineUp, should not be used outside of package
  * Contains collection of timeSlots with corresponding stages
  *
  * @author klass
@@ -32,7 +32,7 @@ class Program {
     /**
      * Adds new stage to the event
      *
-     * @param stage the object should be added
+     * @param stage
      */
     public void addStage(Stage stage) {
         programsForStages.put(stage, new LinkedList<>());
@@ -41,8 +41,8 @@ class Program {
     /**
      * Adds band to the event, is a help method for LineUp class
      *
-     * @param band           a band should be added
-     * @param minutesOnStage minutes of play on the stage
+     * @param band           band that should be added
+     * @param minutesOnStage minutes of playtime on the stage
      * @return an object EventInfo, which contains stage, and time
      * @throws TimeSlotCantBeFoundException if the band plays on another stage at the same time
      */
@@ -73,12 +73,12 @@ class Program {
     }
 
     /**
-     * Creates a new EventInfo object with time as start time od event
+     * Creates a new EventInfo object with start time and stage
      *
-     * @param currentListOfTimeSlots list in which should be added new one
-     * @param band                   which should be checkt, if it does not play on another stage at same time
+     * @param currentListOfTimeSlots new EventInfo is added to this list
+     * @param band                   cannot play on the same time at a different stage
      * @param currentStage           stage which should be a part of EvenetInfo object
-     * @param minutesOnStage         time will be checked if there is a matching gap till end of day
+     * @param minutesOnStage         will be checked for a matching time gap till end of day
      * @return EventInfo if all requirements are met, null otherwise
      * @throws TimeSlotCantBeFoundException if band plays on another stage at same time
      */
@@ -103,7 +103,6 @@ class Program {
      * @param time time should be checked
      * @throws TimeSlotCantBeFoundException if the band plays on another stage at the same time
      */
-
     private void doesAlreadyPlay(Band band, LocalTime time) throws TimeSlotCantBeFoundException {
 
         for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
@@ -137,13 +136,12 @@ class Program {
     }
 
     /**
-     * Compares offsets between (end time - last play) and duration of playing of new band
-     * Checks if the band have time to play on the certain day, on the certain stage
-     * until the end of the given time
+     * Compares offsets between (end time - last timeSlot) and duration on stage
+     * Checks if the band has time to play until the day is over
      *
      * @param minutesOnStage
      * @param previousTimePlusBreak previous time and given break between plays
-     * @return true, if th band has time to play, otherwise false
+     * @return if the band has time to play: true, otherwise: false
      */
 
     private boolean canPlayBeforeTheEndOfDay(long minutesOnStage, LocalTime previousTimePlusBreak) {
@@ -157,10 +155,10 @@ class Program {
     }
 
     /**
-     * Checks if on the stage already plays someone
+     * Checks if there is a band subscribed to a stage
      *
      * @param id id of the stage
-     * @return true if on the stage already plays someone, otherwise false
+     * @return if a band plays on the stage: true, otherwise: false
      */
     public boolean existOnStageTimeSlots(int id) {
         for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
@@ -174,7 +172,7 @@ class Program {
 
     /**
      * Removes stage from program
-     * Condition: only one stage exists in the list with the same address
+     * Condition: only one stage exists in the list with the same id
      *
      * @param id id of the stage
      */
@@ -187,8 +185,8 @@ class Program {
     }
 
     /**
-     * Is a help method for LineUp class method removeBand
-     * Removes band fromm all time slots
+     * Help method for LineUp class method removeBand
+     * Removes band from all time slots
      *
      * @param band the band should be removed
      */
@@ -217,7 +215,7 @@ class Program {
     }
 
     /**
-     * Removes band drom certain time slot at certain time
+     * Removes band from certain time slot
      *
      * @param band the band, which should be removed
      * @param time the time, the band should be removed

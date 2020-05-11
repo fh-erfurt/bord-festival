@@ -29,15 +29,12 @@ public class Address {
     public String getStreet() {
         return this.street;
     }
-
     public String getZip() {
         return this.zip;
     }
-
     public String getCity() {
         return this.city;
     }
-
     public String getCountry() {
         return this.country;
     }

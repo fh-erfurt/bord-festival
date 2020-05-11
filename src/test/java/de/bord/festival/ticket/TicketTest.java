@@ -66,7 +66,7 @@ public class TicketTest {
     @Test
     void should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice() throws PriceLevelException {
 
-        // given TicketManager with DayTicket dayticket.description = "day test"
+        // given TicketManager with DayTicket dayTicket.description = "day test"
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
 
@@ -79,7 +79,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_59_99_for_ticketManager1_campingTicket_getStdPrice_after_setPricelevel_() throws PriceLevelException, TicketManagerException, PriceLevelNotAvailableException {
+    void should_return_59_99_for_ticketManager1_campingTicket_getStdPrice_after_setPriceLevel_() throws PriceLevelException, PriceLevelNotAvailableException {
 
         // given
         HelpClasses helpClasses = new HelpClasses();
@@ -94,7 +94,7 @@ public class TicketTest {
 
     }
     @Test
-    void should_return_52_49_for_ticketManager1_vipTicket_getStdPrice_after_setTicketPrices_in_Constructor() throws PriceLevelException, TicketManagerException {
+    void should_return_52_49_for_ticketManager1_vipTicket_getStdPrice_after_setTicketPrices_in_Constructor() throws PriceLevelException{
 
         // given ( exampleTicketManager.vipTicket.stdPrice = 100.00 )
         HelpClasses helpClasses = new HelpClasses();
@@ -107,14 +107,14 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_182_47000000000003_for_ticketManager1_getIncomeTicketSales() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_182_47000000000003_for_ticketManager1_getIncomeTicketSales() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given ( exampleTicketManager.vipTicket.stdPrice = 100.00 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets();
 
         // when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         // then
         assertEquals(182.47000000000003, ticketManager1.getIncomeTicketSales());
@@ -122,14 +122,14 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_10_for_ticketManager1_getNumberOfDayTickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_10_for_ticketManager1_getNumberOfDayTickets() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
 
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets();
 
 
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         assertEquals(10, ticketManager1.getNumberOfDayTickets());
 
@@ -137,14 +137,14 @@ public class TicketTest {
 
 
     @Test
-    void should_return_9_for_ticketManager1_getNumberOfDayticketsLeft() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
-        // given ( exampleTicketManager.getnDaytickets = 10 )
+    void should_return_9_for_ticketManager1_getNumberOfDayTicketsLeft() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
+        // given ( exampleTicketManager.getNumberOfDayTickets = 10 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets(); //1 * DayTicket in Cart
 
         // when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         // then
         assertEquals(9, ticketManager1.getNumberOfDayTicketsLeft());
@@ -152,14 +152,45 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_1_for_ticketManager1_getNumberOfSoldDaytickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
-        // given ( exampleTicketManager.getnDaytickets = 10 )
+    void should_return_true_for_ticketManager1_isAvailable() throws  MailException, PriceLevelException, ClientNameException, TicketNotAvailableException {
+        // given ( exampleTicketManager.getNumberOfDayTickets = 2 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets(); //1 * DayTicket in Cart
 
         // when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
+
+        // then
+        assertEquals(true, ticketManager1.isAvailable(Ticket.TicketType.DAY, 1));
+
+    }
+
+    @Test
+    void should_return_false_for_ticketManager1_isAvailable() throws MailException, PriceLevelException, ClientNameException, TicketNotAvailableException {
+        // given ( example2TicketManager.getNumberOfDayTickets = 2 )
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.example2TicketManager();
+        Client client1 = helpClasses.exampleClientWith4Tickets(); //1 * DayTicket in Cart
+        client1.addTicket(Ticket.TicketType.DAY, ticketManager1);
+
+        // when
+        ticketManager1.sellTickets(client1);
+
+        // then
+        assertEquals(false, ticketManager1.isAvailable(Ticket.TicketType.DAY, 2));
+
+    }
+
+    @Test
+    void should_return_1_for_ticketManager1_getNumberOfSoldDayTickets() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
+        // given ( exampleTicketManager.getNumberOfDayTickets = 10 )
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.exampleTicketManager();
+        Client client1 = helpClasses.exampleClientWith4Tickets(); // 1 * DayTicket in Cart
+
+        // when
+        ticketManager1.sellTickets(client1);
 
         // then
         assertEquals(1, ticketManager1.getNumberOfSoldDayTickets());
@@ -167,14 +198,14 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_2_for_ticketManager1_getNumberOfSoldCampingtickets() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
-        // given ( exampleTicketManager.getnCampingtickets = 20 )
+    void should_return_2_for_ticketManager1_getNumberOfSoldCampingTickets() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
+        // given ( exampleTicketManager.getNumberOfCampingTickets = 20 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets(); // 2 * CampingTicket in Cart
 
         // when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         // then
         assertEquals(2, ticketManager1.getNumberOfSoldCampingTickets());
@@ -182,14 +213,14 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_18_for_ticketManager1_getNumberOfCampingticketsLeft() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
-        // given ( exampleTicketManager.getnCampingtickets = 20 )
+    void should_return_18_for_ticketManager1_getNumberOfCampingTicketsLeft() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
+        // given ( exampleTicketManager.getNumberOfCampingTickets = 20 )
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets(); // 2 * CampingTicket in Cart
 
         // when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         // then
         assertEquals(18, ticketManager1.getNumberOfCampingTicketsLeft());
@@ -197,70 +228,70 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_4_for_c1_getCartSize() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException {
+    void should_return_4_for_client1_getCartSize() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
 
         HelpClasses helpClasses = new HelpClasses();
 
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets();
 
-        assertEquals(4, c1.getCartSize());
+        assertEquals(4, client1.getCartSize());
 
     }
 
     @Test
-    void should_return_0_for_c2_getCartSize() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_0_for_client1_getCartSize() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets();
 
         // when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         // then
-        assertEquals(0, c1.getCartSize());
+        assertEquals(0, client1.getCartSize());
 
     }
 
     @Test
-    void should_return_182_47000000000003_for_c2_getExpenditure() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_182_47000000000003_for_client1_getExpenditure() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets();
 
         // when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         // then
-        assertEquals(182.47000000000003, c1.getExpenditure());
+        assertEquals(182.47000000000003, client1.getExpenditure());
 
     }
 
     @Test
-    void should_return_4_for_c2_get_ticketsSize() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_4_for_client1_get_ticketsSize() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClientWith4Tickets();
+        Client client1 = helpClasses.exampleClientWith4Tickets();
 
         // when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         // then
-        assertEquals(4, c1.getInventorySize());
+        assertEquals(4, client1.getInventorySize());
 
     }
 
     @Test
-    void should_return_0_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_0_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
-        Client c1 = helpClasses.exampleClient();
-        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        Client client1 = helpClasses.exampleClient();
+        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
 
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         assertEquals(0, ticketManager1.getActualPriceLevelIndex());
 
@@ -268,20 +299,20 @@ public class TicketTest {
 
 
     @Test
-    void should_return_40_for_ticketManager1_totalNumberOfSoldTicketsInPercent() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_40_for_ticketManager1_totalNumberOfSoldTicketsInPercent() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
-        Client c1 = helpClasses.exampleClient();
+        Client client1 = helpClasses.exampleClient();
 
 
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.VIP,ticketManager1);
-        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.VIP,ticketManager1);
+        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
 
         //when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         //then
         assertEquals(40, ticketManager1.totalNumberOfSoldTicketsInPercent());
@@ -290,29 +321,26 @@ public class TicketTest {
 
 
     @Test
-    void should_return_2_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_2_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
-        Client c1 = helpClasses.exampleClient();
+        Client client1 = helpClasses.exampleClient();
 
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-
-
-
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
 
         //when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
-        c1.addTicket(Ticket.TicketType.VIP,ticketManager1);
-        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        client1.addTicket(Ticket.TicketType.VIP,ticketManager1);
+        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
 
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         double test = ticketManager1.totalNumberOfSoldTicketsInPercent();
 
@@ -323,22 +351,22 @@ public class TicketTest {
 
 
     @Test
-    void should_return_1_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_1_for_ticketManager1_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
-        Client c1 = helpClasses.exampleClient();
+        Client client1 = helpClasses.exampleClient();
 
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
 
 
         //when
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
 
         //then
         assertEquals(1, ticketManager1.getActualPriceLevelIndex());
@@ -346,27 +374,63 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_0_for_ticketManager1_getActualPriceLevelIndexAfter_4_Sells() throws PriceLevelException, MailException, ClientNameException, TicketException, TicketManagerException, TicketNotAvailableException {
+    void should_return_0_for_ticketManager1_getActualPriceLevelIndexAfter_4_Sells() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
         // given
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
-        Client c1 = helpClasses.exampleClient();
+        Client client1 = helpClasses.exampleClient();
 
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        c1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
 
 
         //when
-        ticketManager1.sellTickets(c1);
-        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
-        ticketManager1.sellTickets(c1);
-        c1.addTicket(Ticket.TicketType.DAY,ticketManager1);
-        ticketManager1.sellTickets(c1);
-        c1.addTicket(Ticket.TicketType.VIP,ticketManager1);
-        ticketManager1.sellTickets(c1);
+        ticketManager1.sellTickets(client1);
+        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        ticketManager1.sellTickets(client1);
+        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        ticketManager1.sellTickets(client1);
+        client1.addTicket(Ticket.TicketType.VIP,ticketManager1);
+        ticketManager1.sellTickets(client1);
 
         //then
         assertEquals(0, ticketManager1.getActualPriceLevelIndex());
+
+    }
+
+    @Test
+    void should_return_0_for_ticketManager1_two_same_pricelevels_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
+        // given
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.example3TicketManager();
+        Client client1 = helpClasses.exampleClient();
+
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+
+        //when
+        ticketManager1.sellTickets(client1);
+
+        //then
+        assertEquals(0, ticketManager1.getActualPriceLevelIndex());
+
+    }
+
+    @Test
+    void should_return_1_for_ticketManager1_two_same_pricelevels_getActualPriceLevelIndex() throws PriceLevelException, MailException, ClientNameException, TicketNotAvailableException {
+        // given
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.example3TicketManager();
+        Client client1 = helpClasses.exampleClient();
+
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+
+        //when
+        ticketManager1.sellTickets(client1);
+
+
+        //then
+        assertEquals(1, ticketManager1.getActualPriceLevelIndex());
 
     }
 

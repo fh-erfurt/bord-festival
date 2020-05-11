@@ -4,7 +4,7 @@ import de.bord.festival.eventManagement.Event;
 import de.bord.festival.ticket.Ticket.TicketType;
 
 /**
- * gives information about ticket price and description of the current price level
+ * gives information about ticket price and current price level
  * ticketType = TicketType.CAMPING
  */
 

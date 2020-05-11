@@ -3,7 +3,7 @@ package de.bord.festival.ticket;
 import de.bord.festival.eventManagement.Event;
 
 /**
- * gives information about ticket price and description of the current price level
+ * gives information about ticket price and current price level
  * ticketType = TicketType.DAY
  */
 
