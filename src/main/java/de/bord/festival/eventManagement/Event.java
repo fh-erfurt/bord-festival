@@ -26,7 +26,7 @@ import java.util.LinkedList;
  *
  * it is recommended to set the last PercentageForPricelevel to 100.00
  */
-public class Event {
+public class Event implements IEvent {
 
 
     private TicketManager ticketManager;
