@@ -18,6 +18,6 @@ public interface IEvent {
     boolean removeBand(Band band);
     boolean removeBand(Band band, LocalDateTime dateAndTime);
     void addToTheActualCosts(double amount);
-    boolean sellTickets(Client client) throws TicketManagerException, TicketNotAvailableException;//ticketmanager
+    void sellTickets(Client client) throws  TicketNotAvailableException;//ticketmanager
     boolean setPriceLevel(int index) throws PriceLevelNotAvailableException;
 }
