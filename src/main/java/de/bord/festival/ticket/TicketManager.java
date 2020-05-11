@@ -167,7 +167,6 @@ public class TicketManager {
 
     /**
      * helper function for if statement
-     * @see updatePriceLevel()
      * @return returns whether the expected percentage has been reached
      */
    private boolean isPercentageOfSoldTicketsExceededAndIsTheNextPriceLevelExisting(){
@@ -270,7 +269,7 @@ public class TicketManager {
      * @param index
      * @return returns whether the change was successful
      */
- /*VOID???*/ public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {
+        public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {
         if(isPriceLevelUpdateManualAndThePriceLevelIndexInOnlyValueArea(index)){
             actualPriceLevel = index;
             setTicketPrices();
@@ -283,7 +282,7 @@ public class TicketManager {
 
     private boolean isPriceLevelUpdateManualAndThePriceLevelIndexInOnlyValueArea(int index) throws PriceLevelNotAvailableException {
         if(!PriceLevelIndexInOnlyValueArea(index)){
-            throw new PriceLevelNotAvailableException("The index is invalid"); ////ist das richtig?
+            throw new PriceLevelNotAvailableException("The index is invalid");
         }
        else if(!getAutomaticPriceLevelChange()){
 
@@ -357,7 +356,6 @@ public class TicketManager {
 
     /**
      * helper functions for if statement
-     * @see sellTickets(Client client)
      * @param client
      * @param index
      * @return true if the ticket type is correct and the corresponding ticket type is available
