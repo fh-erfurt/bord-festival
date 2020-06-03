@@ -1,11 +1,14 @@
-package de.bord.festival.address;
+package de.bord.festival.models;
 
-public class Address {
+import javax.persistence.Entity;
+
+@Entity
+public class Address extends AbstractModel {
     private String country;
     private String city;
     private String street;
     private String zip;
-
+    public Address(){}
     public Address(String country, String city, String street, String zip) {
         this.country = country;
         this.city = city;

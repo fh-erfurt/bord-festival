@@ -1,12 +1,11 @@
 package de.bord.festival.eventManagement;
 
-import de.bord.festival.address.Address;
+import de.bord.festival.models.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;
 import de.bord.festival.exception.*;
 import de.bord.festival.stageManagement.Stage;
-import de.bord.festival.ticket.PriceLevel;
 import de.bord.festival.ticket.Ticket;
 import de.bord.festival.ticket.TicketManager;
 

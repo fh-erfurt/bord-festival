@@ -1,6 +1,6 @@
 package de.bord.festival.help;
 
-import de.bord.festival.address.Address;
+import de.bord.festival.models.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
 import de.bord.festival.client.Client;

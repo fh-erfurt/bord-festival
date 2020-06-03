@@ -1,6 +1,6 @@
 package de.bord.festival.client;
 
-import de.bord.festival.address.Address;
+import de.bord.festival.models.Address;
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
 import de.bord.festival.help.HelpClasses;
