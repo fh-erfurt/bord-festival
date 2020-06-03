@@ -1,22 +1,21 @@
 package de.bord.festival.ticket;
 
 import de.bord.festival.client.Client;
+import de.bord.festival.exception.PriceLevelNotAvailableException;
+import de.bord.festival.exception.TicketNotAvailableException;
 
 public interface ITicketManager {
+    Ticket getTicket(Ticket.TicketType type);
 
-    public Ticket getTicket(Ticket.TicketType type);
+    boolean isAvailable(Ticket.TicketType type, int numberOfCartTickets);
 
-    public boolean isAvailable(Ticket.TicketType type, int numberOfCartTickets);
+    void setTicketDescription(String description, Ticket.TicketType type);
 
-    public void setTicketDescription(String description, Ticket.TicketType type);
+    void setTicketStdPrice(double stdPrice, Ticket.TicketType type);
 
-    public void setTicketStdPrice(double stdPrice, Ticket.TicketType type);
+    void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic);
 
-    public void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic);
+    boolean setPriceLevel(int index) throws PriceLevelNotAvailableException;
 
-    public boolean setPriceLevel(int index);
-
-    public PriceLevel getPriceLevel(int index);
-
-    public boolean sellTickets(Client client);
+    void sellTickets(Client client) throws TicketNotAvailableException;
 }
