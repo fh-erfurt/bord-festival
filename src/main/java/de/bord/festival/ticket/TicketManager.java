@@ -39,7 +39,7 @@ import java.util.*;
  *
  */
 
-public class TicketManager {
+public class TicketManager implements ITicketManager{
 
     private ArrayList<PriceLevel> priceLevels;
 
