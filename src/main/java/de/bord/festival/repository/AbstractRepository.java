@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Is responsible for basic database operations
+ *
  * @param <T> is type of object which should use database operations
  */
 public abstract class AbstractRepository<T extends AbstractModel> {
@@ -32,6 +33,7 @@ public abstract class AbstractRepository<T extends AbstractModel> {
         return model.getId();
 
     }
+
     public void update(T model, String argument) {
         EntityManager entityManager = dataSource.getEntityManager();
         entityManager.getTransaction().begin();
@@ -45,32 +47,30 @@ public abstract class AbstractRepository<T extends AbstractModel> {
     public void delete(T model) {
         EntityManager entityManager = dataSource.getEntityManager();
         entityManager.getTransaction().begin();
-        model=entityManager.merge(model);
+        model = entityManager.merge(model);
 
         entityManager.remove(model);
         entityManager.getTransaction().commit();
     }
 
-     public T findOne(T model){
-         EntityManager entityManager = dataSource.getEntityManager();
-         return (T) entityManager.find(model.getClass(), model.getId());
-     }
-
-
-    public List<T> findAll(String className){
+    public T findOne(T model) {
         EntityManager entityManager = dataSource.getEntityManager();
-        Query query = entityManager.createQuery(
-                "SELECT c FROM "+className+" c");
-        return  query.getResultList();
+        return (T) entityManager.find(model.getClass(), model.getId());
     }
 
-    public void delete( List<T> entries )
-    {
+
+    public List<T> findAll(String className) {
+        EntityManager entityManager = dataSource.getEntityManager();
+        Query query = entityManager.createQuery(
+                "SELECT c FROM " + className + " c");
+        return query.getResultList();
+    }
+
+    public void delete(List<T> entries) {
         EntityManager entityManager = dataSource.getEntityManager();
         entityManager.getTransaction().begin();
-        for( T entry : entries )
-        {
-            entityManager.remove( entry );
+        for (T entry : entries) {
+            entityManager.remove(entry);
         }
         entityManager.getTransaction().commit();
     }
