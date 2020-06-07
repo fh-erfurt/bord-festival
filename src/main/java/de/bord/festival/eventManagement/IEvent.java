@@ -2,7 +2,7 @@ package de.bord.festival.eventManagement;
 
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
-import de.bord.festival.client.Client;
+import de.bord.festival.models.Client;
 import de.bord.festival.exception.BudgetOverflowException;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.exception.*;

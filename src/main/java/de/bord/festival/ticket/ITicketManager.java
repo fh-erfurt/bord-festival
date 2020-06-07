@@ -1,6 +1,6 @@
 package de.bord.festival.ticket;
 
-import de.bord.festival.client.Client;
+import de.bord.festival.models.Client;
 import de.bord.festival.exception.PriceLevelNotAvailableException;
 import de.bord.festival.exception.TicketNotAvailableException;
 

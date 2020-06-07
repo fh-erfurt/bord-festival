@@ -1,5 +1,7 @@
-package de.bord.festival.client;
+package de.bord.festival.models;
 
+import de.bord.festival.client.IClient;
+import de.bord.festival.models.AbstractModel;
 import de.bord.festival.models.Address;
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
@@ -7,22 +9,29 @@ import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.Ticket;
 import de.bord.festival.ticket.TicketManager;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.util.LinkedList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class Client implements IClient {
+@Entity
+public class Client extends AbstractModel implements IClient {
 
     private String firstname;
     private String lastname;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String mail;
     private LinkedList<Ticket> inventory;
     private LinkedList<Ticket> cart;
     private double expenditure = 0.0;
+    public Client(){}
 
 
-    private Client(String firstname, String lastname, String mail, int id, Address address)
+
+    public Client(String firstname, String lastname, String mail, Address address)
     {
         inventory = new LinkedList<Ticket>();
         cart = new LinkedList<Ticket>();
@@ -32,13 +41,13 @@ public class Client implements IClient {
         this.mail = mail;
     }
 
-    public static Client getNewClient(String firstname, String lastname, String mail, int id, Address address)
+    public static Client getNewClient(String firstname, String lastname, String mail, Address address)
             throws ClientNameException, MailException {
         nameCheck(firstname);
         nameCheck(lastname);
         mailCheck(mail);
 
-        return new Client(firstname, lastname, mail, id, address);
+        return new Client(firstname, lastname, mail, address);
     }
 
     /**
@@ -137,4 +146,37 @@ public class Client implements IClient {
 
     public double getExpenditure(){return expenditure;}
 
+    @Override
+    public boolean equals(Object object) {
+        if(object instanceof Client) {
+            Client client = (Client)object;
+            return this.firstname.equals(client.getFirstname())
+                    && this.lastname.equals(client.getLastname())
+                    && this.mail.equals(client.getMail());
+        }
+        return false;
+    }
+
+    public String getFirstname() {
+        return this.firstname;
+    }
+    public String getLastname() {
+        return this.lastname;
+    }
+    public String getMail() {
+        return this.mail;
+    }
+
+
+    public void setFirstname(String firstname){
+        this.firstname=firstname;
+    }
+    public void setLastname(String lastname){
+        this.lastname=lastname;
+    }
+    public void setMail(String mail){
+        this.mail=mail;
+    }
+
 }
+

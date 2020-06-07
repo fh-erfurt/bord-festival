@@ -1,6 +1,10 @@
 package de.bord.festival.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Address extends AbstractModel {
@@ -9,6 +13,8 @@ public class Address extends AbstractModel {
     private String street;
     private String zip;
     public Address(){}
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Client>Clients;
     public Address(String country, String city, String street, String zip) {
         this.country = country;
         this.city = city;

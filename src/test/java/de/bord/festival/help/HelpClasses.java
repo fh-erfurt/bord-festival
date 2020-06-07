@@ -3,7 +3,7 @@ package de.bord.festival.help;
 import de.bord.festival.models.Address;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
-import de.bord.festival.client.Client;
+import de.bord.festival.models.Client;
 import de.bord.festival.eventManagement.Event;
 import de.bord.festival.eventManagement.LineUp;
 import de.bord.festival.exception.*;
@@ -153,7 +153,7 @@ public class HelpClasses {
     }
 
     public Client exampleClient() throws MailException, ClientNameException {
-        return Client.getNewClient("Max", "Muster","max@test.de",1,getAddress());
+        return Client.getNewClient("Max", "Muster","max@test.de",getAddress());
     }
 
 }

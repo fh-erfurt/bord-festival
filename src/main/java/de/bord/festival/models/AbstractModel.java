@@ -7,7 +7,7 @@ import java.util.Date;
 @Entity
 public class AbstractModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
     public Long getId() {
