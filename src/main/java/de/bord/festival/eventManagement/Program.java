@@ -1,10 +1,10 @@
 package de.bord.festival.eventManagement;
 
-import de.bord.festival.band.Band;
-import de.bord.festival.band.EventInfo;
+import de.bord.festival.models.Band;
+import de.bord.festival.models.EventInfo;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
-import de.bord.festival.stageManagement.Stage;
-import de.bord.festival.stageManagement.TimeSlot;
+import de.bord.festival.models.Stage;
+import de.bord.festival.models.TimeSlot;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -14,12 +14,12 @@ import java.util.Map;
 import static java.time.temporal.ChronoUnit.MINUTES;
 
 /**
- * Help class of LineUp, should not be used outside of package
+ * Help class of LineUp
  * Contains collection of timeSlots with corresponding stages
  *
  * @author klass
  */
-class Program {
+public class Program {
     private Map<Stage, LinkedList<TimeSlot>> programsForStages;
     private LineUp lineUp;//to access the lineUp fields
 

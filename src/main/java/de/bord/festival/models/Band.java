@@ -1,35 +1,34 @@
-package de.bord.festival.band;
+package de.bord.festival.models;
 
-
+import javax.persistence.Entity;
 import java.time.LocalDate;
-
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.LinkedList;
 
-public class Band {
-    private int id;
+@Entity
+public class Band extends AbstractModel{
     private String name;
     private String phoneNumber;
     private double priceProEvent;
     private LinkedList<EventInfo> eventInfos;
 
-    public Band(int id, String name, String phoneNumber, double priceProEvent) {
-        eventInfos = new LinkedList<>();
-        this.id = id;
+    public Band(String name, String phoneNumber, double priceProEvent) {
+        this.eventInfos = new LinkedList<>();
+        this.name = name;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.priceProEvent = priceProEvent;
     }
 
-
-    public double getPriceProEvent() {
-        return priceProEvent;
+    public double getPriceProEvent() { return priceProEvent; }
+    public int getNumberOfEventInfo(){ return eventInfos.size(); }
+    public String getName() {
+        return name;
     }
+    public String getPhoneNumber() {return phoneNumber; }
 
-    public int getNumberOfEventInfo(){
-        return eventInfos.size();
-    }
+    public void setPhoneNumber(String newNumber) { this.phoneNumber = newNumber; }
 
     /**
      * @param eventInfo adds new time, date and place of play
@@ -37,7 +36,6 @@ public class Band {
     public void addEventInfo(EventInfo eventInfo) {
         eventInfos.add(eventInfo);
     }
-
 
     /**
      * Checks if the given band-name is equal to band-name of this
@@ -51,10 +49,6 @@ public class Band {
             return this.name.equals(band.getName());
         }
         return false;
-    }
-
-    public String getName() {
-        return name;
     }
 
     /**
