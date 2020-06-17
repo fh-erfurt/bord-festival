@@ -6,8 +6,8 @@ import de.bord.festival.band.EventInfo;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.Client;
 import de.bord.festival.stageManagement.Stage;
-import de.bord.festival.ticket.Ticket;
-import de.bord.festival.ticket.TicketManager;
+import de.bord.festival.models.Ticket;
+import de.bord.festival.models.TicketManager;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

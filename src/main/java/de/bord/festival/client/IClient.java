@@ -2,8 +2,8 @@ package de.bord.festival.client;
 
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.TicketNotAvailableException;
-import de.bord.festival.ticket.Ticket;
-import de.bord.festival.ticket.TicketManager;
+import de.bord.festival.models.Ticket;
+import de.bord.festival.models.TicketManager;
 
 public interface IClient {
 

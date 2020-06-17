@@ -1,18 +1,16 @@
 package de.bord.festival.models;
 
 import de.bord.festival.client.IClient;
-import de.bord.festival.models.AbstractModel;
-import de.bord.festival.models.Address;
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
 import de.bord.festival.exception.TicketNotAvailableException;
-import de.bord.festival.ticket.Ticket;
-import de.bord.festival.ticket.TicketManager;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -24,8 +22,10 @@ public class Client extends AbstractModel implements IClient {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String mail;
-    private LinkedList<Ticket> inventory;
-    private LinkedList<Ticket> cart;
+    @OneToMany
+    private List<Ticket> inventory;
+    @OneToMany
+    private List<Ticket> cart;
     private double expenditure = 0.0;
     public Client(){}
 

@@ -3,6 +3,7 @@ package de.bord.festival.ticket;
 import de.bord.festival.models.Client;
 import de.bord.festival.exception.PriceLevelNotAvailableException;
 import de.bord.festival.exception.TicketNotAvailableException;
+import de.bord.festival.models.Ticket;
 
 public interface ITicketManager {
     Ticket getTicket(Ticket.TicketType type);

@@ -13,8 +13,7 @@ public class Address extends AbstractModel {
     private String street;
     private String zip;
     public Address(){}
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private List<Client>Clients;
+
     public Address(String country, String city, String street, String zip) {
         this.country = country;
         this.city = city;

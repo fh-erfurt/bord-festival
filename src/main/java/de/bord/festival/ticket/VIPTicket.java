@@ -1,6 +1,6 @@
 package de.bord.festival.ticket;
 
-import de.bord.festival.eventManagement.Event;
+import de.bord.festival.models.Ticket;
 
 /**
  * gives information about ticket price and current price level

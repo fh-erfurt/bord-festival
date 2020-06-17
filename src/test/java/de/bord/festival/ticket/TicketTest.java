@@ -2,6 +2,9 @@ package de.bord.festival.ticket;
 
 import de.bord.festival.models.Client;
 import de.bord.festival.exception.*;
+import de.bord.festival.models.PriceLevel;
+import de.bord.festival.models.Ticket;
+import de.bord.festival.models.TicketManager;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -1,19 +1,22 @@
-package de.bord.festival.ticket;
+package de.bord.festival.models;
 
 import de.bord.festival.exception.PriceLevelException;
-import de.bord.festival.exception.PriceLevelException;
 
-import java.util.Collections;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *  Contains for all tickets: prices for certain price levels and a percentage at which the next price level starts
  */
-public class PriceLevel implements Comparable<PriceLevel>{
+@Entity
+public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
 
    private double dayTicketPrice;
    private double CampingTicketPrice;
    private double VipTicketPrice;
-
+   protected PriceLevel(){}
+    @ManyToOne
+    private TicketManager actualTicketPrices;
     /**
      * the price level is valid until the percentage of sold tickets is exceeded
      */

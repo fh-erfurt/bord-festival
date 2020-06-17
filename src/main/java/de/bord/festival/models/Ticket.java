@@ -1,13 +1,15 @@
-package de.bord.festival.ticket;
+package de.bord.festival.models;
 
 import de.bord.festival.eventManagement.Event;
+
+import javax.persistence.Entity;
 
 /**
  * gives information about ticket price and current price level
  * for the selected ticket type (DAY, CAMPING, VIP)
  */
-
-public abstract class Ticket {
+@Entity
+public abstract class Ticket extends AbstractModel {
 
     public enum TicketType {DAY, CAMPING, VIP}
 

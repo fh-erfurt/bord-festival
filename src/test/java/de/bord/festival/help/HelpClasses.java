@@ -1,9 +1,8 @@
 package de.bord.festival.help;
 
-import de.bord.festival.models.Address;
+import de.bord.festival.models.*;
 import de.bord.festival.band.Band;
 import de.bord.festival.band.EventInfo;
-import de.bord.festival.models.Client;
 import de.bord.festival.eventManagement.Event;
 import de.bord.festival.eventManagement.LineUp;
 import de.bord.festival.exception.*;

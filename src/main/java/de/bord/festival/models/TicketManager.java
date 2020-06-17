@@ -1,9 +1,12 @@
-package de.bord.festival.ticket;
+package de.bord.festival.models;
 
-import de.bord.festival.models.Client;
 import de.bord.festival.exception.PriceLevelNotAvailableException;
 import de.bord.festival.exception.TicketNotAvailableException;
+import de.bord.festival.ticket.*;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import java.util.*;
 
 /**
@@ -38,13 +41,19 @@ import java.util.*;
  *
  *
  */
+@Entity
+public class TicketManager extends AbstractModel implements ITicketManager {
+    @OneToMany(
+            mappedBy = "actualTicketPrices"
+    )
+    private List<PriceLevel> priceLevels;
+    public TicketManager(){}
 
-public class TicketManager implements ITicketManager{
-
-    private ArrayList<PriceLevel> priceLevels;
-
+    @Transient
     private DayTicket dayTicket;
+    @Transient
     private CampingTicket campingTicket;
+    @Transient
     private VIPTicket vipTicket;
 
     private int actualPriceLevel = 0;
