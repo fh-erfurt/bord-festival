@@ -8,6 +8,8 @@ import de.bord.festival.models.TicketManager;
 import de.bord.festival.repository.PriceLevelRepository;
 import de.bord.festival.repository.TicketManagerRepository;
 import de.bord.festival.ticket.CampingTicket;
+import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.ticket.VIPTicket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
