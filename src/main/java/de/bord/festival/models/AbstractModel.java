@@ -8,9 +8,9 @@ import java.util.Date;
 public class AbstractModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+    protected long id;
 
-    public Long getId() {
+    public long getId() {
         return this.id;
     }
 

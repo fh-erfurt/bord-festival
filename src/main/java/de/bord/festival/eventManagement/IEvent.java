@@ -1,12 +1,12 @@
 package de.bord.festival.eventManagement;
 
-import de.bord.festival.band.Band;
-import de.bord.festival.band.EventInfo;
+import de.bord.festival.models.Band;
+import de.bord.festival.models.EventInfo;
 import de.bord.festival.models.Client;
 import de.bord.festival.exception.BudgetOverflowException;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.exception.*;
-import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.models.Stage;
 
 import java.time.LocalDateTime;
 

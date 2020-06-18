@@ -1,11 +1,11 @@
 package de.bord.festival.eventManagement;
 
 import de.bord.festival.models.Address;
-import de.bord.festival.band.Band;
-import de.bord.festival.band.EventInfo;
+import de.bord.festival.models.Band;
+import de.bord.festival.models.EventInfo;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.Client;
-import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.models.Stage;
 import de.bord.festival.models.Ticket;
 import de.bord.festival.models.TicketManager;
 
@@ -82,7 +82,7 @@ public class Event implements IEvent {
      * @return true if the band is affordable for the budget of an event, otherwise false
      */
     private boolean isNewBandAffordable(Band band) {
-        return actualCosts + band.getPriceProEvent() <= budget;
+        return actualCosts + band.getPricePerEvent() <= budget;
     }
 
     /**
@@ -140,7 +140,7 @@ public class Event implements IEvent {
      */
     public boolean removeBand(Band band) {
         if (lineUp.removeBand(band)) {
-            actualCosts -= band.getPriceProEvent();
+            actualCosts -= band.getPricePerEvent();
             band.removeEventInfo();
             return true;
         }
@@ -160,7 +160,7 @@ public class Event implements IEvent {
             band.removeEventInfo(dateAndTime);
             //if band does not play on event anymore
             if (playsBandOnEvent(band)) {
-                actualCosts -= band.getPriceProEvent();
+                actualCosts -= band.getPricePerEvent();
             }
             return true;
         }
