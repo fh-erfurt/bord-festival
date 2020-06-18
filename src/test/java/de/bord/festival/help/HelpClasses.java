@@ -1,12 +1,12 @@
 package de.bord.festival.help;
 
 import de.bord.festival.models.*;
-import de.bord.festival.band.Band;
-import de.bord.festival.band.EventInfo;
+import de.bord.festival.models.Band;
+import de.bord.festival.models.EventInfo;
 import de.bord.festival.eventManagement.Event;
 import de.bord.festival.eventManagement.LineUp;
 import de.bord.festival.exception.*;
-import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.models.Stage;
 import de.bord.festival.ticket.*;
 
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class HelpClasses {
     public Band getBand() {
-        return new Band(1, "GOD IS AN ASTRONAUT", "920", 500);
+        return new Band("GOD IS AN ASTRONAUT", "920", 500);
 
     }
 
@@ -27,13 +27,13 @@ public class HelpClasses {
     }
 
     public Band getBand(String name, double priceProEvent) {
-        return new Band(5, name, "911", priceProEvent);
+        return new Band(name, "911", priceProEvent);
 
     }
 
     public Stage getStage() {
 
-        return new Stage(1, "stage1");
+        return new Stage(1,"stage1");
 
     }
 

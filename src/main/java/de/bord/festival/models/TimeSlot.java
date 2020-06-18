@@ -1,18 +1,25 @@
-package de.bord.festival.stageManagement;
+package de.bord.festival.models;
 
-import de.bord.festival.band.Band;
+import de.bord.festival.models.Band;
+import de.bord.festival.models.AbstractModel;
 
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.time.LocalTime;
 
 
 /**
  * Contains band, time band should play and stage
  */
-public class TimeSlot {
+@Entity
+public class TimeSlot extends AbstractModel {
     private LocalTime time;
+    @ManyToOne
     private Band band;
     long minutesOnStage;
+
+    public TimeSlot(){}
 
     public TimeSlot(LocalTime time, Band band, long minutesOnStage) {
         this.minutesOnStage = minutesOnStage;

@@ -1,9 +1,9 @@
 package de.bord.festival.eventManagement;
 
-import de.bord.festival.band.Band;
-import de.bord.festival.band.EventInfo;
+import de.bord.festival.models.Band;
+import de.bord.festival.models.EventInfo;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
-import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.models.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -77,7 +77,7 @@ public class LineUp {
      */
     public boolean addStage(Stage stage) {
 
-        if (findStage(stage.getId()) != null) {
+        if (findStage(stage.getIdentifier()) != null) {
             return false;
         }
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
@@ -123,7 +123,7 @@ public class LineUp {
         if (!containsBand(band)) {
             bands.add(band);
             //the price for event should be changed only if the band is new
-            this.event.addToTheActualCosts(band.getPriceProEvent());
+            this.event.addToTheActualCosts(band.getPricePerEvent());
         }
         timeSlotWithStage.setDate(currentDate);
         return timeSlotWithStage;
@@ -203,7 +203,7 @@ public class LineUp {
      */
     public Stage findStage(int id) {
         for (int i = 0; i < stages.size(); i++) {
-            if (stages.get(i).getId() == id) {
+            if (stages.get(i).getIdentifier() == id) {
                 return stages.get(i);
             }
         }

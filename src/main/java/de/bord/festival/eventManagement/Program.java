@@ -1,10 +1,10 @@
 package de.bord.festival.eventManagement;
 
-import de.bord.festival.band.Band;
-import de.bord.festival.band.EventInfo;
+import de.bord.festival.models.Band;
+import de.bord.festival.models.EventInfo;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
-import de.bord.festival.stageManagement.Stage;
-import de.bord.festival.stageManagement.TimeSlot;
+import de.bord.festival.models.Stage;
+import de.bord.festival.models.TimeSlot;
 
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -163,7 +163,7 @@ class Program {
     public boolean existOnStageTimeSlots(int id) {
         for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
             Stage currentStage = entry.getKey();
-            if (currentStage.getId() == id) {
+            if (currentStage.getIdentifier() == id) {
                 return entry.getValue().isEmpty();
             }
         }
@@ -178,7 +178,7 @@ class Program {
      */
     public void removeStage(int id) {
         for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
-            if (entry.getKey().getId() == id) {
+            if (entry.getKey().getIdentifier() == id) {
                 programsForStages.remove(entry.getKey());
             }
         }

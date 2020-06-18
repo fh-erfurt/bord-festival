@@ -2,12 +2,12 @@ package de.bord.festival.eventManagement;
 
 import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.help.HelpClasses;
-import de.bord.festival.band.Band;
-import de.bord.festival.band.EventInfo;
+import de.bord.festival.models.Band;
+import de.bord.festival.models.EventInfo;
 import de.bord.festival.exception.BudgetOverflowException;
 import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
-import de.bord.festival.stageManagement.Stage;
+import de.bord.festival.models.Stage;
 import org.junit.jupiter.api.Test;
 
 
@@ -55,7 +55,7 @@ class EventTest {
         Event event = help.getValidNDaysEvent(3);
         Stage stage = help.getStage();
         event.addStage(stage);
-        event.removeStage(stage.getId());
+        event.removeStage(stage.getIdentifier());
         assertEquals(1, event.getNumberOfStages());
     }
 
