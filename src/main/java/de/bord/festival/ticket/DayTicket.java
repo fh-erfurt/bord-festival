@@ -2,11 +2,13 @@ package de.bord.festival.ticket;
 
 import de.bord.festival.models.Ticket;
 
+import javax.persistence.Entity;
+
 /**
  * gives information about ticket price and current price level
  * ticketType = TicketType.DAY
  */
-
+@Entity
 public class DayTicket extends Ticket {
 
 
@@ -19,6 +21,8 @@ public class DayTicket extends Ticket {
 
         this.ticketType = TicketType.DAY;
     }
+
+    public DayTicket(){}
 
     @Override
     public TicketType getTicketType() {

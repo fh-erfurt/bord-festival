@@ -3,12 +3,15 @@ package de.bord.festival.models;
 import de.bord.festival.eventManagement.Event;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  * gives information about ticket price and current price level
  * for the selected ticket type (DAY, CAMPING, VIP)
  */
 @Entity
+@Inheritance (strategy= InheritanceType.JOINED)
 public abstract class Ticket extends AbstractModel {
 
     public enum TicketType {DAY, CAMPING, VIP}
@@ -21,6 +24,8 @@ public abstract class Ticket extends AbstractModel {
         this.description = description;
         this.stdPrice = standardPrice;
     }
+
+    public Ticket(){}
 
     abstract public TicketType getTicketType();
 

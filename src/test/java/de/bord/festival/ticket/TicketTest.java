@@ -5,6 +5,8 @@ import de.bord.festival.exception.*;
 import de.bord.festival.models.PriceLevel;
 import de.bord.festival.models.Ticket;
 import de.bord.festival.models.TicketManager;
+import de.bord.festival.repository.PriceLevelRepository;
+import de.bord.festival.repository.TicketManagerRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,8 +14,15 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import de.bord.festival.help.HelpClasses;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class TicketTest {
+    @Autowired
+    PriceLevelRepository priceLevelRepository;
+
+    @Autowired
+    TicketManagerRepository ticketManagerRepository;
+
     @Test
     void should_return_50_for_level1_getPercentageForPriceLevel() throws PriceLevelException, PriceLevelNotAvailableException {
 

@@ -5,6 +5,7 @@ import de.bord.festival.exception.PriceLevelException;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
+
 /**
  *  Contains for all tickets: prices for certain price levels and a percentage at which the next price level starts
  */
