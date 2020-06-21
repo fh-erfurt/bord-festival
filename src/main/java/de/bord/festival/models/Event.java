@@ -1,17 +1,14 @@
-package de.bord.festival.eventManagement;
+package de.bord.festival.models;
 
-import de.bord.festival.models.Address;
-import de.bord.festival.models.Band;
-import de.bord.festival.models.EventInfo;
+import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
-import de.bord.festival.models.Client;
-import de.bord.festival.models.Stage;
-import de.bord.festival.models.Ticket;
-import de.bord.festival.models.TicketManager;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Represents a festival with required features
@@ -25,19 +22,46 @@ import java.util.LinkedList;
  *
  * it is recommended to set the last PercentageForPricelevel to 100.00
  */
-public class Event implements IEvent {
-
+@Entity
+public class Event extends AbstractModel implements IEvent {
+    @OneToOne(cascade = CascadeType.ALL)
     private TicketManager ticketManager;
     private String name;
-    private final double budget;//budget for bands
+    private double budget;
+    @Transient
     private double actualCosts = 0;
+
+    public String getName() {
+        return name;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+    public LocalTime getStartTime() {
+        return this.lineUp.getStartTime();
+    }
+
+    public LocalTime getEndTime() {
+        return lineUp.getEndTime();
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
-    private LinkedList<Client> client;// will be implemented in 4th semester
+    @OneToMany
+    private List<Client> client;
     private int maxCapacity;
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
+    public Event() {}
+
     private Event(LocalDate startDate, LocalDate endDate, String name,
-                 double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address){
+                  double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address){
 
         lineUp = new LineUp(startDate, endDate, stage, this);
         client = new LinkedList<>();
@@ -240,5 +264,6 @@ public class Event implements IEvent {
     }
 
     public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {return ticketManager.setPriceLevel(index);}
+
 
 }

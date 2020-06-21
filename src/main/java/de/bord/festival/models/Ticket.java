@@ -1,7 +1,5 @@
 package de.bord.festival.models;
 
-import de.bord.festival.eventManagement.Event;
-
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;

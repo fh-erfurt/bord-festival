@@ -1,15 +1,19 @@
-package de.bord.festival.eventManagement;
+package de.bord.festival.models;
 
-import de.bord.festival.models.Band;
-import de.bord.festival.models.EventInfo;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
-import de.bord.festival.models.Stage;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -17,22 +21,28 @@ import java.util.Map;
  * Is a class, which contains all important features: start and end date, times, minutes of breaks
  * between plays, all the stages, and bands and bands and required programs
  */
-public class LineUp {
-
+@Entity
+public class LineUp extends AbstractModel {
+    @OneToMany(cascade = CascadeType.ALL)
     private Map<LocalDate, Program> dayPrograms;
-    private LinkedList<Stage> stages;
-    private LinkedList<Band> bands;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Stage> stages;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Band> bands;
+    @OneToOne(cascade = CascadeType.ALL)
     private Event event;
     private LocalDate startDate;
     private LocalDate endDate;
     private LocalTime startTime = LocalTime.of(10, 30);
     private LocalTime endTime = LocalTime.of(23, 59);
     private long breakBetweenTwoBandsInMinutes = 30;
+    public LineUp(){}
+
 
     public LineUp(LocalDate startDate, LocalDate endDate, Stage stage, Event event) {
         dayPrograms = new LinkedHashMap<>();
         stages = new LinkedList<>();
-        stages.add(stage);//minimum one stage should exists
+        stages.add(stage);//minimum one stage should exist
         bands = new LinkedList<>();
         this.startDate = startDate;
         this.endDate = endDate;
@@ -65,7 +75,7 @@ public class LineUp {
     }
 
     private void createProgramPutIntoMapWithDays(LocalDate date) {
-        Program program = new Program(stages.getFirst(), this);
+        Program program = new Program(stages.get(0), this);
         dayPrograms.put(date, program);
     }
 
@@ -150,7 +160,9 @@ public class LineUp {
     }
 
     public int getNumberOfDays() {
-        return dayPrograms.size();
+
+        Period diff = Period.between(startDate, endDate);
+        return diff.getDays()+1;
     }
 
     /**

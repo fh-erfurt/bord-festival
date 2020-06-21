@@ -1,15 +1,10 @@
-package de.bord.festival.eventManagement;
+package de.bord.festival.models;
 
-import de.bord.festival.models.Band;
-import de.bord.festival.models.EventInfo;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
-import de.bord.festival.models.Stage;
-import de.bord.festival.models.TimeSlot;
 
+import javax.persistence.*;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 import static java.time.temporal.ChronoUnit.MINUTES;
 
@@ -19,14 +14,21 @@ import static java.time.temporal.ChronoUnit.MINUTES;
  *
  * @author klass
  */
-class Program {
-    private Map<Stage, LinkedList<TimeSlot>> programsForStages;
+@Entity
+public class Program extends AbstractModel {
+    //hibernate can not save collection of collections
+    @OneToMany(cascade = CascadeType.ALL)
+    private Map<Stage, TimeSlotList> programsForStages;
+    @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;//to access the lineUp fields
+    public Program(){
 
+    }
     public Program(Stage stage, LineUp lineUp) {
         this.lineUp = lineUp;
         programsForStages = new HashMap<>();
-        programsForStages.put(stage, new LinkedList<>());
+        programsForStages.put(stage, new TimeSlotList());
+
     }
 
     /**
@@ -35,7 +37,8 @@ class Program {
      * @param stage
      */
     public void addStage(Stage stage) {
-        programsForStages.put(stage, new LinkedList<>());
+
+        programsForStages.put(stage, new TimeSlotList());
     }
 
     /**
@@ -48,15 +51,15 @@ class Program {
      */
     public EventInfo addBand(Band band, long minutesOnStage) throws TimeSlotCantBeFoundException {
         /* searching timeSlot on stages */
-        for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
+        for (Map.Entry<Stage,TimeSlotList> entry : programsForStages.entrySet()) {
             Stage currentStage = entry.getKey();
-            LinkedList<TimeSlot> currentListOfTimeSlots = entry.getValue();
+            List<TimeSlot> currentListOfTimeSlots = entry.getValue().getTimeSlots();
             //if there is no timeSlots on current stage
             if (currentListOfTimeSlots.isEmpty()) {
                 return createEventInfoWithTimeSlotAtStart(currentListOfTimeSlots, band, currentStage, minutesOnStage);
             }
             //else look after the previous timeSlot
-            TimeSlot previousTimeSlot = currentListOfTimeSlots.getLast();
+            TimeSlot previousTimeSlot = currentListOfTimeSlots.get(currentListOfTimeSlots.size()-1);
             LocalTime newTime = getNewTime(previousTimeSlot, minutesOnStage);
             if (newTimeIsFound(newTime)) {
                 doesAlreadyPlay(band, newTime);
@@ -82,7 +85,7 @@ class Program {
      * @return EventInfo if all requirements are met, null otherwise
      * @throws TimeSlotCantBeFoundException if band plays on another stage at same time
      */
-    private EventInfo createEventInfoWithTimeSlotAtStart(LinkedList<TimeSlot> currentListOfTimeSlots, Band band, Stage currentStage, long minutesOnStage) throws TimeSlotCantBeFoundException {
+    private EventInfo createEventInfoWithTimeSlotAtStart(List<TimeSlot> currentListOfTimeSlots, Band band, Stage currentStage, long minutesOnStage) throws TimeSlotCantBeFoundException {
         // It will be at start time of the first day of festival
         LocalTime time = this.lineUp.getStartTime();
         doesAlreadyPlay(band, time);//throws exception
@@ -105,10 +108,10 @@ class Program {
      */
     private void doesAlreadyPlay(Band band, LocalTime time) throws TimeSlotCantBeFoundException {
 
-        for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
-            for (int i = 0; i < entry.getValue().size(); i++) {
-                LocalTime timeInTimeSlot = entry.getValue().get(i).getTime();
-                String nameOfBandInTimeSlot = entry.getValue().get(i).getNameOfBand();
+        for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
+            for (int i = 0; i < entry.getValue().getTimeSlots().size(); i++) {
+                LocalTime timeInTimeSlot = entry.getValue().getTimeSlots().get(i).getTime();
+                String nameOfBandInTimeSlot = entry.getValue().getTimeSlots().get(i).getNameOfBand();
                 //if the same time and band name exist on another stage
                 if ((time.compareTo(timeInTimeSlot) == 0) && (band.getName().equals(nameOfBandInTimeSlot))) {
                     throw new TimeSlotCantBeFoundException("This band plays already on another stage");
@@ -161,10 +164,10 @@ class Program {
      * @return if a band plays on the stage: true, otherwise: false
      */
     public boolean existOnStageTimeSlots(int id) {
-        for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
+        for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
             Stage currentStage = entry.getKey();
             if (currentStage.getIdentifier() == id) {
-                return entry.getValue().isEmpty();
+                return !entry.getValue().getTimeSlots().isEmpty();
             }
         }
         return false;
@@ -177,9 +180,10 @@ class Program {
      * @param id id of the stage
      */
     public void removeStage(int id) {
-        for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
-            if (entry.getKey().getIdentifier() == id) {
-                programsForStages.remove(entry.getKey());
+        Set<Stage> stages=programsForStages.keySet();
+        for (Stage stage :stages) {
+            if (stage.getIdentifier() == id) {
+                programsForStages.remove(stage);
             }
         }
     }
@@ -192,8 +196,8 @@ class Program {
      */
     public void removeBand(Band band) {
 
-        for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
-            LinkedList<TimeSlot> timeSlotsPerStage = entry.getValue();
+        for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
+            List<TimeSlot> timeSlotsPerStage = entry.getValue().getTimeSlots();
             for (int i = 0; i < timeSlotsPerStage.size(); i++) {
                 if (isTheSameBand(timeSlotsPerStage.get(i), band)) {
                     timeSlotsPerStage.remove(timeSlotsPerStage.get(i));
@@ -223,8 +227,8 @@ class Program {
      */
     public boolean removeBand(Band band, LocalTime time) {
 
-        for (Map.Entry<Stage, LinkedList<TimeSlot>> entry : programsForStages.entrySet()) {
-            LinkedList<TimeSlot> currentTimeSlotsOnStage = entry.getValue();
+        for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
+            List<TimeSlot> currentTimeSlotsOnStage = entry.getValue().getTimeSlots();
             if (currentTimeSlotsOnStage.isEmpty()) {
                 return false;
             }
@@ -241,7 +245,7 @@ class Program {
      * @param time                    time which should be found in time slot
      * @return true if such a time slot is found, false otherwise
      */
-    private boolean removeTimeSlotIfTimeInList(LinkedList<TimeSlot> currentTimeSlotsOnStage, Band band, LocalTime time) {
+    private boolean removeTimeSlotIfTimeInList(List<TimeSlot> currentTimeSlotsOnStage, Band band, LocalTime time) {
         for (int i = 0; i < currentTimeSlotsOnStage.size(); i++) {
             String nameOfCurrentBand = currentTimeSlotsOnStage.get(i).getNameOfBand();
             LocalTime timeInCurrentTimeSlot = currentTimeSlotsOnStage.get(i).getTime();

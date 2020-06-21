@@ -1,16 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7fd78882-2813-49d7-ac61-964e04b226d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/TimeSlotList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/repository/EventRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/EventJPATest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_2_6_RELEASE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_2_6_RELEASE.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bord-festival.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bord-festival.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/FestivalApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/FestivalApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/dataSource/DataSource.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/LineUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/LineUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/eventManagement/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Program.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/AbstractModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Stage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Stage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Ticket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/TicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/TicketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/ClientJPATest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/ClientJPATest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/eventManagement/EventTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/eventManagement/EventTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/help/HelpClasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/help/HelpClasses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/FestivalApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/FestivalApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/dataSource/DataSource.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/Event.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/LineUp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/Program.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/AbstractModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/AbstractModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Stage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Stage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Ticket$TicketType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Ticket$TicketType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Ticket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/TicketManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/TicketManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/PriceLevelJPATest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/PriceLevelJPATest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/eventManagement/EventTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/eventManagement/EventTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/help/HelpClasses.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/help/HelpClasses.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -20,10 +78,10 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -31,10 +89,17 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="JUnit.PriceLevelJPATest.should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice">
-    <configuration name="PriceLevelJPATest.priceLevelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.All in bord-festival">
+    <configuration name="All in bord-festival" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bord-festival" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventJPATest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bord-festival" />
       <extension name="coverage">
         <pattern>
@@ -43,14 +108,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.bord.festival.database" />
-      <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.PriceLevelJPATest" />
-      <option name="METHOD_NAME" value="priceLevelTest" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.EventJPATest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PriceLevelJPATest.should_return_50_for_level1_getPercentageForPriceLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EventJPATest.should_save_event_into_database" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bord-festival" />
       <extension name="coverage">
         <pattern>
@@ -59,14 +123,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.bord.festival.database" />
-      <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.PriceLevelJPATest" />
-      <option name="METHOD_NAME" value="should_return_50_for_level1_getPercentageForPriceLevel" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.EventJPATest" />
+      <option name="METHOD_NAME" value="should_save_event_into_database" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PriceLevelJPATest.should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EventJPATest.should_update_event_in_database_1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bord-festival" />
       <extension name="coverage">
         <pattern>
@@ -75,41 +139,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="de.bord.festival.database" />
-      <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.PriceLevelJPATest" />
-      <option name="METHOD_NAME" value="should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.EventJPATest" />
+      <option name="METHOD_NAME" value="should_update_event_in_database_1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PriceLevelJPATest.ticketManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="EventTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bord-festival" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="de.bord.festival.database.*" />
+          <option name="PATTERN" value="de.bord.festival.eventManagement.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="de.bord.festival.database" />
-      <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.PriceLevelJPATest" />
-      <option name="METHOD_NAME" value="ticketManagerTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TicketTest.should_return_50_for_level1_getPercentageForPriceLevel" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="bord-festival" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.bord.festival.ticket.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.bord.festival.ticket" />
-      <option name="MAIN_CLASS_NAME" value="de.bord.festival.ticket.TicketTest" />
-      <option name="METHOD_NAME" value="should_return_50_for_level1_getPercentageForPriceLevel" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="de.bord.festival.eventManagement" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.eventManagement.EventTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -123,25 +170,13 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PriceLevelJPATest.should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice" />
-        <item itemvalue="JUnit.PriceLevelJPATest.ticketManagerTest" />
-        <item itemvalue="JUnit.PriceLevelJPATest.should_return_50_for_level1_getPercentageForPriceLevel" />
-        <item itemvalue="JUnit.PriceLevelJPATest.priceLevelTest" />
-        <item itemvalue="JUnit.TicketTest.should_return_50_for_level1_getPercentageForPriceLevel" />
+        <item itemvalue="JUnit.All in bord-festival" />
+        <item itemvalue="JUnit.EventJPATest" />
+        <item itemvalue="JUnit.EventJPATest.should_update_event_in_database_1" />
+        <item itemvalue="JUnit.EventTest" />
+        <item itemvalue="JUnit.EventJPATest.should_save_event_into_database" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -154,9 +189,8 @@
       <option name="presentableId" value="Default" />
       <updated>1592501856421</updated>
       <workItem from="1592501862272" duration="2848000" />
-      <workItem from="1592510993956" duration="2175000" />
-      <workItem from="1592693021560" duration="1232000" />
-      <workItem from="1592694305444" duration="1963000" />
+      <workItem from="1592510993956" duration="2024000" />
+      <workItem from="1592723106298" duration="1685000" />
     </task>
     <task id="LOCAL-00001" summary="Ticket Inheritance, Ticket tests">
       <created>1592512538576</created>
@@ -165,18 +199,23 @@
       <option name="project" value="LOCAL" />
       <updated>1592512538576</updated>
     </task>
-    <task id="LOCAL-00002" summary="Ticket Inheritance, Ticket tests">
-      <created>1592513029148</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1592513029148</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ticket Inheritance, Ticket tests" />
@@ -187,50 +226,74 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="630" y="287" key="#com.intellij.debugger.actions.ViewTextAction/0.0.1600.860@0.0.1600.860" timestamp="1592511717774" />
-    <state x="337" y="23" key="CommitChangelistDialog2" timestamp="1592513027615">
+    <state x="93" y="93" width="1095" height="495" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1592685419739">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="93" y="93" width="1095" height="495" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1280.680@0.0.1280.680" timestamp="1592685419739" />
+    <state x="446" y="41" key="#com.intellij.ide.util.MemberChooser" timestamp="1592696014492">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="446" y="41" key="#com.intellij.ide.util.MemberChooser/0.0.1280.680@0.0.1280.680" timestamp="1592696014492" />
+    <state x="424" y="209" width="432" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1592689859555">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="424" y="209" width="432" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1280.680@0.0.1280.680" timestamp="1592689859555" />
+    <state x="396" y="43" key="#xdebugger.evaluate" timestamp="1592696852859">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="396" y="43" key="#xdebugger.evaluate/0.0.1280.680@0.0.1280.680" timestamp="1592696852859" />
+    <state x="337" y="23" key="CommitChangelistDialog2" timestamp="1592512536763">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="337" y="23" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1592513027615" />
-    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1592737687677">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="337" y="23" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1592512536763" />
+    <state width="429" height="438" key="DebuggerActiveHint" timestamp="1592691924914">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1592737687677" />
+    <state width="429" height="438" key="DebuggerActiveHint/0.0.1280.680@0.0.1280.680" timestamp="1592691924914" />
     <state x="579" y="174" key="FileChooserDialogImpl" timestamp="1592502223942">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="579" y="174" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1592502223942" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1592696413680">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1237" height="137" key="GridCell.Tab.0.bottom" timestamp="1592724502067">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1592696413680">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1237" height="137" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1592724502067" />
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592512859735" />
+    <state width="1237" height="137" key="GridCell.Tab.0.center" timestamp="1592724502067">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1592696413680">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1237" height="137" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1592724502067" />
+    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1592512859734" />
+    <state width="1237" height="137" key="GridCell.Tab.0.left" timestamp="1592724502067">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1592696413680">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1237" height="137" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1592724502067" />
+    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1592512859734" />
+    <state width="1237" height="137" key="GridCell.Tab.0.right" timestamp="1592724502067">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1592696413680">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1237" height="137" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1592724502067" />
+    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1592512859735" />
+    <state width="1237" height="430" key="GridCell.Tab.1.bottom" timestamp="1592724510810">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
-    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1592696413680">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1237" height="430" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1592724510810" />
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592512501250" />
+    <state width="1237" height="430" key="GridCell.Tab.1.center" timestamp="1592724510810">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
-    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1592696413680">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1237" height="430" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1592724510810" />
+    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1592512501249" />
+    <state width="1237" height="430" key="GridCell.Tab.1.left" timestamp="1592724510810">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
-    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1592696413680">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1237" height="430" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1592724510810" />
+    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1592512501249" />
+    <state width="1237" height="430" key="GridCell.Tab.1.right" timestamp="1592724510810">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
+    <state width="1237" height="430" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1592724510810" />
+    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1592512501250" />
     <state x="152" y="68" key="MergeDialog" timestamp="1592512736818">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -239,51 +302,107 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="512" y="147" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1592512736827" />
-    <state x="280" y="7" key="SettingsEditor" timestamp="1592693046732">
+    <state x="280" y="7" key="SettingsEditor" timestamp="1592502156033">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="280" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1592693046732" />
-    <state x="587" y="145" key="VCS.ChangeListViewerDialog" timestamp="1592737702667">
+    <state x="280" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1592502156033" />
+    <state x="392" y="165" key="Vcs.Push.Dialog.v2" timestamp="1592512606349">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="587" y="145" key="VCS.ChangeListViewerDialog/0.0.1600.860@0.0.1600.860" timestamp="1592737702667" />
-    <state x="392" y="165" key="Vcs.Push.Dialog.v2" timestamp="1592513045924">
+    <state x="392" y="165" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1592512606349" />
+    <state x="508" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1592510994812">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="165" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1592513045924" />
-    <state x="508" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1592737515371">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="508" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1592510994812" />
+    <state x="489" y="275" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592674609079">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="508" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1592737515371" />
-    <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592737697635">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="489" y="275" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1592674609079" />
+    <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1592512686703" />
+    <state x="126" y="69" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1592694959132">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1592737697635" />
+    <state x="126" y="69" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1280.680@0.0.1280.680" timestamp="1592694959132" />
+    <state x="346" y="75" width="589" height="582" key="find.popup" timestamp="1592691501559">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="346" y="75" width="589" height="582" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1592691501559" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java</url>
-          <line>123</line>
+          <line>125</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/EventJPATest.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java</url>
-          <line>143</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/EventJPATest.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java</url>
-          <line>139</line>
-          <option name="timeStamp" value="14" />
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/EventJPATest.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/EventJPATest.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/ClientJPATest.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/EventJPATest.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint type="java-field">
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/EventJPATest.java</url>
+          <line>24</line>
+          <properties field="eventRepository" class="de.bord.festival.database.EventJPATest" />
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo typeName="de.bord.festival.models.LineUp" fieldName="a" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((HashMap)((Program)this).programsForStages).entrySet().toArray()[1]" custom="de.bord.festival.models.Program,java.util.HashMap" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bord_festival$EventTest.ic" NAME="EventTest Coverage Results" MODIFIED="1578586875422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>de.bord.festival.eventManagement.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/bord_festival$EventTest_should_return_false_because_on_stage_should_play_band.ic" NAME="EventTest.should_return_false_because_on_stage_should_play_band Coverage Results" MODIFIED="1574347380422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>de.bord.festival.eventManagement.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/bord_festival$StageTest.ic" NAME="StageTest Coverage Results" MODIFIED="1574347407686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>de.bord.festival.stageManagement.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/bord_festival$BandTest.ic" NAME="BandTest Coverage Results" MODIFIED="1575111626794" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>de.bord.festival.band.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/bord_festival$EventTest_sst.ic" NAME="EventTest.sst Coverage Results" MODIFIED="1575113894313" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>de.bord.festival.eventManagement.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/bord_festival$EventTest_should_return_1_number_of_stages_because_of_removed_one.ic" NAME="EventTest.should_return_1_number_of_stages_because_of_removed_one Coverage Results" MODIFIED="1574272688841" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>de.bord.festival.eventManagement.*</FILTER>
+    </SUITE>
   </component>
 </project>

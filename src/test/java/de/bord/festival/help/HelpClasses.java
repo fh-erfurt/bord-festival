@@ -3,8 +3,8 @@ package de.bord.festival.help;
 import de.bord.festival.models.*;
 import de.bord.festival.models.Band;
 import de.bord.festival.models.EventInfo;
-import de.bord.festival.eventManagement.Event;
-import de.bord.festival.eventManagement.LineUp;
+import de.bord.festival.models.Event;
+import de.bord.festival.models.LineUp;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.Stage;
 import de.bord.festival.ticket.*;
@@ -34,6 +34,11 @@ public class HelpClasses {
     public Stage getStage() {
 
         return new Stage(1,"stage1");
+
+    }
+    public Stage getStage(int id) {
+
+        return new Stage(id,"stage1");
 
     }
 

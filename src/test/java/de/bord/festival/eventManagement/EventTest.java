@@ -2,12 +2,10 @@ package de.bord.festival.eventManagement;
 
 import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.help.HelpClasses;
-import de.bord.festival.models.Band;
-import de.bord.festival.models.EventInfo;
+import de.bord.festival.models.*;
 import de.bord.festival.exception.BudgetOverflowException;
 import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
-import de.bord.festival.models.Stage;
 import org.junit.jupiter.api.Test;
 
 

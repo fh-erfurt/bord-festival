@@ -5,6 +5,7 @@ import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.*;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import java.util.*;
