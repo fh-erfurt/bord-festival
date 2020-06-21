@@ -123,6 +123,27 @@ public class PriceLevelJPATest {
         assertEquals(10, databaseTicketManager.getNumberOfDayTicketsLeft());
         assertEquals(10, databaseTicketManager.getNumberOfDayTicketsLeft());
     }
+
+    @Test
+    void should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice() throws PriceLevelException {
+
+        // given TicketManager with DayTicket dayTicket.description = "day test"
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.exampleTicketManager();
+
+        ticketManagerRepository.save(ticketManager1);
+
+        // when
+        ticketManager1.getTicket(Ticket.TicketType.DAY).setDescription("Festival 2020 DayTicket");
+
+
+        TicketManager databaseTicketManager = ticketManagerRepository.findById(1);
+
+
+        // then
+        assertEquals("Festival 2020 DayTicket", databaseTicketManager.getTicket(Ticket.TicketType.DAY).getDescription());
+
+    }
 /*
     @Test
     void clientTestAndSellTest() throws TicketNotAvailableException {

@@ -2,31 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7fd78882-2813-49d7-ac61-964e04b226d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Band.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/EventInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Stage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/TimeSlot.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/BandRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/EventInfoRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/StageRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/TimeSlotRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bord-festival.iml" beforeDir="false" afterPath="$PROJECT_DIR$/bord-festival.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/band/Band.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/band/EventInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/IEvent.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/IEvent.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/LineUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/LineUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/Program.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/Program.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/AbstractModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/AbstractModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/stageManagement/Stage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/stageManagement/TimeSlot.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/address/addressTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/address/addressTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/band/BandTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/band/BandTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/PriceLevelJPATest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/PriceLevelJPATest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/eventManagement/EventTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/eventManagement/EventTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/help/HelpClasses.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/help/HelpClasses.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +31,9 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="JUnit.PriceLevelJPATest.ticketManagerTest">
+  <component name="RunManager" selected="JUnit.PriceLevelJPATest.should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice">
     <configuration name="PriceLevelJPATest.priceLevelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="bord-festival" />
       <extension name="coverage">
@@ -81,6 +61,22 @@
       <option name="PACKAGE_NAME" value="de.bord.festival.database" />
       <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.PriceLevelJPATest" />
       <option name="METHOD_NAME" value="should_return_50_for_level1_getPercentageForPriceLevel" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PriceLevelJPATest.should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="bord-festival" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.bord.festival.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.bord.festival.database" />
+      <option name="MAIN_CLASS_NAME" value="de.bord.festival.database.PriceLevelJPATest" />
+      <option name="METHOD_NAME" value="should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -127,6 +123,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PriceLevelJPATest.should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice" />
         <item itemvalue="JUnit.PriceLevelJPATest.ticketManagerTest" />
         <item itemvalue="JUnit.PriceLevelJPATest.should_return_50_for_level1_getPercentageForPriceLevel" />
         <item itemvalue="JUnit.PriceLevelJPATest.priceLevelTest" />
@@ -157,7 +154,9 @@
       <option name="presentableId" value="Default" />
       <updated>1592501856421</updated>
       <workItem from="1592501862272" duration="2848000" />
-      <workItem from="1592510993956" duration="2024000" />
+      <workItem from="1592510993956" duration="2175000" />
+      <workItem from="1592693021560" duration="1232000" />
+      <workItem from="1592694305444" duration="1963000" />
     </task>
     <task id="LOCAL-00001" summary="Ticket Inheritance, Ticket tests">
       <created>1592512538576</created>
@@ -166,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592512538576</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Ticket Inheritance, Ticket tests">
+      <created>1592513029148</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1592513029148</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,46 +187,46 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="630" y="287" key="#com.intellij.debugger.actions.ViewTextAction/0.0.1600.860@0.0.1600.860" timestamp="1592511717774" />
-    <state x="337" y="23" key="CommitChangelistDialog2" timestamp="1592512536763">
+    <state x="337" y="23" key="CommitChangelistDialog2" timestamp="1592513027615">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="337" y="23" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1592512536763" />
+    <state x="337" y="23" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1592513027615" />
     <state x="579" y="174" key="FileChooserDialogImpl" timestamp="1592502223942">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="579" y="174" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1592502223942" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1592512859735">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1592696413680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592512859735" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1592512859734">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
+    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1592696413680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1592512859734" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1592512859734">
+    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
+    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1592696413680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1592512859734" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1592512859735">
+    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
+    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1592696413680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1592512859735" />
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1592512501250">
+    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom" timestamp="1592696413680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592512501250" />
-    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1592512501249">
+    <state width="1557" height="276" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
+    <state width="1557" height="276" key="GridCell.Tab.1.center" timestamp="1592696413680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1592512501249" />
-    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1592512501249">
+    <state width="1557" height="276" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
+    <state width="1557" height="276" key="GridCell.Tab.1.left" timestamp="1592696413680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1592512501249" />
-    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1592512501250">
+    <state width="1557" height="276" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
+    <state width="1557" height="276" key="GridCell.Tab.1.right" timestamp="1592696413680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1592512501250" />
+    <state width="1557" height="276" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1592696413680" />
     <state x="152" y="68" key="MergeDialog" timestamp="1592512736818">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -229,18 +235,18 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="512" y="147" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1592512736827" />
-    <state x="280" y="7" key="SettingsEditor" timestamp="1592502156033">
+    <state x="280" y="7" key="SettingsEditor" timestamp="1592693046732">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="280" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1592502156033" />
-    <state x="392" y="165" key="Vcs.Push.Dialog.v2" timestamp="1592512606349">
+    <state x="280" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1592693046732" />
+    <state x="392" y="165" key="Vcs.Push.Dialog.v2" timestamp="1592513045924">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="392" y="165" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1592512606349" />
-    <state x="508" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1592510994812">
+    <state x="392" y="165" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1592513045924" />
+    <state x="508" y="257" key="com.intellij.ide.util.TipDialog" timestamp="1592737515371">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="508" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1592510994812" />
+    <state x="508" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1592737515371" />
     <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592512686703">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -258,6 +264,16 @@
           <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java</url>
           <line>112</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java</url>
+          <line>143</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
