@@ -4,8 +4,8 @@ package de.bord.festival.models;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-public class AbstractModel {
+@MappedSuperclass
+public abstract class AbstractModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;

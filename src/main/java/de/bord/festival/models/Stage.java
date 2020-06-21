@@ -10,8 +10,6 @@ import javax.persistence.OneToOne;
 public class Stage extends AbstractModel {
     private int identifier;
     private String name;
-    @OneToOne
-    private EventInfo info;
 
     public Stage(){};
 
