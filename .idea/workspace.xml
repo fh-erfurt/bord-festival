@@ -191,6 +191,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="337" y="23" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1592513027615" />
+    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog" timestamp="1592737687677">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="92" y="92" width="1416" height="676" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1592737687677" />
     <state x="579" y="174" key="FileChooserDialogImpl" timestamp="1592502223942">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -239,6 +243,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="280" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1592693046732" />
+    <state x="587" y="145" key="VCS.ChangeListViewerDialog" timestamp="1592737702667">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="587" y="145" key="VCS.ChangeListViewerDialog/0.0.1600.860@0.0.1600.860" timestamp="1592737702667" />
     <state x="392" y="165" key="Vcs.Push.Dialog.v2" timestamp="1592513045924">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -247,10 +255,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="508" y="257" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1592737515371" />
-    <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592512686703">
+    <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592737697635">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1592512686703" />
+    <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1592737697635" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
