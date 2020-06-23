@@ -30,26 +30,6 @@ public class Event extends AbstractModel implements IEvent {
     private double budget;
     @Transient
     private double actualCosts = 0;
-
-    public String getName() {
-        return name;
-    }
-
-    public double getBudget() {
-        return budget;
-    }
-    public LocalTime getStartTime() {
-        return this.lineUp.getStartTime();
-    }
-
-    public LocalTime getEndTime() {
-        return lineUp.getEndTime();
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
     @OneToMany
@@ -265,5 +245,26 @@ public class Event extends AbstractModel implements IEvent {
 
     public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {return ticketManager.setPriceLevel(index);}
 
+    public String getName() {
+        return name;
+    }
+
+    public double getBudget() {
+        return budget;
+    }
+    public LocalTime getStartTime() {
+        return this.lineUp.getStartTime();
+    }
+
+    public LocalTime getEndTime() {
+        return lineUp.getEndTime();
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+    public List<Band> getBands(){
+        return lineUp.getBands();
+    }
 
 }

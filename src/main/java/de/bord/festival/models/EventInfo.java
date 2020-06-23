@@ -15,10 +15,10 @@ public class EventInfo extends AbstractModel {
     private LocalTime time;
     @OneToOne
     private Stage stage;
-    @ManyToOne
-    private Band currentBand;
 
-    public EventInfo(){};
+
+    public EventInfo() {}
+
     /**
      * date is not known, when the EventInfo-object is created in program
      * it will be added in lineUp-object, is known only there
@@ -35,12 +35,22 @@ public class EventInfo extends AbstractModel {
     public void setDate(LocalDate date) {
         this.date = date;
     }
-    public void setTime(LocalTime time) { this.time = time; }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
 
     public LocalTime getTime() {
         return time;
     }
+
     public LocalDate getDate() {
         return date;
     }
+
+    public Stage getStage() {
+        return this.stage;
+    }
+
+
 }

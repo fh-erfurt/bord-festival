@@ -1,7 +1,9 @@
 package de.bord.festival.models;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
 
@@ -15,9 +17,7 @@ public class Band extends AbstractModel {
     private String name;
     private String phoneNumber;
     private double pricePerEvent;
-    @OneToMany(
-            mappedBy = "currentBand"
-    )
+    @OneToMany(cascade = CascadeType.ALL)
     private List<EventInfo> eventInfos;
     @OneToMany(
             mappedBy = "band"
@@ -87,6 +87,9 @@ public class Band extends AbstractModel {
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
     public void setPricePerEvent(double pricePerEvent) { this.pricePerEvent = pricePerEvent; }
 
+    public List<EventInfo> getEventInfos(){
+        return this.eventInfos;
+    }
     public String getName() {
         return name;
     }
