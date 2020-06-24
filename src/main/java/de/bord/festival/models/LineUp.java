@@ -38,6 +38,13 @@ public class LineUp extends AbstractModel {
     private long breakBetweenTwoBandsInMinutes = 30;
     public LineUp(){}
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 
     public LineUp(LocalDate startDate, LocalDate endDate, Stage stage, Event event) {
         dayPrograms = new LinkedHashMap<>();
@@ -289,5 +296,9 @@ public class LineUp extends AbstractModel {
             }
         }
         return check;
+    }
+
+    public List<Band> getBands() {
+        return this.bands;
     }
 }

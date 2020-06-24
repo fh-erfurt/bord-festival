@@ -180,12 +180,7 @@ public class Program extends AbstractModel {
      * @param id id of the stage
      */
     public void removeStage(int id) {
-        Set<Stage> stages=programsForStages.keySet();
-        for (Stage stage :stages) {
-            if (stage.getIdentifier() == id) {
-                programsForStages.remove(stage);
-            }
-        }
+        programsForStages.entrySet().removeIf(entry->entry.getKey().getIdentifier()==id);
     }
 
     /**
