@@ -4,10 +4,7 @@ import de.bord.festival.exception.PriceLevelNotAvailableException;
 import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.*;
 
 /**
@@ -45,7 +42,8 @@ import java.util.*;
 @Entity
 public class TicketManager extends AbstractModel implements ITicketManager {
     @OneToMany(
-            mappedBy = "actualTicketPrices"
+//            mappedBy = "actualTicketPrices",
+            cascade = CascadeType.ALL
     )
     private List<PriceLevel> priceLevels;
     public TicketManager(){}
