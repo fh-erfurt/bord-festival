@@ -76,7 +76,7 @@ public class TicketTest {
     }
 
     @Test
-    void should_return_Festival_2020_DayTicket_for_ticketManager1_setStdPrice() throws PriceLevelException {
+    void should_return_Festival_2020_DayTicket_for_ticketManager1_setDescription() throws PriceLevelException {
 
         // given TicketManager with DayTicket dayTicket.description = "day test"
         HelpClasses helpClasses = new HelpClasses();

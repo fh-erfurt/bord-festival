@@ -95,10 +95,6 @@ public class PriceLevelJPATest {
         priceLevels.add(level2);
         priceLevels.add(level3);
 
-        priceLevelRepository.save(level1);
-        priceLevelRepository.save(level2);
-        priceLevelRepository.save(level3);
-
 
         DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY,"day test" , 50.00);
         CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 80.00 );
@@ -109,7 +105,7 @@ public class PriceLevelJPATest {
         TicketManager ticketManager1 = new TicketManager(priceLevels, 1000,20000,300,dayTicket,campingTicket,vipTicket);
 
         ticketManagerRepository.save(ticketManager1);
-        TicketManager databaseTicketManager = ticketManagerRepository.findById(4);
+        TicketManager databaseTicketManager = ticketManagerRepository.findById(1);
 
         //then
         assertEquals(50, databaseTicketManager.getPercentageForPriceLevel(0));
@@ -118,12 +114,33 @@ public class PriceLevelJPATest {
 
     @Test
     void ticketManagerTest(){
-        //  priceLevelRepository.create(priceLevel);
-        //  PriceLevel databasePriceLevel = priceLevelRepository.findOne(this.priceLevel);
+
         ticketManagerRepository.save(ticketManager);
         TicketManager databaseTicketManager = ticketManagerRepository.findById(1);
         assertEquals(10, databaseTicketManager.getNumberOfDayTicketsLeft());
         assertEquals(10, databaseTicketManager.getNumberOfDayTicketsLeft());
+    }
+
+    @Transactional
+    @Test
+    void should_return_Festival_2020_DayTicket_for_ticketManager1_setDescription() throws PriceLevelException {
+
+        // given TicketManager with DayTicket dayTicket.description = "day test"
+        HelpClasses helpClasses = new HelpClasses();
+        TicketManager ticketManager1 = helpClasses.exampleTicketManager();
+
+        ticketManagerRepository.save(ticketManager1);
+
+        // when
+        ticketManager1.getTicket(Ticket.TicketType.DAY).setDescription("Festival 2020 DayTicket");
+
+
+        TicketManager databaseTicketManager = ticketManagerRepository.findById(1);
+
+
+        // then
+        assertEquals("Festival 2020 DayTicket", databaseTicketManager.getTicket(Ticket.TicketType.DAY).getDescription());
+
     }
 /*
     @Test
