@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="bord-festival" target="11" />
+      <module name="bord-festival" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

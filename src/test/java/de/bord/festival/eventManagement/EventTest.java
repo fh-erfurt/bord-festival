@@ -25,7 +25,7 @@ class EventTest {
         //invalid date couple(start date> end date)
         assertThrows(DateDisorderException.class, () -> {
             Stage stage = help.getStage();
-            Event event = Event.getNewEvent(LocalDate.of(2018, 1, 1),
+            Event event = Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2018, 1, 1),
                     LocalDate.of(2017, 1, 1), "Bord", 2019, 1000,
                     stage, help.exampleTicketManager(), help.getAddress());
         });

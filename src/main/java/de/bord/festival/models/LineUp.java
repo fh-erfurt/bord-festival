@@ -46,7 +46,7 @@ public class LineUp extends AbstractModel {
         return endDate;
     }
 
-    public LineUp(LocalDate startDate, LocalDate endDate, Stage stage, Event event) {
+    public LineUp(LocalTime startTime, LocalTime endTime, long breakBetweenTwoBandsInMinute, LocalDate startDate, LocalDate endDate, Stage stage, Event event) {
         dayPrograms = new LinkedHashMap<>();
         stages = new LinkedList<>();
         stages.add(stage);//minimum one stage should exist
@@ -55,6 +55,9 @@ public class LineUp extends AbstractModel {
         this.endDate = endDate;
         createProgramsBetweenStartAndEndDates();
         this.event = event;
+        this.startTime=startTime;
+        this.endTime=endTime;
+        this.breakBetweenTwoBandsInMinutes=breakBetweenTwoBandsInMinute;
 
     }
 
