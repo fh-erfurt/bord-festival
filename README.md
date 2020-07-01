@@ -1,11 +1,14 @@
 [![Build Status](https://github.com/fh-erfurt/bord-festival/workflows/bord-festival/badge.svg)](https://github.com/fh-erfurt/bord-festival/actions)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=example&style=flat)
+
 
 # BORD - Festival Management System
 
 Im Rahmen des Moduls "Java 1" haben wir ein Festival-Management-System entwickelt.
 
+Im Modul "Java 2" wird dieses Projekt nun um Spring-MVC, eine Datenbank und eine Website erweitert.
 ## Teammitglieder
-Olga Klassen, Benjamin Swarovsky, Daniel Depta, Raphael Freybe
+Olga Klassen, Benjamin Swarovsky, Daniel Depta, Raphael Freybe, Franziska Schmidt
 
 # 1. Einleitung
 
