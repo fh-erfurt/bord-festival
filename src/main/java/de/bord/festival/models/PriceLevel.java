@@ -13,9 +13,9 @@ import javax.persistence.ManyToOne;
 public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
 
    private double dayTicketPrice;
-   private double CampingTicketPrice;
-   private double VipTicketPrice;
-   protected PriceLevel(){}
+    private double CampingTicketPrice;
+    private double VipTicketPrice;
+    protected PriceLevel(){}
     @ManyToOne
     private TicketManager actualTicketPrices;
     /**
