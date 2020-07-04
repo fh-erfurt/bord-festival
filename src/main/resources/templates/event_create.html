@@ -20,6 +20,7 @@
                 </div>
                 <h2>Event anlegen</h2>
                 <form action="#" th:action="@{/event_create}" th:object="${event}" method="post">
+                    <!-- Festival information -->
                     <div class="group">
                         <label for="name">Festivalname</label><br>
                         <input type="text" th:field="*{name}" id="name"/>
@@ -146,6 +147,143 @@
                             <option>Zypern</option>
                         </select>
                     </div>
+
+                    <!-- Ticket Pricelevel -->
+                    <div class="clear-left group">
+                        <h3>Tickets</h3>
+                    </div>
+                    <!-- Dayticket -->
+                    <div class="clear-left float-left col-third tickets">
+                        <h3>Tagesticket</h3>
+                        <div class="group col-half">
+                            <label for="dayticketcount">Anzahl</label><br>
+                            <input type="text" id="dayticketcount"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="dayticketinitialprice">Initialpreis</label><br>
+                            <input type="text" id="dayticketinitialprice"/>
+                        </div>
+                        <div class="clear-left group col-full">
+                            <label for="dayticketdescription">Ticketbeschreibung</label><br>
+                            <input type="text" id="dayticketdescription"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="dayticketpercentage1">Preisstufe 1</label><br>
+                            <input type="text" id="dayticketpercentage1"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="dayticketprice1">Preis</label><br>
+                            <input type="text" id="dayticketprice1"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="dayticketpercentage2">Preisstufe 2</label><br>
+                            <input type="text" id="dayticketpercentage2"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="dayticketprice2">Preis</label><br>
+                            <input type="text" id="dayticketprice2"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="dayticketpercentage3">Preisstufe 3</label><br>
+                            <input type="text" id="dayticketpercentage3"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="dayticketprice1">Preis</label><br>
+                            <input type="text" id="dayticketprice3"/>
+                        </div>
+                    </div>
+
+                    <!-- Campingticket -->
+                    <div class="float-left col-third tickets">
+                        <h3>Campingticket</h3>
+                        <div class="group col-half">
+                            <label for="campingticketcount">Anzahl</label><br>
+                            <input type="text" id="campingticketcount"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="campingticketinitialprice">Initialpreis</label><br>
+                            <input type="text" id="campingticketinitialprice"/>
+                        </div>
+                        <div class="clear-left group col-full">
+                            <label for="campingticketdescription">Ticketbeschreibung</label><br>
+                            <input type="text" id="campingticketdescription"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="campingticketpercentage1">Preisstufe 1</label><br>
+                            <input type="text" id="campingticketpercentage1"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="campingticketprice1">Preis</label><br>
+                            <input type="text" id="campingticketprice1"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="campingticketpercentage2">Preisstufe 2</label><br>
+                            <input type="text" id="campingticketpercentage2"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="campingticketprice2">Preis</label><br>
+                            <input type="text" id="campingticketprice2"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="campingticketpercentage3">Preisstufe 3</label><br>
+                            <input type="text" id="campingticketpercentage3"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="campingticketprice1">Preis</label><br>
+                            <input type="text" id="campingticketprice3"/>
+                        </div>
+                    </div>
+
+                    <!-- VIP-Ticket -->
+                    <div class="float-left col-third tickets">
+                        <h3>VIP-Ticket</h3>
+                        <div class="group col-half">
+                            <label for="vipticketcount">Anzahl</label><br>
+                            <input type="text" id="vipticketcount"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="vipticketinitialprice">Initialpreis</label><br>
+                            <input type="text" id="vipticketinitialprice"/>
+                        </div>
+                        <div class="clear-left group col-full">
+                            <label for="vipticketdescription">Ticketbeschreibung</label><br>
+                            <input type="text" id="vipticketdescription"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="vipticketpercentage1">Preisstufe 1</label><br>
+                            <input type="text" id="vipticketpercentage1"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="vipticketprice1">Preis</label><br>
+                            <input type="text" id="vipticketprice1"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="vipticketpercentage2">Preisstufe 2</label><br>
+                            <input type="text" id="vipticketpercentage2"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="vipticketprice2">Preis</label><br>
+                            <input type="text" id="vipticketprice2"/>
+                        </div>
+                        <div class="clear-left group col-half">
+                            <label for="vipticketpercentage3">Preisstufe 3</label><br>
+                            <input type="text" id="vipticketpercentage3"/>
+                        </div>
+                        <div class="group col-half">
+                            <label for="vipticketprice1">Preis</label><br>
+                            <input type="text" id="vipticketprice3"/>
+                        </div>
+                    </div>
+
+                    <!-- Stage -->
+                    <div class="clear-left group">
+                        <h3>Bühne anlegen</h3>
+                    </div>
+                    <div class="clear-left group">
+                        <label for="stagename">Bühnenname</label><br>
+                        <input type="text" id="stagename"/>
+                    </div>
+
                     <div class="clear-left group">
                         <input type="submit" value="Submit" class="button" /> <input type="reset" value="Reset" class="button"/>
                     </div>
