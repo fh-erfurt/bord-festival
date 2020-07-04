@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html xmlns:th="https://www.thymeleaf.org" lang="de">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,15 +14,137 @@
             <h1>Willkommen bei <strong>BORD</strong> - Ihrem <strong>F</strong>estival</h1>
         </div>
         <div class="center">
-           
-            </div>	
-        </div>
-        
-        <div class="logout">
-            <a href=""><button>Logout</button></a>
-        </div>
-        <div class="back">
-            <a href="index.html"><button>Zurück zur Auswahl</button></a>
+            <div class="content">
+                <div th:if="${param.success}">
+                    Festival wurde angelegt
+                </div>
+                <h2>Event anlegen</h2>
+                <form action="#" th:action="@{/event_create}" th:object="${event}" method="post">
+                    <div class="group">
+                        <label for="name">Festivalname</label><br>
+                        <input type="text" th:field="*{name}" id="name"/>
+                    </div>
+                    <div class="clear-left group">
+                        <label for="startdatum">Startdatum</label><br>
+                        <!--th:field="*{startDate}"-->
+                        <input type="text" id="startdatum"/>
+                    </div>
+                    <div class="group">
+                        <label for="enddatum">Enddatum</label><br>
+                        <!--th:field="*{endDate}"-->
+                        <input type="text" id="enddatum"/>
+                    </div>
+                    <div class="clear-left group">
+                        <label for="startuhrzeit">Startuhrzeit</label><br>
+                        <!--th:field="*{endDate}"-->
+                        <select id="startuhrzeit">
+                            <option>15:00</option>
+                            <option>15:30</option>
+                            <option>16:00</option>
+                            <option>16:30</option>
+                            <option>17:00</option>
+                            <option>17:30</option>
+                            <option>18:00</option>
+                            <option>18:30</option>
+                            <option>19:00</option>
+                            <option>19:30</option>
+                            <option>20:00</option>
+                            <option>20:30</option>
+                            <option>21:00</option>
+                            <option>21:30</option>
+                            <option>22:00</option>
+                            <option>22:30</option>
+                        </select>
+                    </div>
+                    <div class="group">
+                        <label for="enduhrzeit">Enduhrzeit</label><br>
+                        <!--th:field="*{endDate}"-->
+                        <select id="enduhrzeit">
+                            <option>16:00</option>
+                            <option>16:30</option>
+                            <option>17:00</option>
+                            <option>17:30</option>
+                            <option>18:00</option>
+                            <option>18:30</option>
+                            <option>19:00</option>
+                            <option>19:30</option>
+                            <option>20:00</option>
+                            <option>20:30</option>
+                            <option>21:00</option>
+                            <option>21:30</option>
+                            <option>22:00</option>
+                            <option>22:30</option>
+                            <option>23:00</option>
+                            <option>23:30</option>
+                        </select>
+                    </div>
+                    <div class="group">
+                        <label for="pause">Bühnenpause</label><br>
+                        <!--th:field="*{endDate}"-->
+                        <select id="pause">
+                            <option>5 Minuten</option>
+                            <option>10 Minuten</option>
+                            <option>15 Minuten</option>
+                            <option>20 Minuten</option>
+                            <option>25 Minuten</option>
+                            <option>30 Minuten</option>
+                        </select>
+                    </div>
+                    <div class="clear-left group">
+                        <label for="strhnr">Straße und Hausnummer</label><br>
+                        <input type="text" id="strhnr"/>
+                    </div>
+                    <div class="group">
+                        <label for="plz">PLZ</label><br>
+                        <input type="text" id="plz"/>
+                    </div>
+                    <div class="group">
+                        <label for="ort">Ort</label><br>
+                        <input type="text" id="ort"/>
+                    </div>
+                    <div class="clear-left group">
+                        <label for="land">Land</label><br>
+                        <select id="land">
+                            <option>Belgien</option>
+                            <option>Bulgarien</option>
+                            <option>Dänemark</option>
+                            <option>Deutschland</option>
+                            <option>Estland</option>
+                            <option>Finnland</option>
+                            <option>Frankreich</option>
+                            <option>Griechenland</option>
+                            <option>Irland</option>
+                            <option>Italien</option>
+                            <option>Kroatien</option>
+                            <option>Lettland</option>
+                            <option>Litauen</option>
+                            <option>Luxemburg</option>
+                            <option>Malta</option>
+                            <option>Niederlande</option>
+                            <option>Österreich</option>
+                            <option>Polen</option>
+                            <option>Portugal</option>
+                            <option>Rumänien</option>
+                            <option>Slowakei</option>
+                            <option>Slowenien</option>
+                            <option>Spanien</option>
+                            <option>Schweden</option>
+                            <option>Schweiz</option>
+                            <option>Tschechien</option>
+                            <option>Ungarn</option>
+                            <option>Zypern</option>
+                        </select>
+                    </div>
+                    <div class="clear-left group">
+                        <input type="submit" value="Submit" class="button" /> <input type="reset" value="Reset" class="button"/>
+                    </div>
+                </form>
+            </div>
+            <div class="logout">
+                <form th:action="@{/logout}" method="post">
+                    <input class="button" type="submit" value="Ausloggen"/>
+                </form>
+            </div>
         </div>
         
         </footer>

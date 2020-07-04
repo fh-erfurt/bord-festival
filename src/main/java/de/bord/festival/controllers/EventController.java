@@ -7,6 +7,7 @@ import de.bord.festival.models.Event;
 import de.bord.festival.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,6 +49,18 @@ public class EventController {
             return "You have saved your event!";
         }
     }
+
+    @GetMapping("/event_create")
+    public String greetingForm(Model model) {
+        model.addAttribute("event", new Event());
+        return "event_create";
+    }
+
+    @PostMapping("/event_create")
+    public String createEvent(@ModelAttribute Event event) {
+        return "redirect:/event_create?success";
+    }
+
     @PutMapping("/event")
     @ResponseBody
     public String updateEvent(@Valid Event event){

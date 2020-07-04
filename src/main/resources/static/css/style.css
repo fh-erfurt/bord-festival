@@ -40,6 +40,14 @@ body {
     margin-top: 10%;
 }
 
+.content {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 15px;
+    overflow: hidden;
+}
+
 .log_in, .buy_ticket
 {
     background-color: rgb(255, 255, 255, 0.8);
@@ -177,8 +185,6 @@ button
     position: absolute;
 }
 
-
-
 a:link {
     text-decoration: none;
     color: #fff;
@@ -197,4 +203,19 @@ a:hover {
 a:active {
     text-decoration: none;
     color: #fff;
+}
+
+.group {
+    display:inline-block;
+    float: left;
+    padding: 0 15px 0 15px;
+    margin-bottom: 5px;
+}
+
+.clear-left {
+    clear: left;
+}
+
+.float-left {
+    float: left;
 }
