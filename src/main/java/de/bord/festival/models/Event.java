@@ -4,6 +4,8 @@ import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -24,17 +26,23 @@ import java.util.List;
  */
 @Entity
 public class Event extends AbstractModel implements IEvent {
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private TicketManager ticketManager;
+    @NotNull
+    @Size(min=2, max=50)
     private String name;
+    @NotNull
     private double budget;
     @Transient
     private double actualCosts = 0;
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Client> client;
     private int maxCapacity;
+    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 

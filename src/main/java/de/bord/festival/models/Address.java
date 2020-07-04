@@ -4,13 +4,24 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
 public class Address extends AbstractModel {
+    @Size(min=2, max=30)
+    @NotNull
     private String country;
+    @Size(min=2, max=30)
+    @NotNull
     private String city;
+    @NotNull
+    @Size(min=2, max=30)
+    @NotNull
     private String street;
+    @Size(min=4, max=10)
+    @NotNull
     private String zip;
     public Address(){}
 

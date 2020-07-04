@@ -6,6 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -31,10 +32,15 @@ public class LineUp extends AbstractModel {
     private List<Band> bands;
     @OneToOne(cascade = CascadeType.ALL)
     private Event event;
+    @NotNull
     private LocalDate startDate;
+    @NotNull
     private LocalDate endDate;
+    @NotNull
     private LocalTime startTime = LocalTime.of(10, 30);
+    @NotNull
     private LocalTime endTime = LocalTime.of(23, 59);
+    @NotNull
     private long breakBetweenTwoBandsInMinutes = 30;
     public LineUp(){}
 

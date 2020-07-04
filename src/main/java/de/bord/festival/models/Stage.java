@@ -5,10 +5,13 @@ import de.bord.festival.models.AbstractModel;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Stage extends AbstractModel {
+    @NotNull
     private int identifier;
+    @NotNull
     private String name;
 
     public Stage(){};

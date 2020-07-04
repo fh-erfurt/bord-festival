@@ -3,7 +3,9 @@ package de.bord.festival.controllers;
 import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.help.HelpClasses;
+import de.bord.festival.models.Address;
 import de.bord.festival.models.Event;
+import de.bord.festival.models.TicketManager;
 import de.bord.festival.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalTime;
 
 
 @Controller
@@ -54,6 +57,8 @@ public class EventController {
     @GetMapping("/event_create")
     public String greetingForm(Model model) {
         model.addAttribute("event", new Event());
+        model.addAttribute("address", new Address());
+        model.addAttribute("ticketManager", new TicketManager());
         return "event_create";
     }
 
