@@ -40,10 +40,10 @@ public class Event extends AbstractModel implements IEvent {
 
     public Event() {}
 
-    private Event(LocalDate startDate, LocalDate endDate, String name,
+    private Event(LocalTime startTime, LocalTime endTime, long breakBetweenTwoBandsInMinute, LocalDate startDate, LocalDate endDate, String name,
                   double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address){
 
-        lineUp = new LineUp(startDate, endDate, stage, this);
+        lineUp = new LineUp(startTime, endTime, breakBetweenTwoBandsInMinute, startDate, endDate, stage, this);
         client = new LinkedList<>();
         this.maxCapacity = maxCapacity;
         this.budget = budget;
@@ -58,13 +58,13 @@ public class Event extends AbstractModel implements IEvent {
      *
      * @throws DateDisorderException if end date<start date
      */
-    public static Event getNewEvent(LocalDate startDate, LocalDate endDate, String name,
+    public static Event getNewEvent(LocalTime startTime, LocalTime endTime, long breakBetweenTwoBandsInMinute, LocalDate startDate, LocalDate endDate, String name,
                                     double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException {
         if (endDate.isBefore(startDate)) {
             throw new DateDisorderException("End date can't be before start date");
         }
 
-        return new Event(startDate, endDate, name, budget, maxCapacity, stage, ticketManager, address);
+        return new Event(startTime, endTime, breakBetweenTwoBandsInMinute, startDate, endDate, name, budget, maxCapacity, stage, ticketManager, address);
 
     }
     public int getNumberOfBands() {

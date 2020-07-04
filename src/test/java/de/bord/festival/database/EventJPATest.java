@@ -14,8 +14,11 @@ import de.bord.festival.repository.EventRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -23,8 +26,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-//@ActiveProfiles("test")
+
+/*@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Rollback(false)
+@ActiveProfiles("test")*/
 @DataJpaTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class EventJPATest {
@@ -60,6 +65,10 @@ public class EventJPATest {
         assertEquals(1, databaseEvent.getNumberOfStages());
         assertEquals(0, databaseEvent.getNumberOfBands());
 
+    }
+    @Test
+    void findEvent(){
+        Event e= eventRepository.findById(35);
     }
 
     @Test
@@ -174,4 +183,3 @@ public class EventJPATest {
         assertEquals(eventInfo.getStage(), databaseEventInfo.getStage());
     }
 }
-
