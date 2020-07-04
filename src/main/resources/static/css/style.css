@@ -30,6 +30,7 @@ body {
     margin-top: 5%;
     z-index: 1;
     position: absolute;
+    max-width: 1600px;
 }
 
 .center h2
@@ -51,7 +52,7 @@ body {
 
 .log_in input[type=name] {
     margin-left: 47px;
-    margin-bottom: 20px;  
+    margin-bottom: 20px;
 }
 
 .log_in input[type=password] {
@@ -67,7 +68,7 @@ body {
     font-size: 14px;
     margin-bottom: 10px;
     margin-left: 137px;
-} 
+}
 
 fieldset
 {
@@ -76,14 +77,14 @@ fieldset
 
 .buy_ticket input[name=price] {
     margin-left: 47px;
-    margin-bottom: 20px;  
+    margin-bottom: 20px;
 }
 
-.buy_ticket select[name=type] 
+.buy_ticket select[name=type]
 {
     width: 145px;
     height: 23px;
-    margin-left: 16px; 
+    margin-left: 16px;
 }
 
 .buy_ticket input[name=date]
@@ -91,11 +92,11 @@ fieldset
     margin-left: 37px;
 }
 
-.buy_ticket select[name=ticket] 
+.buy_ticket select[name=ticket]
 {
     width: 145px;
     height: 23px;
-    margin-left:44px; 
+    margin-left:44px;
 }
 
 .user
@@ -108,15 +109,38 @@ fieldset
 
 button
 {
-   color: white;
-   background-color:rgb(202, 13, 60);
-   width: 70%;
-   height: 20%;
-   margin-top: 6%;
-   margin-left: 15%;
-   font-size: 1.2em;
+    color: white;
+    background-color:rgb(202, 13, 60);
+    width: 70%;
+    height: 20%;
+    margin-top: 6%;
+    margin-left: 15%;
+    font-size: 1.2em;
 }
 
+.button
+{
+    display: inline-block;
+    color: white;
+    background-color:rgb(202, 13, 60);
+    font-size: 1.2em;
+    padding-left: 30px;
+    padding-right: 30px;
+    vertical-align: top;
+    height: 40px;
+    float: right;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button:active {
+    border-style: outset;
+    border: none;
+}
 .logout button
 {
     background-color: rgb(255, 255, 255, 0.8);
@@ -124,13 +148,19 @@ button
     width: 10%;
     padding-top: 12px;
     padding-bottom: 12px;
-    
+
     float: right;
     margin-right: 12%;
     margin-top: 44.5%;
-   
+
     z-index: 5;
     position: relative;
+}
+
+.navigation {
+    width: 500px;
+    float: right;
+    margin: 20px;
 }
 
 .back button
@@ -145,4 +175,26 @@ button
     padding-bottom: 12px;
     z-index: 6;
     position: absolute;
+}
+
+
+
+a:link {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:active {
+    text-decoration: none;
+    color: #fff;
 }

@@ -13,26 +13,20 @@
         <div class= "bord">
             <h1>Willkommen bei <strong>BORD</strong> - Ihrem <strong>F</strong>estival</h1>
         </div>
-
         <div class="center">
-            <h2>Bitte loggen Sie sich ein</h2>
-            <div class="log_in">
-                <fieldset>
-                    <legend><strong>Ihre Login-Daten</strong></legend><br>
-                    <form action="login.php" method="post">
-                        <lable>Username</lable>
-                        <input type="name" name="username" value="" placeholder="Bitte eintragen" required/><br/>
-                        <lable>Password</lable>
-                        <input type="password" name="password" placeholder="Bitte eintragen" required/><br/><br/>
-                    </form>	
-                </fieldset><br>	  
-                <input type="submit" name="login" value="Login"/> 
-            </div>			
+            <h2>Was möchten Sie tun?</h2>
+            <div class="user">
+                <a href="event_create"><button>Event anlegen</button></a><br>
+                <a href="event_update"><button>Event aktualisieren</button></a><br>
+                <a href="events"><button>Event einsehen</button></a>
+            </div>
+            <div class="logout">
+                <form th:action="@{/logout}" method="post">
+                    <input class="button" type="submit" value="Ausloggen"/>
+                </form>
+            </div>
         </div>
-        
         </footer>
-        </footer>-->
+        </footer>
     </body>
 </html>
-
-
