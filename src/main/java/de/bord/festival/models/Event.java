@@ -248,6 +248,9 @@ public class Event extends AbstractModel implements IEvent {
     public String getName() {
         return name;
     }
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
 
     public double getBudget() {
         return budget;
