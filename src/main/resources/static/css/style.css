@@ -242,3 +242,26 @@ a:active {
 .tickets {
     border: 1px solid black;
 }
+
+.event-card {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 180px;
+    margin-right: 20px;
+}
+.event-card p {
+    margin: 0;
+}
+.event-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.event-card-date {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
