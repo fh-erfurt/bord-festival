@@ -97,9 +97,9 @@ public class PriceLevelJPATest {
         priceLevels.add(level3);
 
 
-        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY,"day test" , 50.00);
-        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 80.00 );
-        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, "vip test", 100.00);
+        DayTicket dayTicket = new DayTicket("day test" , 50.00);
+        CampingTicket campingTicket = new CampingTicket( "camping test", 80.00 );
+        VIPTicket vipTicket = new VIPTicket("vip test", 100.00);
 
 
         // when ( Collections.sort(priceLevels) in Constructor )

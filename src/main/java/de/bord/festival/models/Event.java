@@ -2,62 +2,82 @@ package de.bord.festival.models;
 
 import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import static javax.persistence.TemporalType.DATE;
+
 /**
  * Represents a festival with required features
- *
+ * <p>
  * example (ArrayList<PriceLevel> priceLevels) for sensible TicketManager creation:
  * TicketManager
  * PriceLevels[0]: PercentageForPricelevel=25.00, dayTicketPrice=30.00, CampingTicketPrice=40.00, VipTicketPrice=60.00
  * PriceLevels[1]: PercentageForPricelevel=52.25, dayTicketPrice=30.00, CampingTicketPrice=49.00, VipTicketPrice=80.00
  * PriceLevels[2]: PercentageForPricelevel=89.99, dayTicketPrice=40.99, CampingTicketPrice=51.49, VipTicketPrice=89.55
  * PriceLevels[3]: PercentageForPricelevel=100.00, dayTicketPrice=45.00, CampingTicketPrice=55.00, VipTicketPrice=101.12
- *
+ * <p>
  * it is recommended to set the last PercentageForPricelevel to 100.00
  */
 @Entity
 public class Event extends AbstractModel implements IEvent {
-    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private TicketManager ticketManager;
     @NotNull
-    @Size(min=2, max=50)
+    @Size(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
     private String name;
     @NotNull
-    private double budget;
+    @Min(value=1, message = "Budget should be more than zero")
+    private BigDecimal budget;
     @Transient
     private double actualCosts = 0;
-    @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Client> client;
-    private int maxCapacity;
-    @NotNull
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBudget(BigDecimal budget) {
+        this.budget = budget;
+    }
+
+
+    public double getActualCosts() {
+        return actualCosts;
+    }
+
+
+    //@NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-    public Event() {}
 
-    private Event(LocalTime startTime, LocalTime endTime, long breakBetweenTwoBandsInMinute, LocalDate startDate, LocalDate endDate, String name,
-                  double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address){
+    public Event() {
+    }
+
+    private Event(LocalTime startTime, LocalTime endTime, long breakBetweenTwoBandsInMinute,
+                  LocalDate startDate, LocalDate endDate, String name,
+                  BigDecimal budget, Stage stage,
+                  TicketManager ticketManager, Address address) {
 
         lineUp = new LineUp(startTime, endTime, breakBetweenTwoBandsInMinute, startDate, endDate, stage, this);
         client = new LinkedList<>();
-        this.maxCapacity = maxCapacity;
         this.budget = budget;
         this.name = name;
         this.ticketManager = ticketManager;
-        this.address=address;
+        this.address = address;
 
     }
 
@@ -66,15 +86,22 @@ public class Event extends AbstractModel implements IEvent {
      *
      * @throws DateDisorderException if end date<start date
      */
-    public static Event getNewEvent(LocalTime startTime, LocalTime endTime, long breakBetweenTwoBandsInMinute, LocalDate startDate, LocalDate endDate, String name,
-                                    double budget, int maxCapacity, Stage stage, TicketManager ticketManager, Address address) throws DateDisorderException {
+    public static Event getNewEvent(LocalTime startTime, LocalTime endTime,
+                                    long breakBetweenTwoBandsInMinute, LocalDate startDate,
+                                    LocalDate endDate, String name,
+                                    BigDecimal budget, Stage stage,
+                                    TicketManager ticketManager, Address address) throws DateDisorderException, TimeDisorderException {
         if (endDate.isBefore(startDate)) {
             throw new DateDisorderException("End date can't be before start date");
         }
+        if (endTime.isBefore(startTime)) {
+            throw new TimeDisorderException("End time can not be over 23 : 59 and can not be before start time");
+        }
 
-        return new Event(startTime, endTime, breakBetweenTwoBandsInMinute, startDate, endDate, name, budget, maxCapacity, stage, ticketManager, address);
+        return new Event(startTime, endTime, breakBetweenTwoBandsInMinute, startDate, endDate, name, budget, stage, ticketManager, address);
 
     }
+
     public int getNumberOfBands() {
         return lineUp.getNumberOfBands();
     }
@@ -94,7 +121,7 @@ public class Event extends AbstractModel implements IEvent {
      * @return true if the band is affordable for the budget of an event, otherwise false
      */
     private boolean isNewBandAffordable(Band band) {
-        return actualCosts + band.getPricePerEvent() <= budget;
+        return actualCosts + band.getPricePerEvent() <= budget.doubleValue();
     }
 
     /**
@@ -125,8 +152,8 @@ public class Event extends AbstractModel implements IEvent {
      * @param minutesOnStage minutes the given band wants play on the stage
      * @return the information, which is relevant for band: stage, date, time, if the timeSlot is found,
      * otherwise null
-     * @throws BudgetOverflowException, if the band is to expensive
-     * @throws TimeSlotCantBeFoundException,   if the band plays on another stage at the same time
+     * @throws BudgetOverflowException,      if the band is to expensive
+     * @throws TimeSlotCantBeFoundException, if the band plays on another stage at the same time
      */
     public EventInfo addBand(Band band, long minutesOnStage) throws BudgetOverflowException, TimeSlotCantBeFoundException {
         if (!isNewBandAffordable(band)) {
@@ -137,8 +164,7 @@ public class Event extends AbstractModel implements IEvent {
             band.addEventInfo(eventInfo);
             return eventInfo;
 
-        }
-        else{
+        } else {
             throw new TimeSlotCantBeFoundException("There is not found any time slot");
         }
 
@@ -178,7 +204,8 @@ public class Event extends AbstractModel implements IEvent {
         }
         return false;
     }
-    public boolean playsBandOnEvent(Band band){
+
+    public boolean playsBandOnEvent(Band band) {
         return (band.getNumberOfEventInfo() == 0);
     }
 
@@ -192,27 +219,63 @@ public class Event extends AbstractModel implements IEvent {
         actualCosts += amount;
     }
 
-    public int getNumberOfDayTickets() { return ticketManager.getNumberOfDayTickets(); }
-    public int getNumberOfCampingTickets() { return ticketManager.getNumberOfCampingTickets(); }
-    public int getNumberOfVipTickets() { return ticketManager.getNumberOfVipTickets(); }
-    public int totalNumberOfTickets(){return ticketManager.totalNumberOfTickets();}
+    public int getNumberOfDayTickets() {
+        return ticketManager.getNumberOfDayTickets();
+    }
 
-    public int getNumberOfSoldDayTickets(){ return ticketManager.getNumberOfSoldDayTickets();}
-    public int getNumberOfSoldCampingTickets(){ return ticketManager.getNumberOfSoldCampingTickets();}
-    public int getNumberOfSoldVipTickets(){ return ticketManager.getNumberOfSoldVipTickets();}
-    public int totalNumberOfSoldTickets(){ return ticketManager.totalNumberOfSoldTickets();}
-    public double totalNumberOfSoldTicketsInPercent(){return ticketManager.totalNumberOfSoldTicketsInPercent();}
+    public int getNumberOfCampingTickets() {
+        return ticketManager.getNumberOfCampingTickets();
+    }
 
-    public int getNumberOfDayTicketsLeft() { return ticketManager.getNumberOfDayTicketsLeft(); }
-    public int getNumberOfCampingTicketsLeft() { return ticketManager.getNumberOfCampingTicketsLeft(); }
-    public int getNumberOfVipTicketsLeft() { return ticketManager.getNumberOfVipTicketsLeft(); }
-    public int totalNumberOfTicketsLeft(){return ticketManager.totalNumberOfTicketsLeft();}
+    public int getNumberOfVipTickets() {
+        return ticketManager.getNumberOfVipTickets();
+    }
 
-    public void setTicketStdPrice(double stdPrice, Ticket.TicketType type){
+    public int totalNumberOfTickets() {
+        return ticketManager.totalNumberOfTickets();
+    }
+
+    public int getNumberOfSoldDayTickets() {
+        return ticketManager.getNumberOfSoldDayTickets();
+    }
+
+    public int getNumberOfSoldCampingTickets() {
+        return ticketManager.getNumberOfSoldCampingTickets();
+    }
+
+    public int getNumberOfSoldVipTickets() {
+        return ticketManager.getNumberOfSoldVipTickets();
+    }
+
+    public int totalNumberOfSoldTickets() {
+        return ticketManager.totalNumberOfSoldTickets();
+    }
+
+    public double totalNumberOfSoldTicketsInPercent() {
+        return ticketManager.totalNumberOfSoldTicketsInPercent();
+    }
+
+    public int getNumberOfDayTicketsLeft() {
+        return ticketManager.getNumberOfDayTicketsLeft();
+    }
+
+    public int getNumberOfCampingTicketsLeft() {
+        return ticketManager.getNumberOfCampingTicketsLeft();
+    }
+
+    public int getNumberOfVipTicketsLeft() {
+        return ticketManager.getNumberOfVipTicketsLeft();
+    }
+
+    public int totalNumberOfTicketsLeft() {
+        return ticketManager.totalNumberOfTicketsLeft();
+    }
+
+    public void setTicketStdPrice(double stdPrice, Ticket.TicketType type) {
         this.ticketManager.setTicketStdPrice(stdPrice, type);
     }
 
-    public void setTicketDescription(String description, Ticket.TicketType type){
+    public void setTicketDescription(String description, Ticket.TicketType type) {
         this.ticketManager.setTicketDescription(description, type);
     }
 
@@ -220,14 +283,15 @@ public class Event extends AbstractModel implements IEvent {
         ticketManager.sellTickets(client);
     }
 
-    public double getIncomeTicketSales(){
+    public double getIncomeTicketSales() {
         return ticketManager.getIncomeTicketSales();
     }
 
-    public int getActualPriceLevelIndex(){return ticketManager.getActualPriceLevelIndex();}
+    public int getActualPriceLevelIndex() {
+        return ticketManager.getActualPriceLevelIndex();
+    }
 
     /**
-     *
      * @param index
      * @return the percentage of the selected priceLevel that must be exceeded to activate the next price level
      */
@@ -236,7 +300,6 @@ public class Event extends AbstractModel implements IEvent {
     }
 
     /**
-     *
      * @param isPriceLevelChangeAutomatic true for automatic, false for manually price level change
      */
     public void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic) {
@@ -245,24 +308,26 @@ public class Event extends AbstractModel implements IEvent {
 
     /**
      * shows whether the price level changes automatically
+     *
      * @return
      */
-    public boolean getAutomaticPriceLevelChange(){
+    public boolean getAutomaticPriceLevelChange() {
         return ticketManager.getAutomaticPriceLevelChange();
     }
 
-    public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {return ticketManager.setPriceLevel(index);}
+    public boolean setPriceLevel(int index) throws PriceLevelNotAvailableException {
+        return ticketManager.setPriceLevel(index);
+    }
 
     public String getName() {
         return name;
     }
-    public int getMaxCapacity() {
-        return maxCapacity;
-    }
 
-    public double getBudget() {
+
+    public BigDecimal getBudget() {
         return budget;
     }
+
     public LocalTime getStartTime() {
         return this.lineUp.getStartTime();
     }
@@ -274,7 +339,8 @@ public class Event extends AbstractModel implements IEvent {
     public Address getAddress() {
         return address;
     }
-    public List<Band> getBands(){
+
+    public List<Band> getBands() {
         return lineUp.getBands();
     }
 

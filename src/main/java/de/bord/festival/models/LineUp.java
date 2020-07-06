@@ -1,6 +1,7 @@
 package de.bord.festival.models;
 
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -33,15 +34,17 @@ public class LineUp extends AbstractModel {
     @OneToOne(cascade = CascadeType.ALL)
     private Event event;
     @NotNull
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate startDate;
     @NotNull
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate endDate;
     @NotNull
-    private LocalTime startTime = LocalTime.of(10, 30);
+    private LocalTime startTime; //= LocalTime.of(10, 30);
     @NotNull
-    private LocalTime endTime = LocalTime.of(23, 59);
+    private LocalTime endTime; //= LocalTime.of(23, 59);
     @NotNull
-    private long breakBetweenTwoBandsInMinutes = 30;
+    private long breakBetweenTwoBandsInMinutes;// = 30;
     public LineUp(){}
 
     public LocalDate getStartDate() {

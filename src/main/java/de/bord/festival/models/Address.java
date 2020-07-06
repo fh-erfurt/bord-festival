@@ -10,20 +10,21 @@ import java.util.List;
 
 @Entity
 public class Address extends AbstractModel {
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     @NotNull
     private String country;
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     @NotNull
     private String city;
-    @NotNull
-    @Size(min=2, max=30)
+    @Size(min = 2, max = 30)
     @NotNull
     private String street;
-    @Size(min=4, max=10)
+    @Size(min = 4, max = 10)
     @NotNull
     private String zip;
-    public Address(){}
+
+    public Address() {
+    }
 
     public Address(String country, String city, String street, String zip) {
         this.country = country;
@@ -35,8 +36,8 @@ public class Address extends AbstractModel {
 
     @Override
     public boolean equals(Object object) {
-        if(object instanceof Address) {
-            Address address = (Address)object;
+        if (object instanceof Address) {
+            Address address = (Address) object;
             return this.country.equals(address.getCountry())
                     && this.city.equals(address.getCity())
                     && this.zip.equals(address.getZip())
@@ -48,26 +49,32 @@ public class Address extends AbstractModel {
     public String getStreet() {
         return this.street;
     }
+
     public String getZip() {
         return this.zip;
     }
+
     public String getCity() {
         return this.city;
     }
+
     public String getCountry() {
         return this.country;
     }
-    
-    public void setStreet(String street){
-        this.street=street;
+
+    public void setStreet(String street) {
+        this.street = street;
     }
-    public void setZip(String zip){
-        this.zip=zip;
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
-    public void setCity(String city){
-        this.city=city;
+
+    public void setCity(String city) {
+        this.city = city;
     }
-    public void setCountry(String country){
-        this.country=country;
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

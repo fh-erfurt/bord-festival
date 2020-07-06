@@ -13,7 +13,7 @@ public class VIPTicket extends Ticket {
 
     private TicketType ticketType;
 
-    public VIPTicket(TicketType ticketType, String description,
+    public VIPTicket(String description,
                       double standardPrice){
 
         super(description, standardPrice);

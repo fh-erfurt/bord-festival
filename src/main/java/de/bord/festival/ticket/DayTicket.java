@@ -14,7 +14,7 @@ public class DayTicket extends Ticket {
 
     private TicketType ticketType;
 
-    public DayTicket(TicketType ticketType, String description,
+    public DayTicket(String description,
                      double standardPrice ){
 
         super(description, standardPrice);

@@ -12,18 +12,22 @@ public class Stage extends AbstractModel {
     @NotNull
     private int identifier;
     @NotNull
-    private String name;
+    private String stageName;
 
     public Stage(){};
 
     public Stage(int identifier, String name) {
         this.identifier = identifier;
-        this.name = name;
+        this.stageName = name;
     }
 
-    public void setName(String name) { this.name = name; }
+    public void setStageName(String name) { this.stageName = name; }
 
     public int getIdentifier() { return this.identifier; }
 
-    public String getName() { return this.name; }
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
+    }
+
+    public String getStageName() { return this.stageName; }
 }
