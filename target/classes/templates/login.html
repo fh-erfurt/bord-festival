@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet">
+        <title>BORD</title>
+    </head>
+    <body>
+        <header>
+        </header>
+
+        <div class= "bord">
+            <h1>Willkommen bei <strong>BORD</strong> - Ihrem <strong>F</strong>estival</h1>
+        </div>
+
+        <div class="center">
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+            <h2>Bitte loggen Sie sich ein</h2>
+            <div class="log_in">
+                <fieldset>
+                    <legend><strong>Ihre Login-Daten</strong></legend><br>
+                    <form th:action="@{/login}" method="post">
+                        <lable>Username</lable>
+                        <input type="name" name="username" value="" placeholder="Bitte eintragen" required/><br/>
+                        <lable>Password</lable>
+                        <input type="password" name="password" placeholder="Bitte eintragen" required/><br/><br/>
+                        <input type="submit" name="login" value="Login"/>
+                    </form>
+                </fieldset><br>
+            </div>
+        </div>
+
+        </footer>
+        </footer>
+    </body>
+</html>
+
+
