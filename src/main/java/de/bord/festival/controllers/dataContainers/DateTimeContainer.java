@@ -1,4 +1,4 @@
-package de.bord.festival.controllers;
+package de.bord.festival.controllers.dataContainers;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

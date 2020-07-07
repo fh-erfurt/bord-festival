@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -344,4 +345,13 @@ public class Event extends AbstractModel implements IEvent {
         return lineUp.getBands();
     }
 
+
+
+    public LocalDate getStartDate() {
+        return this.lineUp.getStartDate();
+    }
+
+    public LocalDate getEndDate() {
+        return this.lineUp.getEndDate();
+    }
 }

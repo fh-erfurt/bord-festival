@@ -1,4 +1,4 @@
-package de.bord.festival.controllers;
+package de.bord.festival.controllers.dataContainers;
 
 import de.bord.festival.models.PriceLevel;
 
