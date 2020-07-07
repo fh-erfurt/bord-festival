@@ -37,6 +37,7 @@ public class EventController {
     @GetMapping("/event_create")
     public String greetingForm(Model model) {
 
+
         model.addAttribute("tmk", new TicketManagerContainer());
         model.addAttribute("event", new Event());
         model.addAttribute("dateTimeContainer", new DateTimeContainer());
