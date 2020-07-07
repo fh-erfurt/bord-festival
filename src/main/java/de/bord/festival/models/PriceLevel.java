@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
     @NotNull
     @Min(1)
-   private double dayTicketPrice;
+    private double dayTicketPrice;
     @NotNull
     @Min(1)
     private double campingTicketPrice;
@@ -25,6 +25,8 @@ public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
     /**
      * the price level is valid until the percentage of sold tickets is exceeded
      */
+    @Min(1)
+    @NotNull
     private double percentageForPriceLevel;
     public PriceLevel(){}
     @ManyToOne

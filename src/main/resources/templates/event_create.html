@@ -43,8 +43,9 @@
                 </div>
                 <div class="group">
                     <label for="enddatum">Enddatum</label><br>
-                    <!--th:field="*{endDate}"-->
                     <input th:field="*{endDate}" type="date" id="enddatum"/>
+                    <p class="error" th:if="${#fields.hasErrors('endDate')}"th:errors="*{endDate}"></p>
+
                 </div>
                 <div class="clear-left group">
                     <label for="startuhrzeit">Startuhrzeit</label><br>
@@ -84,7 +85,6 @@
                     <label for="ort">Ort</label><br>
                     <input th:field="*{city}" type="text" id="ort"/>
                     <p class="error" th:if="${#fields.hasErrors('city')}"th:errors="*{city}"  ></p>
-
                 </div>
                 <div class="clear-left group">
                     <label for="land">Land</label><br>
@@ -181,14 +181,17 @@
                     <input th:field="*{vipTicketDescription}" type="text" id="vipticketdescription"/>
                     <p class="error" th:if="${#fields.hasErrors('campingTicketDescription')}"th:errors="*{campingTicketDescription}"  ></p>
                 </div>
-
             </div>
+
+
+
             <!--PERCENTAGE-->
             <div th:object="${tmk}">
                 <div  th:each="priceLevel, itemStat: *{priceLevels}">
                     <div class="clear-left group col-half">
                         <label th:inline="text">Preisstufe [[${itemStat.index+1}]]</label><br>
                         <input th:field="*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}" type="number"/>
+                        <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}')}"th:errors="*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}"  ></p>
                     </div>
                 </div>
             </div>
@@ -198,6 +201,7 @@
                     <div class="group col-half">
                         <label>Preis</label><br>
                         <input th:field="*{priceLevels[__${itemStat.index}__].vipTicketPrice}" type="number"/>
+                        <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].vipTicketPrice}')}"th:errors="*{priceLevels[__${itemStat.index}__].vipTicketPrice}"  ></p>
                     </div>
                 </div>
             </div>
@@ -207,6 +211,7 @@
                     <div class="group col-half">
                         <label>Preis</label><br>
                         <input th:field="*{priceLevels[__${itemStat.index}__].dayTicketPrice}" type="number"/>
+                        <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].dayTicketPrice}')}"th:errors="*{priceLevels[__${itemStat.index}__].dayTicketPrice}"  ></p>
                     </div>
                 </div>
             </div>
@@ -216,6 +221,7 @@
                     <div class="group col-half">
                         <label>Preis</label><br>
                         <input th:field="*{priceLevels[__${itemStat.index}__].campingTicketPrice}" type="number"/>
+                        <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].campingTicketPrice}')}"th:errors="*{priceLevels[__${itemStat.index}__].campingTicketPrice}"  ></p>
                     </div>
                 </div>
             </div>

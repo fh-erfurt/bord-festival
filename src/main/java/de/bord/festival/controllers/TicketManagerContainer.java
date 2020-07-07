@@ -21,7 +21,7 @@ public class TicketManagerContainer {
     @Min(10)
     private int numberOfVipTickets;
 
-
+    @Valid
     List<PriceLevel> priceLevels;
     @NotNull
     @Size(min = 2, max = 100)

@@ -33,19 +33,6 @@ public class EventController {
         this.eventRepository = eventRepository;
     }
 
-    /*
-    * TODO: Validation for all members
-    * */
-    @PostMapping("/event")
-    @ResponseBody
-    public String createEvent(@Valid Event event, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "formEvent";
-        }
-        else{
-            return "You have saved your event!";
-        }
-    }
 
     @GetMapping("/event_create")
     public String greetingForm(Model model) {
@@ -97,7 +84,7 @@ public class EventController {
 
                 Event newEvent = Event.getNewEvent(startTime, endTime, breakBetweenTwoBands,startDate,
                         endDate, name, budget, stage, ticketManager, address);
-                Event databaseEvent =eventRepository.save(newEvent);
+                eventRepository.save(newEvent);
                 return "redirect:/event_create?success&id="+event.getId();
             }catch (DateDisorderException e ) {
                 bindingResultDateTimeContainer.rejectValue("startDate","error.dateTimeContainer", e.getMessage());
@@ -109,11 +96,7 @@ public class EventController {
         }
         return "event_create";
 
-
-
     }
-
-
 
     private boolean noErrors(BindingResult bindingResultEvent,
                              BindingResult bindingResultDateTimeContainer,
@@ -126,9 +109,4 @@ public class EventController {
                 !bindingResultTmk.hasErrors();
     }
 
-    @PutMapping("/event")
-    @ResponseBody
-    public String updateEvent(@Valid Event event){
-        return "You updated your event";
-    }
 }
