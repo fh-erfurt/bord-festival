@@ -10,6 +10,7 @@ import de.bord.festival.models.Stage;
 import de.bord.festival.ticket.*;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class HelpClasses {
 
     }
 
-    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateDisorderException, PriceLevelException{
+    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateDisorderException, PriceLevelException, TimeDisorderException {
         Stage stage = getStage();
         return new LineUp(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, startDate, endDate, stage, getValidNDaysEvent(1));
 
@@ -42,10 +43,10 @@ public class HelpClasses {
 
     }
 
-    public Event getValidNDaysEvent(int numberOfDays) throws DateDisorderException, PriceLevelException {
+    public Event getValidNDaysEvent(int numberOfDays) throws DateDisorderException, PriceLevelException, TimeDisorderException {
 
         return Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2018, 01, 01),
-                LocalDate.of(2018, 01, numberOfDays), "Bord", 2019, 1000,
+                LocalDate.of(2018, 01, numberOfDays), "Bord", BigDecimal.valueOf(2019),
                 getStage(),exampleTicketManager(), getAddress());
 
 
@@ -54,7 +55,7 @@ public class HelpClasses {
         return new Address("Germany", "Berlin", "Nordwez 1", "8803");
     }
 
-    public LineUp exampleLineUp() throws TimeSlotCantBeFoundException, DateDisorderException, PriceLevelException {
+    public LineUp exampleLineUp() throws TimeSlotCantBeFoundException, DateDisorderException, PriceLevelException, TimeDisorderException {
         //lineUp for 3 days with 2 stages and 4 bands. Each band plays 5 hours
         LineUp lineUp = getLineUp(LocalDate.of(2020, 3, 1),
                 LocalDate.of(2020, 3, 3));
@@ -99,9 +100,9 @@ public class HelpClasses {
         priceLevels.add(p2);
         priceLevels.add(p3);
 
-        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, "day test", 30.99);
-        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 80.00);
-        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, "vip test", 101.99);
+        DayTicket dayTicket = new DayTicket("day test", 30.99);
+        CampingTicket campingTicket = new CampingTicket("camping test", 80.00);
+        VIPTicket vipTicket = new VIPTicket("vip test", 101.99);
 
         return new TicketManager(priceLevels, 10,20,30, dayTicket, campingTicket, vipTicket);
     }
@@ -118,9 +119,9 @@ public class HelpClasses {
         priceLevels.add(p2);
         priceLevels.add(p3);
 
-        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, "day test", 30.99);
-        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 80.00);
-        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, "vip test", 101.99);
+        DayTicket dayTicket = new DayTicket("day test", 30.99);
+        CampingTicket campingTicket = new CampingTicket("camping test", 80.00);
+        VIPTicket vipTicket = new VIPTicket("vip test", 101.99);
 
         return new TicketManager(priceLevels, 2,6,2, dayTicket, campingTicket, vipTicket);
     }
@@ -137,9 +138,9 @@ public class HelpClasses {
         priceLevels.add(p2);
         priceLevels.add(p3);
 
-        DayTicket dayTicket = new DayTicket(Ticket.TicketType.DAY, "day test", 30.99);
-        CampingTicket campingTicket = new CampingTicket(Ticket.TicketType.CAMPING, "camping test", 80.00);
-        VIPTicket vipTicket = new VIPTicket(Ticket.TicketType.VIP, "vip test", 101.99);
+        DayTicket dayTicket = new DayTicket("day test", 30.99);
+        CampingTicket campingTicket = new CampingTicket("camping test", 80.00);
+        VIPTicket vipTicket = new VIPTicket("vip test", 101.99);
 
         return new TicketManager(priceLevels, 2,6,2, dayTicket, campingTicket, vipTicket);
     }

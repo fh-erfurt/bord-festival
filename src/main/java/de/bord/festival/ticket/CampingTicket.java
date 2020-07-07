@@ -13,7 +13,7 @@ public class CampingTicket extends Ticket {
 
     private TicketType ticketType;
 
-    public CampingTicket(TicketType ticketType, String description, double standardPrice){
+    public CampingTicket( String description, double standardPrice){
 
         super(description, standardPrice);
         this.ticketType = TicketType.CAMPING;

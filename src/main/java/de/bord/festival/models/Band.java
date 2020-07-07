@@ -3,6 +3,8 @@ package de.bord.festival.models;
 
 import javax.persistence.*;
 import javax.sound.sampled.Line;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 import java.time.LocalDateTime;
@@ -12,8 +14,12 @@ import java.util.List;
 
 @Entity
 public class Band extends AbstractModel {
+    @NotNull
     private String name;
+    @NotNull
     private String phoneNumber;
+    @NotNull
+    @Min(10)
     private double pricePerEvent;
     @OneToMany(cascade = CascadeType.ALL)
     private List<EventInfo> eventInfos;

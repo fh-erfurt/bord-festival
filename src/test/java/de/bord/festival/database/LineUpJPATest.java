@@ -2,6 +2,7 @@ package de.bord.festival.database;
 
 import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.PriceLevelException;
+import de.bord.festival.exception.TimeDisorderException;
 import de.bord.festival.help.HelpClasses;
 import de.bord.festival.models.LineUp;
 import de.bord.festival.repository.LineUpRepository;
@@ -23,7 +24,7 @@ public class LineUpJPATest {
     HelpClasses helper;
     LineUp lineUp;
     @BeforeEach
-    void initialize() throws DateDisorderException, PriceLevelException {
+    void initialize() throws DateDisorderException, PriceLevelException, TimeDisorderException {
         this.helper = new HelpClasses();
         this.lineUp = helper.getLineUp(LocalDate.of(2020, 10,10), LocalDate.of(2020, 10,11));
     }

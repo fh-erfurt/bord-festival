@@ -4,6 +4,8 @@ import de.bord.festival.exception.PriceLevelException;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 
 /**
@@ -11,17 +13,25 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
-
-   private double dayTicketPrice;
-    private double CampingTicketPrice;
-    private double VipTicketPrice;
-    protected PriceLevel(){}
-    @ManyToOne
-    private TicketManager actualTicketPrices;
+    @NotNull
+    @Min(1)
+    private double dayTicketPrice;
+    @NotNull
+    @Min(1)
+    private double campingTicketPrice;
+    @NotNull
+    @Min(1)
+    private double vipTicketPrice;
     /**
      * the price level is valid until the percentage of sold tickets is exceeded
      */
-    private double PercentageForPriceLevel;
+    @Min(1)
+    @NotNull
+    private double percentageForPriceLevel;
+    public PriceLevel(){}
+    @ManyToOne
+    private TicketManager actualTicketPrices;
+
 
     public PriceLevel(double dayTicketPrice, double CampingTicketPrice, double VipTicketPrice,
                       double PercentageForPriceLevel) throws PriceLevelException {
@@ -29,10 +39,10 @@ public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
         if(PercentageForPriceLevel > 100 || PercentageForPriceLevel < 0){
             throw new PriceLevelException("PercentageForPricelevel not valid");
         }
-        this.PercentageForPriceLevel = PercentageForPriceLevel;
+        this.percentageForPriceLevel = PercentageForPriceLevel;
         this.dayTicketPrice = dayTicketPrice;
-        this.CampingTicketPrice = CampingTicketPrice;
-        this.VipTicketPrice = VipTicketPrice;
+        this.campingTicketPrice = CampingTicketPrice;
+        this.vipTicketPrice = VipTicketPrice;
 
     }
 
@@ -46,16 +56,36 @@ public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
     @Override
     public int compareTo(PriceLevel priceLevel) {
 
-        return  java.lang.Double.valueOf(this.PercentageForPriceLevel).compareTo(java.lang.Double.valueOf(priceLevel.PercentageForPriceLevel));
+        return  java.lang.Double.valueOf(this.percentageForPriceLevel).compareTo(java.lang.Double.valueOf(priceLevel.percentageForPriceLevel));
     }
 
 
     public double getPercentageForPriceLevel() {
-        return PercentageForPriceLevel;
+        return percentageForPriceLevel;
     }
 
     public double getDayTicketPrice(){return dayTicketPrice;}
-    public double getCampingTicketPrice(){return CampingTicketPrice;}
-    public double getVipTicketPrice(){return VipTicketPrice;}
+    public double getCampingTicketPrice(){return campingTicketPrice;}
 
+    public void setCampingTicketPrice(double campingTicketPrice) {
+        this.campingTicketPrice = campingTicketPrice;
+    }
+
+    public void setVipTicketPrice(double vipTicketPrice) {
+        this.vipTicketPrice = vipTicketPrice;
+    }
+
+    public void setPercentageForPriceLevel(double percentageForPriceLevel) {
+        this.percentageForPriceLevel = percentageForPriceLevel;
+    }
+
+    public void setActualTicketPrices(TicketManager actualTicketPrices) {
+        this.actualTicketPrices = actualTicketPrices;
+    }
+
+    public double getVipTicketPrice(){return vipTicketPrice;}
+
+    public void setDayTicketPrice(double dayTicketPrice) {
+        this.dayTicketPrice = dayTicketPrice;
+    }
 }

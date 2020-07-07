@@ -40,6 +40,14 @@ body {
     margin-top: 10%;
 }
 
+.content {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 15px;
+    overflow: hidden;
+}
+
 .log_in, .buy_ticket
 {
     background-color: rgb(255, 255, 255, 0.8);
@@ -177,8 +185,6 @@ button
     position: absolute;
 }
 
-
-
 a:link {
     text-decoration: none;
     color: #fff;
@@ -197,4 +203,65 @@ a:hover {
 a:active {
     text-decoration: none;
     color: #fff;
+}
+
+.group {
+    display:inline-block;
+    float: left;
+    padding: 0 15px 0 15px;
+    margin-bottom: 5px;
+}
+
+.clear-left {
+    clear: left;
+}
+
+.float-left {
+    float: left;
+}
+.col-half {
+    width: 50%;
+}
+.col-third {
+    width: 33.333%;
+    padding: 15px;
+}
+.col-full {
+    width: 100%;
+}
+.col-half input, .col-third input {
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.col-full, .col-half, .col-third {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.tickets {
+    border: 1px solid black;
+}
+
+.event-card {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 180px;
+    margin-right: 20px;
+}
+.event-card p {
+    margin: 0;
+}
+.event-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.event-card-date {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
 }

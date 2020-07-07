@@ -1,9 +1,6 @@
 package de.bord.festival.database;
 
-import de.bord.festival.exception.BudgetOverflowException;
-import de.bord.festival.exception.DateDisorderException;
-import de.bord.festival.exception.PriceLevelException;
-import de.bord.festival.exception.TimeSlotCantBeFoundException;
+import de.bord.festival.exception.*;
 import de.bord.festival.help.HelpClasses;
 import de.bord.festival.models.Band;
 import de.bord.festival.models.Event;
@@ -20,6 +17,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -42,7 +40,7 @@ public class EventJPATest {
     @Autowired
     EventInfoRepository eventInfoRepository;
     @BeforeEach
-    void initialize() throws DateDisorderException, PriceLevelException {
+    void initialize() throws DateDisorderException, PriceLevelException, TimeDisorderException {
         this.helper = new HelpClasses();
         this.event = helper.getValidNDaysEvent(1);
     }
@@ -53,7 +51,7 @@ public class EventJPATest {
         Event databaseEvent = eventRepository.save(this.event);
         //then
         assertEquals("Bord", databaseEvent.getName());
-        assertEquals(2019, databaseEvent.getBudget());
+        assertEquals(BigDecimal.valueOf(2019), databaseEvent.getBudget());
         assertEquals("Germany", databaseEvent.getAddress().getCountry());
         assertEquals("Berlin", databaseEvent.getAddress().getCity());
         assertEquals("Nordwez 1", databaseEvent.getAddress().getStreet());
@@ -82,7 +80,7 @@ public class EventJPATest {
         //then
 
         assertEquals("Bord", databaseEvent.getName());
-        assertEquals(2019, databaseEvent.getBudget());
+        assertEquals(BigDecimal.valueOf(2019), databaseEvent.getBudget());
         assertEquals(LocalTime.of(10, 30), databaseEvent.getStartTime());
         assertEquals(LocalTime.of(23, 59), databaseEvent.getEndTime());
 
@@ -108,7 +106,7 @@ public class EventJPATest {
         databaseEvent = eventRepository.save(event);
         //then
         assertEquals("Bord", databaseEvent.getName());
-        assertEquals(2019, databaseEvent.getBudget());
+        assertEquals(BigDecimal.valueOf(2019), databaseEvent.getBudget());
         assertEquals(LocalTime.of(10, 30), databaseEvent.getStartTime());
         assertEquals(LocalTime.of(23, 59), databaseEvent.getEndTime());
 
