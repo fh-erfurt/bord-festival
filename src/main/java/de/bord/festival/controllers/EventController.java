@@ -2,7 +2,9 @@ package de.bord.festival.controllers;
 
 import de.bord.festival.controllers.dataContainers.DateTimeContainer;
 import de.bord.festival.controllers.dataContainers.TicketManagerContainer;
+import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.DateDisorderException;
+import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.exception.TimeDisorderException;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.EventRepository;
@@ -20,6 +22,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -98,14 +101,49 @@ public class EventController {
     }
 
     @GetMapping("events")
-    public String getEvents(Model model) {
+    public String getEvents(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
 
         List<Event> events = eventRepository.findAll();
         Collections.sort(events, (x,y)->x.getStartDate().compareTo(y.getEndDate()));
+        Collections.reverse(events);
         model.addAttribute(events);
 
         return "events";
     }
+    @PostMapping("update_event")
+    public String updateEvent(Model model) {
+
+        return "events";
+    }
+
+
+    @PostMapping("band_add")
+    public String addBand(Model model) {
+
+        return "events";
+    }
+
+
+
+    @PostMapping("stage_add")
+    public String addStage(Model model) {
+
+        return "events";
+    }
+    @PostMapping("band_remove")
+    public String removeBand(Model model) {
+
+        return "events";
+    }
+
+
+
+    @PostMapping("stage_remove")
+    public String removeStage(Model model) {
+
+        return "events";
+    }
+
 
     private boolean noErrors(BindingResult bindingResultEvent,
                              BindingResult bindingResultDateTimeContainer,
