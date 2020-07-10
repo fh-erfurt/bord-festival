@@ -15,41 +15,27 @@
             <h1>Willkommen bei <strong>BORD</strong> - Ihrem <strong>F</strong>estival</h1>
         </div>
 
+
         <div class="center">
             <div class="content">
                 <h2 class="float-left">Festivalübersicht</h2>
                 <a href="event_create" class="button float-left clear-left">Event anlegen</a>
-                <h3 class="float-left clear-left">2021</h3>
-                <div class="event-card float-left clear-left">
-                    <p class="event-card-title">Mai-Feierei</p>
-                    <p class="event-card-date">13.05. - 16.05.</p>
-                    <p>Erfurt</p>
-                </div>
 
-                <h3 class="float-left clear-left">2020</h3>
-                <div class="event-card float-left clear-left">
-                    <p class="event-card-title">Mai-Feierei</p>
-                    <p class="event-card-date">07.05. - 10.05.</p>
-                    <p>Erfurt</p>
-                </div>
-                <div class="event-card float-left">
-                    <p class="event-card-title">FH Sommerfest</p>
-                    <p class="event-card-date">11.06. - 14.06.</p>
-                    <p>Erfurt</p>
-                </div>
-
-                <h3 class="float-left clear-left">2019</h3>
-                <div class="event-card float-left clear-left">
-                    <p class="event-card-title">Mai-Feierei</p>
-                    <p class="event-card-date">19.05. - 20.05.</p>
-                    <p>Erfurt</p>
-                </div>
-                <div class="event-card float-left">
-                    <p class="event-card-title">Stadtfest</p>
-                    <p class="event-card-date">11.06. - 14.06.</p>
-                    <p>Jena</p>
+                <div th:with="year = ${null}">
+                    <div th:each="event : ${events}">
+                        <div th:if="${year} == null or ${year} != ${event.startDate.getYear()}">
+                            <h3 class="float-left clear-left" th:text="${event.startDate.getYear()}"></h3>
+                            <div class="float-left clear-left" th:text="${year}"></div>
+                            <div class="event-card float-left clear-left">
+                                <p class="event-card-title" th:text="${event.name}"></p>
+                                <p class="event-card-date" th:text="${event.startDate.getDayOfMonth()} + '.' + ${event.startDate.getMonthValue()} + '. - ' + ${event.endDate.getDayOfMonth()} + '.' + ${event.endDate.getMonthValue()}+ '.'"></p>
+                                <p th:text="${event.getAddress().getCity()}"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
             <div class="logout">
                 <form th:action="@{/logout}" method="post">
                     <input class="button" type="submit" value="Ausloggen"/>
