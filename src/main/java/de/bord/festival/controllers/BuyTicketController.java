@@ -1,7 +1,9 @@
 package de.bord.festival.controllers;
 
 import de.bord.festival.models.Event;
+import de.bord.festival.models.PriceLevel;
 import de.bord.festival.repository.EventRepository;
+import de.bord.festival.repository.PriceLevelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ public class BuyTicketController {
 
 
     @Autowired EventRepository eventRepository;
+    @Autowired PriceLevelRepository priceLevelRepository;
 
 ////////////////// Event auswählen
 
@@ -48,6 +51,8 @@ public class BuyTicketController {
     public String chooseEvent(@RequestParam(value = "eventId", required = true) Integer eventId,ModelMap model){
        Event theEvent = eventRepository.findById(eventId);
        model.addAttribute("theEvent", theEvent);
+       PriceLevel thePricelevel = theEvent.getTheActualPricelevel();
+       model.addAttribute("thePricelevel", thePricelevel);
 
 /*
 <p th:text="'Campingticket: ' + ${theEvent.getTheActualPricelevel().getCampingTicketPrice()}"></p>

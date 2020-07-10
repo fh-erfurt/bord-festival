@@ -2,12 +2,13 @@
 <html lang="de" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 asdsadsadsadsadsdsadsad
 
 <p th:text="${theEvent.getName()}"></p>
-
+<p th:text="${#numbers.formatDecimal(thePricelevel.getCampingTicketPrice(),2,3)}"></p>
 </body>
 </html>
