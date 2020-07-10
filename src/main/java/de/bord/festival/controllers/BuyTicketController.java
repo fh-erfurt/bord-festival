@@ -45,7 +45,7 @@ public class BuyTicketController {
 
 
     @RequestMapping(value = "/buy_ticket", method= RequestMethod.POST)
-    public String ticketOverview(@RequestParam(value = "eventId", required = true) Integer eventId,ModelMap model){
+    public String chooseEvent(@RequestParam(value = "eventId", required = true) Integer eventId,ModelMap model){
        Event theEvent = eventRepository.findById(eventId);
        model.addAttribute("theEvent", theEvent);
 

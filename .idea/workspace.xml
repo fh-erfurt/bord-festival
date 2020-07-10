@@ -2,49 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b5eb898-1cb7-4174-8254-27942bcb59ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_validator_5_3_5_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/buy_ticket2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/bord-festival.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/BuyTicketController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/DateTimeContainer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/TicketManagerContainer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/TimeDisorderException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/ClientRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/buy_ticket2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/META-INF/bord-festival.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/address/addressTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/band/BandTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/client/ClientTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/EventJPATest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/eventManagement/EventTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/help/HelpClasses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/ticket/TicketTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/bord-festival.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bord-festival.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/controllers/BuyTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/controllers/BuyTicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/TicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/TicketManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/buy_ticket.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/buy_ticket.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/MvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/MvcConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/EventController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Address.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Address.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Band.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Band.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/LineUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/LineUp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/PriceLevel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/PriceLevel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Stage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Stage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/TicketManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/TicketManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/EventRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/EventRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/CampingTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/CampingTicket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/DayTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/DayTicket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/VIPTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/VIPTicket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/buy_ticket.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/buy_ticket.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/event_create.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/event_create.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/LineUpJPATest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/LineUpJPATest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/PriceLevelJPATest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/PriceLevelJPATest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +102,7 @@
       <workItem from="1594374433151" duration="377000" />
       <workItem from="1594378557664" duration="2974000" />
       <workItem from="1594381568205" duration="2835000" />
-      <workItem from="1594393590151" duration="341000" />
+      <workItem from="1594393590151" duration="920000" />
     </task>
     <task id="LOCAL-00001" summary="Buy Ticket">
       <created>1594146375782</created>
@@ -152,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594146375782</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Buy_Ticket2 created">
+      <created>1594394080685</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1594394080685</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +126,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Buy Ticket" />
-    <option name="LAST_COMMIT_MESSAGE" value="Buy Ticket" />
+    <MESSAGE value="Buy_Ticket2 created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buy_Ticket2 created" />
   </component>
   <component name="WindowStateProjectService">
     <state x="605" y="113" key="#com.intellij.ide.util.MemberChooser" timestamp="1594245716587">
@@ -171,10 +138,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="176" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.860@0.0.1600.860" timestamp="1594374469758" />
-    <state x="335" y="19" key="CommitChangelistDialog2" timestamp="1594146373845">
+    <state x="335" y="19" key="CommitChangelistDialog2" timestamp="1594394077466">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="335" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1594146373845" />
+    <state x="335" y="19" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1594394077466" />
     <state x="580" y="184" key="FileChooserDialogImpl" timestamp="1594118553165">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -236,10 +203,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="609" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1594201909623" />
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1594146413737">
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog" timestamp="1594394207076">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1594146413737" />
+    <state x="518" y="221" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1594394207076" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
