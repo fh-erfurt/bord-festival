@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" xmlns:th="https://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="../static/css/style.css" rel="stylesheet">
         <title>BORD</title>
     </head>
     <body>
@@ -18,12 +18,16 @@
             <div class="buy_ticket">
                 <fieldset>
                     <legend><strong>Welches Event?</strong></legend><br>
+                    <form action="#" th:action="@{/buy_ticket}"  method="post">
                     <label for="ticket">Dein Event</label>
-                    <select name="ticket">
-                    <option value="">Event1</option>
-                    <option value="">Event2</option>
-                    <option value="">Event3</option>
-                    </select><br><br>
+                        <select name="ticket" th:name="eventId" >
+                                <option th:each="event : ${events}" th:text="${event.getName()}" th:value="${event.getId()}" >
+
+                            </option>
+                        </select>
+                        <button type="submit" name="action" value="save">save</button>
+                    </form>
+                    <br><br>
                     <label for="date">Dein Datum</label>
                     <input type="text" name="date" id="date" value="" placeholder="JJJJ-MM-TT" required><br><br>
                 </fieldset>
