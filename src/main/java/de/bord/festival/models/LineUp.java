@@ -313,4 +313,8 @@ public class LineUp extends AbstractModel {
     public List<Band> getBands() {
         return this.bands;
     }
+
+    public Map<LocalDate, Program> getDayPrograms() {
+        return this.dayPrograms;
+    }
 }

@@ -3,9 +3,7 @@ package de.bord.festival.controllers;
 import de.bord.festival.controllers.dataContainers.DateTimeContainer;
 import de.bord.festival.controllers.dataContainers.TicketManagerContainer;
 import de.bord.festival.controllers.help.HelpClasses;
-import de.bord.festival.exception.DateDisorderException;
-import de.bord.festival.exception.PriceLevelException;
-import de.bord.festival.exception.TimeDisorderException;
+import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.EventRepository;
 import de.bord.festival.ticket.CampingTicket;
@@ -15,11 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -118,9 +118,34 @@ public class EventController {
 
 
     @PostMapping("band_add")
-    public String addBand(Model model) {
+    public String addBand(@Valid Band band, BindingResult bindingResult,
+                          long minutesOnStage, BindingResult bindingResultMinutesOnStage,
+                          @RequestParam long eventId,
+                          Model model) {
 
-        return "events";
+        if (bindingResult.hasErrors()){
+            return "eventUpdate";
+        }
+
+        Event event=eventRepository.findById(eventId);
+
+        if (event==null){
+            bindingResult.addError(new ObjectError("mainElement", "This event does not exist"));
+            return "eventUpdate";
+        }
+
+        try {
+            event.addBand(band, minutesOnStage);
+            eventRepository.save(event);
+            model.addAttribute("programs", event.getPrograms());
+            //here will be printed all bands with their information
+            return "redirect:/addBand?success";
+
+        } catch (BudgetOverflowException | TimeSlotCantBeFoundException e) {
+            bindingResult.addError(new ObjectError("mainElement", e.getMessage()));
+            return "eventUpdate";
+        }
+
     }
 
 
@@ -131,9 +156,28 @@ public class EventController {
         return "events";
     }
     @PostMapping("band_remove")
-    public String removeBand(Model model) {
+    public String removeBand(Model model, long eventId,
+                             @Valid Band band, BindingResult bindingResultBand,
+                             LocalDateTime localDateTime) {
 
-        return "events";
+        if (bindingResultBand.hasErrors()){
+            return "eventUpdate";
+        }
+        Event event=eventRepository.findById(eventId);
+        if(event==null){
+            bindingResultBand.rejectValue("mainElement", "error.mainElement",
+                    "This event does not exist");
+            return "eventUpdate";
+        }
+        if (localDateTime!= null){
+            event.removeBand(band, localDateTime);
+        }
+        else{
+            event.removeBand(band);
+        }
+        eventRepository.save(event);
+
+        return "redirect:/removeBand?success";
     }
 
 

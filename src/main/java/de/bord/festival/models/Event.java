@@ -14,6 +14,7 @@ import java.time.chrono.ChronoLocalDate;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static javax.persistence.TemporalType.DATE;
 
@@ -43,7 +44,7 @@ public class Event extends AbstractModel implements IEvent {
     private double actualCosts = 0;
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Client> client;
 
     public void setName(String name) {
@@ -353,5 +354,9 @@ public class Event extends AbstractModel implements IEvent {
 
     public LocalDate getEndDate() {
         return this.lineUp.getEndDate();
+    }
+
+    public Map<LocalDate, Program> getPrograms() {
+        return this.lineUp.getDayPrograms();
     }
 }
