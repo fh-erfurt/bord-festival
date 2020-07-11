@@ -321,6 +321,9 @@ public class Event extends AbstractModel implements IEvent {
         return ticketManager.setPriceLevel(index);
     }
 
+    public PriceLevel getTheActualPricelevel(){
+        return ticketManager.getTheActualPriceLevel();
+    }
     public String getName() {
         return name;
     }

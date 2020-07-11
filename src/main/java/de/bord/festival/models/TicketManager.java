@@ -329,6 +329,10 @@ public class TicketManager extends AbstractModel implements ITicketManager {
         return priceLevels;
     }
 
+    public PriceLevel getTheActualPriceLevel() {
+        return priceLevels.get(actualPriceLevel);
+    }
+
     public void setPriceLevels(List<PriceLevel> priceLevels) {
         this.priceLevels = priceLevels;
     }

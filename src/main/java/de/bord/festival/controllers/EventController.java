@@ -106,7 +106,7 @@ public class EventController {
         List<Event> events = eventRepository.findAll();
         Collections.sort(events, (x,y)->x.getStartDate().compareTo(y.getEndDate()));
         Collections.reverse(events);
-        model.addAttribute(events);
+        model.addAttribute("events", events);
 
         return "events";
     }

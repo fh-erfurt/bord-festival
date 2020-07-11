@@ -1,0 +1,267 @@
+body {
+    background-image: url("../images/event4.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family: Arial;
+}
+
+.bord{
+    color: white;
+    font-family: Trebuchet MS;
+    text-shadow: 0 0 5px black;
+    font-size: 1.9em;
+    margin-left: 12%;
+    margin-top: 20px;
+    z-index: 2;
+    position: absolute;
+}
+
+.bord strong
+{
+    color: rgb(202, 13, 60);
+    text-shadow: 0 0 5px white;
+}
+
+.center{
+    background-color: rgb(255, 255, 255, 0.7);
+    height: 80%;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+    z-index: 1;
+    position: absolute;
+    max-width: 1600px;
+}
+
+.center h2
+{
+    font-size: 1.6em;
+    margin-left: 36.5%;
+    margin-top: 10%;
+}
+
+.content {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.log_in, .buy_ticket
+{
+    background-color: rgb(255, 255, 255, 0.8);
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 2%;
+    font-size: 1.2em;
+    padding: 20px;
+}
+
+.log_in input[type=name] {
+    margin-left: 47px;
+    margin-bottom: 20px;
+}
+
+.log_in input[type=password] {
+    margin-left: 50px;
+}
+
+.log_in input[type=submit], .buy_ticket input[type=submit]
+{
+    background-color: rgb(202, 13, 60);
+    color: white;
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 137px;
+}
+
+fieldset
+{
+    margin-top: 20px;
+}
+
+.buy_ticket input[name=price] {
+    margin-left: 47px;
+    margin-bottom: 20px;
+}
+
+.buy_ticket select[name=type]
+{
+    width: 145px;
+    height: 23px;
+    margin-left: 16px;
+}
+
+.buy_ticket input[name=date]
+{
+    margin-left: 37px;
+}
+
+.buy_ticket select[name=ticket]
+{
+    width: 145px;
+    height: 23px;
+    margin-left:44px;
+}
+
+.user
+{
+    background-color: rgb(255, 255, 255, 0.8);
+    width: 30%;
+    height: 35%;
+    margin-left: 35%;
+}
+
+button
+{
+    color: white;
+    background-color:rgb(202, 13, 60);
+    width: 70%;
+    height: 20%;
+    margin-top: 6%;
+    margin-left: 15%;
+    font-size: 1.2em;
+}
+
+.button
+{
+    display: inline-block;
+    color: white;
+    background-color:rgb(202, 13, 60);
+    font-size: 1.2em;
+    padding-left: 30px;
+    padding-right: 30px;
+    vertical-align: top;
+    height: 40px;
+    float: right;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.button:active {
+    border-style: outset;
+    border: none;
+}
+.logout button
+{
+    background-color: rgb(255, 255, 255, 0.8);
+    color: rgb(202, 13, 60);
+    width: 10%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    float: right;
+    margin-right: 12%;
+    margin-top: 44.5%;
+
+    z-index: 5;
+    position: relative;
+}
+
+.navigation {
+    width: 500px;
+    float: right;
+    margin: 20px;
+}
+
+.back button
+{
+    background-color: rgb(202, 13, 60);
+    color: white;
+    margin-left: 67%;
+    margin-top: 44.1%;
+    height: 51px;
+    width: 10%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    z-index: 6;
+    position: absolute;
+}
+
+a:link {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+a:active {
+    text-decoration: none;
+    color: #fff;
+}
+
+.group {
+    display:inline-block;
+    float: left;
+    padding: 0 15px 0 15px;
+    margin-bottom: 5px;
+}
+
+.clear-left {
+    clear: left;
+}
+
+.float-left {
+    float: left;
+}
+.col-half {
+    width: 50%;
+}
+.col-third {
+    width: 33.333%;
+    padding: 15px;
+}
+.col-full {
+    width: 100%;
+}
+.col-half input, .col-third input {
+    width: 100%;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.col-full, .col-half, .col-third {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.tickets {
+    border: 1px solid black;
+}
+
+.event-card {
+    background-color: white;
+    padding: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 180px;
+    margin-right: 20px;
+}
+.event-card p {
+    margin: 0;
+}
+.event-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.event-card-date {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
