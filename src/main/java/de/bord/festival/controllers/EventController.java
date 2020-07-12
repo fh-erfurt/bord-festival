@@ -151,7 +151,19 @@ public class EventController {
 
 
     @PostMapping("stage_add")
-    public String addStage(Model model) {
+    public String addStage(@Valid Stage stage,
+                           BindingResult bindingResult,
+                           long eventId) {
+
+        if (bindingResult.hasErrors()){
+            return "program";
+        }
+        Event event=eventRepository.findById(eventId);
+
+        if (event==null){
+            bindingResult.addError(new ObjectError("MainObject", "This event does not exist"));
+        }
+
 
         return "events";
     }
