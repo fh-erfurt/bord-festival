@@ -12,7 +12,7 @@
         </header>
 
         <div class= "bord">
-            <h1>Willkommen bei <strong>BORD</strong> - Ihrem <strong>F</strong>estival</h1>
+            <h1>Welcome To <strong>BORD</strong> - Your <strong>F</strong>estival</h1>
         </div>
 
         <div class="center">
@@ -22,10 +22,10 @@
             <div th:if="${param.logout}">
                 You have been logged out.
             </div>
-            <h2>Bitte loggen Sie sich ein</h2>
+            <h2>Please Login.</h2>
             <div class="log_in">
                 <fieldset>
-                    <legend><strong>Ihre Login-Daten</strong></legend><br>
+                    <legend><strong>Your Login-Data</strong></legend><br>
                     <form th:action="@{/login}" method="post">
                         <lable>Username</lable>
                         <input type="name" name="username" value="" placeholder="Bitte eintragen" required/><br/>
