@@ -39,11 +39,8 @@ import java.util.*;
  */
 @Entity
 public class TicketManager extends AbstractModel implements ITicketManager {
-    @OneToMany(
-            mappedBy = "actualTicketPrices",
-            cascade = CascadeType.ALL
-    )
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<PriceLevel> priceLevels;
 
     public TicketManager() {

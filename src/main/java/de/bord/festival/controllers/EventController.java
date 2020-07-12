@@ -24,6 +24,7 @@ import java.time.LocalTime;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -55,7 +56,9 @@ public class EventController {
                               @Valid DateTimeContainer dateTimeContainer, BindingResult bindingResultDateTimeContainer,
                               @Valid Address address, BindingResult bindingResultAddress,
                               @Valid @ModelAttribute("tmk") TicketManagerContainer tmk, BindingResult bindingResultTmk,
-                              @Valid Stage stage, BindingResult bindingResultStage) {
+                              @Valid Stage stage, BindingResult bindingResultStage){
+
+
         if (noErrors(bindingResultEvent, bindingResultDateTimeContainer,
                 bindingResultAddress, bindingResultTmk, bindingResultStage)) {
 
@@ -101,7 +104,8 @@ public class EventController {
     }
 
     @GetMapping("events")
-    public String getEvents(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
+    public String getEvents(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+
 
         List<Event> events = eventRepository.findAll();
         Collections.sort(events, (x,y)->x.getStartDate().compareTo(y.getEndDate()));
@@ -116,6 +120,28 @@ public class EventController {
         return "events";
     }
 
+    @GetMapping("program")
+    public String showProgram(@RequestParam long eventId, Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+        HelpClasses helpClasses = new HelpClasses();
+
+        Event event=helpClasses.getValidNDaysEvent(2);
+        event.addBand(helpClasses.getBand("My lovely band", 10.00  ), 90);
+        event.addBand(helpClasses.getBand("My lovely band2", 10.00  ), 90);
+        event.addBand(helpClasses.getBand("My lovely band3", 10.00  ), 90);
+        event.addBand(helpClasses.getBand("My lovely band4", 10.00  ), 90);
+        event.addBand(helpClasses.getBand("My lovely band5", 10.00  ), 300);
+
+        event.addStage(helpClasses.getStage(2, "Stage2"));
+
+        eventRepository.save(event);
+        Event event1 = eventRepository.findById(eventId);
+        if (event1==null){
+            return "eventAnsicht";
+        }
+        Map<LocalDate, Program> programs = event1.getPrograms();
+        model.addAttribute("dayPrograms", programs);
+        return "program";
+    }
 
     @PostMapping("band_add")
     public String addBand(@Valid Band band, BindingResult bindingResult,
@@ -153,7 +179,7 @@ public class EventController {
     @PostMapping("stage_add")
     public String addStage(@Valid Stage stage,
                            BindingResult bindingResult,
-                           long eventId) {
+                           @RequestParam long eventId) {
 
         if (bindingResult.hasErrors()){
             return "program";

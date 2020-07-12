@@ -38,6 +38,11 @@ public class HelpClasses {
         return new Stage(id,"stage1");
 
     }
+    public Stage getStage(int id, String name) {
+
+        return new Stage(id,name);
+
+    }
 
     public Event getValidNDaysEvent(int numberOfDays) throws DateDisorderException, PriceLevelException, TimeDisorderException {
 

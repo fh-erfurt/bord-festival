@@ -21,6 +21,10 @@ public class TimeSlot extends AbstractModel {
 
     public TimeSlot(){}
 
+    public Band getBand() {
+        return band;
+    }
+
     public TimeSlot(LocalTime time, Band band, long minutesOnStage) {
         this.minutesOnStage = minutesOnStage;
         this.band = band;

@@ -21,12 +21,17 @@ public class Program extends AbstractModel {
     private Map<Stage, TimeSlotList> programsForStages;
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;//to access the lineUp fields
+
+    public Map<Stage, TimeSlotList> getProgramsForStages() {
+        return programsForStages;
+    }
+
     public Program(){
 
     }
     public Program(Stage stage, LineUp lineUp) {
         this.lineUp = lineUp;
-        programsForStages = new HashMap<>();
+        programsForStages = new LinkedHashMap<>();
         programsForStages.put(stage, new TimeSlotList());
 
     }

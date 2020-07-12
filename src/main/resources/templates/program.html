@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <title>BORD</title>
+</head>
+<body>
+<header>
+</header>
+
+<div class="bord">
+    <h1>Willkommen bei <strong>BORD</strong> - Ihrem <strong>F</strong>estival</h1>
+</div>
+
+
+<div class="center">
+    <div class="content">
+        <h2>Program</h2>
+        <div th:each="dayProgram : ${dayPrograms}">
+            <p th:text="${dayProgram.getKey()}"></p>
+            <div th:each="program : ${dayProgram.getValue().getProgramsForStages()}">
+                <p th:text="${program.getKey().getStageName()}"></p>
+                <div th:if="${program.getValue().getTimeSlots().size()>0}">
+                    <div style="overflow: hidden;" th:each="timeSlot: ${program.getValue().getTimeSlots()}">
+                        <p style="float: left;" th:text="${timeSlot.getTime()}"></p>
+                        <p style="float: right;" th:text="${timeSlot.getBand().getName()}"></p>
+                    </div>
+                </div>
+                <p th:if="${program.getValue().getTimeSlots().size()==0}">---</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="logout">
+    <form th:action="@{/logout}" method="post">
+        <input class="button" type="submit" value="Ausloggen"/>
+    </form>
+</div>
+</div>
+
+</footer>
+</footer>
+</body>
+</html>
+
+

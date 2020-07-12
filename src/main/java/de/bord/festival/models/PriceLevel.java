@@ -29,8 +29,7 @@ public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
     @NotNull
     private double percentageForPriceLevel;
     public PriceLevel(){}
-    @ManyToOne
-    private TicketManager actualTicketPrices;
+
 
 
     public PriceLevel(double dayTicketPrice, double CampingTicketPrice, double VipTicketPrice,
@@ -79,9 +78,7 @@ public class PriceLevel extends AbstractModel implements Comparable<PriceLevel>{
         this.percentageForPriceLevel = percentageForPriceLevel;
     }
 
-    public void setActualTicketPrices(TicketManager actualTicketPrices) {
-        this.actualTicketPrices = actualTicketPrices;
-    }
+
 
     public double getVipTicketPrice(){return vipTicketPrice;}
 
