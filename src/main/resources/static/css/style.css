@@ -40,6 +40,20 @@ body {
     margin-top: 10%;
 }
 
+.center h3
+{
+    font-size: 1.6em;
+    margin-left: 36.5%;
+    margin-top: 5%;
+}
+
+.center h4
+{
+    font-size: 1.6em;
+    margin-top: 40px;
+    margin-left: 32%;
+}
+
 .content {
     width: 100%;
     max-width: 800px;
@@ -69,13 +83,13 @@ body {
 
 .log_in input[type=submit], .buy_ticket input[type=submit]
 {
-    background-color: rgb(202, 13, 60);
-    color: white;
-    width: 150px;
-    height: 30px;
-    font-size: 14px;
-    margin-bottom: 10px;
-    margin-left: 137px;
+       background-color: rgb(202, 13, 60);
+       color: white;
+       width: 150px;
+       height: 40px;
+       font-size: 14px;
+       margin-bottom: 10px;
+       margin-left: 35%;
 }
 
 fieldset
@@ -83,36 +97,101 @@ fieldset
     margin-top: 20px;
 }
 
-.buy_ticket input[name=price] {
-    margin-left: 47px;
-    margin-bottom: 20px;
+.buy_ticket label
+{
+    font-size: 0.9em;
 }
 
-.buy_ticket select[name=type]
+.buy_ticket [name=ticket]
 {
-    width: 145px;
-    height: 23px;
-    margin-left: 16px;
+    margin-left:63px;
 }
 
 .buy_ticket input[name=date]
 {
-    margin-left: 37px;
+    margin-left: 104px;
 }
 
-.buy_ticket select[name=ticket]
+
+
+.buy_ticket [name=dayticket]
 {
-    width: 145px;
-    height: 23px;
-    margin-left:44px;
+    height: 15px;
+    width: 80px;
+    margin-left: 62px;
+}
+
+.buy_ticket input[name=day_ticket]
+{
+    width: 90px;
+    height: 30px;
+    margin-left: 62px;
+}
+
+.buy_ticket [name=campingticket]
+{
+    height: 15px;
+    width: 80px;
+    margin-left: 20px;
+}
+
+.buy_ticket input[name=camping_ticket]
+{
+    width: 90px;
+    height: 30px;
+    margin-left: 70px;
+}
+
+.buy_ticket input[name=vipticket]
+{
+    height: 15px;
+    width: 80px;
+    margin-left: 60px;
+}
+
+.buy_ticket input[name=vip_ticket]
+{
+    width: 90px;
+    height: 30px;
+    margin-left: 70px;
+}
+
+.buy_ticket [name=price]
+{
+    width: 80px;
+    margin-left: 60px;
+    margin-bottom: 20px;
 }
 
 .user
+ {
+     background-color: rgb(255, 255, 255, 0.8);
+     width: 30%;
+     height: 35%;
+     margin-left: 35%;
+ }
+
+.user_event
 {
     background-color: rgb(255, 255, 255, 0.8);
-    width: 30%;
-    height: 35%;
-    margin-left: 35%;
+    width: 60%;
+    margin-left: 20%;
+    padding-right: -30%;
+    margin-top: 60px;
+}
+
+button[name=event1], button[name=event2], button[name=event3]
+{
+    background-color:rgb(202, 13, 60);
+    width: 20%;
+    margin-bottom: 5%;
+    padding:50px;
+
+}
+
+button[name=event1], button[name=event2]
+{
+    margin-right: -12%;
 }
 
 button
@@ -124,6 +203,15 @@ button
     margin-top: 6%;
     margin-left: 15%;
     font-size: 1.2em;
+}
+
+.center [name=information]
+{
+    background-color:rgb(202, 13, 60);
+    height: 50px;
+    width: 220px;
+    margin-top: 20px;
+    margin-left: 42%;
 }
 
 .button
@@ -149,18 +237,16 @@ button
     border-style: outset;
     border: none;
 }
-.logout button
+.logout button, input[name=logout]
 {
     background-color: rgb(255, 255, 255, 0.8);
     color: rgb(202, 13, 60);
     width: 10%;
     padding-top: 12px;
     padding-bottom: 12px;
-
     float: right;
     margin-right: 12%;
     margin-top: 44.5%;
-
     z-index: 5;
     position: relative;
 }
