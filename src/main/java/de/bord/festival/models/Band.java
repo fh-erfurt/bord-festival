@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.sound.sampled.Line;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 import java.time.LocalDateTime;
@@ -15,26 +16,33 @@ import java.util.List;
 @Entity
 public class Band extends AbstractModel {
     @NotNull
+    @Size(min = 2, max = 50)
     private String name;
     @NotNull
+    @Size(min = 2, max = 50)
     private String phoneNumber;
     @NotNull
     @Min(10)
     private double pricePerEvent;
     @OneToMany(cascade = CascadeType.ALL)
     private List<EventInfo> eventInfos;
-    @OneToMany(
-            mappedBy = "band"
-    )
-    private List<TimeSlot> timeSlots;
+    @NotNull
+    private long minutesOnStage;
+    public Band(){
+        eventInfos = new LinkedList<>();
 
-    public Band(){};
+    };
 
-    public Band(String name, String phoneNumber, double pricePerEvent) {
+    public void setMinutesOnStage(long minutesOnStage) {
+        this.minutesOnStage = minutesOnStage;
+    }
+
+    public Band(String name, String phoneNumber, double pricePerEvent, long minutesOnStage) {
         eventInfos = new LinkedList<>();
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.pricePerEvent = pricePerEvent;
+        this.minutesOnStage=minutesOnStage;
     }
 
     /**
@@ -42,6 +50,10 @@ public class Band extends AbstractModel {
      */
     public void addEventInfo(EventInfo eventInfo) {
         eventInfos.add(eventInfo);
+    }
+
+    public long getMinutesOnStage() {
+        return minutesOnStage;
     }
 
     /**

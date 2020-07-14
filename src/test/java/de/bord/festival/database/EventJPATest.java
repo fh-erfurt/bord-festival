@@ -74,7 +74,7 @@ public class EventJPATest {
         //when
         eventRepository.save(this.event);
         Event databaseEvent = eventRepository.findById(1);
-        event.addBand(helper.getBand(), 50);
+        event.addBand(helper.getBand());
         event.addStage(helper.getStage(2));
         databaseEvent = eventRepository.save(event);
         //then
@@ -94,7 +94,7 @@ public class EventJPATest {
     @Test
     void should_update_event_1() throws BudgetOverflowException, TimeSlotCantBeFoundException {
         //when
-        event.addBand(helper.getBand(), 50);
+        event.addBand(helper.getBand());
         event.addStage(helper.getStage(2));
 
 
@@ -122,15 +122,15 @@ public class EventJPATest {
         //when
         Event eventDatabase = eventRepository.save(event);
 
-        Band band1 = helper.getBand("Lolo", 60);
-        Band band2 = helper.getBand("Loloo", 60);
-        Band band3 = helper.getBand("Lolooo", 60);
-        Band band4 = helper.getBand("Loloooo", 60);
+        Band band1 = helper.getBand("Lolo", 60, 60);
+        Band band2 = helper.getBand("Loloo", 60, 60);
+        Band band3 = helper.getBand("Lolooo", 60, 60);
+        Band band4 = helper.getBand("Loloooo", 60, 60);
 
-        EventInfo eventInfo1 = event.addBand(band1, 60);
-        EventInfo eventInfo2 = event.addBand(band2, 60);
-        EventInfo eventInfo3 = event.addBand(band3, 60);
-        EventInfo eventInfo4 = event.addBand(band4, 60);
+        EventInfo eventInfo1 = event.addBand(band1);
+        EventInfo eventInfo2 = event.addBand(band2);
+        EventInfo eventInfo3 = event.addBand(band3);
+        EventInfo eventInfo4 = event.addBand(band4);
 
 
         eventDatabase = eventRepository.save(event);
@@ -167,7 +167,7 @@ public class EventJPATest {
     void should_compare_eventInfo_of_band_and_of_band_from_database() throws BudgetOverflowException, TimeSlotCantBeFoundException {
         //when
         Band band = helper.getBand();
-        event.addBand(band, 50);
+        event.addBand(band);
         EventInfo eventInfo = band.getEventInfos().get(0);
         Event databaseEvent = eventRepository.save(this.event);
 

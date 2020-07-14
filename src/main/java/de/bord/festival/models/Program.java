@@ -50,11 +50,11 @@ public class Program extends AbstractModel {
      * Adds band to the event, is a help method for LineUp class
      *
      * @param band           band that should be added
-     * @param minutesOnStage minutes of playtime on the stage
      * @return an object EventInfo, which contains stage, and time
      * @throws TimeSlotCantBeFoundException if the band plays on another stage at the same time
      */
-    public EventInfo addBand(Band band, long minutesOnStage) throws TimeSlotCantBeFoundException {
+    public EventInfo addBand(Band band) throws TimeSlotCantBeFoundException {
+        long minutesOnStage=band.getMinutesOnStage();
         /* searching timeSlot on stages */
         for (Map.Entry<Stage,TimeSlotList> entry : programsForStages.entrySet()) {
             Stage currentStage = entry.getKey();

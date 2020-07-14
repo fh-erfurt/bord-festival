@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class HelpClasses {
     public Band getBand() {
-        return new Band("GOD IS AN ASTRONAUT", "920", 500);
+        return new Band("GOD IS AN ASTRONAUT", "920", 500,200);
 
     }
 
@@ -24,7 +24,7 @@ public class HelpClasses {
     }
 
     public Band getBand(String name, double priceProEvent) {
-        return new Band(name, "911", priceProEvent);
+        return new Band(name, "911", priceProEvent, 200);
 
     }
 
@@ -83,10 +83,10 @@ public class HelpClasses {
         Band band2 = getBand("band2", 40);
         Band band3 = getBand("band3", 40);
         Band band4 = getBand("band4", 40);
-        lineUp.addBand(band1, 300);
-        lineUp.addBand(band2, 300);
-        lineUp.addBand(band3, 300);
-        lineUp.addBand(band4, 300);
+        lineUp.addBand(band1);
+        lineUp.addBand(band2);
+        lineUp.addBand(band3);
+        lineUp.addBand(band4);
         return lineUp;
     }
 

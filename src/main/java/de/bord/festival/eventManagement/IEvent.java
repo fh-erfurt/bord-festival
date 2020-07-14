@@ -14,7 +14,7 @@ public interface IEvent {
 
     boolean addStage(Stage stage);
     boolean removeStage(int id);
-    EventInfo addBand(Band band, long minutesOnStage) throws BudgetOverflowException, TimeSlotCantBeFoundException;
+    EventInfo addBand(Band band) throws BudgetOverflowException, TimeSlotCantBeFoundException;
     boolean removeBand(Band band);
     boolean removeBand(Band band, LocalDateTime dateAndTime);
     void addToTheActualCosts(double amount);

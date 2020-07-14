@@ -15,14 +15,14 @@ public class BandTest {
 
     @Test
     void two_bands_with_same_names_should_be_equals(){
-        Band band =new Band("Boston", "8493247", 50);
-        Band band2= new Band("Boston", "76238", 60);
+        Band band =new Band("Boston", "8493247", 50, 60);
+        Band band2= new Band("Boston", "76238", 60, 60);
         assertTrue(band.equals(band2));
     }
     @Test
     void two_bands_with_different_names_should_not_be_equals(){
-        Band band =new Band("Boston", "8493247", 50);
-        Band band2= new Band("Boston1", "76238", 60);
+        Band band =new Band("Boston", "8493247", 50 , 60);
+        Band band2= new Band("Boston1", "76238", 60, 60);
         assertFalse(band.equals(band2));
     }
     @Test

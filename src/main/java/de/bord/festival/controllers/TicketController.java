@@ -18,14 +18,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class BuyTicketController {
+public class TicketController {
 
 
     private final EventRepository eventRepository;
     @Autowired PriceLevelRepository priceLevelRepository;
 
     @Autowired
-    public BuyTicketController(EventRepository eventRepository) {
+    public TicketController(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
 ////////////////// Event auswählen

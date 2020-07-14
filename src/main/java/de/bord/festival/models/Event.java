@@ -151,17 +151,16 @@ public class Event extends AbstractModel implements IEvent {
      * Adds band to the event
      *
      * @param band           object, which should be added
-     * @param minutesOnStage minutes the given band wants play on the stage
      * @return the information, which is relevant for band: stage, date, time, if the timeSlot is found,
      * otherwise null
      * @throws BudgetOverflowException,      if the band is to expensive
      * @throws TimeSlotCantBeFoundException, if the band plays on another stage at the same time
      */
-    public EventInfo addBand(Band band, long minutesOnStage) throws BudgetOverflowException, TimeSlotCantBeFoundException {
+    public EventInfo addBand(Band band) throws BudgetOverflowException, TimeSlotCantBeFoundException {
         if (!isNewBandAffordable(band)) {
             throw new BudgetOverflowException("The budget is not enough for this band");
         }
-        EventInfo eventInfo = lineUp.addBand(band, minutesOnStage);
+        EventInfo eventInfo = lineUp.addBand(band);
         if (eventInfo != null) {
             band.addEventInfo(eventInfo);
             return eventInfo;

@@ -32,9 +32,30 @@
                 <p th:if="${program.getValue().getTimeSlots().size()==0}">---</p>
             </div>
         </div>
+
+        <!--th:action="@{/band_add(eventId=${eventId})}"-->
+        <form th:object="${band}" action="#" th:action="@{/band_add}" method="post">
+            <h4>Add band</h4>
+            
+            <input type="text" th:name="eventId" th:value="${eventId}" hidden/>
+            <label for="bandName">Band name: </label><br>
+            <input th:field="*{name}" type="text" id="bandName"/><br>
+            <p class="error" th:if="${#fields.hasErrors('name')}"th:errors="*{name}"  ></p>
+            <label for="tel">Phone: </label><br>
+            <input th:field="*{phoneNumber}" type="tel" id="tel"/><br>
+            <p class="error" th:if="${#fields.hasErrors('phoneNumber')}"th:errors="*{phoneNumber}"  ></p>
+            <label for="price">Price per event: </label><br>
+            <input th:field="*{pricePerEvent}" type="number" id="price"/><br>
+            <p class="error" th:if="${#fields.hasErrors('pricePerEvent')}"th:errors="*{pricePerEvent}"  ></p>
+            <label for="price">Minutes on stage: </label><br>
+            <input th:field="*{minutesOnStage}" type="number" id="minutes"/><br>
+            <p class="error" th:if="${#fields.hasErrors('minutesOnStage')}"th:errors="*{minutesOnStage}"  ></p>
+            <div class="clear-left group">
+                <input type="submit" value="Submit" class="button"/>
+            </div>
+        </form>
     </div>
 </div>
-
 <div class="logout">
     <form th:action="@{/logout}" method="post">
         <input class="button" type="submit" value="Ausloggen"/>

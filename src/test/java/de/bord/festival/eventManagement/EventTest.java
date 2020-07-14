@@ -59,7 +59,7 @@ class EventTest {
     void should_return_1_number_of_bands() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException, TimeDisorderException {
         Event event = help.getValidNDaysEvent(3);
         Band band = help.getBand();
-        event.addBand(band, 60);
+        event.addBand(band);
         assertEquals(1, event.getNumberOfBands());
     }
 
@@ -72,10 +72,10 @@ class EventTest {
     @Test
     void should_throw_exception_budget() throws DateDisorderException, PriceLevelException, TimeDisorderException {
         Event event = help.getValidNDaysEvent(3);
-        Band band = help.getBand("The Doors", 5000);
+        Band band = help.getBand("The Doors", 5000, 200);
 
         assertThrows(BudgetOverflowException.class, () -> {
-            event.addBand(band, 60);
+            event.addBand(band);
 
         });
     }
@@ -88,7 +88,7 @@ class EventTest {
         try {
             for (int i = 0; i < 4; i++) {
                 Band band = help.getBand();
-                event.addBand(band, 300);
+                event.addBand(band);
             }
         } catch (TimeSlotCantBeFoundException exception) {
             assertEquals("This band plays already on another stage", exception.getMessage());
@@ -111,15 +111,15 @@ class EventTest {
     void should_return_false() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException, TimeDisorderException {
         //Given
         Event event = help.getValidNDaysEvent(1);
-        Band band1 = help.getBand("first band", 30);
-        Band band2 = help.getBand("second band", 30);
-        Band band3 = help.getBand("third band", 30);
+        Band band1 = help.getBand("first band", 30, 300);
+        Band band2 = help.getBand("second band", 30, 300);
+        Band band3 = help.getBand("third band", 30, 300);
         //if
-        event.addBand(band1, 300);
-        event.addBand(band2, 300);
+        event.addBand(band1);
+        event.addBand(band2);
         //then
         assertThrows(TimeSlotCantBeFoundException.class, () -> {
-            event.addBand(band3, 300);
+            event.addBand(band3);
         });
 
 
@@ -129,11 +129,11 @@ class EventTest {
     void should_return_false_because_on_stage_should_play_band() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException, TimeDisorderException {
         //Given
         Event event = help.getValidNDaysEvent(1);
-        Band band1 = help.getBand("first band", 30);
-        Band band2 = help.getBand("second band", 30);
+        Band band1 = help.getBand("first band", 30, 300);
+        Band band2 = help.getBand("second band", 30, 300);
         //if
-        event.addBand(band1, 300);
-        event.addBand(band2, 300);
+        event.addBand(band1);
+        event.addBand(band2);
         //then
 
         assertFalse(event.removeStage(1));
@@ -145,12 +145,12 @@ class EventTest {
     void should_return_true() throws TimeSlotCantBeFoundException, BudgetOverflowException, DateDisorderException, PriceLevelException, TimeDisorderException {
         //Given
         Event event = help.getValidNDaysEvent(1);
-        Band band1 = help.getBand("first band", 30);
-        Band band3 = help.getBand("third band", 30);
+        Band band1 = help.getBand("first band", 30, 300);
+        Band band3 = help.getBand("third band", 30, 300);
         //if
-        event.addBand(band1, 300);
+        event.addBand(band1);
         //then
-        assertNotNull(event.addBand(band3, 300));
+        assertNotNull(event.addBand(band3));
 
     }
 
@@ -165,7 +165,7 @@ class EventTest {
         LocalTime resultTime = LocalTime.of(10, 30);
         LocalDateTime resultDateTime = LocalDateTime.of(resultDate, resultTime);
         //when
-        EventInfo eventInfo = lineUp.addBand(band, 30);
+        EventInfo eventInfo = lineUp.addBand(band);
         LocalDateTime actualDateTime = LocalDateTime.of(eventInfo.getDate(), eventInfo.getTime());
         //then
         assertEquals(resultDateTime, actualDateTime);
@@ -176,14 +176,14 @@ class EventTest {
         //Given 3 days of festival with 1 stage
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 3, 1),
                 LocalDate.of(2020, 3, 3));
-        Band band = help.getBand();
-        Band band2 = help.getBand();
+        Band band = help.getBand("Band1", 100, 65);
+        Band band2 = help.getBand("Band1", 100, 30);
         LocalDate resultDate = LocalDate.of(2020, 3, 1);
         LocalTime resultTime = LocalTime.of(12, 5);
         LocalDateTime resultDateTime = LocalDateTime.of(resultDate, resultTime);
         //when
-        lineUp.addBand(band, 65);
-        EventInfo eventInfo = lineUp.addBand(band2, 30);
+        lineUp.addBand(band);
+        EventInfo eventInfo = lineUp.addBand(band2);
         LocalDateTime actualDateTime = LocalDateTime.of(eventInfo.getDate(), eventInfo.getTime());
         //then
         assertEquals(resultDateTime, actualDateTime);
@@ -225,11 +225,11 @@ class EventTest {
         LineUp lineUp = help.exampleLineUp();
 
         //When
-        Band band = help.getBand();
-        EventInfo eventInfo = lineUp.addBand(band, 30);
+        Band band = help.getBand(30);
+        EventInfo eventInfo = lineUp.addBand(band);
 
         LocalDate resultDate = LocalDate.of(2020, 3, 1);
-        LocalTime resultTime = LocalTime.of(21, 30);
+        LocalTime resultTime = LocalTime.of(22, 00);
         LocalDateTime resultDateTime = LocalDateTime.of(resultDate, resultTime);
         LocalDateTime actualDateTime = LocalDateTime.of(eventInfo.getDate(), eventInfo.getTime());
         //then
@@ -243,7 +243,7 @@ class EventTest {
         Program program = new Program(help.getStage(), help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12)));
         //When
-        EventInfo eventInfo = program.addBand(help.getBand(), 5000);
+        EventInfo eventInfo = program.addBand(help.getBand(5000));
         //Then
         assertNull(eventInfo);
 
@@ -255,7 +255,7 @@ class EventTest {
         Program program = new Program(help.getStage(), help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12)));
         //When
-        EventInfo eventInfo = program.addBand(help.getBand(), 809);
+        EventInfo eventInfo = program.addBand(help.getBand());
         //Then
         assertNotNull(eventInfo);
 
@@ -275,7 +275,7 @@ class EventTest {
         //Given
         Event event = help.getValidNDaysEvent(1);
         Band band = help.getBand();
-        event.addBand(band, 45);
+        event.addBand(band);
         //When
         boolean check = event.removeBand(band);
         assertTrue(check);
@@ -284,12 +284,12 @@ class EventTest {
     @Test
     void should_remove_band_because_time_and_date_are_valid_returns_true() throws DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException, TimeDisorderException {
         Event event = help.getValidNDaysEvent(1);
-        Band band = help.getBand("Band1", 60);
-        Band band2 = help.getBand("band2", 60);
-        event.addBand(band, 60);
-        event.addBand(band2, 60);
-        event.addBand(band, 60);
-        event.addBand(band2, 60);
+        Band band = help.getBand("Band1", 60, 60);
+        Band band2 = help.getBand("band2", 60, 60);
+        event.addBand(band);
+        event.addBand(band2);
+        event.addBand(band);
+        event.addBand(band2);
         LocalDateTime dateAndTime = LocalDateTime.of(2018, 01, 01, 12, 00);
         assertTrue(event.removeBand(band2, dateAndTime));
     }
@@ -297,12 +297,12 @@ class EventTest {
     @Test
     void should_not_remove_band_because_time_is_not_valid_returns_false() throws DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException, TimeDisorderException {
         Event event = help.getValidNDaysEvent(1);
-        Band band = help.getBand("Band1", 60);
-        Band band2 = help.getBand("band2", 60);
-        event.addBand(band, 60);
-        event.addBand(band2, 60);
-        event.addBand(band, 60);
-        event.addBand(band2, 60);
+        Band band = help.getBand("Band1", 60, 60);
+        Band band2 = help.getBand("band2", 60, 60);
+        event.addBand(band);
+        event.addBand(band2);
+        event.addBand(band);
+        event.addBand(band2);
         LocalDateTime dateAndTime = LocalDateTime.of(2018, 01, 01, 12, 30);
         assertFalse(event.removeBand(band2, dateAndTime));
     }

@@ -10,6 +10,7 @@ import de.bord.festival.ticket.CampingTicket;
 import de.bord.festival.ticket.DayTicket;
 import de.bord.festival.ticket.VIPTicket;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 
 @Controller
@@ -35,7 +37,6 @@ public class EventController {
     public EventController(EventRepository eventRepository) {
         this.eventRepository = eventRepository;
     }
-
 
     @GetMapping("/event_create")
     public String greetingForm(Model model) {
@@ -69,10 +70,9 @@ public class EventController {
             LocalDate endDate = dateTimeContainer.getEndDate();
             long breakBetweenTwoBands = dateTimeContainer.getBreakBetweenTwoBands();
             String name = event.getName();
-
             BigDecimal budget = event.getBudget();
 
-
+            //get all values for ticket manager constructor
             List<PriceLevel> priceLevels = tmk.getPriceLevels();
             int numberOfDayTickets = tmk.getNumberOfDayTickets();
             int numberOfCampingTickets = tmk.getNumberOfCampingTickets();
@@ -87,7 +87,7 @@ public class EventController {
             TicketManager ticketManager = new TicketManager(priceLevels, numberOfDayTickets,
                     numberOfCampingTickets, numberOfVipTickets, dayTicket, campingTicket, vipTicket);
             try {
-
+                //create event normally
                 Event newEvent = Event.getNewEvent(startTime, endTime, breakBetweenTwoBands, startDate,
                         endDate, name, budget, stage, ticketManager, address);
                 eventRepository.save(newEvent);
@@ -121,57 +121,76 @@ public class EventController {
     }
 
     @GetMapping("program")
-    public String showProgram(@RequestParam long eventId, Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+    public String showProgram(@RequestParam String eventId, Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+
+        if (!isLong(eventId)){
+            return "error404";
+        }
+        long eventIdLong= Long.parseLong(eventId);
+
+        ///
         HelpClasses helpClasses = new HelpClasses();
 
         Event event=helpClasses.getValidNDaysEvent(2);
-        event.addBand(helpClasses.getBand("My lovely band", 10.00  ), 90);
-        event.addBand(helpClasses.getBand("My lovely band2", 10.00  ), 90);
-        event.addBand(helpClasses.getBand("My lovely band3", 10.00  ), 90);
-        event.addBand(helpClasses.getBand("My lovely band4", 10.00  ), 90);
-        event.addBand(helpClasses.getBand("My lovely band5", 10.00  ), 300);
-
+        event.addBand(helpClasses.getBand("My lovely band", 10.00));
+        event.addBand(helpClasses.getBand("My lovely band2", 10.00  ));
+        event.addBand(helpClasses.getBand("My lovely band3", 10.00  ));
+        event.addBand(helpClasses.getBand("My lovely band4", 10.00  ));
+        event.addBand(helpClasses.getBand("My lovely band5", 10.00  ));
         event.addStage(helpClasses.getStage(2, "Stage2"));
-
         eventRepository.save(event);
-        Event event1 = eventRepository.findById(eventId);
+        ///
+        Event event1 = eventRepository.findById(eventIdLong);
         if (event1==null){
             return "eventAnsicht";
         }
-        Map<LocalDate, Program> programs = event1.getPrograms();
-        model.addAttribute("dayPrograms", programs);
+        fillModelWithAttributes(new Band(), event1, model);
+
         return "program";
     }
 
     @PostMapping("band_add")
     public String addBand(@Valid Band band, BindingResult bindingResult,
-                          long minutesOnStage, BindingResult bindingResultMinutesOnStage,
-                          @RequestParam long eventId,
+                          @RequestParam String eventId,
                           Model model) {
-
-        if (bindingResult.hasErrors()){
-            return "eventUpdate";
+        //check if user does not manipulate the event is
+        if (!isLong(eventId)){
+            return "error404";
         }
-
-        Event event=eventRepository.findById(eventId);
-
+        long eventIdLong= Long.parseLong(eventId);
+        //check if event exists
+        Event event = eventRepository.findById(eventIdLong);
         if (event==null){
-            bindingResult.addError(new ObjectError("mainElement", "This event does not exist"));
-            return "eventUpdate";
+            return "error404";
         }
-
+        //check if band values are right
+        if (bindingResult.hasErrors()){
+            fillModelWithAttributes(band, event, model);
+            return "program";
+        }
+        //add band and save event if there are no other exceptions
         try {
-            event.addBand(band, minutesOnStage);
+            event.addBand(band);
             eventRepository.save(event);
             model.addAttribute("programs", event.getPrograms());
-            //here will be printed all bands with their information
-            return "redirect:/addBand?success";
+            return "redirect:/program?success&eventId="+eventId;
 
-        } catch (BudgetOverflowException | TimeSlotCantBeFoundException e) {
-            bindingResult.addError(new ObjectError("mainElement", e.getMessage()));
-            return "eventUpdate";
+        } catch (BudgetOverflowException e) {
+            bindingResult.rejectValue("pricePerEvent", "error.band", e.getMessage());
+        }catch (TimeSlotCantBeFoundException e){
+            bindingResult.rejectValue("minutesOnStage", "error.band", e.getMessage());
         }
+        finally {
+            fillModelWithAttributes(band, event, model);
+        }
+        return "program";
 
+    }
+
+    void fillModelWithAttributes(Band band, Event event, Model model){
+        model.addAttribute("dayPrograms", event.getPrograms());
+        model.addAttribute("band", band);
+        model.addAttribute("eventId", String.valueOf(event.getId()));
     }
 
 
@@ -226,7 +245,17 @@ public class EventController {
         return "events";
     }
 
-
+    public static boolean isLong(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Long.parseLong(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
     private boolean noErrors(BindingResult bindingResultEvent,
                              BindingResult bindingResultDateTimeContainer,
                              BindingResult bindingResultAddress,
