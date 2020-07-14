@@ -62,7 +62,7 @@ body {
     overflow: hidden;
 }
 
-.log_in, .buy_ticket
+.log_in, .buy_ticket, .register
 {
     background-color: rgb(255, 255, 255, 0.8);
     width: 30%;
@@ -163,7 +163,7 @@ fieldset
     margin-bottom: 20px;
 }
 
-.user
+.user, .index
  {
      background-color: rgb(255, 255, 255, 0.8);
      width: 30%;
@@ -301,9 +301,14 @@ a:active {
 .clear-left {
     clear: left;
 }
-
+.clear-right {
+    clear: right;
+}
 .float-left {
     float: left;
+}
+.float-right {
+    float: right;
 }
 .col-half {
     width: 50%;
@@ -350,4 +355,20 @@ a:active {
 .event-card-date {
     margin-top: 5px !important;
     margin-bottom: 5px !important;
+}
+
+.register-input {
+    width: 100px;
+}
+.register-back-btn{
+    background-color: rgb(202, 13, 60);
+    color: white;
+    margin-left: 67%;
+    margin-top: 44.1%;
+    height: 51px;
+    width: 10%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    z-index: 6;
+    position: absolute;
 }

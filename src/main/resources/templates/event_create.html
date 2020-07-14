@@ -11,20 +11,20 @@
 </header>
 
 <div class="bord">
-    <h1>Willkommen bei <strong>BORD</strong> - Ihrem <strong>F</strong>estival</h1>
+    <h1>Welcome To <strong>BORD</strong> - Your <strong>F</strong>estival</h1>
 </div>
 <div class="center">
     <div class="content">
         <div th:if="${param.success}">
-            Festival wurde angelegt
+            Festival created successfully
         </div>
-        <h2>Event anlegen</h2>
+        <h2>Create Event</h2>
         <form action="#" th:action="@{/event_create}" method="post">
             <!-- Festival information -->
 
             <div th:object="${event}">
                 <div class="group">
-                    <label  for="name">Festivalname</label><br>
+                    <label  for="name">Name Of Festival</label><br>
                     <input type="text" th:field="*{name}" id="name"/>
                     <p class="error" th:if="${#fields.hasErrors('name')}"th:errors="*{name}"  ></p>
                 </div>
@@ -37,28 +37,28 @@
 
             <div th:object="${dateTimeContainer}">
                 <div class="clear-left group">
-                    <label for="startdatum">Startdatum</label><br>
+                    <label for="startdatum">Start Date</label><br>
                     <input th:field="*{startDate}" type="date" id="startdatum"/>
                     <p class="error" th:if="${#fields.hasErrors('startDate')}"th:errors="*{startDate}"></p>
                 </div>
                 <div class="group">
-                    <label for="enddatum">Enddatum</label><br>
+                    <label for="enddatum">End Date</label><br>
                     <input th:field="*{endDate}" type="date" id="enddatum"/>
                     <p class="error" th:if="${#fields.hasErrors('endDate')}"th:errors="*{endDate}"></p>
 
                 </div>
                 <div class="clear-left group">
-                    <label for="startuhrzeit">Startuhrzeit</label><br>
+                    <label for="startuhrzeit">Start Time</label><br>
                     <input id="startuhrzeit" th:field="*{startTime}" type="time"/>
                     <p class="error" th:if="${#fields.hasErrors('startTime')}"th:errors="*{startTime}"></p>
                 </div>
                 <div class="group">
-                    <label for="enduhrzeit">Enduhrzeit</label><br>
+                    <label for="enduhrzeit">End Time</label><br>
                     <input th:field="*{endTime}" type="time" id="enduhrzeit"/>
                     <p class="error" th:if="${#fields.hasErrors('endTime')}"th:errors="*{endTime}"></p>
                 </div>
                 <div class="group">
-                    <label for="pause">Bühnenpause</label><br>
+                    <label for="pause">Stage Break</label><br>
                     <select id="pause" th:field="*{breakBetweenTwoBands}">
                         <option value="5">5 Minuten</option>
                         <option value="10">10 Minuten</option>
@@ -71,23 +71,23 @@
             </div>
             <div th:object="${address}">
                 <div class="clear-left group">
-                    <label for="strhnr">Straße und Hausnummer</label><br>
+                    <label for="strhnr">Street And Street Number</label><br>
                     <input th:field="*{street}" type="text" id="strhnr"/>
                     <p class="error" th:if="${#fields.hasErrors('street')}"th:errors="*{street}"  ></p>
                 </div>
                 <div class="group">
-                    <label for="plz">PLZ</label><br>
+                    <label for="plz">ZIP</label><br>
                     <input th:field="*{zip}" type="text" id="plz"/>
                     <p class="error" th:if="${#fields.hasErrors('zip')}"th:errors="*{zip}"  ></p>
 
                 </div>
                 <div class="group">
-                    <label for="ort">Ort</label><br>
+                    <label for="ort">Place</label><br>
                     <input th:field="*{city}" type="text" id="ort"/>
                     <p class="error" th:if="${#fields.hasErrors('city')}"th:errors="*{city}"  ></p>
                 </div>
                 <div class="clear-left group">
-                    <label for="land">Land</label><br>
+                    <label for="land">Country</label><br>
                     <select id="land" th:field="*{country}">
                         <option value="Belgien">Belgien</option>
                         <option value="Bulgarien">Bulgarien</option>
@@ -126,9 +126,9 @@
             </div>
             <!-- Dayticket -->
             <div class="clear-left float-left col-third tickets" >
-                <h3>Tagesticket</h3>
+                <h3>Dayticket</h3>
                 <div class="group col-half" th:object="${tmk}">
-                    <label for="dayticketcount">Anzahl</label><br>
+                    <label for="dayticketcount">Number of Tickets</label><br>
                     <input th:field="*{numberOfDayTickets}"  type="number" id="dayticketcount"/>
                     <p class="error" th:if="${#fields.hasErrors('numberOfDayTickets')}"th:errors="*{numberOfDayTickets}"></p>
                 </div>
@@ -137,7 +137,7 @@
                     <input type="text" id="dayticketinitialprice"/>
                 </div>-->
                 <div  class="clear-left group col-full" th:object="${tmk}">
-                    <label>Ticketbeschreibung</label><br>
+                    <label>Ticket Description</label><br>
                     <input th:field="*{dayTicketDescription}" type="text"/>
                     <p class="error" th:if="${#fields.hasErrors('dayTicketDescription')}"th:errors="*{dayTicketDescription}"  ></p>
                 </div>
@@ -148,7 +148,7 @@
             <div class="float-left col-third tickets" th:object="${tmk}">
                 <h3>Campingticket</h3>
                 <div  class="group col-half">
-                    <label for="campingticketcount">Anzahl</label><br>
+                    <label for="campingticketcount">Number Of Tickets</label><br>
                     <input th:field="*{numberOfCampingTickets}" type="number" id="campingticketcount"/>
                     <p class="error" th:if="${#fields.hasErrors('numberOfCampingTickets')}"th:errors="*{numberOfCampingTickets}"  ></p>
                 </div>
@@ -157,7 +157,7 @@
                     <input type="text" id="campingticketinitialprice"/>
                 </div>-->
                 <div class="clear-left group col-full">
-                    <label for="campingticketdescription">Ticketbeschreibung</label><br>
+                    <label for="campingticketdescription">Ticket Description</label><br>
                     <input th:field="*{campingTicketDescription}" type="text" id="campingticketdescription"/>
                     <p class="error" th:if="${#fields.hasErrors('campingTicketDescription')}"th:errors="*{campingTicketDescription}"  ></p>
                 </div>
@@ -165,9 +165,9 @@
 
             <!-- VIP-Ticket -->
             <div class="float-left col-third tickets" th:object="${tmk}">
-                <h3>VIP-Ticket</h3>
+                <h3>VIP Ticket</h3>
                 <div class="group col-half">
-                    <label for="vipticketcount">Anzahl</label><br>
+                    <label for="vipticketcount">Number Of Tickets</label><br>
                     <input th:field="*{numberOfVipTickets}" type="number" id="vipticketcount"/>
                     <p class="error" th:if="${#fields.hasErrors('numberOfVipTickets')}"th:errors="*{numberOfVipTickets}"  ></p>
 
@@ -177,7 +177,7 @@
                     <input type="text" id="vipticketinitialprice"/>
                 </div>-->
                 <div class="clear-left group col-full">
-                    <label for="vipticketdescription">Ticketbeschreibung</label><br>
+                    <label for="vipticketdescription">Ticket Description</label><br>
                     <input th:field="*{vipTicketDescription}" type="text" id="vipticketdescription"/>
                     <p class="error" th:if="${#fields.hasErrors('campingTicketDescription')}"th:errors="*{campingTicketDescription}"  ></p>
                 </div>
@@ -189,7 +189,7 @@
             <div th:object="${tmk}">
                 <div  th:each="priceLevel, itemStat: *{priceLevels}">
                     <div class="clear-left group col-half">
-                        <label th:inline="text">Preisstufe [[${itemStat.index+1}]]</label><br>
+                        <label th:inline="text">Price Level [[${itemStat.index+1}]]</label><br>
                         <input th:field="*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}" type="number"/>
                         <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}')}"th:errors="*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}"  ></p>
                     </div>
@@ -209,7 +209,7 @@
             <div th:object="${tmk}">
                 <div  th:each="priceLevel, itemStat: *{priceLevels}">
                     <div class="group col-half">
-                        <label>Preis</label><br>
+                        <label>Price</label><br>
                         <input th:field="*{priceLevels[__${itemStat.index}__].dayTicketPrice}" type="number"/>
                         <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].dayTicketPrice}')}"th:errors="*{priceLevels[__${itemStat.index}__].dayTicketPrice}"  ></p>
                     </div>
@@ -219,7 +219,7 @@
             <div th:object="${tmk}">
                 <div  th:each="priceLevel, itemStat: *{priceLevels}">
                     <div class="group col-half">
-                        <label>Preis</label><br>
+                        <label>Price</label><br>
                         <input th:field="*{priceLevels[__${itemStat.index}__].campingTicketPrice}" type="number"/>
                         <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].campingTicketPrice}')}"th:errors="*{priceLevels[__${itemStat.index}__].campingTicketPrice}"  ></p>
                     </div>
@@ -227,10 +227,10 @@
             </div>
             <!-- Stage -->
             <div class="clear-left group">
-                <h3>Bühne anlegen</h3>
+                <h3>Create Stage</h3>
             </div>
             <div th:object="${stage}" class="clear-left group">
-                <label for="stagename">Bühnenname</label><br>
+                <label for="stagename">Name Of Stage</label><br>
                 <input th:field="*{stageName}" type="text" id="stagename"/>
                 <p class="error" th:if="${#fields.hasErrors('stageName')}"th:errors="*{stageName}"  ></p>
                 <input th:field="*{identifier}" type="number" id="Identifier"/>
@@ -243,7 +243,7 @@
     </div>
     <div class="logout">
         <form th:action="@{/logout}" method="post">
-            <input class="button" type="submit" value="Ausloggen"/>
+            <input class="button" type="submit" value="Logout"/>
         </form>
     </div>
 </div>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet">
+    <title>BORD</title>
+</head>
+<body>
+<header>
+</header>
+
+<div class= "bord">
+    <h1>Welcome To <strong>BORD</strong> - Your <strong>F</strong>estival</h1>
+</div>
+
+<div class="center">
+    <div th:if="${param.error}">
+        Invalid information.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+    <h2>New to BORD?</h2>
+    <div class="register">
+        <fieldset>
+            <form th:action="@{/user_menu}" method="post">
+                <lable>Name</lable>
+                <input type="name" name="lastname" class="register_input" value="" placeholder="Please enter" required><br/>
+                <lable>First name</lable>
+                <input type="name" name="firstname" class="register_input" value="" placeholder="Please enter" required><br/>
+                <lable>Username</lable>
+                <input type="name" name="username" class="register_input" value="" placeholder="Please enter" required/><br/>
+                <lable>Address</lable>
+                <input type="text" name="address" class="register_input" value="" placeholder="Please enter" required><br/>
+                <lable>E-Mail</lable>
+                <input type="email" name="email" class="register_input" value="" placeholder="Please enter" required><br/>
+                <lable>Password</lable>
+                <input type="password" name="password" class="register_input" placeholder="Please enter" required/><br/><br/>
+                <input type="submit" name="register" value="Register"/>
+
+            </form>
+        </fieldset><br>
+        <div>
+            <a href="../index"><button>Back</button></a>
+        </div>
+
+    </div>
+</div>
+
+</footer>
+</footer>
+</body>
+</html>
