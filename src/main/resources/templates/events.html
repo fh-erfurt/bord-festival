@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de">
-    <head th:replace="fragments/head :: head">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet">
+        <title>BORD</title>
     </head>
     <body>
-        <header th:replace="fragments/header :: header">
+        <header>
         </header>
 
         <div class= "bord">
@@ -43,8 +47,9 @@
         </div>
         </div>
 
-        <footer th:replace="fragments/footer :: footer">
+        <footer>
         </footer>
+        <th:block th:include="fragments/javascript :: javascript"></th:block>
     </body>
 </html>
 

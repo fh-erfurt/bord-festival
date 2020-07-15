@@ -119,6 +119,7 @@ public class EventController {
         Collections.sort(events, (x, y) -> x.getStartDate().compareTo(y.getStartDate()));
         Collections.reverse(events);
         model.addAttribute("events", events);
+        model.addAttribute("title", "Event Overview");
 
         return "events";
     }
