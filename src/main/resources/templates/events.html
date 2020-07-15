@@ -21,18 +21,23 @@
                 <h2 class="float-left">List of Events</h2>
                 <a href="event_create" class="button float-left clear-left">Create Event</a>
 
-                <div th:with="year = ${null}">
-                    <div th:each="event : ${events}">
-                        <div th:if="${year} == null or ${year} != ${event.startDate.getYear()}">
+                <th:block th:each="event, itemStat : ${events}">
+                    <th:block th:if="${itemStat.index} > 0">
+                        <th:block th:if="${events[__${itemStat.index - 1}__]} == null or ${events[__${itemStat.index - 1}__].startDate.getYear()} != ${event.startDate.getYear()}">
                             <h3 class="float-left clear-left" th:text="${event.startDate.getYear()}"></h3>
-                            <div class="float-left clear-left" th:text="${year}"></div>
-                            <div class="event-card float-left clear-left">
-                                <p class="event-card-title" th:text="${event.name}"></p>
-                                <p class="event-card-date" th:text="${event.startDate.getDayOfMonth()} + '.' + ${event.startDate.getMonthValue()} + '. - ' + ${event.endDate.getDayOfMonth()} + '.' + ${event.endDate.getMonthValue()}+ '.'"></p>
-                                <p th:text="${event.getAddress().getCity()}"></p>
-                            </div>
-                        </div>
+                            <div class="clear-left"></div>
+                        </th:block>
+                    </th:block>
+                    <th:block th:unless="${itemStat.index} > 0">
+                        <h3 class="float-left clear-left" th:text="${event.startDate.getYear()}"></h3>
+                        <div class="clear-left"></div>
+                    </th:block>
+                    <div class="event-card float-left">
+                        <p class="event-card-title" th:text="${event.name}"></p>
+                        <p class="event-card-date" th:text="${event.startDate.getDayOfMonth()} + '.' + ${event.startDate.getMonthValue()} + '. - ' + ${event.endDate.getDayOfMonth()} + '.' + ${event.endDate.getMonthValue()}+ '.'"></p>
+                        <p th:text="${event.getAddress().getCity()}"></p>
                     </div>
+                    </th:block>
                 </div>
             </div>
 
