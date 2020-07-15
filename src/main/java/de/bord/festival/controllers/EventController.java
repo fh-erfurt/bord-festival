@@ -2,12 +2,14 @@ package de.bord.festival.controllers;
 
 import de.bord.festival.controllers.dataContainers.BandTimeSlotContainer;
 import de.bord.festival.controllers.dataContainers.DateTimeContainer;
+import de.bord.festival.controllers.dataContainers.StageIdContainer;
 import de.bord.festival.controllers.dataContainers.TicketManagerContainer;
 import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.BandRepository;
 import de.bord.festival.repository.EventRepository;
+import de.bord.festival.repository.StageRepository;
 import de.bord.festival.ticket.CampingTicket;
 import de.bord.festival.ticket.DayTicket;
 import de.bord.festival.ticket.VIPTicket;
@@ -35,10 +37,13 @@ import java.util.concurrent.atomic.AtomicLong;
 public class EventController {
     private final EventRepository eventRepository;
     private final BandRepository bandRepository;
+    private final StageRepository stageRepository;
+
     @Autowired
-    public EventController(EventRepository eventRepository, BandRepository bandRepository) {
+    public EventController(StageRepository stageRepository, EventRepository eventRepository, BandRepository bandRepository) {
         this.eventRepository = eventRepository;
-        this.bandRepository=bandRepository;
+        this.bandRepository = bandRepository;
+        this.stageRepository = stageRepository;
     }
 
     @GetMapping("/event_create")
@@ -60,7 +65,7 @@ public class EventController {
                               @Valid DateTimeContainer dateTimeContainer, BindingResult bindingResultDateTimeContainer,
                               @Valid Address address, BindingResult bindingResultAddress,
                               @Valid @ModelAttribute("tmk") TicketManagerContainer tmk, BindingResult bindingResultTmk,
-                              @Valid Stage stage, BindingResult bindingResultStage){
+                              @Valid Stage stage, BindingResult bindingResultStage) {
 
 
         if (noErrors(bindingResultEvent, bindingResultDateTimeContainer,
@@ -111,12 +116,13 @@ public class EventController {
 
 
         List<Event> events = eventRepository.findAll();
-        Collections.sort(events, (x,y)->x.getStartDate().compareTo(y.getEndDate()));
+        Collections.sort(events, (x, y) -> x.getStartDate().compareTo(y.getEndDate()));
         Collections.reverse(events);
         model.addAttribute("events", events);
 
         return "events";
     }
+
     @PostMapping("update_event")
     public String updateEvent(Model model) {
 
@@ -126,28 +132,28 @@ public class EventController {
     @GetMapping("program")
     public String showProgram(@RequestParam String eventId, Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
 
-        if (!isLong(eventId)){
+        if (!isLong(eventId)) {
             return "error404";
         }
-        long eventIdLong= Long.parseLong(eventId);
+        long eventIdLong = Long.parseLong(eventId);
 
         ///
         HelpClasses helpClasses = new HelpClasses();
 
-        Event event=helpClasses.getValidNDaysEvent(2);
+        Event event = helpClasses.getValidNDaysEvent(2);
         event.addBand(helpClasses.getBand("My lovely band", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band2", 10.00  ));
-        event.addBand(helpClasses.getBand("My lovely band3", 10.00  ));
-        event.addBand(helpClasses.getBand("My lovely band4", 10.00  ));
-        event.addBand(helpClasses.getBand("My lovely band5", 10.00  ));
+        event.addBand(helpClasses.getBand("My lovely band2", 10.00));
+        event.addBand(helpClasses.getBand("My lovely band3", 10.00));
+        event.addBand(helpClasses.getBand("My lovely band4", 10.00));
+        event.addBand(helpClasses.getBand("My lovely band5", 10.00));
         event.addStage(helpClasses.getStage(2, "Stage2"));
         eventRepository.save(event);
         ///
         Event event1 = eventRepository.findById(eventIdLong);
-        if (event1==null){
+        if (event1 == null) {
             return "eventAnsicht";
         }
-        fillModelWithAttributes(new Band(), event1, model, new BandTimeSlotContainer());
+        fillModelWithAttributes(new Band(), event1, model, new BandTimeSlotContainer(), new Stage(), new StageIdContainer());
 
         return "program";
     }
@@ -156,145 +162,180 @@ public class EventController {
     public String addBand(@Valid Band band, BindingResult bindingResult,
                           @RequestParam String eventId,
                           Model model) {
-        //check if user does not manipulate the event is
-        if (!isLong(eventId)){
+
+        if (!isEventIdValid(eventId)) {
             return "error404";
         }
-        long eventIdLong= Long.parseLong(eventId);
-        //check if event exists
+        long eventIdLong = Long.parseLong(eventId);
         Event event = eventRepository.findById(eventIdLong);
-        if (event==null){
-            return "error404";
-        }
         //check if band values are right
-        if (bindingResult.hasErrors()){
-            fillModelWithAttributes(band, event, model, new BandTimeSlotContainer());
+        if (bindingResult.hasErrors()) {
+            fillModelWithAttributes(band, event, model, new BandTimeSlotContainer(), new Stage(), new StageIdContainer());
             return "program";
         }
         return addBand(event, band, model, bindingResult);
     }
 
     /**
-     *  adds band and save event if there are no other exceptions
-     *  returns success query parameter if there are no exceptions
-     *  otherwise returns exception massages
+     * adds band and save event if there are no other exceptions
+     * returns success query parameter if there are no exceptions
+     * otherwise returns exception massages
      */
-    String addBand(Event event, Band band, Model model, BindingResult bindingResult){
+    String addBand(Event event, Band band, Model model, BindingResult bindingResult) {
 
         try {
             event.addBand(band);
             eventRepository.save(event);
             model.addAttribute("programs", event.getPrograms());
-            return "redirect:/program?successAddBand&eventId="+event.getId();
+            return "redirect:/program?successAddBand&eventId=" + event.getId();
 
         } catch (BudgetOverflowException e) {
             bindingResult.rejectValue("pricePerEvent", "error.band", e.getMessage());
-        }catch (TimeSlotCantBeFoundException e){
+        } catch (TimeSlotCantBeFoundException e) {
             bindingResult.rejectValue("minutesOnStage", "error.band", e.getMessage());
-        }
-        finally {
-            fillModelWithAttributes(band, event, model, new BandTimeSlotContainer());
+        } finally {
+            fillModelWithAttributes(band, event, model, new BandTimeSlotContainer(), new Stage(), new StageIdContainer());
         }
         return "program";
     }
 
+    @PostMapping("stage_add")
+    public String addStage(@Valid Stage stage,
+                           BindingResult bindingResult,
+                           String eventId,
+                           Model model) {
 
-    void fillModelWithAttributes(Band band, Event event, Model model , BandTimeSlotContainer bandTimeSlotContainer){
+        if (!isEventIdValid(eventId)) {
+            return "error404";
+        }
+        long eventIdLong = Long.parseLong(eventId);
+        Event event = eventRepository.findById(eventIdLong);
+
+        //check if stage values are right
+        if (bindingResult.hasErrors()) {
+            fillModelWithAttributes(new Band(), event, model, new BandTimeSlotContainer(), stage, new StageIdContainer());
+            return "program";
+        }
+
+        boolean stageAdded = event.addStage(stage);
+        if (stageAdded) {
+            eventRepository.save(event);
+            return "redirect:/program?successAddStage&eventId=" + event.getId();
+        } else {
+            bindingResult.rejectValue("identifier", "error.stage", "Stage with this identifier already exists");
+            fillModelWithAttributes(new Band(), event, model, new BandTimeSlotContainer(), stage, new StageIdContainer());
+            return "program";
+        }
+
+
+    }
+
+    @PostMapping("band_remove")
+    public String removeBand(@Valid BandTimeSlotContainer bandTimeSlotContainer, BindingResult bindingResult,
+                             Model model, String eventId) {
+        if (!isEventIdValid(eventId)) {
+            return "error404";
+        }
+
+        long eventIdLong = Long.parseLong(eventId);
+        Event event = eventRepository.findById(eventIdLong);
+
+        String bandId = bandTimeSlotContainer.getBandId();
+        //check if band id was not manipulated
+        if (!isLong(bandId)) {
+            return "error404";
+        }
+        //check if date time is set
+        if (bindingResult.hasErrors()) {
+            fillModelWithAttributes(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
+            return "program";
+        }
+        Band band = bandRepository.findById(Long.parseLong(bandId));
+        //check if band exists in database
+        if (band == null) {
+            bindingResult.rejectValue("bandId", "error.bandTimeSlotContainer", "there is no band with this name");
+            fillModelWithAttributes(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
+            return "program";
+        }
+
+        return removeBand(event, model, bandTimeSlotContainer, band, bindingResult);
+    }
+
+    @PostMapping("stage_remove")
+    public String removeStage(@Valid StageIdContainer stageIdContainer, BindingResult bindingResult,
+                              Model model, String eventId) {
+
+        if (!isEventIdValid(eventId)) {
+            return "error404";
+        }
+
+        long eventIdLong = Long.parseLong(eventId);
+        Event event = eventRepository.findById(eventIdLong);
+
+        String stageId = stageIdContainer.getStageId();
+
+        boolean removed;
+        if (!isLong(stageId)){
+            return "error404";
+        }
+
+        Stage stage = stageRepository.findById(Long.parseLong(stageId));
+        removed = event.removeStage(stage.getIdentifier());
+
+        if (removed) {
+            eventRepository.save(event);
+            model.addAttribute("programs", event.getPrograms());
+            return "redirect:/program?successRemoveStage&eventId=" + event.getId();
+        } else {
+            bindingResult.rejectValue("stageId", "error.stageIdContainer", "This stage can not be deleted");
+            fillModelWithAttributes(new Band(), event, model, new BandTimeSlotContainer(), new Stage(), stageIdContainer);
+            return "program";
+        }
+    }
+
+    void fillModelWithAttributes(Band band, Event event, Model model, BandTimeSlotContainer bandTimeSlotContainer, Stage stage, StageIdContainer stageIdContainer) {
         model.addAttribute("dayPrograms", event.getPrograms());
         model.addAttribute("bands", event.getBands());
         model.addAttribute("stages", event.getStages());
         model.addAttribute("band", band);
         model.addAttribute("eventId", String.valueOf(event.getId()));
         model.addAttribute("bandTimeSlotContainer", bandTimeSlotContainer);
+        model.addAttribute("stage", stage);
+        model.addAttribute("stageIdContainer", stageIdContainer);
+
+
     }
 
+    String removeBand(Event event, Model model, BandTimeSlotContainer bandTimeSlotContainer, Band band, BindingResult bindingResult) {
 
+        boolean removed = true;
 
-    @PostMapping("stage_add")
-    public String addStage(@Valid Stage stage,
-                           BindingResult bindingResult,
-                           String eventId) {
-
-        if (bindingResult.hasErrors()){
-            return "program";
-        }
-        Event event=eventRepository.findById(1);
-
-        if (event==null){
-            bindingResult.addError(new ObjectError("MainObject", "This event does not exist"));
-        }
-
-
-        return "events";
-    }
-    @PostMapping("band_remove")
-    public String removeBand(@Valid BandTimeSlotContainer bandTimeSlotContainer, BindingResult bindingResult,
-                             Model model, String eventId) {
-        //check if user does not manipulate the event id
-        if (!isLong(eventId)){
-            return "error404";
-        }
-        long eventIdLong= Long.parseLong(eventId);
-        //check if event exists
-        Event event = eventRepository.findById(eventIdLong);
-        String bandId=bandTimeSlotContainer.getBandId();
-        //check if band id was not manipulated
-        if (event==null || !isLong(bandId)){
-            return "error404";
-        }
-        //check if date time is set
-        if (bindingResult.hasErrors()){
-            fillModelWithAttributes(new Band(), event, model, bandTimeSlotContainer);
-            return "program";
-        }
-        Band band=bandRepository.findById(Long.parseLong(bandId));
-        //check if band exists in database
-        if(band==null){
-            bindingResult.rejectValue("bandId", "error.bandTimeSlotContainer", "there is no band with this name");
-            fillModelWithAttributes(new Band(), event, model, bandTimeSlotContainer);
-            return "program";
-        }
-
-        return removeBand(event, model, bandTimeSlotContainer, band, bindingResult);
-    }
-    String removeBand(Event event, Model model, BandTimeSlotContainer bandTimeSlotContainer, Band band, BindingResult bindingResult){
-
-        boolean removed=true;
-
-        if (isTimeSlotSet(bandTimeSlotContainer)){
+        if (isTimeSlotSet(bandTimeSlotContainer)) {
             //check if user didn't choose standard date as yyy-dd-mm
-            if(bandTimeSlotContainer.getDateTimeToDeleteBand().equals("")){
+            if (bandTimeSlotContainer.getDateTimeToDeleteBand().equals("")) {
                 bindingResult.rejectValue("dateTimeToDeleteBand", "error.bandTimeSlotContainer", "Please choose a certain date");
-                fillModelWithAttributes(new Band(), event, model, bandTimeSlotContainer);
+                fillModelWithAttributes(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
                 return "program";
             }
-            LocalDateTime localDateTime=LocalDateTime.parse(bandTimeSlotContainer.getDateTimeToDeleteBand());
+            LocalDateTime localDateTime = LocalDateTime.parse(bandTimeSlotContainer.getDateTimeToDeleteBand());
 
-            removed= event.removeBand(band, localDateTime);
-        }
-        else{
+            removed = event.removeBand(band, localDateTime);
+        } else {
             event.removeBand(band);
         }
-        eventRepository.save(event);
-        if (removed){
+        if (removed) {
+            eventRepository.save(event);
             model.addAttribute("programs", event.getPrograms());
-            return "redirect:/program?successRemoveBand&eventId="+ event.getId();
-        }
-        else{
+            return "redirect:/program?successRemoveBand&eventId=" + event.getId();
+        } else {
             bindingResult.rejectValue("dateTimeToDeleteBand", "error.bandTimeSlotContainer", "There is no time slot with this band combination found");
-            fillModelWithAttributes(new Band(), event, model, bandTimeSlotContainer);
+            fillModelWithAttributes(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
             return "program";
         }
     }
 
-    boolean isTimeSlotSet(BandTimeSlotContainer bandTimeSlotContainer){
-        return bandTimeSlotContainer.getDateTimeToDeleteBand()!=null;
-    }
-
-    @PostMapping("stage_remove")
-    public String removeStage(Model model) {
-
-        return "events";
+    boolean isTimeSlotSet(BandTimeSlotContainer bandTimeSlotContainer) {
+        return bandTimeSlotContainer.getDateTimeToDeleteBand() != null;
     }
 
     public static boolean isLong(String strNum) {
@@ -308,6 +349,25 @@ public class EventController {
         }
         return true;
     }
+
+    /**
+     * check if user does not manipulate the event id
+     */
+    public boolean isEventIdValid(String eventId) {
+        //check if user does not manipulate the event is
+        if (!isLong(eventId)) {
+            return false;
+        }
+        long eventIdLong = Long.parseLong(eventId);
+        //check if event exists
+        Event event = eventRepository.findById(eventIdLong);
+        if (event == null) {
+            return false;
+        }
+        return true;
+
+    }
+
     private boolean noErrors(BindingResult bindingResultEvent,
                              BindingResult bindingResultDateTimeContainer,
                              BindingResult bindingResultAddress,

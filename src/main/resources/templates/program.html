@@ -20,6 +20,8 @@
         <h2>Program</h2>
         <h4 th:if="${param.successAddBand}"> You successfully added a band to your program</h4>
         <h4 th:if="${param.successRemoveBand}"> You successfully removed a band from your program</h4>
+        <h4 th:if="${param.successAddStage}"> You successfully removed a band from your program</h4>
+
 
         <div th:each="dayProgram : ${dayPrograms}">
             <p th:text="${dayProgram.getKey()}"></p>
@@ -56,6 +58,7 @@
                 <input type="submit" value="Submit" class="button"/>
             </div>
         </form>
+
         <form th:object="${bandTimeSlotContainer}" action="#" th:action="@{/band_remove}" method="post">
             <h4>Remove band from all time slots</h4>
             <input type="text" th:name="eventId" th:value="${eventId}" hidden/>
@@ -66,6 +69,7 @@
                 <input type="submit" value="Submit" class="button"/>
             </div>
         </form>
+
         <form th:object="${bandTimeSlotContainer}" action="#" th:action="@{/band_remove}" method="post">
             <h4>Remove band from a certain time slot</h4>
             <input type="text" th:name="eventId" th:value="${eventId}" hidden/>
@@ -81,6 +85,36 @@
                 <input type="submit" value="Submit" class="button"/>
             </div>
         </form>
+
+        <form th:object="${stage}" action="#" th:action="@{/stage_add}" method="post">
+            <h4>Add stage</h4>
+
+            <input type="text" th:name="eventId" th:value="${eventId}" hidden/>
+
+            <label >Stage name: </label><br>
+            <input th:field="*{stageName}" type="text" /><br>
+            <p class="error" th:if="${#fields.hasErrors('stageName')}"th:errors="*{stageName}"  ></p>
+            <label for="tel">Identifier: </label><br>
+            <input th:field="*{identifier}" type="number" /><br>
+            <p class="error" th:if="${#fields.hasErrors('identifier')}"th:errors="*{identifier}"  ></p>
+            <div class="clear-left group">
+                <input type="submit" value="Submit" class="button"/>
+            </div>
+        </form>
+
+        <form th:object="${stageIdContainer}" action="#" th:action="@{/stage_remove}" method="post">
+            <h4>Remove stage</h4>
+            <input type="text" th:name="eventId" th:value="${eventId}" hidden/>
+            <select  th:field="*{stageId}">
+                <option th:each="stage: ${stages}" th:value="${stage.getId()}" th:text="${stage.getStageName() +' '+ stage.getIdentifier()}"></option>
+            </select><br>
+            <p class="error" th:if="${#fields.hasErrors('stageId')}"th:errors="*{stageId}"  ></p>
+
+            <div class="clear-left group">
+                <input type="submit" value="Submit" class="button"/>
+            </div>
+        </form>
+
     </div>
 </div>
 <div class="logout">
