@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/style.css" rel="stylesheet">
-        <title>BORD</title>
+    <head th:replace="fragments/head :: head">
     </head>
     <body>
-        <header>
+        <header th:replace="fragments/header :: header">
         </header>
 
         <div class= "bord">
@@ -37,18 +33,17 @@
                         <p class="event-card-date" th:text="${event.startDate.getDayOfMonth()} + '.' + ${event.startDate.getMonthValue()} + '. - ' + ${event.endDate.getDayOfMonth()} + '.' + ${event.endDate.getMonthValue()}+ '.'"></p>
                         <p th:text="${event.getAddress().getCity()}"></p>
                     </div>
-                    </th:block>
-                </div>
+                </th:block>
             </div>
-
             <div class="logout">
                 <form th:action="@{/logout}" method="post">
                     <input class="button" type="submit" value="Logout"/>
                 </form>
             </div>
         </div>
+        </div>
 
-        </footer>
+        <footer th:replace="fragments/footer :: footer">
         </footer>
     </body>
 </html>
