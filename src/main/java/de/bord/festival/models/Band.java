@@ -27,6 +27,7 @@ public class Band extends AbstractModel {
     @OneToMany(cascade = CascadeType.ALL)
     private List<EventInfo> eventInfos;
     @NotNull
+    @Min(10)
     private long minutesOnStage;
     public Band(){
         eventInfos = new LinkedList<>();

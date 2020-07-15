@@ -116,6 +116,8 @@ public class LineUp extends AbstractModel {
         return true;
     }
 
+
+
     /**
      * Adds band to the event, is a help method for Event class
      *
@@ -278,6 +280,9 @@ public class LineUp extends AbstractModel {
 
         //find program the date should be removed
         Program program = dayPrograms.get(date);
+        if (program==null){
+            return false;
+        }
         //find time the band should be removed
         LocalTime time = dateAndTime.toLocalTime();
         if (program.removeBand(band, time)) {
@@ -315,5 +320,8 @@ public class LineUp extends AbstractModel {
 
     public Map<LocalDate, Program> getDayPrograms() {
         return this.dayPrograms;
+    }
+    public List<Stage> getStages() {
+        return stages;
     }
 }

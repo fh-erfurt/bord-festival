@@ -15,10 +15,12 @@
     <h1>Welcome To <strong>BORD</strong> - Your <strong>F</strong>estival</h1>
 </div>
 
-
 <div class="center">
     <div class="content">
         <h2>Program</h2>
+        <h4 th:if="${param.successAddBand}"> You successfully added a band to your program</h4>
+        <h4 th:if="${param.successRemoveBand}"> You successfully removed a band from your program</h4>
+
         <div th:each="dayProgram : ${dayPrograms}">
             <p th:text="${dayProgram.getKey()}"></p>
             <div th:each="program : ${dayProgram.getValue().getProgramsForStages()}">
@@ -50,6 +52,31 @@
             <label for="price">Minutes on stage: </label><br>
             <input th:field="*{minutesOnStage}" type="number" id="minutes"/><br>
             <p class="error" th:if="${#fields.hasErrors('minutesOnStage')}"th:errors="*{minutesOnStage}"  ></p>
+            <div class="clear-left group">
+                <input type="submit" value="Submit" class="button"/>
+            </div>
+        </form>
+        <form th:object="${bandTimeSlotContainer}" action="#" th:action="@{/band_remove}" method="post">
+            <h4>Remove band from all time slots</h4>
+            <input type="text" th:name="eventId" th:value="${eventId}" hidden/>
+            <select   th:field="*{bandId}">
+                <option th:each="band1: ${bands}" th:value="${band1.getId()}" th:text="${band1.getName()}"></option>
+            </select><br>
+            <div class="clear-left group">
+                <input type="submit" value="Submit" class="button"/>
+            </div>
+        </form>
+        <form th:object="${bandTimeSlotContainer}" action="#" th:action="@{/band_remove}" method="post">
+            <h4>Remove band from a certain time slot</h4>
+            <input type="text" th:name="eventId" th:value="${eventId}" hidden/>
+            <select  th:field="*{bandId}">
+                <option th:each="band1: ${bands}" th:value="${band1.getId()}" th:text="${band1.getName()}"></option>
+            </select><br>
+            <p class="error" th:if="${#fields.hasErrors('bandId')}"th:errors="*{bandId}"  ></p>
+
+            <br><input th:field="*{dateTimeToDeleteBand}" type="datetime-local"/><br>
+            <p class="error" th:if="${#fields.hasErrors('dateTimeToDeleteBand')}"th:errors="*{dateTimeToDeleteBand}"  ></p>
+
             <div class="clear-left group">
                 <input type="submit" value="Submit" class="button"/>
             </div>

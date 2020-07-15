@@ -361,4 +361,8 @@ public class Event extends AbstractModel implements IEvent {
     public Map<LocalDate, Program> getPrograms() {
         return this.lineUp.getDayPrograms();
     }
+
+    public List<Stage> getStages() {
+        return this.lineUp.getStages();
+    }
 }
