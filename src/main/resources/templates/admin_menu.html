@@ -1,35 +1,25 @@
-<!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/style.css" rel="stylesheet">
-        <title>BORD</title>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
+    <head th:replace="fragments/head :: head">
     </head>
-    <body>
-        <header>
+    <body class="d-flex flex-column h-100">
+        <header th:replace="fragments/header :: header">
         </header>
 
-        <div class= "bord">
-            <h1>Welcome To <strong>BORD</strong> - Your <strong>F</strong>estival</h1>
-        </div>
-        <div class="center">
-            <h2>Please select</h2>
-            <div class="user">
-                <a href="event_create"><button>Create New Event</button></a><br>
-                <a href="event_update"><button>Update Existing Event</button></a><br>
-                <a href="events"><button>Your Events</button></a>
-            </div>
-            <div class="logout">
-                <form th:action="@{/logout}" method="post">
-                    <input class="button float-right" type="submit" value="Logout"/>
-                </form>
-                <div>
-                    <a href="../index" class="button">Back</a>
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-lg-4 col-sm-12">
+                    <h2>Please select</h2>
+                    <a href="event_create" class="btn btn-outline-danger btn-lg btn-block">Create New Event</a>
+                    <a href="event_update" class="btn btn-outline-danger btn-lg btn-block">Update Existing Event</a>
+                    <a href="events" class="btn btn-outline-danger btn-lg btn-block">Your Events</a>
                 </div>
             </div>
         </div>
+
+        <footer th:replace="fragments/footer :: footer">
         </footer>
-        </footer>
+        <th:block th:include="fragments/javascript :: javascript"></th:block>
     </body>
 </html>
