@@ -1,8 +1,15 @@
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
+body {
+    background-image: url(../images/event4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
 
-main > .container {
+main > .container, body > .container {
+    background-color: rgba(255,255,255, 0.8);
     padding: 60px 15px 0;
 }
 
@@ -26,6 +33,7 @@ code {
 }
 .event-card {
     background-color: white;
+    border-radius: 4px;
     padding: 15px;
     border: 1px solid black;
     cursor: pointer;
@@ -57,4 +65,7 @@ code {
 }
 .float-right {
     float: right;
+}
+.error {
+    color: red;
 }
