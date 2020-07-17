@@ -7,12 +7,10 @@
         <header th:replace="fragments/header :: header">
         </header>
 
-        <main role="main" class="flex-shrink-0">
-            <div class="container">
-                <h1>Error 404: Page not found</h1>
-                <a th:href="index" class="btn btn-outline-danger">Start Page</a>
-            </div>
-        </main>
+        <div class="container h-100">
+            <h1>Error 404: Page not found</h1>
+            <a th:href="index" class="btn btn-outline-danger">Start Page</a>
+        </div>
 
         <footer th:replace="fragments/footer :: footer">
         </footer>
