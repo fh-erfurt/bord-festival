@@ -42,9 +42,9 @@ public class EventController {
     }
 
     @GetMapping("/event_create")
-    public String greetingForm(Model model) {
-
-
+    public String greetingForm(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
+HelpClasses h1 = new HelpClasses();
+eventRepository.save(h1.getValidNDaysEvent(2));
         model.addAttribute("tmk", new TicketManagerContainer());
         model.addAttribute("event", new Event());
         model.addAttribute("dateTimeContainer", new DateTimeContainer());

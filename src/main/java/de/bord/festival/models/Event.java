@@ -365,4 +365,9 @@ public class Event extends AbstractModel implements IEvent {
     public List<Stage> getStages() {
         return this.lineUp.getStages();
     }
+
+
+    public TicketManager getTicketManager(){
+        return ticketManager;
+    }
 }

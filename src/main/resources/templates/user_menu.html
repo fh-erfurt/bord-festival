@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html xmlns:th="https://www.thymeleaf.org" lang="de">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,9 +16,7 @@
         <div class="center">
             <h2>Please select an event</h2>
             <div class="user_event">
-                <a href="buy_ticket_user"><button name="event1">Event 1</button></a>
-                <a href="buy_ticket_user"><button name="event2">Event 2</button></a>
-                <a href="buy_ticket_user"><button name="event3">Event 3</button></a>
+                <a th:each="event : ${events}" th:href="@{/buy_ticket_user(eventId = ${event.getId()})}"><button name="event1" th:text="${event.getName()}"></button></a>
             </div>
             <h4>Or inform yourself about your events</h4>
             <a href="information_user"><button name="information">Your Events</button></a>

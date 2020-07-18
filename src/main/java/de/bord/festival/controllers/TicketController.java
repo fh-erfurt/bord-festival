@@ -1,11 +1,9 @@
 package de.bord.festival.controllers;
 
 import de.bord.festival.controllers.help.HelpClasses;
-import de.bord.festival.exception.DateDisorderException;
-import de.bord.festival.exception.PriceLevelException;
-import de.bord.festival.exception.TimeDisorderException;
-import de.bord.festival.models.Event;
-import de.bord.festival.models.PriceLevel;
+import de.bord.festival.exception.*;
+import de.bord.festival.models.*;
+import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import de.bord.festival.repository.PriceLevelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,13 @@ import java.util.Optional;
 @Controller
 public class TicketController {
 
+    private Event event = null;
 
     private final EventRepository eventRepository;
     @Autowired PriceLevelRepository priceLevelRepository;
+
+    @Autowired
+    ClientRepository clientRepository;
 
     @Autowired
     public TicketController(EventRepository eventRepository) {
@@ -30,22 +32,25 @@ public class TicketController {
     }
 ////////////////// Event auswählen
 
-    @GetMapping("buy_ticket")
-    public String eventOverview(ModelMap model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
+    @GetMapping("user_menu")
+    public String createEventOverview(ModelMap model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
 
-        //eventRepository.save(new HelpClasses().getValidNDaysEvent(2));
+
         List<Event> events = eventRepository.findAll();
-        //String[] flowers = new String[] { "Rose", "Lily", "Tulip", "Carnation", "Hyacinth" };
+
         model.addAttribute("events", events);
 
 
-        return "buy_ticket";
+        return "user_menu";
     }
+    /*
     @RequestMapping(value = "buy_ticket", method= RequestMethod.POST)
     public String chooseEvent(@RequestParam(value = "eventId", required = true) Integer eventId, ModelMap model){
         List<Event> event1 = eventRepository.findAll();
         return "/buy_ticket";
     }
+    */
+
     /*
     <tr th:each="Event : ${events}">
         <td th:text="${events.name}"></td>
@@ -78,11 +83,44 @@ public class TicketController {
         return "buy_ticket2";
     }*/
 
-    @GetMapping("/buy_ticket2")
-    public String blaaa(ModelMap model){
 
-        return "buy_ticket2";
+    @GetMapping("/buy_ticket_user")
+    public String chooseEvent( @RequestParam long eventId, ModelMap model){
+
+        Event event1 =  eventRepository.findById(eventId);
+        event = event1;
+        model.addAttribute("theEvent", event1);
+
+        return "buy_ticket_user";
+    }
+/*
+    @GetMapping("buy_ticket_user{eventId}")
+    public String addToBasket(@PathVariable("eventId") Integer eventId, ModelMap model){
+
+
+        Event event1 =  eventRepository.findById(eventId);
+        model.addAttribute("theEvent", event1);
+
+        return "buy_ticket_user";
+    }
+*/
+    @PostMapping("addTicketToBasket")
+    public void addTicketToBasket(@RequestParam Ticket.TicketType ticketType, ModelMap model) throws MailException, ClientNameException, TicketNotAvailableException {
+        HelpClasses h1 = new HelpClasses();
+       Client client1 = h1.exampleClient();
+        clientRepository.save(client1);
+
+        client1.addTicket(Ticket.TicketType.DAY, event.getTicketManager());
+        client1.addTicket(ticketType, event.getTicketManager());
+
+        clientRepository.save(client1);
+
+        client1.addTicket(ticketType, event.getTicketManager());
+
+
+
+
     }
 
-   // @PostMapping("/")
+
 }

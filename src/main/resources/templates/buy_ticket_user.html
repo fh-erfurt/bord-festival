@@ -18,23 +18,19 @@
             <div class="buy_ticket">
                 <fieldset>
                     <legend><strong>Your event</strong></legend><br>
-                    <form action="#" th:action="@{/buy_ticket}"  method="post">
-                        <label for="ticket">Decription</label>
-                        <select name="ticket" th:name="eventId" >
-                                <option th:each="event : ${events}" th:text="${event.getName()}" th:value="${event.getId()}" >
-                            </option>
-                        </select>
-                        <button type="submit" name="action" value="save">save</button>
-                    </form>
+
                     <br><br>
                     <label for="date">Date</label>
-                    <input type="text" name="date" value="" placeholder="" required readonly/><br/>
+                    <input type="text" name="date" value="" th:placeholder="${theEvent.getStartDate()}" required readonly/><br/>
                 </fieldset>
                 <fieldset>
                     <legend><strong>Which ticket?</strong></legend><br>
+
                     <label for="type">Day-Ticket</label>
-                    <input type="text" name="dayticket" value="" placeholder="" required readonly/> €
-                    <input class="button" type="submit" name="day_ticket" value="Add"/>
+                    <input type="text" name="dayticket" value="" th:placeholder="${theEvent.getTheActualPricelevel().getDayTicketPrice()}" required readonly/> €
+                    <form action="#" th:action="@{addTicketToBasket}" method="post">
+                    <input class="button" type="submit" th:name="ticketType" th:value="${T(de.bord.festival.ticket.Type).DAY}"/>
+                        </form>
                     <br/><br>
                     <label for="type">Camping-Ticket</label>
                     <input type="text" name="campingticket" value="" placeholder="" required readonly/> €
