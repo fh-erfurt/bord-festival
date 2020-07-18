@@ -26,10 +26,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 
@@ -116,7 +113,7 @@ public class EventController {
 
 
         List<Event> events = eventRepository.findAll();
-        Collections.sort(events, (x, y) -> x.getStartDate().compareTo(y.getStartDate()));
+        Collections.sort(events, Comparator.comparing(Event::getStartDate));
         Collections.reverse(events);
         model.addAttribute("events", events);
         model.addAttribute("title", "Event Overview");
@@ -137,22 +134,9 @@ public class EventController {
             return "error404";
         }
         long eventIdLong = Long.parseLong(eventId);
-
-        ///
-        HelpClasses helpClasses = new HelpClasses();
-
-        Event event = helpClasses.getValidNDaysEvent(2);
-        event.addBand(helpClasses.getBand("My lovely band", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band2", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band3", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band4", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band5", 10.00));
-        event.addStage(helpClasses.getStage(2, "Stage2"));
-        eventRepository.save(event);
-        ///
         Event event1 = eventRepository.findById(eventIdLong);
         if (event1 == null) {
-            return "eventAnsicht";
+            return "events";
         }
         fillModelWithAttributes(new Band(), event1, model, new BandTimeSlotContainer(), new Stage(), new StageIdContainer());
 
