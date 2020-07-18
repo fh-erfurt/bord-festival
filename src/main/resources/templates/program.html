@@ -15,7 +15,7 @@
                     <div th:if="${param.successAddStage}" class="alert alert-success" role="alert">You successfully removed a band from your program</h4></div>
 
 
-                    <div th:each="dayProgram : ${dayPrograms}" style="display: none;">
+                    <div th:each="dayProgram : ${dayPrograms}" style="">
                         <p th:text="${dayProgram.getKey()}"></p>
                         <div th:each="program : ${dayProgram.getValue().getProgramsForStages()}">
                             <p th:text="${program.getKey().getStageName()}"></p>
