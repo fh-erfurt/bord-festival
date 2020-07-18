@@ -39,9 +39,17 @@ code {
     cursor: pointer;
     width: 180px;
     margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 1rem;
 }
 .event-card p {
     margin: 0;
+}
+.event-card:hover {
+    text-decoration: none;
+    color: black;
+    background-color: #C1666C;
 }
 .event-card-title {
     font-size: 1.2em;
