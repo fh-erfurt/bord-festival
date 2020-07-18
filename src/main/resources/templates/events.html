@@ -25,11 +25,11 @@
                             <h3 th:text="${event.startDate.getYear()}"></h3>
                             <div class="clear-left"></div>
                         </th:block>
-                        <div class="event-card float-left">
+                        <a th:href="'program?eventId=' + ${event.getId()}" class="event-card float-left">
                             <p class="event-card-title" th:text="${event.name}"></p>
                             <p class="event-card-date" th:text="${event.startDate.getDayOfMonth()} + '.' + ${event.startDate.getMonthValue()} + '. - ' + ${event.endDate.getDayOfMonth()} + '.' + ${event.endDate.getMonthValue()}+ '.'"></p>
                             <p th:text="${event.getAddress().getCity()}"></p>
-                        </div>
+                        </a>
                     </th:block>
                 </div>
             </div>
