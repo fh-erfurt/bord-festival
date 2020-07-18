@@ -1,44 +1,49 @@
-<!DOCTYPE html>
-<html lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/style.css" rel="stylesheet">
-        <title>BORD</title>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
+    <head th:replace="fragments/head :: head">
     </head>
-    <body>
-        <header>
+    <body class="d-flex flex-column h-100">
+        <header th:replace="fragments/header :: header">
         </header>
 
-        <div class= "bord">
-            <h1>Welcome To <strong>BORD</strong> - Your <strong>F</strong>estival</h1>
-        </div>
-        <div class="center">
-            <h3>Your Tickets</h3>
-            <div class="buy_ticket">
-                <fieldset>
-                    <legend><strong>Your Event</strong></legend><br>
-                    <label for="ticket">Decription</label>
-                    <input type="text" name="ticket" value="" placeholder="" required/><br/><br>
-                    <label for="date">Date</label>
-                    <input type="text" name="date" value="" placeholder="" required/><br/><br>
-                    <label for="type">Ticket type</label>
-                    <input type="text" name="ticket_type" value="" placeholder="" required/><br/><br>
-                    <label>Yourprice</label>
-                    <input type="text" name="finalprice" value="" placeholder="" required/><br/>
-                </fieldset><br>
-
+        <main role="main" class="flex-shrink-0">
+            <div class="container">
+                <h3>Your Tickets</h3>
+                <h4>Your Event</h4>
+                <div class="row justify-content-start">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="row">
+                            <div class="col-4">Description
+                            </div>
+                            <div class="col-8">Event Description blablabla
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Date
+                            </div>
+                            <div class="col-8">Event Date
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Ticket type
+                            </div>
+                            <div class="col-8">Camping
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">Price
+                            </div>
+                            <div class="col-8">129,99€
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <div class="logout">
-            <a href=""><button>Logout</button></a>
-        </div>
-        <div class="back">
-            <a href="../user_menu"><button>Back</button></a>
-        </div>
-        
+        </main>
+
+        <footer th:replace="fragments/footer :: footer">
         </footer>
-        </footer>
+        <th:block th:include="fragments/javascript :: javascript"></th:block>
     </body>
 </html>

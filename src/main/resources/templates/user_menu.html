@@ -1,33 +1,36 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" lang="de">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/style.css" rel="stylesheet">
-        <title>BORD</title>
-    </head>
-    <body>
-        <header>
-        </header>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
+<head th:replace="fragments/head :: head">
+</head>
+<body class="d-flex flex-column h-100">
+    <header th:replace="fragments/header :: header">
+    </header>
+        <div class="container h-100">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-lg-4 col-sm-12">
+                    <h2>Please select an event</h2>
 
-        <div class= "bord">
-            <h1>Welcome To <strong>BORD</strong> - Your <strong>F</strong>estival</h1>
-        </div>
-        <div class="center">
-            <h2>Please select an event</h2>
-            <div class="user_event">
-                <a th:each="event : ${events}" th:href="@{/buy_ticket_user(eventId = ${event.getId()})}"><button name="event1" th:text="${event.getName()}"></button></a>
+                        <a href="buy_ticket_user" class="btn btn-outline-danger btn-lg btn-block">Event 1</a>
+                        <a href="buy_ticket_user" class="btn btn-outline-danger btn-lg btn-block">Event 2</a>
+                        <a href="buy_ticket_user" class="btn btn-outline-danger btn-lg btn-block">Event 3</a>
+
+                    <h4>Or show your events</h4>
+                    <a href="information_user"class="btn btn-outline-danger btn-lg btn-block">Your Events</a>
+                </div>
             </div>
-            <h4>Or inform yourself about your events</h4>
-            <a href="information_user"><button name="information">Your Events</button></a>
         </div>
 
-        <div class="logout"><button>Logout</button>
-        </div>
-        <div class="back">
-            <a href="../index"><button>Back</button></a>
-        </div>
-        </footer>
-        </footer>
+    <footer th:replace="fragments/footer :: footer">
+    </footer>
+
+    <th:block th:include="fragments/javascript :: javascript"></th:block>
+
     </body>
 </html>
+
+
+
+
+
+
