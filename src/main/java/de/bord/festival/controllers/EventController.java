@@ -123,7 +123,7 @@ public class EventController {
     }
 
     @GetMapping("events")
-    public String getEvents(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+    public String getEvents(Model model){
 
 
         List<Event> events = eventRepository.findAll();
@@ -131,16 +131,7 @@ public class EventController {
         Collections.reverse(events);
         model.addAttribute("events", events);
         model.addAttribute("title", "Event Overview");
-        HelpClasses helpClasses = new HelpClasses();
 
-        Event event = helpClasses.getValidNDaysEvent(2);
-        event.addBand(helpClasses.getBand("My lovely band", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band2", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band3", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band4", 10.00));
-        event.addBand(helpClasses.getBand("My lovely band5", 10.00));
-        event.addStage(helpClasses.getStage(2, "Stage2"));
-        eventRepository.save(event);
         return "events";
     }
 
