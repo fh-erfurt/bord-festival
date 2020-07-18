@@ -1,63 +1,63 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="https://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/style.css" rel="stylesheet">
-        <title>BORD</title>
-    </head>
-    <body>
-        <header>
-        </header>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
+<head th:replace="fragments/head :: head">
+</head>
+<body class="d-flex flex-column h-100">
+<header th:replace="fragments/header :: header">
+</header>
 
-        <div class= "bord">
-            <h1>Welcome To <strong>BORD</strong> - Your <strong>F</strong>estival</h1>
-        </div>
-        <div class="center">
-            <h3>Choose your ticket</h3>
+<div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-lg-4 col-sm-12">
+            <h3>Choose your ticket for</h3>
             <div class="buy_ticket">
-                <fieldset>
-                    <legend><strong>Your event</strong></legend><br>
-                    <form action="#" th:action="@{/buy_ticket}"  method="post">
-                        <label for="ticket">Decription</label>
-                        <select name="ticket" th:name="eventId" >
-                                <option th:each="event : ${events}" th:text="${event.getName()}" th:value="${event.getId()}" >
-                            </option>
-                        </select>
-                        <button type="submit" name="action" value="save">save</button>
-                    </form>
-                    <br><br>
-                    <label for="date">Date</label>
-                    <input type="text" name="date" value="" placeholder="" required readonly/><br/>
-                </fieldset>
-                <fieldset>
-                    <legend><strong>Which ticket?</strong></legend><br>
-                    <label for="type">Day-Ticket</label>
-                    <input type="text" name="dayticket" value="" placeholder="" required readonly/> €
-                    <input class="button" type="submit" name="day_ticket" value="Add"/>
-                    <br/><br>
-                    <label for="type">Camping-Ticket</label>
-                    <input type="text" name="campingticket" value="" placeholder="" required readonly/> €
-                    <input class="button" type="submit" name="camping_ticket" value="Add"/>
-                    <br/><br>
-                    <label for="type">VIP-Ticket</label>
-                    <input type="text" name="vipticket" value="" placeholder="" required readonly/> €
-                    <input class="button" type="submit" name="vip_ticket" value="Add"/>
-                    <br/><br>
-                    <label>Your Price</label>
-                    <input type="text" name="price" value="" placeholder="" required readonly/> €<br/>
-                </fieldset><br>
-                <input type="submit" name="buy" value="Buy ticket"/>
+                <form action="#" th:action="@{/buy_ticket}"  method="post">
+                    <div>Event: <!-- getName --></div>
+                    <br>
+                    <!--<select name="ticket" th:name="eventId" >
+                               <option th:each="event : ${events}" th:text="${event.getName()}" th:value="${event.getId()}" >
+                           </option>
+                       </select> -->
+                    <!-- <button type="submit" name="action" value="save">save</button> -->
+                    <div>Date:<!-- getDate --></div>
+                    <br>
+                </form>
+
+                <h3>Which ticket?</h3><br>
+                <label>Day-Ticket</label>
+                <div>Price:<!-- getPrice --> €
+                <input type="submit" value="Add" class="btn btn-outline-danger"/></div>
+                <br/>
+                <label>Camping-Ticket</label>
+                <div>Price:<!-- getPrice --> €
+                <input type="submit" value="Add" class="btn btn-outline-danger"/></div>
+                <br/>
+                <label>VIP-Ticket</label>
+                <div>Price:<!-- getPrice --> €
+                <input type="submit" value="Add" class="btn btn-outline-danger"/></div>
+                <br/><br>
+                <label>Your Price: <!-- getPrice --> </label>
+                <br><br><br>
+
+                <div class="form-group">
+                    <input type="submit" value="Buy now" class="btn btn-outline-danger"/>
+                    <a href="user_menu" class="btn btn-outline-danger">Back to select</a>
+                </div>
             </div>	
         </div>
-        <div class="logout">
-            <a href=""><button>Logout</button></a>
-        </div>
-        <div class="back">
-            <a href="user_menu.html"><button>Back</button></a>
-        </div>
+    </div>
+</div>
 
-        </footer>
-        </footer>
+<footer th:replace="fragments/footer :: footer">
+</footer>
+
+<th:block th:include="fragments/javascript :: javascript"></th:block>
     </body>
 </html>
+
+
+
+
+
+
