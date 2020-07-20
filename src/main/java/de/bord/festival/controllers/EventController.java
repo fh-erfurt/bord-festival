@@ -14,20 +14,22 @@ import de.bord.festival.ticket.CampingTicket;
 import de.bord.festival.ticket.DayTicket;
 import de.bord.festival.ticket.VIPTicket;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 @Controller
@@ -43,6 +45,16 @@ public class EventController {
         this.stageRepository = stageRepository;
     }
 
+    @GetMapping("/")
+    public String index(Model model) {
+        model.addAttribute("title", "Home");
+        return "index";
+    }
+    @GetMapping("/error404")
+    public String error(Model model) {
+        model.addAttribute("title", "Error Page");
+        return "error";
+    }
     @GetMapping("/event_create")
     public String greetingForm(Model model) {
 
@@ -52,6 +64,8 @@ public class EventController {
         model.addAttribute("dateTimeContainer", new DateTimeContainer());
         model.addAttribute("address", new Address());
         model.addAttribute("stage", new Stage());
+        model.addAttribute("title", "Create event");
+
 
 
         return "event_create";
@@ -96,7 +110,7 @@ public class EventController {
                 Event newEvent = Event.getNewEvent(startTime, endTime, breakBetweenTwoBands, startDate,
                         endDate, name, budget, stage, ticketManager, address);
                 eventRepository.save(newEvent);
-                return "redirect:/event_create?success&id=" + event.getId();
+                return "redirect:/program?success&eventId=" + newEvent.getId();
             } catch (DateDisorderException e) {
                 bindingResultDateTimeContainer.rejectValue("startDate", "error.dateTimeContainer", e.getMessage());
             } catch (TimeDisorderException e) {
@@ -109,7 +123,7 @@ public class EventController {
     }
 
     @GetMapping("events")
-    public String getEvents(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+    public String getEvents(Model model){
 
 
         List<Event> events = eventRepository.findAll();
@@ -128,9 +142,11 @@ public class EventController {
     }
 
     @GetMapping("program")
-    public String showProgram(@RequestParam String eventId, Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+    public String showProgram(@RequestParam String eventId, Model model){
+        model.addAttribute("title", "Program");
 
-        if (!isLong(eventId)) {
+
+        if (!isEventIdValid(eventId)) {
             return "error404";
         }
         long eventIdLong = Long.parseLong(eventId);
@@ -339,8 +355,9 @@ public class EventController {
      * check if user does not manipulate the event id
      */
     public boolean isEventIdValid(String eventId) {
+
         //check if user does not manipulate the event is
-        if (!isLong(eventId)) {
+        if (eventId==null || !isLong(eventId)) {
             return false;
         }
         long eventIdLong = Long.parseLong(eventId);
