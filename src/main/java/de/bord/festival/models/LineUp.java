@@ -185,6 +185,10 @@ public class LineUp extends AbstractModel {
         return diff.getDays()+1;
     }
 
+    public Stage getFirstStage() {
+        return stages.get(0);
+    }
+
     /**
      * Removes stage from all programs and from the list of stages
      * Removes stage, if it has no set time slots and the number of stages > 1
