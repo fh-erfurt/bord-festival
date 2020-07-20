@@ -3,11 +3,11 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
     <head th:replace="fragments/head :: head">
     </head>
-    <body class="d-flex flex-column h-100">
+    <body class="h-100">
         <header th:replace="fragments/header :: header">
         </header>
 
-        <div class="container h-100">
+        <div class="container stretch-to-bottom">
             <div class="row justify-content-center">
                 <div class="col-10">
                     <h2>List of Events</h2>
@@ -34,7 +34,6 @@
                 </div>
             </div>
         </div>
-
         <footer th:replace="fragments/footer :: footer">
         </footer>
         <th:block th:include="fragments/javascript :: javascript"></th:block>
