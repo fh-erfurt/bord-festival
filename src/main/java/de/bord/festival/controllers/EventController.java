@@ -8,6 +8,7 @@ import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.BandRepository;
+import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import de.bord.festival.repository.StageRepository;
 import de.bord.festival.ticket.CampingTicket;
@@ -35,6 +36,8 @@ public class EventController {
     private final EventRepository eventRepository;
     private final BandRepository bandRepository;
     private final StageRepository stageRepository;
+    @Autowired
+     private ClientRepository clientRepository;
 
     @Autowired
     public EventController(StageRepository stageRepository, EventRepository eventRepository, BandRepository bandRepository) {
@@ -44,9 +47,13 @@ public class EventController {
     }
 
     @GetMapping("/event_create")
-    public String greetingForm(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
+    public String greetingForm(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, MailException, ClientNameException {
 HelpClasses h1 = new HelpClasses();
 eventRepository.save(h1.getValidNDaysEvent(2));
+
+         Client client1 = h1.exampleClient();
+         clientRepository.save(client1);
+
         model.addAttribute("tmk", new TicketManagerContainer());
         model.addAttribute("event", new Event());
         model.addAttribute("dateTimeContainer", new DateTimeContainer());

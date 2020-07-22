@@ -4,6 +4,7 @@ import de.bord.festival.client.IClient;
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
 import de.bord.festival.exception.TicketNotAvailableException;
+import de.bord.festival.ticket.Type;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,9 +23,9 @@ public class Client extends AbstractModel implements IClient {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String mail;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Ticket> inventory;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Ticket> cart;
     private double expenditure = 0.0;
     public Client(){}
@@ -109,13 +110,13 @@ public class Client extends AbstractModel implements IClient {
      * @throws TicketNotAvailableException
      */
 
-    public void addTicket(Ticket.TicketType type, TicketManager ticketmanager) throws TicketNotAvailableException {
+    public void addTicket(Type type, TicketManager ticketmanager) throws TicketNotAvailableException {
         if(!ticketmanager.isAvailable(type, 1)) {
             throw new TicketNotAvailableException("No more tickets available");
         }
-            if(ticketmanager.getTicket(type)!= null) {
-                this.cart.add(ticketmanager.getTicket(type));
-            }
+            
+                this.cart.add(ticketmanager.getNewTicket(type));
+
     }
 
     /**

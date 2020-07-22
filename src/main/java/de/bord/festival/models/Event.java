@@ -2,7 +2,6 @@ package de.bord.festival.models;
 
 import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -10,13 +9,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.chrono.ChronoLocalDate;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import static javax.persistence.TemporalType.DATE;
 
 /**
  * Represents a festival with required features
@@ -44,8 +39,12 @@ public class Event extends AbstractModel implements IEvent {
     private double actualCosts = 0;
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Client> client;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Client> clients;
+
+    public void addClient(Client client){
+        this.clients.add(client);
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -75,7 +74,7 @@ public class Event extends AbstractModel implements IEvent {
                   TicketManager ticketManager, Address address) {
 
         lineUp = new LineUp(startTime, endTime, breakBetweenTwoBandsInMinute, startDate, endDate, stage, this);
-        client = new LinkedList<>();
+        clients = new LinkedList<>();
         this.budget = budget;
         this.name = name;
         this.ticketManager = ticketManager;

@@ -11,17 +11,17 @@ import javax.persistence.Entity;
 @Entity
 public class CampingTicket extends Ticket {
 
-    private TicketType ticketType;
+    private Type ticketType;
 
     public CampingTicket( String description, double standardPrice){
 
         super(description, standardPrice);
-        this.ticketType = TicketType.CAMPING;
+        this.ticketType = Type.CAMPING;
     }
     public CampingTicket(){}
 
     @Override
-    public TicketType getTicketType() {
-        return TicketType.CAMPING;
+    public Type getTicketType() {
+        return Type.CAMPING;
     }
 }

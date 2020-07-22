@@ -6,9 +6,9 @@ import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.models.Ticket;
 
 public interface ITicketManager {
-    Ticket getTicket(Ticket.TicketType type);
+    Ticket getNewTicket(Type type);
 
-    boolean isAvailable(Ticket.TicketType type, int numberOfCartTickets);
+    boolean isAvailable(Type type, int numberOfCartTickets);
 
     void setTicketDescription(String description, Ticket.TicketType type);
 

@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
+    <head th:replace="fragments/head :: head">
+    </head>
+    <body class="d-flex flex-column h-100">
+        <header th:replace="fragments/header :: header">
+        </header>
+
+        <div class="container h-100">
+            <div class="row justify-content-center">
+                <div class="col-10">
+                    <h2>List of Events</h2>
+                    <a href="event_create" class="btn btn-primary">Create Event</a>
+
+                    <th:block th:each="event, itemStat : ${events}">
+                        <th:block th:if="${itemStat.index} > 0">
+                            <th:block th:if="${events[__${itemStat.index - 1}__]} == null or ${events[__${itemStat.index - 1}__].startDate.getYear()} != ${event.startDate.getYear()}">
+                                <div class="clear-left"></div>
+                                <h3 th:text="${event.startDate.getYear()}"></h3>
+                                <div class="clear-left"></div>
+                            </th:block>
+                        </th:block>
+                        <th:block th:unless="${itemStat.index} > 0">
+                            <h3 th:text="${event.startDate.getYear()}"></h3>
+                            <div class="clear-left"></div>
+                        </th:block>
+                        <a th:href="'program?eventId=' + ${event.getId()}" class="event-card float-left">
+                            <p class="event-card-title" th:text="${event.name}"></p>
+                            <p class="event-card-date" th:text="${event.startDate.getDayOfMonth()} + '.' + ${event.startDate.getMonthValue()} + '. - ' + ${event.endDate.getDayOfMonth()} + '.' + ${event.endDate.getMonthValue()}+ '.'"></p>
+                            <p th:text="${event.getAddress().getCity()}"></p>
+                        </a>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="fragments/footer :: footer">
+        </footer>
+        <th:block th:include="fragments/javascript :: javascript"></th:block>
+    </body>
+</html>

@@ -25,7 +25,7 @@ public class DayTicket extends Ticket {
     public DayTicket(){}
 
     @Override
-    public TicketType getTicketType() {
-        return TicketType.DAY;
+    public Type getTicketType() {
+        return Type.DAY;
     }
 }
