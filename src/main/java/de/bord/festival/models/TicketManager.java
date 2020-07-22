@@ -46,11 +46,11 @@ public class TicketManager extends AbstractModel implements ITicketManager {
     public TicketManager() {
     }
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
     private DayTicket dayTicket;
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
     private CampingTicket campingTicket;
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL)
     private VIPTicket vipTicket;
 
     private int actualPriceLevel = 0;
@@ -90,16 +90,16 @@ public class TicketManager extends AbstractModel implements ITicketManager {
      */
     public Ticket getTicket(Ticket.TicketType type) {
         if (type == Ticket.TicketType.DAY) {
-            return dayTicket;
+            DayTicket tmp = this.dayTicket;
+            return this.dayTicket;
         } else if (type == Ticket.TicketType.CAMPING) {
-            return campingTicket;
+            return this.campingTicket;
         } else if (type == Ticket.TicketType.VIP) {
-            return vipTicket;
+            return this.vipTicket;
         } else {
             return null;
         }
     }
-
 
     /**
      * Checks, if enough tickets of the given TicketType are available for purchasing

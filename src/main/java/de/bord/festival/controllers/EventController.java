@@ -55,29 +55,64 @@ public class EventController {
         model.addAttribute("title", "Error Page");
         return "error";
     }
-    @GetMapping("/event_create")
-    public String greetingForm(Model model) {
 
+    @GetMapping("event")
+    public String eventForm(@RequestParam(required = false) String eventId, Model model) {
+        if(eventId == null)
+        {
+            model.addAttribute("tmk", new TicketManagerContainer());
+            model.addAttribute("event", new Event());
+            model.addAttribute("dateTimeContainer", new DateTimeContainer());
+            model.addAttribute("address", new Address());
+            model.addAttribute("stage", new Stage());
+            model.addAttribute("title", "Create event");
+            model.addAttribute("newEvent", true);
+            model.addAttribute("eventInFuture", true);
+        }
+        else
+        {
+            if (!isLong(eventId)) {
+                return "error404";
+            }
 
-        model.addAttribute("tmk", new TicketManagerContainer());
-        model.addAttribute("event", new Event());
-        model.addAttribute("dateTimeContainer", new DateTimeContainer());
-        model.addAttribute("address", new Address());
-        model.addAttribute("stage", new Stage());
-        model.addAttribute("title", "Create event");
+            long eventIdLong = Long.parseLong(eventId);
+            Event event = eventRepository.findById(eventIdLong);
 
+            if (event == null) {
+                return "error404";
+            }
+            else {
+                boolean result = setExistingEvent(model, event);
+                if(!result) {
+                    return "error404";
+                }
 
+                if(event.getStartDate().isAfter(LocalDate.now())) {
+                    model.addAttribute("eventInFuture", true);
+                    model.addAttribute("title", "Update event \"" + event.getName() + "\"");
+                }
+                else {
+                    model.addAttribute("eventInFuture", false);
+                    model.addAttribute("title", "View event \"" + event.getName() + "\"");
+                }
 
-        return "event_create";
+                model.addAttribute("newEvent", false);
+            }
+        }
+
+        return "event_form";
     }
 
-    @PostMapping("/event_create")
+    @PostMapping("/event")
     public String createEvent(@Valid Event event, BindingResult bindingResultEvent,
                               @Valid DateTimeContainer dateTimeContainer, BindingResult bindingResultDateTimeContainer,
                               @Valid Address address, BindingResult bindingResultAddress,
                               @Valid @ModelAttribute("tmk") TicketManagerContainer tmk, BindingResult bindingResultTmk,
-                              @Valid Stage stage, BindingResult bindingResultStage) {
+                              @Valid Stage stage, BindingResult bindingResultStage, Model model) {
 
+        model.addAttribute("title", "Create event");
+        model.addAttribute("newEvent", true);
+        model.addAttribute("eventInFuture", true);
 
         if (noErrors(bindingResultEvent, bindingResultDateTimeContainer,
                 bindingResultAddress, bindingResultTmk, bindingResultStage)) {
@@ -118,7 +153,7 @@ public class EventController {
             }
 
         }
-        return "event_create";
+        return "event_form";
 
     }
 
@@ -131,12 +166,6 @@ public class EventController {
         Collections.reverse(events);
         model.addAttribute("events", events);
         model.addAttribute("title", "Event Overview");
-
-        return "events";
-    }
-
-    @PostMapping("update_event")
-    public String updateEvent(Model model) {
 
         return "events";
     }
@@ -305,6 +334,42 @@ public class EventController {
         model.addAttribute("stageIdContainer", stageIdContainer);
 
 
+    }
+
+    boolean setExistingEvent(Model model, Event event) {
+        try {
+            DateTimeContainer dtc = new DateTimeContainer();
+
+            dtc.setStartDate(event.getStartDate());
+            dtc.setEndDate(event.getEndDate());
+            dtc.setStartTime(event.getStartTime());
+            dtc.setEndTime(event.getEndTime());
+            dtc.setBreakBetweenTwoBands(event.getBreakBetweenTwoBandsInMinutes());
+
+            TicketManagerContainer tmc = new TicketManagerContainer();
+
+            tmc.setNumberOfDayTickets(event.getNumberOfDayTickets());
+            tmc.setNumberOfCampingTickets(event.getNumberOfCampingTickets());
+            tmc.setNumberOfVipTickets(event.getNumberOfVipTickets());
+            tmc.setDayTicketDescription(event.getTicket(Ticket.TicketType.DAY).getDescription());
+            tmc.setCampingTicketDescription(event.getTicket(Ticket.TicketType.CAMPING).getDescription());
+            tmc.setVipTicketDescription(event.getTicket(Ticket.TicketType.VIP).getDescription());
+            tmc.setPriceLevels(event.getPriceLevelsForEvent());
+
+            Address address = event.getAddress();
+            Stage stage = event.getFirstStage();
+
+            model.addAttribute("event", event);
+            model.addAttribute("dateTimeContainer", dtc);
+            model.addAttribute("address", address);
+            model.addAttribute("tmk", tmc);
+            model.addAttribute("stage", stage);
+
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
     }
 
     String removeBand(Event event, Model model, BandTimeSlotContainer bandTimeSlotContainer, Band band, BindingResult bindingResult) {

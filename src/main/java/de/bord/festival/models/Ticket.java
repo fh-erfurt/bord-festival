@@ -34,6 +34,10 @@ public abstract class Ticket extends AbstractModel {
         this.stdPrice = stdPrice;
     }
 
-    public double getStdPrice() { return stdPrice; }
-    public String getDescription(){return description;}
+    public double getStdPrice() {
+        return this.stdPrice;
+    }
+    public String getDescription(){
+        return this.description;
+    }
 }

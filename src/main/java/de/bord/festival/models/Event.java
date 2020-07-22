@@ -2,6 +2,7 @@ package de.bord.festival.models;
 
 import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
+import de.bord.festival.ticket.DayTicket;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -272,6 +273,10 @@ public class Event extends AbstractModel implements IEvent {
         return ticketManager.totalNumberOfTicketsLeft();
     }
 
+    public Ticket getTicket(Ticket.TicketType type) {
+        return this.ticketManager.getTicket(type);
+    }
+
     public void setTicketStdPrice(double stdPrice, Ticket.TicketType type) {
         this.ticketManager.setTicketStdPrice(stdPrice, type);
     }
@@ -323,6 +328,11 @@ public class Event extends AbstractModel implements IEvent {
     public PriceLevel getTheActualPricelevel(){
         return ticketManager.getTheActualPriceLevel();
     }
+
+    public List<PriceLevel> getPriceLevelsForEvent() {
+        return ticketManager.getPriceLevels();
+    }
+
     public String getName() {
         return name;
     }
@@ -348,7 +358,9 @@ public class Event extends AbstractModel implements IEvent {
         return lineUp.getBands();
     }
 
-
+    public long getBreakBetweenTwoBandsInMinutes() {
+        return lineUp.getBreakBetweenTwoBandsInMinutes();
+    }
 
     public LocalDate getStartDate() {
         return this.lineUp.getStartDate();
@@ -364,5 +376,9 @@ public class Event extends AbstractModel implements IEvent {
 
     public List<Stage> getStages() {
         return this.lineUp.getStages();
+    }
+
+    public Stage getFirstStage() {
+        return this.lineUp.getFirstStage();
     }
 }
