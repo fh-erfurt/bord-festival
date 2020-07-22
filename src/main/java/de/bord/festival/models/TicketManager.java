@@ -97,6 +97,15 @@ public class TicketManager extends AbstractModel implements ITicketManager {
             return new CampingTicket(campingTicket.getDescription(),campingTicket.getStdPrice());
         } else if (type == Type.VIP) {
             return new VIPTicket(vipTicket.getDescription(),vipTicket.getStdPrice());
+
+    public Ticket getTicket(Ticket.TicketType type) {
+        if (type == Ticket.TicketType.DAY) {
+            DayTicket tmp = this.dayTicket;
+            return this.dayTicket;
+        } else if (type == Ticket.TicketType.CAMPING) {
+            return this.campingTicket;
+        } else if (type == Ticket.TicketType.VIP) {
+            return this.vipTicket;
         } else {
             return null;
         }

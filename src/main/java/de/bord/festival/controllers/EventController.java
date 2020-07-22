@@ -15,20 +15,22 @@ import de.bord.festival.ticket.CampingTicket;
 import de.bord.festival.ticket.DayTicket;
 import de.bord.festival.ticket.VIPTicket;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 
 @Controller
@@ -46,31 +48,79 @@ public class EventController {
         this.stageRepository = stageRepository;
     }
 
-    @GetMapping("/event_create")
-    public String greetingForm(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, MailException, ClientNameException {
-HelpClasses h1 = new HelpClasses();
-eventRepository.save(h1.getValidNDaysEvent(2));
-
-         Client client1 = h1.exampleClient();
-         clientRepository.save(client1);
-
-        model.addAttribute("tmk", new TicketManagerContainer());
-        model.addAttribute("event", new Event());
-        model.addAttribute("dateTimeContainer", new DateTimeContainer());
-        model.addAttribute("address", new Address());
-        model.addAttribute("stage", new Stage());
-
-
-        return "event_create";
+    @GetMapping("/")
+    public String index(Model model) {
+        model.addAttribute("title", "Home");
+        return "index";
+    }
+    @GetMapping("/error404")
+    public String error(Model model) {
+        model.addAttribute("title", "Error Page");
+        return "error";
     }
 
-    @PostMapping("/event_create")
+    @GetMapping("event")
+    public String eventForm(@RequestParam(required = false) String eventId, Model model) {
+        if(eventId == null)
+        {
+            model.addAttribute("tmk", new TicketManagerContainer());
+            model.addAttribute("event", new Event());
+            model.addAttribute("dateTimeContainer", new DateTimeContainer());
+            model.addAttribute("address", new Address());
+            model.addAttribute("stage", new Stage());
+            model.addAttribute("title", "Create event");
+            model.addAttribute("newEvent", true);
+            model.addAttribute("eventInFuture", true);
+        }
+        else
+        {
+            if (!isLong(eventId)) {
+                return "error404";
+            }
+
+            long eventIdLong = Long.parseLong(eventId);
+            Event event = eventRepository.findById(eventIdLong);
+
+            if (event == null) {
+                return "error404";
+            }
+            else {
+                boolean result = setExistingEvent(model, event);
+                if(!result) {
+                    return "error404";
+                }
+
+                if(event.getStartDate().isAfter(LocalDate.now())) {
+                    model.addAttribute("eventInFuture", true);
+                    model.addAttribute("title", "Update event \"" + event.getName() + "\"");
+                }
+                else {
+                    model.addAttribute("eventInFuture", false);
+                    model.addAttribute("title", "View event \"" + event.getName() + "\"");
+                }
+
+                model.addAttribute("newEvent", false);
+            }
+        }
+
+        return "event_form";
+    }
+
+    @PostMapping("/event")
     public String createEvent(@Valid Event event, BindingResult bindingResultEvent,
                               @Valid DateTimeContainer dateTimeContainer, BindingResult bindingResultDateTimeContainer,
                               @Valid Address address, BindingResult bindingResultAddress,
                               @Valid @ModelAttribute("tmk") TicketManagerContainer tmk, BindingResult bindingResultTmk,
-                              @Valid Stage stage, BindingResult bindingResultStage) {
+                              @Valid Stage stage, BindingResult bindingResultStage, Model model) {
+        HelpClasses h1 = new HelpClasses();
+        eventRepository.save(h1.getValidNDaysEvent(2));
 
+        Client client1 = h1.exampleClient();
+        clientRepository.save(client1);
+
+        model.addAttribute("title", "Create event");
+        model.addAttribute("newEvent", true);
+        model.addAttribute("eventInFuture", true);
 
         if (noErrors(bindingResultEvent, bindingResultDateTimeContainer,
                 bindingResultAddress, bindingResultTmk, bindingResultStage)) {
@@ -111,12 +161,12 @@ eventRepository.save(h1.getValidNDaysEvent(2));
             }
 
         }
-        return "event_create";
+        return "event_form";
 
     }
 
     @GetMapping("events")
-    public String getEvents(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+    public String getEvents(Model model){
 
 
         List<Event> events = eventRepository.findAll();
@@ -128,16 +178,12 @@ eventRepository.save(h1.getValidNDaysEvent(2));
         return "events";
     }
 
-    @PostMapping("update_event")
-    public String updateEvent(Model model) {
-
-        return "events";
-    }
-
     @GetMapping("program")
-    public String showProgram(@RequestParam String eventId, Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, BudgetOverflowException, TimeSlotCantBeFoundException {
+    public String showProgram(@RequestParam String eventId, Model model){
+        model.addAttribute("title", "Program");
 
-        if (!isLong(eventId)) {
+
+        if (!isEventIdValid(eventId)) {
             return "error404";
         }
         long eventIdLong = Long.parseLong(eventId);
@@ -298,6 +344,42 @@ eventRepository.save(h1.getValidNDaysEvent(2));
 
     }
 
+    boolean setExistingEvent(Model model, Event event) {
+        try {
+            DateTimeContainer dtc = new DateTimeContainer();
+
+            dtc.setStartDate(event.getStartDate());
+            dtc.setEndDate(event.getEndDate());
+            dtc.setStartTime(event.getStartTime());
+            dtc.setEndTime(event.getEndTime());
+            dtc.setBreakBetweenTwoBands(event.getBreakBetweenTwoBandsInMinutes());
+
+            TicketManagerContainer tmc = new TicketManagerContainer();
+
+            tmc.setNumberOfDayTickets(event.getNumberOfDayTickets());
+            tmc.setNumberOfCampingTickets(event.getNumberOfCampingTickets());
+            tmc.setNumberOfVipTickets(event.getNumberOfVipTickets());
+            tmc.setDayTicketDescription(event.getTicket(Ticket.TicketType.DAY).getDescription());
+            tmc.setCampingTicketDescription(event.getTicket(Ticket.TicketType.CAMPING).getDescription());
+            tmc.setVipTicketDescription(event.getTicket(Ticket.TicketType.VIP).getDescription());
+            tmc.setPriceLevels(event.getPriceLevelsForEvent());
+
+            Address address = event.getAddress();
+            Stage stage = event.getFirstStage();
+
+            model.addAttribute("event", event);
+            model.addAttribute("dateTimeContainer", dtc);
+            model.addAttribute("address", address);
+            model.addAttribute("tmk", tmc);
+            model.addAttribute("stage", stage);
+
+            return true;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
     String removeBand(Event event, Model model, BandTimeSlotContainer bandTimeSlotContainer, Band band, BindingResult bindingResult) {
 
         boolean removed = true;
@@ -346,8 +428,9 @@ eventRepository.save(h1.getValidNDaysEvent(2));
      * check if user does not manipulate the event id
      */
     public boolean isEventIdValid(String eventId) {
+
         //check if user does not manipulate the event is
-        if (!isLong(eventId)) {
+        if (eventId==null || !isLong(eventId)) {
             return false;
         }
         long eventIdLong = Long.parseLong(eventId);

@@ -2,6 +2,8 @@ package de.bord.festival.models;
 
 import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
+import de.bord.festival.ticket.DayTicket;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -9,9 +11,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import static javax.persistence.TemporalType.DATE;
 
 /**
  * Represents a festival with required features
@@ -271,6 +277,10 @@ public class Event extends AbstractModel implements IEvent {
         return ticketManager.totalNumberOfTicketsLeft();
     }
 
+    public Ticket getTicket(Ticket.TicketType type) {
+        return this.ticketManager.getTicket(type);
+    }
+
     public void setTicketStdPrice(double stdPrice, Ticket.TicketType type) {
         this.ticketManager.setTicketStdPrice(stdPrice, type);
     }
@@ -322,6 +332,11 @@ public class Event extends AbstractModel implements IEvent {
     public PriceLevel getTheActualPricelevel(){
         return ticketManager.getTheActualPriceLevel();
     }
+
+    public List<PriceLevel> getPriceLevelsForEvent() {
+        return ticketManager.getPriceLevels();
+    }
+
     public String getName() {
         return name;
     }
@@ -347,7 +362,9 @@ public class Event extends AbstractModel implements IEvent {
         return lineUp.getBands();
     }
 
-
+    public long getBreakBetweenTwoBandsInMinutes() {
+        return lineUp.getBreakBetweenTwoBandsInMinutes();
+    }
 
     public LocalDate getStartDate() {
         return this.lineUp.getStartDate();
@@ -368,5 +385,9 @@ public class Event extends AbstractModel implements IEvent {
 
     public TicketManager getTicketManager(){
         return ticketManager;
+    }
+
+    public Stage getFirstStage() {
+        return this.lineUp.getFirstStage();
     }
 }
