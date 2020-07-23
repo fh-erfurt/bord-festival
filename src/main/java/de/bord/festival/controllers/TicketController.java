@@ -87,12 +87,12 @@ public class TicketController {
             event.sellTickets(client1);
             event.addClient(client1);
             eventRepository.save(event);
-
+            return "redirect:/ticket_buy_ok?eventId=" +event.getId();
         }
         catch(TicketNotAvailableException e){
-
+            return "redirect:/buy_ticket_user?eventId=" +event.getId();
         }
-        return "redirect:/buy_ticket_user?eventId=" +event.getId();
+
     }
 
 

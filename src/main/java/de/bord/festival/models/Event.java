@@ -3,6 +3,7 @@ package de.bord.festival.models;
 import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
 import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.ticket.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -277,8 +278,8 @@ public class Event extends AbstractModel implements IEvent {
         return ticketManager.totalNumberOfTicketsLeft();
     }
 
-    public Ticket getTicket(Ticket.TicketType type) {
-        return this.ticketManager.getTicket(type);
+    public Ticket getTicket(Type type) {
+        return this.ticketManager.getNewTicket(type);
     }
 
     public void setTicketStdPrice(double stdPrice, Ticket.TicketType type) {

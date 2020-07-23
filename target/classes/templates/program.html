@@ -3,18 +3,20 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
     <head th:replace="fragments/head :: head">
     </head>
-    <body class="d-flex flex-column h-100">
+    <body class="h-100">
         <header th:replace="fragments/header :: header">
         </header>
-        <div class="container h-100">
+        <div class="container stretch-to-bottom">
             <div class="row justify-content-center">
                 <div class="col-lg-8 col-md-12">
                     <h2>Program</h2>
                     <div th:if="${param.successAddBand}" class="alert alert-success" role="alert">You successfully added a band to your program</div>
                     <div th:if="${param.successRemoveBand}" class="alert alert-success" role="alert">You successfully removed a band from your program</h4></div>
                     <div th:if="${param.successAddStage}" class="alert alert-success" role="alert">You successfully removed a band from your program</h4></div>
-
-
+                    <div th:if="${param.success}" class="alert alert-success" role="alert">
+                        Festival created successfully
+                    </div>
+                    <a href="events" class="btn btn-primary">See All Events</a>
                     <div th:each="dayProgram : ${dayPrograms}" style="">
                         <p th:text="${dayProgram.getKey()}"></p>
                         <div th:each="program : ${dayProgram.getValue().getProgramsForStages()}">
@@ -119,6 +121,8 @@
                                         <div class="form-group">
                                             <select class="form-control" th:field="*{bandId}">
                                                 <option th:each="band1: ${bands}" th:value="${band1.getId()}" th:text="${band1.getName()}"></option>
+                                                <p class="error" th:if="${#fields.hasErrors('bandId')}"th:errors="*{bandId}"  ></p>
+                                                <p class="error" th:if="${#fields.hasErrors('dateTimeToDeleteBand')}"th:errors="*{dateTimeToDeleteBand}"  ></p>
                                             </select>
                                         </div>
                                     </div>
@@ -149,16 +153,14 @@
                                                 <option th:each="band1: ${bands}" th:value="${band1.getId()}" th:text="${band1.getName()}"></option>
                                             </select>
                                             <p class="error" th:if="${#fields.hasErrors('bandId')}"th:errors="*{bandId}"  ></p>
+                                            <input class="form-control" th:field="*{dateTimeToDeleteBand}" type="datetime-local"/>
+                                            <br><p class="error" th:if="${#fields.hasErrors('dateTimeToDeleteBand')}"th:errors="*{dateTimeToDeleteBand}"  ></p>
                                         </div>
 
-                                        <div class="form-group">
-                                            <input class="form-control" th:field="*{dateTimeToDeleteBand}" type="datetime-local"/>
-                                            <p class="error" th:if="${#fields.hasErrors('dateTimeToDeleteBand')}"th:errors="*{dateTimeToDeleteBand}"  ></p>
-                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button class="btn btn-outline-danger" type="submit"/>Submit</button>
+                                        <button class="btn btn-outline-danger" type="submit">Submit</button>
                                     </div>
                                 </form>
                             </div>

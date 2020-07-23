@@ -13,6 +13,7 @@ import de.bord.festival.repository.EventRepository;
 import de.bord.festival.repository.StageRepository;
 import de.bord.festival.ticket.CampingTicket;
 import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.ticket.Type;
 import de.bord.festival.ticket.VIPTicket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -111,12 +112,8 @@ public class EventController {
                               @Valid DateTimeContainer dateTimeContainer, BindingResult bindingResultDateTimeContainer,
                               @Valid Address address, BindingResult bindingResultAddress,
                               @Valid @ModelAttribute("tmk") TicketManagerContainer tmk, BindingResult bindingResultTmk,
-                              @Valid Stage stage, BindingResult bindingResultStage, Model model) {
-        HelpClasses h1 = new HelpClasses();
-        eventRepository.save(h1.getValidNDaysEvent(2));
+                              @Valid Stage stage, BindingResult bindingResultStage, Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, MailException, ClientNameException {
 
-        Client client1 = h1.exampleClient();
-        clientRepository.save(client1);
 
         model.addAttribute("title", "Create event");
         model.addAttribute("newEvent", true);
@@ -166,8 +163,13 @@ public class EventController {
     }
 
     @GetMapping("events")
-    public String getEvents(Model model){
+    public String getEvents(Model model) throws PriceLevelException, TimeDisorderException, DateDisorderException, MailException, ClientNameException {
 
+        HelpClasses h1 = new HelpClasses();
+        eventRepository.save(h1.getValidNDaysEvent(2));
+
+        Client client1 = h1.exampleClient();
+        clientRepository.save(client1);
 
         List<Event> events = eventRepository.findAll();
         Collections.sort(events, Comparator.comparing(Event::getStartDate));
@@ -359,9 +361,9 @@ public class EventController {
             tmc.setNumberOfDayTickets(event.getNumberOfDayTickets());
             tmc.setNumberOfCampingTickets(event.getNumberOfCampingTickets());
             tmc.setNumberOfVipTickets(event.getNumberOfVipTickets());
-            tmc.setDayTicketDescription(event.getTicket(Ticket.TicketType.DAY).getDescription());
-            tmc.setCampingTicketDescription(event.getTicket(Ticket.TicketType.CAMPING).getDescription());
-            tmc.setVipTicketDescription(event.getTicket(Ticket.TicketType.VIP).getDescription());
+            tmc.setDayTicketDescription(event.getTicket(Type.DAY).getDescription());
+            tmc.setCampingTicketDescription(event.getTicket(Type.CAMPING).getDescription());
+            tmc.setVipTicketDescription(event.getTicket(Type.VIP).getDescription());
             tmc.setPriceLevels(event.getPriceLevelsForEvent());
 
             Address address = event.getAddress();

@@ -2,111 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2c5ef5c8-6af2-47f9-a253-95dd1fa9f2fa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/FestivalApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/MvcConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/WebSecurityConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/client/IClient.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/EventController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/TicketController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/dataContainers/BandTimeSlotContainer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/dataContainers/DateTimeContainer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/dataContainers/TicketManagerContainer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/help/HelpClasses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/eventManagement/IEvent.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/BudgetOverflowException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/ClientNameException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/DateDisorderException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/MailException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/PriceLevelException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/PriceLevelNotAvailableException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/TicketNotAvailableException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/TimeDisorderException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/exception/TimeSlotCantBeFoundException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/AbstractModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Address.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Band.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Client.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Event.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/EventInfo.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/LineUp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/PriceLevel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Program.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Stage.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Ticket$TicketType.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Ticket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/TicketManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/TimeSlot.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/TimeSlotList.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/BandRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/ClientRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/EventInfoRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/EventRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/LineUpRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/PriceLevelRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/StageRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/TicketManagerRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/repository/TimeSlotRepository.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/CampingTicket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/DayTicket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/ITicketManager.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/Type.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/VIPTicket.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/event.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/event1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/event2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/event3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/event4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/header.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/maxresdefault.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/images/winter_festival_header.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/admin_menu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/buy_ticket2.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/buy_ticket_user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/contact_details.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/error404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/event_create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/event_update.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/events.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/information_user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/program.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/user_menu.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/application-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/address/addressTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/band/BandTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/client/ClientTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/EventJPATest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/LineUpJPATest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/database/PriceLevelJPATest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/eventManagement/EventTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/help/HelpClasses.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/de/bord/festival/ticket/TicketTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/MvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/MvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/client/IClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/client/IClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/controllers/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/controllers/EventController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/controllers/TicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/controllers/TicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/controllers/help/HelpClasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/controllers/help/HelpClasses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/Ticket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/TicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/models/TicketManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/repository/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/repository/ClientRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/CampingTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/CampingTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/DayTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/DayTicket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/ITicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/ITicketManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/Type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/Type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/VIPTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/bord/festival/ticket/VIPTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/buy_ticket2.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/buy_ticket2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/buy_ticket_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/buy_ticket_user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/database/PriceLevelJPATest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/help/HelpClasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/help/HelpClasses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/bord/festival/ticket/TicketTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/bord/festival/ticket/TicketTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/MvcConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/MvcConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/EventController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/TicketController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/controllers/TicketController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/LineUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/LineUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/models/Ticket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/ITicketManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/de/bord/festival/ticket/ITicketManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/template.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/template.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin_menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin_menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/event_create.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/event_update.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/events.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/program.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/program.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +122,11 @@
       <workItem from="1595149401524" duration="4967000" />
       <workItem from="1595155262234" duration="1263000" />
       <workItem from="1595188360129" duration="6814000" />
-      <workItem from="1595435618940" duration="274000" />
+      <workItem from="1595435618940" duration="1384000" />
+      <workItem from="1595448348103" duration="20000" />
+      <workItem from="1595448399735" duration="4079000" />
+      <workItem from="1595455408784" duration="1756000" />
+      <workItem from="1595497129663" duration="622000" />
     </task>
     <task id="LOCAL-00001" summary="Buy ticket">
       <created>1595103258979</created>
@@ -217,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595103258979</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Buy ticket fertig">
+      <created>1595436016244</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1595436016244</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,61 +150,62 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Buy ticket" />
-    <option name="LAST_COMMIT_MESSAGE" value="Buy ticket" />
+    <MESSAGE value="Buy ticket fertig" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buy ticket fertig" />
   </component>
   <component name="WindowStateProjectService">
     <state x="605" y="139" key="#com.intellij.ide.util.MemberChooser" timestamp="1595110680216">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="605" y="139" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1595110680216" />
-    <state x="337" y="23" key="CommitChangelistDialog2" timestamp="1595103256203">
+    <state x="337" y="23" key="CommitChangelistDialog2" timestamp="1595436014431">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="337" y="23" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1595103256203" />
+    <state x="337" y="23" key="CommitChangelistDialog2/0.0.1600.860@0.0.1600.860" timestamp="1595436014431" />
     <state x="580" y="187" key="FileChooserDialogImpl" timestamp="1595103556845">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="187" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1595103556845" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1595195190419">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom" timestamp="1595457198327">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="251" key="GridCell.Tab.0.bottom/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
-    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1595195190419" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1595195190418">
+    <state width="1557" height="222" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1595457198327" />
+    <state width="1557" height="222" key="GridCell.Tab.0.center" timestamp="1595457198327">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="251" key="GridCell.Tab.0.center/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
-    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1595195190418" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1595195190418">
+    <state width="1557" height="222" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1595457198327" />
+    <state width="1557" height="222" key="GridCell.Tab.0.left" timestamp="1595457198327">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="251" key="GridCell.Tab.0.left/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
-    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1595195190418" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1595195190419">
+    <state width="1557" height="222" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1595457198327" />
+    <state width="1557" height="222" key="GridCell.Tab.0.right" timestamp="1595457198327">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="251" key="GridCell.Tab.0.right/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
-    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1595195190419" />
-    <state width="1557" height="222" key="GridCell.Tab.1.bottom" timestamp="1595195190420">
+    <state width="1557" height="222" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1595457198327" />
+    <state width="1557" height="222" key="GridCell.Tab.1.bottom" timestamp="1595457198328">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="251" key="GridCell.Tab.1.bottom/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
-    <state width="1557" height="222" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1595195190420" />
-    <state width="1557" height="222" key="GridCell.Tab.1.center" timestamp="1595195190419">
+    <state width="1557" height="222" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1595457198328" />
+    <state width="1557" height="222" key="GridCell.Tab.1.center" timestamp="1595457198327">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="251" key="GridCell.Tab.1.center/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
-    <state width="1557" height="222" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1595195190419" />
-    <state width="1557" height="222" key="GridCell.Tab.1.left" timestamp="1595195190419">
+    <state width="1557" height="222" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1595457198327" />
+    <state width="1557" height="222" key="GridCell.Tab.1.left" timestamp="1595457198327">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="251" key="GridCell.Tab.1.left/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
-    <state width="1557" height="222" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1595195190419" />
-    <state width="1557" height="222" key="GridCell.Tab.1.right" timestamp="1595195190419">
+    <state width="1557" height="222" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1595457198327" />
+    <state width="1557" height="222" key="GridCell.Tab.1.right" timestamp="1595457198327">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1557" height="251" key="GridCell.Tab.1.right/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
-    <state width="1557" height="222" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1595195190419" />
+    <state width="1557" height="222" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1595457198327" />
     <state width="1557" height="253" key="GridCell.Tab.2.bottom" timestamp="1595195190400">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -300,24 +226,24 @@
     </state>
     <state width="1557" height="251" key="GridCell.Tab.2.right/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594893617491" />
     <state width="1557" height="253" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1595195190400" />
-    <state x="152" y="68" key="MergeDialog" timestamp="1595103430057">
+    <state x="152" y="68" key="MergeDialog" timestamp="1595436662179">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="152" y="68" key="MergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1595103430057" />
-    <state x="512" y="147" key="MultipleFileMergeDialog" timestamp="1595103430065">
+    <state x="152" y="68" key="MergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1595436662179" />
+    <state x="512" y="147" key="MultipleFileMergeDialog" timestamp="1595436662186">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="512" y="147" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1595103430065" />
+    <state x="512" y="147" key="MultipleFileMergeDialog/0.0.1600.860@0.0.1600.860" timestamp="1595436662186" />
     <state x="301" y="72" key="SettingsEditor" timestamp="1595103529606">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="301" y="72" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1595103529606" />
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1595188369482">
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog" timestamp="1595497129648">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860/1600.0.1920.1040@0.0.1600.860" timestamp="1594885903688" />
     <state x="2195" y="306" key="com.intellij.ide.util.TipDialog/0.0.1600.860/1600.0.1920.1040@1600.0.1920.1040" timestamp="1594894554441" />
-    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1595188369482" />
+    <state x="496" y="253" key="com.intellij.ide.util.TipDialog/0.0.1600.860@0.0.1600.860" timestamp="1595497129648" />
     <state x="611" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595110351215">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -326,6 +252,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="496" y="35" width="607" height="789" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1595189409976" />
+    <state x="522" y="233" key="git4idea.merge.GitPullDialog" timestamp="1595436035590">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="522" y="233" key="git4idea.merge.GitPullDialog/0.0.1600.860@0.0.1600.860" timestamp="1595436035590" />
     <state x="456" y="195" width="672" height="677" key="run.anything.popup" timestamp="1595110025433">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
