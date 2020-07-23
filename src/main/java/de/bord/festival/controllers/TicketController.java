@@ -8,6 +8,8 @@ import de.bord.festival.repository.EventRepository;
 import de.bord.festival.repository.PriceLevelRepository;
 import de.bord.festival.ticket.Type;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,6 +20,9 @@ import java.util.Optional;
 
 @Controller
 public class TicketController {
+
+
+    private Client client;
 
     private Client c1;
     private Event event = null;
@@ -36,13 +41,15 @@ public class TicketController {
 ////////////////// Event auswählen
 
     @GetMapping("user_menu")
-    public String createEventOverview(ModelMap model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
-
+    public String createEventOverview(ModelMap model, Model m1) throws PriceLevelException, TimeDisorderException, DateDisorderException {
+       // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       // Object principal = authentication.getPrincipal();
 
         List<Event> events = eventRepository.findAll();
 
         model.addAttribute("events", events);
 
+       // client = (Client)principal;
 
         return "user_menu";
     }
@@ -62,13 +69,13 @@ public class TicketController {
 
     @PostMapping("/addToBasket")
     public String addTicketToBasket(Type ticketType, ModelMap model) throws MailException, ClientNameException, TicketNotAvailableException {
-     //  HelpClasses h1 = new HelpClasses();
-   //  Client client1 = h1.exampleClient();
-       // clientRepository.save(client1);
+      // HelpClasses h1 = new HelpClasses();
+    // Client client1 = h1.exampleClient();
+       //clientRepository.save(client1);
         List <Client> clients = clientRepository.findAll();
         Client client1 = clients.get(0);
+      // client.addTicket(ticketType, event.getTicketManager());
        client1.addTicket(ticketType, event.getTicketManager());
-       // client1.addTicket(ticketType, event.getTicketManager());
 
      clientRepository.save(client1);
 
@@ -83,16 +90,25 @@ public class TicketController {
 
         List <Client> clients = clientRepository.findAll();
         Client client1 = clients.get(0);
+
         try {
             event.sellTickets(client1);
             event.addClient(client1);
             eventRepository.save(event);
+            client= client1;
+           // model.addAttribute("client", client1);
             return "redirect:/ticket_buy_ok?eventId=" +event.getId();
         }
         catch(TicketNotAvailableException e){
             return "redirect:/buy_ticket_user?eventId=" +event.getId();
         }
 
+    }
+
+    @GetMapping("/ticket_buy_ok")
+    public String getTicketBuyOk(ModelMap model){
+        model.addAttribute("client", client);
+        return "ticket_buy_ok";
     }
 
 

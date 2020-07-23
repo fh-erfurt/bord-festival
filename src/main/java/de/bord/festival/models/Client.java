@@ -23,10 +23,10 @@ public class Client extends AbstractModel implements IClient {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String mail;
-    @OneToMany(cascade = CascadeType.ALL)
+
     private String password;
     private String role;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Ticket> inventory;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Ticket> cart;
@@ -147,9 +147,19 @@ public class Client extends AbstractModel implements IClient {
      * Adds to the expenditure attribute of Client
      * @param expenditure
      */
-    public void setExpenditure(double expenditure) { this.expenditure += expenditure; }
+    public void setExpenditure(double expenditure) { this.expenditure = expenditure; }
 
     public double getExpenditure(){return expenditure;}
+
+    public int getNumberOfTickets(Type type){
+        int ticketcounter = 0;
+        for(int i = 0; i<inventory.size();i++){
+           if(this.inventory.get(i).getTicketType() == type){
+               ticketcounter++;
+           }
+        }
+        return ticketcounter;
+    }
 
     @Override
     public boolean equals(Object object) {

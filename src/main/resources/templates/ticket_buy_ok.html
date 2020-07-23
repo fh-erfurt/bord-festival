@@ -15,15 +15,15 @@
             <div class="buy_ticket">
                 </br></br>
                 <label>Day-Ticket</label>
-                <div>Number:<!-- getAnzahl --> pieces </div>
+                <div th:text="${'Number: '+client.getNumberOfTickets(T(de.bord.festival.ticket.Type).DAY)+ ' pieces'}"></div>
                 <br/>
                 <label>Camping-Ticket</label>
-                <div>Number:<!-- getAnzahl --> pieces</div>
+                <div th:text="${'Number: '+client.getNumberOfTickets(T(de.bord.festival.ticket.Type).CAMPING)+ ' pieces'}"></div>
                 <br/>
                 <label>VIP-Ticket</label>
-                <div>Number:<!-- getAnzahl --> pieces</div>
+                <div th:text="${'Number: '+client.getNumberOfTickets(T(de.bord.festival.ticket.Type).VIP)+ ' pieces'}"></div>
                 <br/><br>
-                <label>Your Price: <!-- getPrice --> € </label>
+                <label th:text="${'Your Price: '+ #numbers.formatDecimal(client.getExpenditure(),3,2,'COMMA') +' €'}"></label>
                 <br><br><br>
 
                 <div class="form-group">
