@@ -8,6 +8,7 @@ import de.bord.festival.models.LineUp;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.Stage;
 import de.bord.festival.ticket.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import java.math.BigDecimal;
@@ -163,7 +164,8 @@ public class HelpClasses {
     }
 
     public Client exampleClient() throws MailException, ClientNameException {
-        return Client.getNewClient("Max", "Muster","max@test.de",getAddress());
+        Address address = getAddress();
+        return Client.getNewClient("Max", "Muster","max@test.de", "pass123", address, "USER");
     }
 
 }

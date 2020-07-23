@@ -24,31 +24,35 @@ public class Client extends AbstractModel implements IClient {
     private Address address;
     private String mail;
     @OneToMany(cascade = CascadeType.ALL)
+    private String password;
+    private String role;
+    @OneToMany
     private List<Ticket> inventory;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Ticket> cart;
     private double expenditure = 0.0;
+
     public Client(){}
 
-
-
-    public Client(String firstname, String lastname, String mail, Address address)
+    public Client(String firstname, String lastname, String mail, String password, Address address, String role)
     {
         inventory = new LinkedList<Ticket>();
         cart = new LinkedList<Ticket>();
         this.firstname = firstname;
         this.lastname = lastname;
-        this.address = address;
         this.mail = mail;
+        this.password = password;
+        this.address = address;
+        this.role = role;
     }
 
-    public static Client getNewClient(String firstname, String lastname, String mail, Address address)
+    public static Client getNewClient(String firstname, String lastname, String mail, String password, Address address, String role)
             throws ClientNameException, MailException {
         nameCheck(firstname);
         nameCheck(lastname);
         mailCheck(mail);
 
-        return new Client(firstname, lastname, mail, address);
+        return new Client(firstname, lastname, mail, password, address, role);
     }
 
     /**
@@ -114,7 +118,7 @@ public class Client extends AbstractModel implements IClient {
         if(!ticketmanager.isAvailable(type, 1)) {
             throw new TicketNotAvailableException("No more tickets available");
         }
-            
+
                 this.cart.add(ticketmanager.getNewTicket(type));
 
     }
@@ -164,20 +168,17 @@ public class Client extends AbstractModel implements IClient {
     public String getLastname() {
         return this.lastname;
     }
-    public String getMail() {
-        return this.mail;
-    }
+    public String getMail() { return this.mail; }
+    public Address getAddress() {return this.address; }
+    public String getPassword() { return this.password; }
+    public String getRole() { return this.role; }
 
 
-    public void setFirstname(String firstname){
-        this.firstname=firstname;
-    }
-    public void setLastname(String lastname){
-        this.lastname=lastname;
-    }
-    public void setMail(String mail){
-        this.mail=mail;
-    }
-
+    public void setFirstname(String firstname){ this.firstname=firstname; }
+    public void setLastname(String lastname){ this.lastname=lastname; }
+    public void setMail(String mail){ this.mail=mail; }
+    public void setAddress(Address address) { this.address=address; }
+    public void setPassword(String password) { this.password=password; }
+    public void setRole(String role) { this.role=role; }
 }
 

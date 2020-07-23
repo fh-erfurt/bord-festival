@@ -9,4 +9,5 @@ public class FestivalApplication {
         SpringApplication.run(FestivalApplication.class, args);
     }
 
+
 }

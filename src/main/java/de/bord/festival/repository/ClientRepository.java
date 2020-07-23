@@ -9,4 +9,5 @@ import java.util.List;
 public interface ClientRepository extends CrudRepository<Client, Long> {
     Client findById(long id);
     List<Client> findAll();
+    Client findByMail(String mail);
 }
