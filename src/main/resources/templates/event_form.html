@@ -13,6 +13,9 @@
                         <div th:if="${param.success}" class="alert alert-success" role="alert">
                             Festival created successfully
                         </div>
+                        <div th:if="${param.successUpdate}" class="alert alert-success" role="alert">
+                            Festival updated successfully.
+                        </div>
                         <th:block th:if="${newEvent} == true">
                             <h2>Create Event</h2>
                         </th:block>
@@ -31,6 +34,13 @@
                             </div>
                         </th:block>
                         <!-- Festival information -->
+                        <th:block th:if="${event.getId()}!=0">
+                            <input type="text" th:name="eventId" th:value="${event.getId()}" hidden/>
+                        </th:block>
+
+                        <th:block th:object="${dateTimeContainer}">
+                            <p class="error" th:if="${#fields.hasErrors('mainErrorContainer')}"th:errors="*{mainErrorContainer}"></p>
+                        </th:block>
 
                         <th:block th:object="${event}">
                             <div class="form-group">
@@ -38,15 +48,15 @@
                                 <input th:disabled="!${eventInFuture}" class="form-control" type="text" th:field="*{name}" id="name" />
                                 <p class="error" th:if="${#fields.hasErrors('name')}"th:errors="*{name}"  ></p>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
                                 <label for="budget">Budget</label>
                                 <input th:disabled="!${eventInFuture}" class="form-control" type="number" th:field="*{budget}" id="budget"/>
                                 <p class="error" th:if="${#fields.hasErrors('budget')}"th:errors="*{budget}"></p>
                             </div>
                         </th:block>
 
-                        <th:block th:object="${dateTimeContainer}">
-                            <div class="row">
+                        <th:block th:object="${dateTimeContainer}" >
+                            <div class="row" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
                                 <div class="col-6 col-md-4">
                                     <div class="form-group">
                                         <label for="startdatum">Start Date</label>
@@ -76,7 +86,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
                                 <label for="pause">Break between bands on stage</label>
                                 <div class="row">
                                     <div class="col-6 col-md-3">
@@ -186,8 +196,8 @@
                         <div class="row">
                             <!-- Dayticket -->
                             <div class="col-md-4 tickets" th:object="${tmk}">
-                                <h3>Dayticket</h3>
-                                <div class="form-group">
+                                <h3>Day Ticket</h3>
+                                <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
                                     <label for="dayticketcount">Number of Tickets</label>
                                     <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{numberOfDayTickets}"  type="number" id="dayticketcount"/>
                                     <p class="error" th:if="${#fields.hasErrors('numberOfDayTickets')}"th:errors="*{numberOfDayTickets}"></p>
@@ -201,8 +211,8 @@
 
                             <!-- Campingticket -->
                             <div class="col-md-4 tickets" th:object="${tmk}">
-                                <h3>Campingticket</h3>
-                                <div  class="form-group">
+                                <h3>Camping Ticket</h3>
+                                <div  class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
                                     <label for="campingticketcount">Number Of Tickets</label>
                                     <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{numberOfCampingTickets}" type="number" id="campingticketcount"/>
                                     <p class="error" th:if="${#fields.hasErrors('numberOfCampingTickets')}"th:errors="*{numberOfCampingTickets}"  ></p>
@@ -217,7 +227,7 @@
                             <!-- VIP-Ticket -->
                             <div class="col-md-4 tickets" th:object="${tmk}">
                                 <h3>VIP Ticket</h3>
-                                <div class="form-group">
+                                <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
                                     <label for="vipticketcount">Number Of Tickets</label>
                                     <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{numberOfVipTickets}" type="number" id="vipticketcount"/>
                                     <p class="error" th:if="${#fields.hasErrors('numberOfVipTickets')}"th:errors="*{numberOfVipTickets}"  ></p>
@@ -232,7 +242,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
                     <div class="col-sm-2">
                         <!--PERCENTAGE-->
                         <div th:object="${tmk}">
@@ -286,25 +296,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" >
                     <div class="col-lg-8 col-md-12">
-                        <!-- Stage -->
-                        <th:block th:if="${newEvent} == true">
-                            <h3>Create main stage</h3>
-                        </th:block>
-                        <th:block th:unless="${newEvent} == true">
-                            <h3>Update main stage</h3>
-                        </th:block>
-                        <div th:object="${stage}" class="form-group">
-                            <label for="stagename">Name Of Stage</label>
-                            <div class="row">
-                                <div class="col-10">
-                                    <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{stageName}" type="text" id="stagename"/>
-                                    <p class="error" th:if="${#fields.hasErrors('stageName')}"th:errors="*{stageName}"  ></p>
-                                </div>
-                                <div class="col-2">
-                                    <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{identifier}" type="number" id="Identifier"/>
-                                    <p class="error" th:if="${#fields.hasErrors('identifier')}"th:errors="*{identifier}"  ></p>
+                        <div th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+                            <!-- Stage -->
+                                <h3>Create main stage</h3>
+                            <div th:object="${stage}" class="form-group">
+                                <label for="stagename">Name Of Stage</label>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{stageName}" type="text" id="stagename"/>
+                                        <p class="error" th:if="${#fields.hasErrors('stageName')}"th:errors="*{stageName}"  ></p>
+                                    </div>
+                                    <div class="col-2">
+                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{identifier}" type="number" id="Identifier"/>
+                                        <p class="error" th:if="${#fields.hasErrors('identifier')}"th:errors="*{identifier}"  ></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

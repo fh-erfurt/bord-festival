@@ -77,4 +77,11 @@ public class Address extends AbstractModel {
     public void setCountry(String country) {
         this.country = country;
     }
+
+    public void update(Address address) {
+        this.city=address.getCity();
+        this.country=address.getCountry();
+        this.street=address.getStreet();
+        this.zip=address.getZip();
+    }
 }

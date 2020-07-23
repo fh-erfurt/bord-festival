@@ -20,7 +20,15 @@ public class DateTimeContainer {
     @DateTimeFormat(pattern = "H:mm")
     private LocalTime endTime;
     private long breakBetweenTwoBands;
+    private String mainErrorContainer;
 
+    public void setMainErrorContainer(String mainErrorContainer) {
+        this.mainErrorContainer = mainErrorContainer;
+    }
+
+    public String getMainErrorContainer() {
+        return mainErrorContainer;
+    }
     public void setBreakBetweenTwoBands(long breakBetweenTwoBands) {
         this.breakBetweenTwoBands = breakBetweenTwoBands;
     }

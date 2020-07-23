@@ -392,5 +392,13 @@ public class TicketManager extends AbstractModel implements ITicketManager {
             updatePriceLevel();
         }
     }
+    public void update(TicketManager ticketManager){
+
+        setTicketDescription(ticketManager.getTicket(Ticket.TicketType.DAY).description, Ticket.TicketType.DAY);
+        setTicketDescription(ticketManager.getTicket(Ticket.TicketType.CAMPING).description, Ticket.TicketType.CAMPING);
+        setTicketDescription(ticketManager.getTicket(Ticket.TicketType.VIP).description, Ticket.TicketType.VIP);
+
+    }
+
 }
 
