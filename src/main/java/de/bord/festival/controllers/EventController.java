@@ -32,6 +32,20 @@ import java.util.Comparator;
 import java.util.List;
 
 
+/**
+ * Controller class to manage admin sector
+ * Is responsible for:
+ *      Create event- with ticket manager, lineup and programs
+ *      Update event- only fields that do not break event complex structure: dates, times, price
+ *                    levels are can not be changed
+ *      Show events-  list of events with link to information and update possebility
+ *      Update event program:
+ *          add band from all timeslots of program
+ *          remove band only from one timeslot
+ *          add stage
+ *          remove stage
+ *
+ */
 @Controller
 public class EventController {
     private final EventRepository eventRepository;

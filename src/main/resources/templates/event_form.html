@@ -1,329 +1,384 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
-    <head th:replace="fragments/head :: head">
-    </head>
-    <body class="h-100">
-        <header th:replace="fragments/header :: header">
-        </header>
-        <div class="container stretch-to-bottom">
-            <form action="#" th:action="@{/event}" method="post">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-12">
-                        <div th:if="${param.success}" class="alert alert-success" role="alert">
-                            Festival created successfully
+<head th:replace="fragments/head :: head">
+</head>
+<body class="h-100">
+<header th:replace="fragments/header :: header">
+</header>
+<div class="container stretch-to-bottom">
+    <form action="#" th:action="@{/event}" method="post">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-12">
+                <div th:if="${param.success}" class="alert alert-success" role="alert">
+                    Festival created successfully
+                </div>
+                <div th:if="${param.successUpdate}" class="alert alert-success" role="alert">
+                    Festival updated successfully.
+                </div>
+                <th:block th:if="${newEvent} == true">
+                    <h2>Create Event</h2>
+                </th:block>
+                <th:block th:unless="${newEvent} == true">
+                    <th:block th:if="${eventInFuture} == true">
+                        <h2>Update Event</h2>
+                    </th:block>
+                    <th:block th:unless="${eventInFuture} == true">
+                        <h2>View Event</h2>
+                    </th:block>
+
+                    <div class="row">
+                        <div class="col-12 col-sm-3">
+                            <a th:href="'program?eventId=' + ${event.getId()}" class="btn btn-primary">Update
+                                program</a>
                         </div>
-                        <div th:if="${param.successUpdate}" class="alert alert-success" role="alert">
-                            Festival updated successfully.
+                    </div>
+                </th:block>
+                <!-- Festival information -->
+                <th:block th:if="${event.getId()}!=0">
+                    <input type="text" th:name="eventId" th:value="${event.getId()}" hidden/>
+                </th:block>
+
+                <th:block th:object="${dateTimeContainer}">
+                    <p class="error" th:if="${#fields.hasErrors('mainErrorContainer')}"
+                       th:errors="*{mainErrorContainer}"></p>
+                </th:block>
+                <!-- Print info for event, if update case -->
+                <th:block th:object="${event}">
+                    <th:block th:if="${event.getId()}!=0 and ${event.getLineUp()}">
+                        Budget<p th:text="*{budget}"></p>
+                        Start Date<p th:text="${#temporals.format(event.startDate, 'dd-MM-yyyy')}"></p>
+
+                        End Date<p th:text="${#temporals.format(event.endDate, 'dd-MM-yyyy')}"></p>
+                        Break between 2 bands<p th:text="*{breakBetweenTwoBandsInMinutes}"></p>
+
+                    </th:block>
+
+                    <div class="form-group">
+                        <label for="name">Festival name</label>
+                        <input th:disabled="!${eventInFuture}" class="form-control" type="text" th:field="*{name}"
+                               id="name"/>
+                        <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                    </div>
+                    <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+                        <label for="budget">Budget</label>
+                        <input th:disabled="!${eventInFuture}" class="form-control" type="number" th:field="*{budget}"
+                               id="budget"/>
+                        <p class="error" th:if="${#fields.hasErrors('budget')}" th:errors="*{budget}"></p>
+                    </div>
+                </th:block>
+
+                <th:block th:object="${dateTimeContainer}">
+                    <div class="row" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+                        <div class="col-6 col-md-4">
+                            <div class="form-group">
+                                <label for="startdatum">Start Date</label>
+                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{startDate}"
+                                       type="date" id="startdatum"/>
+                                <p class="error" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></p>
+                            </div>
                         </div>
-                        <th:block th:if="${newEvent} == true">
-                            <h2>Create Event</h2>
-                        </th:block>
-                        <th:block th:unless="${newEvent} == true">
-                            <th:block th:if="${eventInFuture} == true">
-                                <h2>Update Event</h2>
-                            </th:block>
-                            <th:block th:unless="${eventInFuture} == true">
-                                <h2>View Event</h2>
-                            </th:block>
-
-                            <div class="row">
-                                <div class="col-12 col-sm-3">
-                                    <a th:href="'program?eventId=' + ${event.getId()}" class="btn btn-primary">Update program</a>
-                                </div>
-                            </div>
-                        </th:block>
-                        <!-- Festival information -->
-                        <th:block th:if="${event.getId()}!=0">
-                            <input type="text" th:name="eventId" th:value="${event.getId()}" hidden/>
-                        </th:block>
-
-                        <th:block th:object="${dateTimeContainer}">
-                            <p class="error" th:if="${#fields.hasErrors('mainErrorContainer')}"th:errors="*{mainErrorContainer}"></p>
-                        </th:block>
-
-                        <th:block th:object="${event}">
+                        <div class="col-6 col-md-4">
                             <div class="form-group">
-                                <label for="name">Festival name</label>
-                                <input th:disabled="!${eventInFuture}" class="form-control" type="text" th:field="*{name}" id="name" />
-                                <p class="error" th:if="${#fields.hasErrors('name')}"th:errors="*{name}"  ></p>
+                                <label for="enddatum">End Date</label>
+                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{endDate}"
+                                       type="date" id="enddatum"/>
+                                <p class="error" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></p>
                             </div>
-                            <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
-                                <label for="budget">Budget</label>
-                                <input th:disabled="!${eventInFuture}" class="form-control" type="number" th:field="*{budget}" id="budget"/>
-                                <p class="error" th:if="${#fields.hasErrors('budget')}"th:errors="*{budget}"></p>
-                            </div>
-                        </th:block>
-
-                        <th:block th:object="${dateTimeContainer}" >
-                            <div class="row" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
-                                <div class="col-6 col-md-4">
-                                    <div class="form-group">
-                                        <label for="startdatum">Start Date</label>
-                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{startDate}" type="date" id="startdatum"/>
-                                        <p class="error" th:if="${#fields.hasErrors('startDate')}"th:errors="*{startDate}"></p>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-4">
-                                    <div class="form-group">
-                                        <label for="enddatum">End Date</label>
-                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{endDate}" type="date" id="enddatum"/>
-                                        <p class="error" th:if="${#fields.hasErrors('endDate')}"th:errors="*{endDate}"></p>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-2">
-                                    <div class="form-group">
-                                        <label for="startuhrzeit">Start Time</label>
-                                        <input th:disabled="!${eventInFuture}" class="form-control" id="startuhrzeit" th:field="*{startTime}" type="time"/>
-                                        <p class="error" th:if="${#fields.hasErrors('startTime')}"th:errors="*{startTime}"></p>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-2">
-                                    <div class="form-group">
-                                        <label for="enduhrzeit">End Time</label>
-                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{endTime}" type="time" id="enduhrzeit"/>
-                                        <p class="error" th:if="${#fields.hasErrors('endTime')}"th:errors="*{endTime}"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
-                                <label for="pause">Break between bands on stage</label>
-                                <div class="row">
-                                    <div class="col-6 col-md-3">
-                                        <select class="form-control" id="pause" th:field="*{breakBetweenTwoBands}" th:disabled="!${eventInFuture}">
-                                            <option value="5">5 Minutes</option>
-                                            <option value="10">10 Minutes</option>
-                                            <option value="15">15 Minutes</option>
-                                            <option value="20">20 Minutes</option>
-                                            <option value="25">25 Minutes</option>
-                                            <option value="30">30 Minutes</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </th:block>
-                        <th:block th:object="${address}">
+                        </div>
+                        <div class="col-6 col-md-2">
                             <div class="form-group">
-                                <label for="strhnr">Street and Street Number</label>
-                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{street}" type="text" id="strhnr"/>
-                                <p class="error" th:if="${#fields.hasErrors('street')}"th:errors="*{street}"  ></p>
+                                <label for="startuhrzeit">Start Time</label>
+                                <input th:disabled="!${eventInFuture}" class="form-control" id="startuhrzeit"
+                                       th:field="*{startTime}" type="time"/>
+                                <p class="error" th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></p>
                             </div>
-                            <div class="row">
-                                <div class="col-12 col-sm-3">
-                                    <div class="form-group">
-                                        <label for="plz">ZIP</label>
-                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{zip}" type="text" id="plz"/>
-                                        <p class="error" th:if="${#fields.hasErrors('zip')}"th:errors="*{zip}"  ></p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-9">
-                                    <div class="form-group">
-                                        <label for="ort">City</label>
-                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{city}" type="text" id="ort"/>
-                                        <p class="error" th:if="${#fields.hasErrors('city')}"th:errors="*{city}"  ></p>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="col-6 col-md-2">
                             <div class="form-group">
-                                <label for="land">Country</label>
-                                <select class="form-control" id="land" th:field="*{country}" th:disabled="!${eventInFuture}">
-                                    <option value="AL" label="Albania">Albania</option>
-                                    <option value="AD" label="Andorra">Andorra</option>
-                                    <option value="AT" label="Austria">Austria</option>
-                                    <option value="BY" label="Belarus">Belarus</option>
-                                    <option value="BE" label="Belgium">Belgium</option>
-                                    <option value="BA" label="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                                    <option value="BG" label="Bulgaria">Bulgaria</option>
-                                    <option value="HR" label="Croatia">Croatia</option>
-                                    <option value="CY" label="Cyprus">Cyprus</option>
-                                    <option value="CZ" label="Czech Republic">Czech Republic</option>
-                                    <option value="DK" label="Denmark">Denmark</option>
-                                    <option value="DD" label="East Germany">East Germany</option>
-                                    <option value="EE" label="Estonia">Estonia</option>
-                                    <option value="FO" label="Faroe Islands">Faroe Islands</option>
-                                    <option value="FI" label="Finland">Finland</option>
-                                    <option value="FR" label="France">France</option>
-                                    <option value="DE" label="Germany">Germany</option>
-                                    <option value="GI" label="Gibraltar">Gibraltar</option>
-                                    <option value="GR" label="Greece">Greece</option>
-                                    <option value="GG" label="Guernsey">Guernsey</option>
-                                    <option value="HU" label="Hungary">Hungary</option>
-                                    <option value="IS" label="Iceland">Iceland</option>
-                                    <option value="IE" label="Ireland">Ireland</option>
-                                    <option value="IM" label="Isle of Man">Isle of Man</option>
-                                    <option value="IT" label="Italy">Italy</option>
-                                    <option value="JE" label="Jersey">Jersey</option>
-                                    <option value="LV" label="Latvia">Latvia</option>
-                                    <option value="LI" label="Liechtenstein">Liechtenstein</option>
-                                    <option value="LT" label="Lithuania">Lithuania</option>
-                                    <option value="LU" label="Luxembourg">Luxembourg</option>
-                                    <option value="MK" label="Macedonia">Macedonia</option>
-                                    <option value="MT" label="Malta">Malta</option>
-                                    <option value="FX" label="Metropolitan France">Metropolitan France</option>
-                                    <option value="MD" label="Moldova">Moldova</option>
-                                    <option value="MC" label="Monaco">Monaco</option>
-                                    <option value="ME" label="Montenegro">Montenegro</option>
-                                    <option value="NL" label="Netherlands">Netherlands</option>
-                                    <option value="NO" label="Norway">Norway</option>
-                                    <option value="PL" label="Poland">Poland</option>
-                                    <option value="PT" label="Portugal">Portugal</option>
-                                    <option value="RO" label="Romania">Romania</option>
-                                    <option value="RU" label="Russia">Russia</option>
-                                    <option value="SM" label="San Marino">San Marino</option>
-                                    <option value="RS" label="Serbia">Serbia</option>
-                                    <option value="CS" label="Serbia and Montenegro">Serbia and Montenegro</option>
-                                    <option value="SK" label="Slovakia">Slovakia</option>
-                                    <option value="SI" label="Slovenia">Slovenia</option>
-                                    <option value="ES" label="Spain">Spain</option>
-                                    <option value="SJ" label="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
-                                    <option value="SE" label="Sweden">Sweden</option>
-                                    <option value="CH" label="Switzerland">Switzerland</option>
-                                    <option value="UA" label="Ukraine">Ukraine</option>
-                                    <option value="SU" label="Union of Soviet Socialist Republics">Union of Soviet Socialist Republics</option>
-                                    <option value="GB" label="United Kingdom">United Kingdom</option>
-                                    <option value="VA" label="Vatican City">Vatican City</option>
+                                <label for="enduhrzeit">End Time</label>
+                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{endTime}"
+                                       type="time" id="enduhrzeit"/>
+                                <p class="error" th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+                        <label for="pause">Break between bands on stage</label>
+                        <div class="row">
+                            <div class="col-6 col-md-3">
+                                <select class="form-control" id="pause" th:field="*{breakBetweenTwoBands}"
+                                        th:disabled="!${eventInFuture}">
+                                    <option value="5">5 Minutes</option>
+                                    <option value="10">10 Minutes</option>
+                                    <option value="15">15 Minutes</option>
+                                    <option value="20">20 Minutes</option>
+                                    <option value="25">25 Minutes</option>
+                                    <option value="30">30 Minutes</option>
                                 </select>
                             </div>
-                        </th:block>
+                        </div>
                     </div>
-                </div>
+                </th:block>
+                <th:block th:object="${address}">
+                    <div class="form-group">
+                        <label for="strhnr">Street and Street Number</label>
+                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{street}" type="text"
+                               id="strhnr"/>
+                        <p class="error" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-3">
+                            <div class="form-group">
+                                <label for="plz">ZIP</label>
+                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{zip}"
+                                       type="text" id="plz"/>
+                                <p class="error" th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}"></p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-9">
+                            <div class="form-group">
+                                <label for="ort">City</label>
+                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{city}"
+                                       type="text" id="ort"/>
+                                <p class="error" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="land">Country</label>
+                        <select class="form-control" id="land" th:field="*{country}" th:disabled="!${eventInFuture}">
+                            <option value="AL" label="Albania">Albania</option>
+                            <option value="AD" label="Andorra">Andorra</option>
+                            <option value="AT" label="Austria">Austria</option>
+                            <option value="BY" label="Belarus">Belarus</option>
+                            <option value="BE" label="Belgium">Belgium</option>
+                            <option value="BA" label="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                            <option value="BG" label="Bulgaria">Bulgaria</option>
+                            <option value="HR" label="Croatia">Croatia</option>
+                            <option value="CY" label="Cyprus">Cyprus</option>
+                            <option value="CZ" label="Czech Republic">Czech Republic</option>
+                            <option value="DK" label="Denmark">Denmark</option>
+                            <option value="DD" label="East Germany">East Germany</option>
+                            <option value="EE" label="Estonia">Estonia</option>
+                            <option value="FO" label="Faroe Islands">Faroe Islands</option>
+                            <option value="FI" label="Finland">Finland</option>
+                            <option value="FR" label="France">France</option>
+                            <option value="DE" label="Germany">Germany</option>
+                            <option value="GI" label="Gibraltar">Gibraltar</option>
+                            <option value="GR" label="Greece">Greece</option>
+                            <option value="GG" label="Guernsey">Guernsey</option>
+                            <option value="HU" label="Hungary">Hungary</option>
+                            <option value="IS" label="Iceland">Iceland</option>
+                            <option value="IE" label="Ireland">Ireland</option>
+                            <option value="IM" label="Isle of Man">Isle of Man</option>
+                            <option value="IT" label="Italy">Italy</option>
+                            <option value="JE" label="Jersey">Jersey</option>
+                            <option value="LV" label="Latvia">Latvia</option>
+                            <option value="LI" label="Liechtenstein">Liechtenstein</option>
+                            <option value="LT" label="Lithuania">Lithuania</option>
+                            <option value="LU" label="Luxembourg">Luxembourg</option>
+                            <option value="MK" label="Macedonia">Macedonia</option>
+                            <option value="MT" label="Malta">Malta</option>
+                            <option value="FX" label="Metropolitan France">Metropolitan France</option>
+                            <option value="MD" label="Moldova">Moldova</option>
+                            <option value="MC" label="Monaco">Monaco</option>
+                            <option value="ME" label="Montenegro">Montenegro</option>
+                            <option value="NL" label="Netherlands">Netherlands</option>
+                            <option value="NO" label="Norway">Norway</option>
+                            <option value="PL" label="Poland">Poland</option>
+                            <option value="PT" label="Portugal">Portugal</option>
+                            <option value="RO" label="Romania">Romania</option>
+                            <option value="RU" label="Russia">Russia</option>
+                            <option value="SM" label="San Marino">San Marino</option>
+                            <option value="RS" label="Serbia">Serbia</option>
+                            <option value="CS" label="Serbia and Montenegro">Serbia and Montenegro</option>
+                            <option value="SK" label="Slovakia">Slovakia</option>
+                            <option value="SI" label="Slovenia">Slovenia</option>
+                            <option value="ES" label="Spain">Spain</option>
+                            <option value="SJ" label="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                            <option value="SE" label="Sweden">Sweden</option>
+                            <option value="CH" label="Switzerland">Switzerland</option>
+                            <option value="UA" label="Ukraine">Ukraine</option>
+                            <option value="SU" label="Union of Soviet Socialist Republics">Union of Soviet Socialist
+                                Republics
+                            </option>
+                            <option value="GB" label="United Kingdom">United Kingdom</option>
+                            <option value="VA" label="Vatican City">Vatican City</option>
+                        </select>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <!-- Ticket Pricelevel -->
+                <h3>Tickets</h3>
                 <div class="row">
-                    <div class="col-2">
-                    </div>
-                    <div class="col-lg-8 col-md-12">
-                        <!-- Ticket Pricelevel -->
-                        <h3>Tickets</h3>
-                        <div class="row">
-                            <!-- Dayticket -->
-                            <div class="col-md-4 tickets" th:object="${tmk}">
-                                <h3>Day Ticket</h3>
-                                <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
-                                    <label for="dayticketcount">Number of Tickets</label>
-                                    <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{numberOfDayTickets}"  type="number" id="dayticketcount"/>
-                                    <p class="error" th:if="${#fields.hasErrors('numberOfDayTickets')}"th:errors="*{numberOfDayTickets}"></p>
-                                </div>
-                                <div class="form-group" th:object="${tmk}">
-                                    <label>Ticket Description</label>
-                                    <textarea class="form-control" th:field="*{dayTicketDescription}" type="text" rows="3" th:disabled="!${eventInFuture}"></textarea>
-                                    <p class="error" th:if="${#fields.hasErrors('dayTicketDescription')}"th:errors="*{dayTicketDescription}"  ></p>
-                                </div>
-                            </div>
-
-                            <!-- Campingticket -->
-                            <div class="col-md-4 tickets" th:object="${tmk}">
-                                <h3>Camping Ticket</h3>
-                                <div  class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
-                                    <label for="campingticketcount">Number Of Tickets</label>
-                                    <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{numberOfCampingTickets}" type="number" id="campingticketcount"/>
-                                    <p class="error" th:if="${#fields.hasErrors('numberOfCampingTickets')}"th:errors="*{numberOfCampingTickets}"  ></p>
-                                </div>
-                                <div class="form-group">
-                                    <label for="campingticketdescription">Ticket Description</label>
-                                    <textarea class="form-control" th:field="*{campingTicketDescription}" type="text" id="campingticketdescription" rows="3" th:disabled="!${eventInFuture}"></textarea>
-                                    <p class="error" th:if="${#fields.hasErrors('campingTicketDescription')}"th:errors="*{campingTicketDescription}"  ></p>
-                                </div>
-                            </div>
-
-                            <!-- VIP-Ticket -->
-                            <div class="col-md-4 tickets" th:object="${tmk}">
-                                <h3>VIP Ticket</h3>
-                                <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
-                                    <label for="vipticketcount">Number Of Tickets</label>
-                                    <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{numberOfVipTickets}" type="number" id="vipticketcount"/>
-                                    <p class="error" th:if="${#fields.hasErrors('numberOfVipTickets')}"th:errors="*{numberOfVipTickets}"  ></p>
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="vipticketdescription">Ticket Description</label>
-                                    <textarea class="form-control" th:field="*{vipTicketDescription}" type="text" id="vipticketdescription" rows="3" th:disabled="!${eventInFuture}"></textarea>
-                                    <p class="error" th:if="${#fields.hasErrors('campingTicketDescription')}"th:errors="*{campingTicketDescription}"  ></p>
-                                </div>
-                            </div>
+                    <!-- Dayticket -->
+                    <div class="col-md-4 tickets" th:object="${tmk}">
+                        <h3>Day Ticket</h3>
+                        <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+                            <label for="dayticketcount">Number of Tickets</label>
+                            <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{numberOfDayTickets}"
+                                   type="number" id="dayticketcount"/>
+                            <p class="error" th:if="${#fields.hasErrors('numberOfDayTickets')}"
+                               th:errors="*{numberOfDayTickets}"></p>
+                        </div>
+                        <div class="form-group" th:object="${tmk}">
+                            <label>Ticket Description</label>
+                            <textarea class="form-control" th:field="*{dayTicketDescription}" type="text" rows="3"
+                                      th:disabled="!${eventInFuture}"></textarea>
+                            <p class="error" th:if="${#fields.hasErrors('dayTicketDescription')}"
+                               th:errors="*{dayTicketDescription}"></p>
                         </div>
                     </div>
-                </div>
-                <div class="row" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
-                    <div class="col-sm-2">
-                        <!--PERCENTAGE-->
-                        <div th:object="${tmk}">
-                            <div  th:each="priceLevel, itemStat: *{priceLevels}">
-                                <div class="form-group col-half">
-                                    <label th:inline="text">Price Level [[${itemStat.index+1}]]</label>
-                                    <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}" type="number"/>
-                                    <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}')}"th:errors="*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}"  ></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-sm-12">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <!--VIP-->
-                                <div th:object="${tmk}">
-                                    <div  th:each="priceLevel, itemStat: *{priceLevels}">
-                                        <div class="form-group col-half">
-                                            <label>Price</label>
-                                            <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{priceLevels[__${itemStat.index}__].vipTicketPrice}" type="number"/>
-                                            <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].vipTicketPrice}')}"th:errors="*{priceLevels[__${itemStat.index}__].vipTicketPrice}"  ></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <!--DAY-->
-                                <div th:object="${tmk}">
-                                    <div  th:each="priceLevel, itemStat: *{priceLevels}">
-                                        <div class="form-group col-half">
-                                            <label>Price</label>
-                                            <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{priceLevels[__${itemStat.index}__].dayTicketPrice}" type="number"/>
-                                            <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].dayTicketPrice}')}"th:errors="*{priceLevels[__${itemStat.index}__].dayTicketPrice}"  ></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <!--CAMPING-->
-                                <div th:object="${tmk}">
-                                    <div  th:each="priceLevel, itemStat: *{priceLevels}">
-                                        <div class="form-group col-half">
-                                            <label>Price</label>
-                                            <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{priceLevels[__${itemStat.index}__].campingTicketPrice}" type="number"/>
-                                            <p class="error" th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].campingTicketPrice}')}"th:errors="*{priceLevels[__${itemStat.index}__].campingTicketPrice}"  ></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center" >
-                    <div class="col-lg-8 col-md-12">
-                        <div th:style=" ${event.getId()}!=0 ?  'display:none': ''">
-                            <!-- Stage -->
-                                <h3>Create main stage</h3>
-                            <div th:object="${stage}" class="form-group">
-                                <label for="stagename">Name Of Stage</label>
-                                <div class="row">
-                                    <div class="col-10">
-                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{stageName}" type="text" id="stagename"/>
-                                        <p class="error" th:if="${#fields.hasErrors('stageName')}"th:errors="*{stageName}"  ></p>
-                                    </div>
-                                    <div class="col-2">
-                                        <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{identifier}" type="number" id="Identifier"/>
-                                        <p class="error" th:if="${#fields.hasErrors('identifier')}"th:errors="*{identifier}"  ></p>
-                                    </div>
-                                </div>
-                            </div>
+
+                    <!-- Campingticket -->
+                    <div class="col-md-4 tickets" th:object="${tmk}">
+                        <h3>Camping Ticket</h3>
+                        <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+                            <label for="campingticketcount">Number Of Tickets</label>
+                            <input th:disabled="!${eventInFuture}" class="form-control"
+                                   th:field="*{numberOfCampingTickets}" type="number" id="campingticketcount"/>
+                            <p class="error" th:if="${#fields.hasErrors('numberOfCampingTickets')}"
+                               th:errors="*{numberOfCampingTickets}"></p>
                         </div>
                         <div class="form-group">
-                            <input th:disabled="!${eventInFuture}" type="submit" value="Submit" class="btn btn-outline-danger"/> <input th:disabled="!${eventInFuture}" type="reset" value="Reset" class="btn btn-outline-danger"/>
+                            <label for="campingticketdescription">Ticket Description</label>
+                            <textarea class="form-control" th:field="*{campingTicketDescription}" type="text"
+                                      id="campingticketdescription" rows="3" th:disabled="!${eventInFuture}"></textarea>
+                            <p class="error" th:if="${#fields.hasErrors('campingTicketDescription')}"
+                               th:errors="*{campingTicketDescription}"></p>
+                        </div>
+                    </div>
+
+                    <!-- VIP-Ticket -->
+                    <div class="col-md-4 tickets" th:object="${tmk}">
+                        <h3>VIP Ticket</h3>
+                        <div class="form-group" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+                            <label for="vipticketcount">Number Of Tickets</label>
+                            <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{numberOfVipTickets}"
+                                   type="number" id="vipticketcount"/>
+                            <p class="error" th:if="${#fields.hasErrors('numberOfVipTickets')}"
+                               th:errors="*{numberOfVipTickets}"></p>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="vipticketdescription">Ticket Description</label>
+                            <textarea class="form-control" th:field="*{vipTicketDescription}" type="text"
+                                      id="vipticketdescription" rows="3" th:disabled="!${eventInFuture}"></textarea>
+                            <p class="error" th:if="${#fields.hasErrors('campingTicketDescription')}"
+                               th:errors="*{campingTicketDescription}"></p>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-        <footer th:replace="fragments/footer :: footer">
-        </footer>
-        <th:block th:include="fragments/javascript :: javascript"></th:block>
-    </body>
+        <div class="row" th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+            <div class="col-sm-2">
+                <!--PERCENTAGE-->
+                <div th:object="${tmk}">
+                    <div th:each="priceLevel, itemStat: *{priceLevels}">
+                        <div class="form-group col-half">
+                            <label th:inline="text">Price Level [[${itemStat.index+1}]]</label>
+                            <input th:disabled="!${eventInFuture}" class="form-control"
+                                   th:field="*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}"
+                                   type="number"/>
+                            <p class="error"
+                               th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}')}"
+                               th:errors="*{priceLevels[__${itemStat.index}__].percentageForPriceLevel}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-sm-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <!--VIP-->
+                        <div th:object="${tmk}">
+                            <div th:each="priceLevel, itemStat: *{priceLevels}">
+                                <div class="form-group col-half">
+                                    <label>Price</label>
+                                    <input th:disabled="!${eventInFuture}" class="form-control"
+                                           th:field="*{priceLevels[__${itemStat.index}__].vipTicketPrice}"
+                                           type="number"/>
+                                    <p class="error"
+                                       th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].vipTicketPrice}')}"
+                                       th:errors="*{priceLevels[__${itemStat.index}__].vipTicketPrice}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!--DAY-->
+                        <div th:object="${tmk}">
+                            <div th:each="priceLevel, itemStat: *{priceLevels}">
+                                <div class="form-group col-half">
+                                    <label>Price</label>
+                                    <input th:disabled="!${eventInFuture}" class="form-control"
+                                           th:field="*{priceLevels[__${itemStat.index}__].dayTicketPrice}"
+                                           type="number"/>
+                                    <p class="error"
+                                       th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].dayTicketPrice}')}"
+                                       th:errors="*{priceLevels[__${itemStat.index}__].dayTicketPrice}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <!--CAMPING-->
+                        <div th:object="${tmk}">
+                            <div th:each="priceLevel, itemStat: *{priceLevels}">
+                                <div class="form-group col-half">
+                                    <label>Price</label>
+                                    <input th:disabled="!${eventInFuture}" class="form-control"
+                                           th:field="*{priceLevels[__${itemStat.index}__].campingTicketPrice}"
+                                           type="number"/>
+                                    <p class="error"
+                                       th:if="${#fields.hasErrors('*{priceLevels[__${itemStat.index}__].campingTicketPrice}')}"
+                                       th:errors="*{priceLevels[__${itemStat.index}__].campingTicketPrice}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-12">
+                <div th:style=" ${event.getId()}!=0 ?  'display:none': ''">
+                    <!-- Stage -->
+                    <h3>Create main stage</h3>
+                    <div th:object="${stage}" class="form-group">
+                        <label for="stagename">Name Of Stage</label>
+                        <div class="row">
+                            <div class="col-10">
+                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{stageName}"
+                                       type="text" id="stagename"/>
+                                <p class="error" th:if="${#fields.hasErrors('stageName')}" th:errors="*{stageName}"></p>
+                            </div>
+                            <div class="col-2">
+                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{identifier}"
+                                       type="number" id="Identifier"/>
+                                <p class="error" th:if="${#fields.hasErrors('identifier')}"
+                                   th:errors="*{identifier}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input th:disabled="!${eventInFuture}" type="submit" value="Submit" class="btn btn-outline-danger"/>
+                    <input th:disabled="!${eventInFuture}" type="reset" value="Reset" class="btn btn-outline-danger"/>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<footer th:replace="fragments/footer :: footer">
+</footer>
+<th:block th:include="fragments/javascript :: javascript"></th:block>
+</body>
 </html>
