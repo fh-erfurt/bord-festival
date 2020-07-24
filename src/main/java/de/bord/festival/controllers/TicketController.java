@@ -27,6 +27,7 @@ public class TicketController {
     private Client c1;
     private Event event = null;
     private long eventId = -1;
+    private Exception exception;
 
     private final EventRepository eventRepository;
     @Autowired PriceLevelRepository priceLevelRepository;
@@ -44,7 +45,7 @@ public class TicketController {
     public String createEventOverview(ModelMap model, Model m1) throws PriceLevelException, TimeDisorderException, DateDisorderException {
        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        // Object principal = authentication.getPrincipal();
-
+        eventId = -1;
         List<Event> events = eventRepository.findAll();
 
         model.addAttribute("events", events);
@@ -82,7 +83,7 @@ public class TicketController {
       //  client1.addTicket(ticketType, event.getTicketManager());
 
 
-        return "redirect:/buy_ticket_user?eventId=" +event.getId();
+        return "redirect:/buy_ticket_user?eventId=" +eventId;
     }
 
     @PostMapping("/buy_ticket")
@@ -97,10 +98,11 @@ public class TicketController {
             eventRepository.save(event);
             client= client1;
            // model.addAttribute("client", client1);
-            return "redirect:/ticket_buy_ok?eventId=" +event.getId();
+            return "redirect:/ticket_buy_ok?eventId=" +eventId;
         }
         catch(TicketNotAvailableException e){
-            return "redirect:/buy_ticket_user?eventId=" +event.getId();
+            exception = e;
+            return "redirect:/ticket_buy_error?eventId=" +eventId;
         }
 
     }
@@ -111,5 +113,14 @@ public class TicketController {
         return "ticket_buy_ok";
     }
 
+
+
+   @GetMapping("/ticket_buy_error")
+    public String getTicketBuyError(ModelMap model){
+
+        model.addAttribute("event", event);
+        model.addAttribute("exception", exception);
+        return "ticket_buy_error";
+    }
 
 }

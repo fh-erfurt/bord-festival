@@ -358,21 +358,21 @@ public class TicketManager extends AbstractModel implements ITicketManager {
         while (index < client.getCartSize()) {
             Type ticketType = client.getCartItem(index).getTicketType();
             if (ticketType == Type.DAY) {
-                if (isAvailable(ticketType, numberOfDayTicketsSold)) {
+                if (isAvailable(ticketType, numberOfDayTicketsSold+1)) {
                     numberOfDayTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {
                     throw new TicketNotAvailableException("Not enough day-tickets available");
                 }
             } else if (ticketType == Type.CAMPING) {
-                if (isAvailable(ticketType, numberOfCampingTicketsSold)) {
+                if (isAvailable(ticketType, numberOfCampingTicketsSold+1)) {
                     numberOfCampingTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {
                     throw new TicketNotAvailableException("Not enough camping-tickets available");
                 }
             } else if (ticketType == Type.VIP) {
-                if (isAvailable(ticketType, numberOfVipTicketsSold)) {
+                if (isAvailable(ticketType, numberOfVipTicketsSold+1)) {
                     numberOfVipTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {

@@ -12,10 +12,11 @@
         <div class="col-lg-4 col-sm-12">
             <h3 class="ok">Error!</br>
                 Your purchase failed</h3>
+            <p th:text="${exception.getMessage()}"></p>
             <div class="buy_ticket">
                 </br></br>
                 <div class="form-group">
-                    <a href="buy_ticket_user" class="btn btn-outline-danger">Choose your ticket</a>
+                    <a th:href="@{/buy_ticket_user(eventId = ${event.getId()})}" class="btn btn-outline-danger">Choose your ticket</a>
                     <a href="user_menu" class="btn btn-outline-danger">Back to select</a>
                 </div>
             </div>
