@@ -12,38 +12,53 @@
         <div class="col-lg-4 col-sm-12">
             <h3>Choose your ticket for</h3>
             <div class="buy_ticket">
-                <form action="#" th:action="@{/buy_ticket}"  method="post">
-                    <div>Event: <!-- getName --></div>
+
+                    <div>Event: <p th:text="${theEvent.getName()}"> </p></div>
                     <br>
                     <!--<select name="ticket" th:name="eventId" >
                                <option th:each="event : ${events}" th:text="${event.getName()}" th:value="${event.getId()}" >
                            </option>
                        </select> -->
                     <!-- <button type="submit" name="action" value="save">save</button> -->
-                    <div>Date:<!-- getDate --></div>
+                    <div>Date: <p th:text="${theEvent.getStartDate()}"> </p></div>
                     <br>
-                </form>
+
 
                 <h3>Which ticket?</h3><br>
-                <label>Day-Ticket</label>
-                <div>Price:<!-- getPrice --> €
-                <input type="submit" value="Add" class="btn btn-outline-danger"/></div>
+                <label th:text="${'Day-Ticket ['+ticketCounter.getDayTicketCounter()+']'}"></label>
+                <div>Price: <p th:text="${theEvent.getTheActualPricelevel().getDayTicketPrice()}"> €
+                    <form action="#" th:action="@{/addToBasket}"  method="post" >
+                        <input   hidden th:name="ticketType" th:value="${T(de.bord.festival.ticket.Type).DAY}"/>
+                        <button class="btn btn-outline-danger" type="submit"/>Add Day ticket</button>
+                    </form>
+                </div>
                 <br/>
-                <label>Camping-Ticket</label>
-                <div>Price:<!-- getPrice --> €
-                <input type="submit" value="Add" class="btn btn-outline-danger"/></div>
+                <label th:text="${'Camping-Ticket ['+ticketCounter.getCampingTicketCounter()+']'}"></label>
+                <div>Price: <p th:text="${theEvent.getTheActualPricelevel().getCampingTicketPrice()}"> €
+                    <form action="#" th:action="@{/addToBasket}"  method="post" >
+                <input   hidden th:name="ticketType" th:value="${T(de.bord.festival.ticket.Type).CAMPING}"/>
+                    <button class="btn btn-outline-danger" type="submit"/>Add Camping ticket</button>
+                    </form>
+                </div>
                 <br/>
-                <label>VIP-Ticket</label>
-                <div>Price:<!-- getPrice --> €
-                <input type="submit" value="Add" class="btn btn-outline-danger"/></div>
+                <label th:text="${'VIP-Ticket ['+ticketCounter.getVipTicketCounter()+']'}"></label>
+                <div>Price: <p th:text="${theEvent.getTheActualPricelevel().getVipTicketPrice()}"> €
+                    <form action="#" th:action="@{/addToBasket}"  method="post" >
+                        <input   hidden th:name="ticketType" th:value="${T(de.bord.festival.ticket.Type).VIP}"/>
+                        <button class="btn btn-outline-danger" type="submit"/>Add VIP ticket</button>
+                    </form>
+                </div>
                 <br/><br>
                 <label>Your Price: <!-- getPrice --> </label>
                 <br><br><br>
 
                 <div class="form-group">
-                    <input type="submit" value="Buy now" class="btn btn-outline-danger"/>
+                    <form action="#" th:action="@{/buy_ticket}"  method="post">
+                        <input type="submit" value="Buy now" class="btn btn-outline-danger"/>
+                    </form>
                     <a href="user_menu" class="btn btn-outline-danger">Back to select</a>
                 </div>
+
             </div>	
         </div>
     </div>

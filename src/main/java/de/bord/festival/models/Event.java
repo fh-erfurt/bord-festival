@@ -3,6 +3,7 @@ package de.bord.festival.models;
 import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
 import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.ticket.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -45,8 +46,12 @@ public class Event extends AbstractModel implements IEvent {
     private double actualCosts = 0;
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Client> client;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Client> clients;
+
+    public void addClient(Client client){
+        this.clients.add(client);
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -76,7 +81,7 @@ public class Event extends AbstractModel implements IEvent {
                   TicketManager ticketManager, Address address) {
 
         lineUp = new LineUp(startTime, endTime, breakBetweenTwoBandsInMinute, startDate, endDate, stage, this);
-        client = new LinkedList<>();
+        clients = new LinkedList<>();
         this.budget = budget;
         this.name = name;
         this.ticketManager = ticketManager;
@@ -273,8 +278,8 @@ public class Event extends AbstractModel implements IEvent {
         return ticketManager.totalNumberOfTicketsLeft();
     }
 
-    public Ticket getTicket(Ticket.TicketType type) {
-        return this.ticketManager.getTicket(type);
+    public Ticket getTicket(Type type) {
+        return this.ticketManager.getNewTicket(type);
     }
 
     public void setTicketStdPrice(double stdPrice, Ticket.TicketType type) {
@@ -384,6 +389,11 @@ public class Event extends AbstractModel implements IEvent {
 
     public List<Stage> getStages() {
         return this.lineUp.getStages();
+    }
+
+
+    public TicketManager getTicketManager(){
+        return ticketManager;
     }
 
     public Stage getFirstStage() {

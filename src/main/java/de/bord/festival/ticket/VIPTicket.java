@@ -11,19 +11,19 @@ import javax.persistence.Entity;
 @Entity
 public class VIPTicket extends Ticket {
 
-    private TicketType ticketType;
+    private Type ticketType;
 
     public VIPTicket(String description,
                       double standardPrice){
 
         super(description, standardPrice);
-        this.ticketType = TicketType.VIP;
+        this.ticketType = Type.VIP;
     }
     public VIPTicket(){}
 
     @Override
-    public TicketType getTicketType() {
-        return TicketType.VIP;
+    public Type getTicketType() {
+        return Type.VIP;
     }
 
 }

@@ -2,13 +2,13 @@ package de.bord.festival.database;
 
 import de.bord.festival.exception.*;
 import de.bord.festival.help.HelpClasses;
-import de.bord.festival.models.PriceLevel;
-import de.bord.festival.models.Ticket;
-import de.bord.festival.models.TicketManager;
+import de.bord.festival.models.*;
+import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.PriceLevelRepository;
 import de.bord.festival.repository.TicketManagerRepository;
 import de.bord.festival.ticket.CampingTicket;
 import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.ticket.Type;
 import de.bord.festival.ticket.VIPTicket;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,11 +35,11 @@ public class PriceLevelJPATest {
 
     @Autowired
     TicketManagerRepository ticketManagerRepository;
-/*
+
     @Autowired
     ClientRepository clientRepository;
 
-*/
+
     public TicketManager ticketManager;
 
     public HelpClasses helpClasses;
@@ -130,34 +130,38 @@ public class PriceLevelJPATest {
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
 
-        ticketManagerRepository.save(ticketManager1);
+
 
         // when
-        ticketManager1.getTicket(Ticket.TicketType.DAY).setDescription("Festival 2020 DayTicket");
-
+        ticketManager1.getTicket(Type.DAY).setDescription("Festival 2020 DayTicket");
+        ticketManagerRepository.save(ticketManager1);
 
         TicketManager databaseTicketManager = ticketManagerRepository.findById(1);
 
 
         // then
-        assertEquals("Festival 2020 DayTicket", databaseTicketManager.getTicket(Ticket.TicketType.DAY).getDescription());
+        assertEquals("Festival 2020 DayTicket", databaseTicketManager.getNewTicket(Type.DAY).getDescription());
 
     }
-/*
+
     @Test
-    void clientTestAndSellTest() throws TicketNotAvailableException {
-        //addressRepository.create(address);
-        ticketManagerRepository.save(ticketManager);
-        TicketManager databaseTicketManager = ticketManagerRepository.findById(1);
-        clientRepository.save(exampleClient);
-        Client databaseClient= clientRepository.findById(1);
-        assertEquals(10, databaseTicketManager.getNumberOfDayTicketsLeft());
-        assertEquals(4, exampleClient.getCartSize());
-        ticketManager.sellTickets(exampleClient);
+    void clientTestAndSellTest() throws TicketNotAvailableException, MailException, ClientNameException, PriceLevelException, TimeDisorderException, DateDisorderException {
+      HelpClasses h1 = new HelpClasses();
+       Client client1 = h1.exampleClient();
+        clientRepository.save(client1);
+        Event event = h1.getValidNDaysEvent(2);
+
+        client1.addTicket(Type.DAY, event.getTicketManager());
+      //client1.addTicket(ticketType, event.getTicketManager());
+        clientRepository.save(client1);
+        clientRepository.save(client1);
+/*
+        client1.addTicket(ticketType, event.getTicketManager());
         assertEquals(6, databaseTicketManager.getNumberOfDayTicketsLeft());
         assertEquals(0, exampleClient.getCartSize());
         assertEquals(182.47000000000003, databaseClient.getExpenditure());
         assertEquals(182.47000000000003, databaseClient.getExpenditure());
+ */
     }
-*/
+
 }

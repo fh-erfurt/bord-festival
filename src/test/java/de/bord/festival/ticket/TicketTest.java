@@ -83,10 +83,10 @@ public class TicketTest {
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
 
         // when
-        ticketManager1.getTicket(Ticket.TicketType.DAY).setDescription("Festival 2020 DayTicket");
+        ticketManager1.getTicket(Type.DAY).setDescription("Festival 2020 DayTicket");
 
         // then
-        assertEquals("Festival 2020 DayTicket", ticketManager1.getTicket(Ticket.TicketType.DAY).getDescription());
+        assertEquals("Festival 2020 DayTicket", ticketManager1.getNewTicket(Type.DAY).getDescription());
 
     }
 
@@ -102,7 +102,7 @@ public class TicketTest {
         ticketManager1.setPriceLevel(1);
 
         // then
-        assertEquals(59.99, ticketManager1.getTicket(Ticket.TicketType.CAMPING).getStdPrice());
+        assertEquals(59.99, ticketManager1.getNewTicket(Type.CAMPING).getStdPrice());
 
     }
     @Test
@@ -114,7 +114,7 @@ public class TicketTest {
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
 
         // then
-        assertEquals(52.49, ticketManager1.getTicket(Ticket.TicketType.VIP).getStdPrice());
+        assertEquals(52.49, ticketManager1.getNewTicket(Type.VIP).getStdPrice());
 
     }
 
@@ -174,7 +174,7 @@ public class TicketTest {
         ticketManager1.sellTickets(client1);
 
         // then
-        assertEquals(true, ticketManager1.isAvailable(Ticket.TicketType.DAY, 1));
+        assertEquals(true, ticketManager1.isAvailable(Type.DAY, 1));
 
     }
 
@@ -184,13 +184,13 @@ public class TicketTest {
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
         Client client1 = helpClasses.exampleClientWith4Tickets(); //1 * DayTicket in Cart
-        client1.addTicket(Ticket.TicketType.DAY, ticketManager1);
+        client1.addTicket(Type.DAY, ticketManager1);
 
         // when
         ticketManager1.sellTickets(client1);
 
         // then
-        assertEquals(false, ticketManager1.isAvailable(Ticket.TicketType.DAY, 2));
+        assertEquals(false, ticketManager1.isAvailable(Type.DAY, 2));
 
     }
 
@@ -301,7 +301,7 @@ public class TicketTest {
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
         Client client1 = helpClasses.exampleClient();
-        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        client1.addTicket(Type.DAY,ticketManager1);
 
         ticketManager1.sellTickets(client1);
 
@@ -318,10 +318,10 @@ public class TicketTest {
         Client client1 = helpClasses.exampleClient();
 
 
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.VIP,ticketManager1);
-        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.VIP,ticketManager1);
+        client1.addTicket(Type.DAY,ticketManager1);
 
         //when
         ticketManager1.sellTickets(client1);
@@ -339,18 +339,18 @@ public class TicketTest {
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
         Client client1 = helpClasses.exampleClient();
 
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
 
         //when
         ticketManager1.sellTickets(client1);
 
-        client1.addTicket(Ticket.TicketType.VIP,ticketManager1);
-        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        client1.addTicket(Type.VIP,ticketManager1);
+        client1.addTicket(Type.DAY,ticketManager1);
 
         ticketManager1.sellTickets(client1);
 
@@ -369,12 +369,12 @@ public class TicketTest {
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
         Client client1 = helpClasses.exampleClient();
 
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
 
 
         //when
@@ -392,17 +392,17 @@ public class TicketTest {
         TicketManager ticketManager1 = helpClasses.example2TicketManager();
         Client client1 = helpClasses.exampleClient();
 
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
 
 
         //when
         ticketManager1.sellTickets(client1);
-        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        client1.addTicket(Type.DAY,ticketManager1);
         ticketManager1.sellTickets(client1);
-        client1.addTicket(Ticket.TicketType.DAY,ticketManager1);
+        client1.addTicket(Type.DAY,ticketManager1);
         ticketManager1.sellTickets(client1);
-        client1.addTicket(Ticket.TicketType.VIP,ticketManager1);
+        client1.addTicket(Type.VIP,ticketManager1);
         ticketManager1.sellTickets(client1);
 
         //then
@@ -417,7 +417,7 @@ public class TicketTest {
         TicketManager ticketManager1 = helpClasses.example3TicketManager();
         Client client1 = helpClasses.exampleClient();
 
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
 
         //when
         ticketManager1.sellTickets(client1);
@@ -434,8 +434,8 @@ public class TicketTest {
         TicketManager ticketManager1 = helpClasses.example3TicketManager();
         Client client1 = helpClasses.exampleClient();
 
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
-        client1.addTicket(Ticket.TicketType.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
+        client1.addTicket(Type.CAMPING,ticketManager1);
 
         //when
         ticketManager1.sellTickets(client1);

@@ -88,18 +88,32 @@ public class TicketManager extends AbstractModel implements ITicketManager {
      * @param type
      * @return the ticket of the corresponding type of the actual price level
      */
-    public Ticket getTicket(Ticket.TicketType type) {
-        if (type == Ticket.TicketType.DAY) {
-            DayTicket tmp = this.dayTicket;
-            return this.dayTicket;
-        } else if (type == Ticket.TicketType.CAMPING) {
-            return this.campingTicket;
-        } else if (type == Ticket.TicketType.VIP) {
-            return this.vipTicket;
+
+
+    public Ticket getNewTicket(Type type) {
+        if (type == Type.DAY) {
+            return new DayTicket(dayTicket.getDescription(),dayTicket.getStdPrice());
+        } else if (type == Type.CAMPING) {
+            return new CampingTicket(campingTicket.getDescription(),campingTicket.getStdPrice());
+        } else if (type == Type.VIP) {
+            return new VIPTicket(vipTicket.getDescription(),vipTicket.getStdPrice());
         } else {
             return null;
         }
     }
+
+    public Ticket getTicket(Type type) {
+        if (type == Type.DAY) {
+            return dayTicket;
+        } else if (type == Type.CAMPING) {
+            return campingTicket;
+        } else if (type == Type.VIP) {
+            return vipTicket;
+        } else {
+            return null;
+        }
+    }
+
 
     /**
      * Checks, if enough tickets of the given TicketType are available for purchasing
@@ -107,12 +121,12 @@ public class TicketManager extends AbstractModel implements ITicketManager {
      * @param type
      * @return boolean whether there are enough tickets available
      */
-    public boolean isAvailable(Ticket.TicketType type, int numberOfCartTickets) {
-        if (type == Ticket.TicketType.DAY && this.numberOfDayTicketsLeft - numberOfCartTickets >= 0) {
+    public boolean isAvailable(Type type, int numberOfCartTickets) {
+        if (type == Type.DAY && this.numberOfDayTicketsLeft - numberOfCartTickets >= 0) {
             return true;
-        } else if (type == Ticket.TicketType.CAMPING && this.numberOfCampingTicketsLeft - numberOfCartTickets >= 0) {
+        } else if (type == Type.CAMPING && this.numberOfCampingTicketsLeft - numberOfCartTickets >= 0) {
             return true;
-        } else if (type == Ticket.TicketType.VIP && this.numberOfVipTicketsLeft - numberOfCartTickets >= 0) {
+        } else if (type == Type.VIP && this.numberOfVipTicketsLeft - numberOfCartTickets >= 0) {
             return true;
         }
         return false;
@@ -354,23 +368,23 @@ public class TicketManager extends AbstractModel implements ITicketManager {
 
         int index = 0;
         while (index < client.getCartSize()) {
-            Ticket.TicketType ticketType = client.getCartItem(index).getTicketType();
-            if (ticketType == Ticket.TicketType.DAY) {
-                if (isAvailable(ticketType, numberOfDayTicketsSold)) {
+            Type ticketType = client.getCartItem(index).getTicketType();
+            if (ticketType == Type.DAY) {
+                if (isAvailable(ticketType, numberOfDayTicketsSold+1)) {
                     numberOfDayTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {
                     throw new TicketNotAvailableException("Not enough day-tickets available");
                 }
-            } else if (ticketType == Ticket.TicketType.CAMPING) {
-                if (isAvailable(ticketType, numberOfCampingTicketsSold)) {
+            } else if (ticketType == Type.CAMPING) {
+                if (isAvailable(ticketType, numberOfCampingTicketsSold+1)) {
                     numberOfCampingTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {
                     throw new TicketNotAvailableException("Not enough camping-tickets available");
                 }
-            } else if (ticketType == Ticket.TicketType.VIP) {
-                if (isAvailable(ticketType, numberOfVipTicketsSold)) {
+            } else if (ticketType == Type.VIP) {
+                if (isAvailable(ticketType, numberOfVipTicketsSold+1)) {
                     numberOfVipTicketsSold++;
                     ticketIncome += client.getCartItem(index).getStdPrice();
                 } else {
@@ -391,6 +405,7 @@ public class TicketManager extends AbstractModel implements ITicketManager {
         if (automaticPriceLevelChange) {
             updatePriceLevel();
         }
+
     }
     public void update(TicketManager ticketManager){
 

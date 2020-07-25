@@ -4,6 +4,7 @@ import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
 import de.bord.festival.ticket.CampingTicket;
 import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.ticket.Type;
 import de.bord.festival.ticket.VIPTicket;
 
 import java.math.BigDecimal;
@@ -166,16 +167,16 @@ public class HelpClasses {
         Client client = exampleClient();
         TicketManager ticketManager1 =  exampleTicketManager();
 
-        client.addTicket(Ticket.TicketType.DAY, ticketManager1);
-        client.addTicket(Ticket.TicketType.CAMPING, ticketManager1);
-        client.addTicket(Ticket.TicketType.VIP, ticketManager1);
-        client.addTicket(Ticket.TicketType.CAMPING, ticketManager1);
+        client.addTicket(Type.DAY, ticketManager1);
+        client.addTicket(Type.CAMPING, ticketManager1);
+        client.addTicket(Type.VIP, ticketManager1);
+        client.addTicket(Type.CAMPING, ticketManager1);
 
         return client;
     }
 
     public Client exampleClient() throws MailException, ClientNameException {
-        return Client.getNewClient("Max", "Muster","max@test.de",getAddress());
+        return Client.getNewClient("Max", "Muster","max@test.de", "pass123", getAddress(), "USER");
     }
 
 }

@@ -1,5 +1,7 @@
 package de.bord.festival.models;
 
+import de.bord.festival.ticket.Type;
+
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -25,7 +27,7 @@ public abstract class Ticket extends AbstractModel {
 
     public Ticket(){}
 
-    abstract public TicketType getTicketType();
+    abstract public Type getTicketType();
 
     public void setDescription(String description){
         this.description = description;
