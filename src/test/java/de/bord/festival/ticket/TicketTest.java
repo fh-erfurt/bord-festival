@@ -83,7 +83,7 @@ public class TicketTest {
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
 
         // when
-        ticketManager1.getNewTicket(Type.DAY).setDescription("Festival 2020 DayTicket");
+        ticketManager1.getTicket(Type.DAY).setDescription("Festival 2020 DayTicket");
 
         // then
         assertEquals("Festival 2020 DayTicket", ticketManager1.getNewTicket(Type.DAY).getDescription());

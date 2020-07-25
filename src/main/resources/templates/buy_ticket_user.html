@@ -25,7 +25,7 @@
 
 
                 <h3>Which ticket?</h3><br>
-                <label>Day-Ticket</label>
+                <label th:text="${'Day-Ticket ['+ticketCounter.getDayTicketCounter()+']'}"></label>
                 <div>Price: <p th:text="${theEvent.getTheActualPricelevel().getDayTicketPrice()}"> €
                     <form action="#" th:action="@{/addToBasket}"  method="post" >
                         <input   hidden th:name="ticketType" th:value="${T(de.bord.festival.ticket.Type).DAY}"/>
@@ -33,7 +33,7 @@
                     </form>
                 </div>
                 <br/>
-                <label>Camping-Ticket</label>
+                <label th:text="${'Camping-Ticket ['+ticketCounter.getCampingTicketCounter()+']'}"></label>
                 <div>Price: <p th:text="${theEvent.getTheActualPricelevel().getCampingTicketPrice()}"> €
                     <form action="#" th:action="@{/addToBasket}"  method="post" >
                 <input   hidden th:name="ticketType" th:value="${T(de.bord.festival.ticket.Type).CAMPING}"/>
@@ -41,7 +41,7 @@
                     </form>
                 </div>
                 <br/>
-                <label>VIP-Ticket</label>
+                <label th:text="${'VIP-Ticket ['+ticketCounter.getVipTicketCounter()+']'}"></label>
                 <div>Price: <p th:text="${theEvent.getTheActualPricelevel().getVipTicketPrice()}"> €
                     <form action="#" th:action="@{/addToBasket}"  method="post" >
                         <input   hidden th:name="ticketType" th:value="${T(de.bord.festival.ticket.Type).VIP}"/>

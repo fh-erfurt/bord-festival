@@ -15,13 +15,13 @@
             <div class="buy_ticket">
                 </br></br>
                 <label>Day-Ticket</label>
-                <div th:text="${'Number: '+client.getNumberOfTickets(T(de.bord.festival.ticket.Type).DAY)+ ' pieces'}"></div>
+                <div th:text="${'Number: '+ticketCounter.getDayTicketCounter()+ ' pieces'}"></div>
                 <br/>
                 <label>Camping-Ticket</label>
-                <div th:text="${'Number: '+client.getNumberOfTickets(T(de.bord.festival.ticket.Type).CAMPING)+ ' pieces'}"></div>
+                <div th:text="${'Number: '+ticketCounter.getCampingTicketCounter()+ ' pieces'}"></div>
                 <br/>
                 <label>VIP-Ticket</label>
-                <div th:text="${'Number: '+client.getNumberOfTickets(T(de.bord.festival.ticket.Type).VIP)+ ' pieces'}"></div>
+                <div th:text="${'Number: '+ticketCounter.getVipTicketCounter()+ ' pieces'}"></div>
                 <br/><br>
                 <label th:text="${'Your Price: '+ #numbers.formatDecimal(client.getExpenditure(),3,2,'COMMA') +' €'}"></label>
                 <br><br><br>

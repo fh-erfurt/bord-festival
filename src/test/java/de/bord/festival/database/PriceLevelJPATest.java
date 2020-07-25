@@ -130,11 +130,11 @@ public class PriceLevelJPATest {
         HelpClasses helpClasses = new HelpClasses();
         TicketManager ticketManager1 = helpClasses.exampleTicketManager();
 
-        ticketManagerRepository.save(ticketManager1);
+
 
         // when
-        ticketManager1.getNewTicket(Type.DAY).setDescription("Festival 2020 DayTicket");
-
+        ticketManager1.getTicket(Type.DAY).setDescription("Festival 2020 DayTicket");
+        ticketManagerRepository.save(ticketManager1);
 
         TicketManager databaseTicketManager = ticketManagerRepository.findById(1);
 

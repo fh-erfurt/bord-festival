@@ -102,6 +102,18 @@ public class TicketManager extends AbstractModel implements ITicketManager {
         }
     }
 
+    public Ticket getTicket(Type type) {
+        if (type == Type.DAY) {
+            return dayTicket;
+        } else if (type == Type.CAMPING) {
+            return campingTicket;
+        } else if (type == Type.VIP) {
+            return vipTicket;
+        } else {
+            return null;
+        }
+    }
+
 
     /**
      * Checks, if enough tickets of the given TicketType are available for purchasing

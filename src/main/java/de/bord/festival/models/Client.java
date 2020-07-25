@@ -151,15 +151,25 @@ public class Client extends AbstractModel implements IClient {
 
     public double getExpenditure(){return expenditure;}
 
-    public int getNumberOfTickets(Type type){
+    public int getNumberOfAllTicketsInBasket(){
         int ticketcounter = 0;
-        for(int i = 0; i<inventory.size();i++){
-           if(this.inventory.get(i).getTicketType() == type){
-               ticketcounter++;
-           }
+        ticketcounter += getNumberOfTicketsInBasket(Type.DAY);
+        ticketcounter += getNumberOfTicketsInBasket(Type.VIP);
+        ticketcounter += getNumberOfTicketsInBasket(Type.CAMPING);
+
+        return ticketcounter;
+    }
+
+    public int getNumberOfTicketsInBasket(Type type){
+        int ticketcounter = 0;
+        for(int i = 0; i<cart.size();i++){
+            if(this.cart.get(i).getTicketType() == type){
+                ticketcounter++;
+            }
         }
         return ticketcounter;
     }
+
 
     @Override
     public boolean equals(Object object) {

@@ -1,5 +1,6 @@
 package de.bord.festival.controllers;
 
+import de.bord.festival.controllers.dataContainers.TicketCounter;
 import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
@@ -28,6 +29,7 @@ public class TicketController {
     private Event event = null;
     private long eventId = -1;
     private Exception exception;
+    private TicketCounter ticketCounter = null;
 
     private final EventRepository eventRepository;
     @Autowired PriceLevelRepository priceLevelRepository;
@@ -51,6 +53,8 @@ public class TicketController {
         model.addAttribute("events", events);
 
        // client = (Client)principal;
+       ticketCounter = new TicketCounter();
+
 
         return "user_menu";
     }
@@ -64,6 +68,12 @@ public class TicketController {
         Event event1 =  eventRepository.findById(this.eventId);
         event = event1;
         model.addAttribute("theEvent", event1);
+        List <Client> clients = clientRepository.findAll();
+        Client client1 = clients.get(0);
+        ticketCounter.setTicketCounter(client1);
+
+        model.addAttribute("ticketCounter", ticketCounter);
+
 
         return "buy_ticket_user";
     }
@@ -80,6 +90,7 @@ public class TicketController {
 
      clientRepository.save(client1);
 
+        //ticketCounter.setTicketCounter(client1);
       //  client1.addTicket(ticketType, event.getTicketManager());
 
 
@@ -110,6 +121,7 @@ public class TicketController {
     @GetMapping("/ticket_buy_ok")
     public String getTicketBuyOk(ModelMap model){
         model.addAttribute("client", client);
+        model.addAttribute("ticketCounter", ticketCounter);
         return "ticket_buy_ok";
     }
 
@@ -122,5 +134,7 @@ public class TicketController {
         model.addAttribute("exception", exception);
         return "ticket_buy_error";
     }
+
+
 
 }
