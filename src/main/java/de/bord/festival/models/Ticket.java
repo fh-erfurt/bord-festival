@@ -14,8 +14,6 @@ import javax.persistence.InheritanceType;
 @Inheritance (strategy= InheritanceType.JOINED)
 public abstract class Ticket extends AbstractModel {
 
-    public enum TicketType {DAY, CAMPING, VIP}
-
     protected String description;
     protected double stdPrice;
 

@@ -1,6 +1,8 @@
 package de.bord.festival.controllers;
 
 import de.bord.festival.exception.*;
+import de.bord.festival.models.Client;
+import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PagesController {
     @Autowired
     EventRepository eventRepository;
+    @Autowired
+    private ClientRepository clientRepository;
     @GetMapping("/")
     public String index(Model model) throws BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException, TimeDisorderException, DateDisorderException {
         model.addAttribute("title", "Home");
@@ -22,6 +26,7 @@ public class PagesController {
         /*HelpClasses helpClasses = new HelpClasses();
         Event event1 = helpClasses.getValidNDaysEvent2(1);
         eventRepository.save(event1);*/
+
         return "index";
     }
     @GetMapping("/error404")
@@ -33,10 +38,5 @@ public class PagesController {
     public String adminMenu(Model model) {
         model.addAttribute("title", "Menu");
         return "admin_menu";
-    }
-    @GetMapping("/user_menu")
-    public String userMenu(Model model) {
-        model.addAttribute("title", "Menu");
-        return "user_menu";
     }
 }

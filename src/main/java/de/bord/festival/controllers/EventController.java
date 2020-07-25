@@ -8,10 +8,12 @@ import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.BandRepository;
+import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import de.bord.festival.repository.StageRepository;
 import de.bord.festival.ticket.CampingTicket;
 import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.ticket.Type;
 import de.bord.festival.ticket.VIPTicket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -429,9 +431,9 @@ public class EventController {
             tmc.setNumberOfDayTickets(event.getNumberOfDayTickets());
             tmc.setNumberOfCampingTickets(event.getNumberOfCampingTickets());
             tmc.setNumberOfVipTickets(event.getNumberOfVipTickets());
-            tmc.setDayTicketDescription(event.getTicket(Ticket.TicketType.DAY).getDescription().split(":")[4]);
-            tmc.setCampingTicketDescription(event.getTicket(Ticket.TicketType.CAMPING).getDescription().split(":")[4]);
-            tmc.setVipTicketDescription(event.getTicket(Ticket.TicketType.VIP).getDescription().split(":")[4]);
+            tmc.setDayTicketDescription(event.getTicket(Type.DAY).getDescription().split(":")[4]);
+            tmc.setCampingTicketDescription(event.getTicket(Type.CAMPING).getDescription().split(":")[4]);
+            tmc.setVipTicketDescription(event.getTicket(Type.VIP).getDescription().split(":")[4]);
             tmc.setPriceLevels(event.getPriceLevelsForEvent());
 
             Address address = event.getAddress();

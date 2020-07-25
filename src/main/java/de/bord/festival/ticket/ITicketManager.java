@@ -10,9 +10,9 @@ public interface ITicketManager {
 
     boolean isAvailable(Type type, int numberOfCartTickets);
 
-    void setTicketDescription(String description, Ticket.TicketType type);
+    void setTicketDescription(String description, Type type);
 
-    void setTicketStdPrice(double stdPrice, Ticket.TicketType type);
+    void setTicketStdPrice(double stdPrice, Type type);
 
     void setAutomaticPriceLevelChange(boolean isPriceLevelChangeAutomatic);
 

@@ -44,13 +44,14 @@ public class TicketController {
 ////////////////// Event auswählen
 
     @GetMapping("user_menu")
-    public String createEventOverview(ModelMap model, Model m1) throws PriceLevelException, TimeDisorderException, DateDisorderException {
+    public String createEventOverview(ModelMap model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        // Object principal = authentication.getPrincipal();
         eventId = -1;
         List<Event> events = eventRepository.findAll();
 
         model.addAttribute("events", events);
+        model.addAttribute("title", "Menu");
 
        // client = (Client)principal;
        ticketCounter = new TicketCounter();
