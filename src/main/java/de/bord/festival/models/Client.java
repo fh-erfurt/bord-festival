@@ -3,6 +3,7 @@ package de.bord.festival.models;
 import de.bord.festival.client.IClient;
 import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
+import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.Type;
 
@@ -31,6 +32,7 @@ public class Client extends AbstractModel implements IClient {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Ticket> cart;
     private double expenditure = 0.0;
+    private double expenditureBasket = 0.0;
 
     public Client(){}
 
@@ -114,13 +116,14 @@ public class Client extends AbstractModel implements IClient {
      * @throws TicketNotAvailableException
      */
 
-    public void addTicket(Type type, TicketManager ticketmanager) throws TicketNotAvailableException {
+    public void addTicket(Type type, TicketManager ticketmanager) throws TicketNotAvailableException, PriceLevelException {
         if(!ticketmanager.isAvailable(type, 1)) {
             throw new TicketNotAvailableException("No more tickets available");
         }
+                Ticket ticket = ticketmanager.getNewTicket(type);
 
-                this.cart.add(ticketmanager.getNewTicket(type));
-
+                this.cart.add(ticket);
+                this.expenditureBasket += ticket.getStdPrice();
     }
 
     /**
@@ -141,7 +144,13 @@ public class Client extends AbstractModel implements IClient {
 
     public int getInventorySize(){ return inventory.size(); }
 
-    public void clearCart(){ this.cart.clear(); }
+    public void clearCart(){
+        this.cart.clear();
+    }
+
+    public void clearExpenditureBasket(){
+        expenditureBasket = 0;
+    }
 
     /**
      * Adds to the expenditure attribute of Client
@@ -200,5 +209,9 @@ public class Client extends AbstractModel implements IClient {
     public void setAddress(Address address) { this.address=address; }
     public void setPassword(String password) { this.password=password; }
     public void setRole(String role) { this.role=role; }
+
+    public double getExpenditureBasket() {
+        return expenditureBasket;
+    }
 }
 

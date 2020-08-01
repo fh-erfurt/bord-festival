@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -369,6 +370,10 @@ public class Event extends AbstractModel implements IEvent {
 
     public LocalDate getStartDate() {
         return this.lineUp.getStartDate();
+    }
+
+    public String getStartDateDDMMYYYY(){
+        return this.lineUp.getStartDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
     }
 
     public LocalDate getEndDate() {

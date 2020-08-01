@@ -13,14 +13,20 @@
             <h3>Choose your ticket for</h3>
             <div class="buy_ticket">
 
+                <div th:if="${ticketCounter.isTest()}"><p>Only 10 tickets allowed</p></div>
+                <br>
+                <div th:if="${ticketCounter.areNoTicketsInCart()}"><p>Please choose a ticket</p></div>
+                <br>
+
                     <div>Event: <p th:text="${theEvent.getName()}"> </p></div>
                     <br>
+
                     <!--<select name="ticket" th:name="eventId" >
                                <option th:each="event : ${events}" th:text="${event.getName()}" th:value="${event.getId()}" >
                            </option>
                        </select> -->
                     <!-- <button type="submit" name="action" value="save">save</button> -->
-                    <div>Date: <p th:text="${theEvent.getStartDate()}"> </p></div>
+                    <div>Date: <p th:text="${theEvent.getStartDateDDMMYYYY()}"> </p></div>
                     <br>
 
 
@@ -49,12 +55,16 @@
                     </form>
                 </div>
                 <br/><br>
-                <label>Your Price: <!-- getPrice --> </label>
+                <label th:text="${'Your Price:'+ #numbers.formatDecimal(client.getExpenditureBasket(),3,2,'COMMA')}"> <!-- getPrice --> </label>
                 <br><br><br>
 
                 <div class="form-group">
                     <form action="#" th:action="@{/buy_ticket}"  method="post">
                         <input type="submit" value="Buy now" class="btn btn-outline-danger"/>
+                    </form>
+                    <form action="#" th:action="@{/resetBasket}"  method="post" >
+                        <input   hidden th:name="ticketType" th:value="${T(de.bord.festival.ticket.Type).DAY}"/>
+                        <button class="btn btn-outline-danger" type="submit"/>Reset</button>
                     </form>
                     <a href="user_menu" class="btn btn-outline-danger">Back to select</a>
                 </div>

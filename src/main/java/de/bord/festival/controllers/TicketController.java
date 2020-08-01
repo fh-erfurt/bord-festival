@@ -24,6 +24,7 @@ public class TicketController {
 
 
     private Client client;
+    private Client client2;
 
     private Client c1;
     private Event event = null;
@@ -65,6 +66,7 @@ public class TicketController {
         if(this.eventId == -1){
             this.eventId = eventId;
         }
+        client2 = null;
         Event event1 =  eventRepository.findById(this.eventId);
         event = event1;
         model.addAttribute("theEvent", event1);
@@ -73,25 +75,39 @@ public class TicketController {
         ticketCounter.setTicketCounter(client1);
 
         model.addAttribute("ticketCounter", ticketCounter);
+        model.addAttribute("client", client1);
 
 
         return "buy_ticket_user";
     }
 
     @PostMapping("/addToBasket")
-    public String addTicketToBasket(Type ticketType, ModelMap model) throws MailException, ClientNameException, TicketNotAvailableException {
-      // HelpClasses h1 = new HelpClasses();
-    // Client client1 = h1.exampleClient();
-       //clientRepository.save(client1);
+    public String addTicketToBasket(Type ticketType, ModelMap model) throws MailException, ClientNameException, TicketNotAvailableException, PriceLevelException {
+
+
         List <Client> clients = clientRepository.findAll();
         Client client1 = clients.get(0);
-      // client.addTicket(ticketType, event.getTicketManager());
-       client1.addTicket(ticketType, event.getTicketManager());
 
+        if(!ticketCounter.toManyTickets()){
+            client1.addTicket(ticketType, event.getTicketManager());
+            clientRepository.save(client1);
+        }
+
+        return "redirect:/buy_ticket_user?eventId=" +eventId;
+    }
+
+    @PostMapping("/resetBasket")
+    public String resetBasket(Type ticketType, ModelMap model) throws MailException, ClientNameException, TicketNotAvailableException {
+
+
+        List <Client> clients = clientRepository.findAll();
+        Client client1 = clients.get(0);
+
+     client1.clearCart();
+     client1.clearExpenditureBasket();
      clientRepository.save(client1);
+     ticketCounter = new TicketCounter();
 
-        //ticketCounter.setTicketCounter(client1);
-      //  client1.addTicket(ticketType, event.getTicketManager());
 
 
         return "redirect:/buy_ticket_user?eventId=" +eventId;
@@ -104,12 +120,21 @@ public class TicketController {
         Client client1 = clients.get(0);
 
         try {
-            event.sellTickets(client1);
-            event.addClient(client1);
-            eventRepository.save(event);
-            client= client1;
-           // model.addAttribute("client", client1);
-            return "redirect:/ticket_buy_ok?eventId=" +eventId;
+            if(!ticketCounter.areNoTicketsInCart()){
+                client2 = client1;
+                event.sellTickets(client1);
+                event.addClient(client1);
+                eventRepository.save(event);
+                client= client1;
+                // model.addAttribute("client", client1);
+                return "redirect:/ticket_buy_ok?eventId=" +eventId;
+            }
+            else{
+
+                return "redirect:/buy_ticket_user?eventId=" +eventId;
+
+            }
+
         }
         catch(TicketNotAvailableException e){
             exception = e;
@@ -120,7 +145,7 @@ public class TicketController {
 
     @GetMapping("/ticket_buy_ok")
     public String getTicketBuyOk(ModelMap model){
-        model.addAttribute("client", client);
+        model.addAttribute("client", client2);
         model.addAttribute("ticketCounter", ticketCounter);
         return "ticket_buy_ok";
     }

@@ -367,6 +367,7 @@ public class TicketManager extends AbstractModel implements ITicketManager {
         double ticketIncome = 0.0;
 
         int index = 0;
+
         while (index < client.getCartSize()) {
             Type ticketType = client.getCartItem(index).getTicketType();
             if (ticketType == Type.DAY) {

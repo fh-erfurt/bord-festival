@@ -9,6 +9,7 @@ public class TicketCounter {
     private int dayTicketCounter;
     private int campingTicketCounter;
     private int vipTicketCounter;
+    private boolean test = false;
 
     public TicketCounter(){
         dayTicketCounter = 0;
@@ -63,5 +64,33 @@ public class TicketCounter {
             return true;
         }
         return false;
+    }
+
+    public boolean toManyTickets(){
+        if(campingTicketCounter + vipTicketCounter + dayTicketCounter == 10){
+            test = true;
+            return true;
+
+        }
+        return false;
+    }
+    public void setTest(){
+        test = false;
+        if (toManyTickets()){
+            test = true;
+        }
+    }
+
+    public boolean isTest() {
+        return test;
+    }
+
+    public boolean areNoTicketsInCart(){
+        if(dayTicketCounter+vipTicketCounter+campingTicketCounter==0){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
