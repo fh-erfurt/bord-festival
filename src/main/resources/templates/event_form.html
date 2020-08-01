@@ -16,10 +16,10 @@
                 <div th:if="${param.successUpdate}" class="alert alert-success" role="alert">
                     Festival updated successfully.
                 </div>
-                <th:block th:if="${newEvent} == true">
+                <th:block th:if="${event.getId()}==0">
                     <h2>Create Event</h2>
                 </th:block>
-                <th:block th:unless="${newEvent} == true">
+                <th:block th:unless="${event.getId()}==0">
                     <th:block th:if="${eventInFuture} == true">
                         <h2>Update Event</h2>
                     </th:block>
@@ -27,7 +27,7 @@
                         <h2>View Event</h2>
                     </th:block>
 
-                    <div class="row">
+                    <div class="row" th:if="${event.getId()}!=0">
                         <div class="col-12 col-sm-3">
                             <a th:href="'program?eventId=' + ${event.getId()}" class="btn btn-primary">Update
                                 program</a>
