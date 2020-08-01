@@ -24,7 +24,6 @@ public class Client extends AbstractModel implements IClient {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String mail;
-    private boolean isRegistered;
 
     private String password;
     private String role;

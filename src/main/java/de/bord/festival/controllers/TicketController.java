@@ -47,13 +47,18 @@ public class TicketController {
     @GetMapping("user_menu")
     public String createEventOverview(ModelMap model, Model m1) throws PriceLevelException, TimeDisorderException, DateDisorderException {
        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-       // Object principal = authentication.getPrincipal();
+       //Object principal = authentication.getPrincipal();
         eventId = -1;
         List<Event> events = eventRepository.findAll();
 
         model.addAttribute("events", events);
+     long id = (long) model.getAttribute("clientId");
 
-       // client = (Client)principal;
+     /*   if(principal instanceof Client){
+            client = (Client)principal;
+        }
+*/
+
        ticketCounter = new TicketCounter();
 
 
