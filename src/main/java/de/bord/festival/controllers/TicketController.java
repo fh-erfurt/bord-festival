@@ -52,7 +52,7 @@ public class TicketController {
         List<Event> events = eventRepository.findAll();
 
         model.addAttribute("events", events);
-     long id = (long) model.getAttribute("clientId");
+    // long id = (long) model.getAttribute("clientId");
 
      /*   if(principal instanceof Client){
             client = (Client)principal;
@@ -163,6 +163,19 @@ public class TicketController {
         model.addAttribute("event", event);
         model.addAttribute("exception", exception);
         return "ticket_buy_error";
+    }
+
+    @GetMapping("/information_user")
+    public String getInformationUser(ModelMap model){
+
+        List <Client> clients = clientRepository.findAll();
+        Client client1 = clients.get(0);
+
+        for(int i = 0; i < client1.getCartSize(); i++){
+
+        }
+
+        return "information_user";
     }
 
 
