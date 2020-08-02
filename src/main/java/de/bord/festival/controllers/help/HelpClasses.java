@@ -118,9 +118,9 @@ public class HelpClasses {
         priceLevels.add(p2);
         priceLevels.add(p3);
 
-        DayTicket dayTicket = new DayTicket("day test", 30.99);
-        CampingTicket campingTicket = new CampingTicket("camping test", 80.00);
-        VIPTicket vipTicket = new VIPTicket("vip test", 101.99);
+        DayTicket dayTicket = new DayTicket("Sommerfest:Erfurt:2020-08-20:day:Tag", 30.99);
+        CampingTicket campingTicket = new CampingTicket("Sommerfest:Erfurt:2020-08-20:day:Camp", 80.00);
+        VIPTicket vipTicket = new VIPTicket("Sommerfest:Erfurt:2020-08-20:day:VIP", 101.99);
 
         return new TicketManager(priceLevels, 10,20,30, dayTicket, campingTicket, vipTicket);
     }

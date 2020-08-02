@@ -13,9 +13,10 @@
                     <div th:if="${param.successAddBand}" class="alert alert-success" role="alert">You successfully added a band to your program</div>
                     <div th:if="${param.successRemoveBand}" class="alert alert-success" role="alert">You successfully removed a band from your program</h4></div>
                     <div th:if="${param.successAddStage}" class="alert alert-success" role="alert">You successfully removed a band from your program</h4></div>
-                    <div th:if="${param.success}" class="alert alert-success" role="alert">
+                    <div th:if="${param.successCreate}" class="alert alert-success" role="alert">
                         Festival created successfully
                     </div>
+
                     <a href="events" class="btn btn-primary">See All Events</a>
                     <div th:each="dayProgram : ${dayPrograms}" style="">
                         <p th:text="${dayProgram.getKey()}"></p>
@@ -45,7 +46,7 @@
                             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addStageModal">Add Stage</button>
                         </div>
                         <div class="col-md-8 mb-3">
-                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#removeFromAllTimeslotsModal">Remove Band from a certain timeslot</button>
+                            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#removeFromTimeslotModal">Remove Band from a certain timeslot</button>
                         </div>
                     </div>
 

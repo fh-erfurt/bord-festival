@@ -283,11 +283,15 @@ public class Event extends AbstractModel implements IEvent {
         return this.ticketManager.getNewTicket(type);
     }
 
-    public void setTicketStdPrice(double stdPrice, Ticket.TicketType type) {
+    public void setTicketStdPrice(double stdPrice, Type type) {
         this.ticketManager.setTicketStdPrice(stdPrice, type);
     }
 
-    public void setTicketDescription(String description, Ticket.TicketType type) {
+    public LineUp getLineUp() {
+        return lineUp;
+    }
+
+    public void setTicketDescription(String description, Type type) {
         this.ticketManager.setTicketDescription(description, type);
     }
 

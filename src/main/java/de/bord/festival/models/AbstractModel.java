@@ -10,6 +10,10 @@ public abstract class AbstractModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getId() {
         return this.id;
     }

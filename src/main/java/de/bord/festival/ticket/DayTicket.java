@@ -12,14 +12,14 @@ import javax.persistence.Entity;
 public class DayTicket extends Ticket {
 
 
-    private TicketType ticketType;
+    private Type ticketType;
 
     public DayTicket(String description,
                      double standardPrice ){
 
         super(description, standardPrice);
 
-        this.ticketType = TicketType.DAY;
+        this.ticketType = Type.DAY;
     }
 
     public DayTicket(){}

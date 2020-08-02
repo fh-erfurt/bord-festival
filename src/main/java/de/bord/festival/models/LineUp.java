@@ -45,7 +45,9 @@ public class LineUp extends AbstractModel {
     private LocalTime endTime; //= LocalTime.of(23, 59);
     @NotNull
     private long breakBetweenTwoBandsInMinutes;// = 30;
-    public LineUp(){}
+
+    public LineUp() {
+    }
 
     public LocalDate getStartDate() {
         return startDate;
@@ -64,9 +66,9 @@ public class LineUp extends AbstractModel {
         this.endDate = endDate;
         createProgramsBetweenStartAndEndDates();
         this.event = event;
-        this.startTime=startTime;
-        this.endTime=endTime;
-        this.breakBetweenTwoBandsInMinutes=breakBetweenTwoBandsInMinute;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.breakBetweenTwoBandsInMinutes = breakBetweenTwoBandsInMinute;
 
     }
 
@@ -117,11 +119,10 @@ public class LineUp extends AbstractModel {
     }
 
 
-
     /**
      * Adds band to the event, is a help method for Event class
      *
-     * @param band           object, which should be added
+     * @param band object, which should be added
      * @return the information, which is relevant for band: stage, date, time, if the timeSlot is found,
      * otherwise null
      * @throws TimeSlotCantBeFoundException, if the band plays on another stage at the same time
@@ -182,7 +183,7 @@ public class LineUp extends AbstractModel {
     public int getNumberOfDays() {
 
         Period diff = Period.between(startDate, endDate);
-        return diff.getDays()+1;
+        return diff.getDays() + 1;
     }
 
     public Stage getFirstStage() {
@@ -261,7 +262,8 @@ public class LineUp extends AbstractModel {
         removeBandFromAllPrograms(band);
         return true;
     }
-    private void removeBandFromAllPrograms(Band band){
+
+    private void removeBandFromAllPrograms(Band band) {
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
             Program currentProgram = entry.getValue();
             currentProgram.removeBand(band);
@@ -284,7 +286,7 @@ public class LineUp extends AbstractModel {
 
         //find program the date should be removed
         Program program = dayPrograms.get(date);
-        if (program==null){
+        if (program == null) {
             return false;
         }
         //find time the band should be removed
@@ -297,8 +299,9 @@ public class LineUp extends AbstractModel {
         }
         return false;
     }
-    private boolean isBandLast(Band band){
-        return(band.getNumberOfEventInfo() == 1);
+
+    private boolean isBandLast(Band band) {
+        return (band.getNumberOfEventInfo() == 1);
     }
 
     /**
@@ -306,7 +309,7 @@ public class LineUp extends AbstractModel {
      *
      * @param band
      * @return if band is already subscribed to a timeslot: true, otherwise: false
-     * */
+     */
     private boolean containsBand(Band band) {
         boolean check = false;
         for (Band value : bands) {
@@ -325,7 +328,28 @@ public class LineUp extends AbstractModel {
     public Map<LocalDate, Program> getDayPrograms() {
         return this.dayPrograms;
     }
+
     public List<Stage> getStages() {
         return stages;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setBreakBetweenTwoBandsInMinutes(long breakBetweenTwoBandsInMinutes) {
+        this.breakBetweenTwoBandsInMinutes = breakBetweenTwoBandsInMinutes;
     }
 }

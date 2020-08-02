@@ -7,7 +7,6 @@ import de.bord.festival.ticket.*;
 import javax.persistence.*;
 import javax.validation.Valid;
 import java.util.*;
-
 /**
  * The class is created together with the event
  * <p>
@@ -138,12 +137,12 @@ public class TicketManager extends AbstractModel implements ITicketManager {
      * @param description
      * @param type
      */
-    public void setTicketDescription(String description, Ticket.TicketType type) {
-        if (type == Ticket.TicketType.DAY) {
+    public void setTicketDescription(String description, Type type) {
+        if (type == Type.DAY) {
             this.dayTicket.setDescription(description);
-        } else if (type == Ticket.TicketType.CAMPING) {
+        } else if (type == Type.CAMPING) {
             this.campingTicket.setDescription(description);
-        } else if (type == Ticket.TicketType.VIP) {
+        } else if (type == Type.VIP) {
             this.vipTicket.setDescription(description);
         }
     }
@@ -154,12 +153,12 @@ public class TicketManager extends AbstractModel implements ITicketManager {
      * @param stdPrice
      * @param type
      */
-    public void setTicketStdPrice(double stdPrice, Ticket.TicketType type) {
-        if (type == Ticket.TicketType.DAY) {
+    public void setTicketStdPrice(double stdPrice, Type type) {
+        if (type == Type.DAY) {
             this.dayTicket.setStdPrice(stdPrice);
-        } else if (type == Ticket.TicketType.CAMPING) {
+        } else if (type == Type.CAMPING) {
             this.campingTicket.setStdPrice(stdPrice);
-        } else if (type == Ticket.TicketType.VIP) {
+        } else if (type == Type.VIP) {
             this.vipTicket.setStdPrice(stdPrice);
         }
     }
@@ -406,7 +405,12 @@ public class TicketManager extends AbstractModel implements ITicketManager {
         if (automaticPriceLevelChange) {
             updatePriceLevel();
         }
+    }
+    public void update(TicketManager ticketManager){
+
+        setTicketDescription(ticketManager.getTicket(Type.DAY).description, Type.DAY);
+        setTicketDescription(ticketManager.getTicket(Type.CAMPING).description, Type.CAMPING);
+        setTicketDescription(ticketManager.getTicket(Type.VIP).description, Type.VIP);
 
     }
 }
-
