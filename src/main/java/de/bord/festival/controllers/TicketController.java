@@ -171,9 +171,7 @@ public class TicketController {
         List <Client> clients = clientRepository.findAll();
         Client client1 = clients.get(0);
 
-        for(int i = 0; i < client1.getCartSize(); i++){
-
-        }
+      model.addAttribute("client", client1);
 
         return "information_user";
     }
