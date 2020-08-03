@@ -36,5 +36,20 @@ public class ClientControllerAdvice {
             }
         }
     }
+
+    public long getClientId() {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null) {
+            Object principal = auth.getPrincipal();
+            if (principal instanceof ClientDetails) {
+                ClientDetails clientDetails = (ClientDetails) principal;
+
+                return clientDetails.getId();
+            }
+        }
+
+        return 0;
+    }
 }
 

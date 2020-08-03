@@ -31,6 +31,8 @@ public class TicketController {
     private Exception exception;
     private TicketCounter ticketCounter = null;
 
+    ClientControllerAdvice clientControllerAdvice = new ClientControllerAdvice();
+
     private final EventRepository eventRepository;
     @Autowired PriceLevelRepository priceLevelRepository;
 
@@ -45,8 +47,8 @@ public class TicketController {
 
     @GetMapping("user_menu")
     public String createEventOverview(ModelMap model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
-       // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-       // Object principal = authentication.getPrincipal();
+        long clientId = clientControllerAdvice.getClientId();
+
         eventId = -1;
         List<Event> events = eventRepository.findAll();
 

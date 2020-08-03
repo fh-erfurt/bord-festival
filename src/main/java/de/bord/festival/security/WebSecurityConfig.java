@@ -14,19 +14,25 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private ClientDetailsService clientDetailsService;
+    @Autowired
+    UserDetailsService clientDetailsService;
+
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
+    }
+
 
     @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user@gmail.com").password(passwordEncoder().encode("user")).roles("USER")
-                .and()
-                .withUser("admin@gmail.com").password(passwordEncoder().encode("admin")).roles("ADMIN");
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(clientDetailsService);
     }
 
     @Override
@@ -52,11 +58,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().ignoringAntMatchers("/console/**")
             .and().headers().frameOptions().sameOrigin();
-    }
-
-    @Autowired
-    public void globalSecurityConfiguration(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(clientDetailsService);
     }
 
     @Bean

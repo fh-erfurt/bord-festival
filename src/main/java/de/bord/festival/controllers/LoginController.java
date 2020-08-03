@@ -5,7 +5,9 @@ import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
 import de.bord.festival.models.Address;
 import de.bord.festival.models.Client;
+import de.bord.festival.models.Role;
 import de.bord.festival.repository.ClientRepository;
+import de.bord.festival.security.ClientDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,6 +25,11 @@ import java.util.Collection;
 @Controller
 public class LoginController {
 
+    ClientControllerAdvice clientControllerAdvice = new ClientControllerAdvice();
+
+    @Autowired
+    ClientRepository clientRepository;
+
     @GetMapping("login")
     public String loginForm(){
 
@@ -31,24 +38,14 @@ public class LoginController {
 
     @GetMapping(value = "/loginSuccess")
     public String currentClient(Authentication authentication) {
+        long clientId = clientControllerAdvice.getClientId();
+        Client client = clientRepository.findById(clientId);
 
-        authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-
-        if(authentication != null) {
-            Object principal = authentication.getPrincipal();
-
-            if(principal instanceof Client) {
-                Client client = (Client) principal;
-
-                if(client.getRole() == "ADMIN") {
-                    return "admin_menu";
-                }
-                else if(client.getRole() == "USER") {
-                    return "user_menu";
-                }
-            }
+        if(client.getRole() == Role.ADMIN) {
+            return "admin_menu";
+        }
+        else if(client.getRole() == Role.USER) {
+            return "user_menu";
         }
 
         return "redirect:/";

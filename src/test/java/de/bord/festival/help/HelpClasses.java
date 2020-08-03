@@ -165,7 +165,7 @@ public class HelpClasses {
 
     public Client exampleClient() throws MailException, ClientNameException {
         Address address = getAddress();
-        return Client.getNewClient("Max", "Muster","max@test.de", "pass123", address, "USER");
+        return Client.getNewClient("Max", "Muster","max@test.de", "pass123", address, Role.USER);
     }
 
 }
