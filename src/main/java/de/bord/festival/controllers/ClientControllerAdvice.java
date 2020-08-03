@@ -32,6 +32,7 @@ public class ClientControllerAdvice {
                 model.addAttribute("clientId", clientId);
                 model.addAttribute("clientMail", clientMail);
                 model.addAttribute("role", role);
+
             }
         }
     }
