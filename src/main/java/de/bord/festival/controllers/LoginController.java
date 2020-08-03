@@ -8,6 +8,8 @@ import de.bord.festival.models.Client;
 import de.bord.festival.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
+import java.util.Collection;
 
 @Controller
 public class LoginController {
@@ -28,6 +31,25 @@ public class LoginController {
 
     @GetMapping(value = "/loginSuccess")
     public String currentClient(Authentication authentication) {
+
+        authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+        if(authentication != null) {
+            Object principal = authentication.getPrincipal();
+
+            if(principal instanceof Client) {
+                Client client = (Client) principal;
+
+                if(client.getRole() == "ADMIN") {
+                    return "admin_menu";
+                }
+                else if(client.getRole() == "USER") {
+                    return "user_menu";
+                }
+            }
+        }
 
         return "redirect:/";
     }

@@ -5,6 +5,7 @@ import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
 import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.Type;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -23,7 +24,6 @@ public class Client extends AbstractModel implements IClient {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String mail;
-
     private String password;
     private String role;
     @OneToMany(cascade = CascadeType.ALL)
@@ -192,6 +192,7 @@ public class Client extends AbstractModel implements IClient {
     public Address getAddress() {return this.address; }
     public String getPassword() { return this.password; }
     public String getRole() { return this.role; }
+    public String getAuthorities() { return "ROLE_" + role; }
 
 
     public void setFirstname(String firstname){ this.firstname=firstname; }

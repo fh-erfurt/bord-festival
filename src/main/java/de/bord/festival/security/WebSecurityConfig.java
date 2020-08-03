@@ -17,11 +17,9 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity
-public class    WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Qualifier("authenticatedClientService")
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private ClientDetailsService clientDetailsService;
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
@@ -58,7 +56,7 @@ public class    WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void globalSecurityConfiguration(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService);
+        auth.userDetailsService(clientDetailsService);
     }
 
     @Bean

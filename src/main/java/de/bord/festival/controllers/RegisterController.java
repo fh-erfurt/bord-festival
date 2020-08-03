@@ -20,6 +20,7 @@ import javax.validation.Valid;
 public class RegisterController {
     private final ClientRepository clientRepository;
 
+    @Autowired
     PasswordEncoder passwordEncoder;
 
 
@@ -39,7 +40,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public RedirectView register(@Valid Address address, BindingResult bindingResultAddress,
+    public String register(@Valid Address address, BindingResult bindingResultAddress,
                                  @Valid Client client, BindingResult bindingResultClient)
     {
         if (!bindingResultAddress.hasErrors() && !bindingResultClient.hasErrors())
@@ -53,6 +54,6 @@ public class RegisterController {
             clientRepository.save(client);
         }
         // Client signing in himself is automatically a user
-        return new RedirectView("/user_menu");
+        return "user_menu";
     }
 }
