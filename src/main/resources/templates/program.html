@@ -76,7 +76,7 @@
                         <input class="form-control" type="text" th:name="eventId" th:value="${eventId}" hidden/>
                         <div class="form-group">
                             <select class="form-control" th:field="*{stageId}">
-                                <option th:each="stage: ${stages}" th:value="${stage.getId()}" th:text="${stage.getStageName() +' '+ stage.getIdentifier()}"></option>
+                                <option th:each="stage: ${stages}" th:value="${stage.getId()}" th:text="${stage.getStageName()}"></option>
                             </select>
                             <p class="error" th:if="${#fields.hasErrors('stageId')}"th:errors="*{stageId}"  ></p>
                         </div>
@@ -222,15 +222,6 @@
                                     <label >Stage name</label>
                                     <input class="form-control" th:field="*{stageName}" type="text" />
                                     <p class="error" th:if="${#fields.hasErrors('stageName')}"th:errors="*{stageName}"  ></p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 col-6">
-                                        <div class="form-group">
-                                            <label for="stageidentifier">Identifier</label>
-                                            <input class="form-control" th:field="*{identifier}" type="number" id="stageidentifier"/>
-                                            <p class="error" th:if="${#fields.hasErrors('identifier')}"th:errors="*{identifier}"  ></p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

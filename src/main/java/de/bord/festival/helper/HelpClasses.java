@@ -38,17 +38,13 @@ public class HelpClasses {
 
     public Stage getStage() {
 
-        return new Stage(1,"stage1");
+        return new Stage("Stage1");
 
     }
-    public Stage getStage(int id) {
 
-        return new Stage(id,"stage1");
+    public Stage getStage(String name) {
 
-    }
-    public Stage getStage(int id, String name) {
-
-        return new Stage(id,name);
+        return new Stage(name);
 
     }
 

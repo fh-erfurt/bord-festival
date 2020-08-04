@@ -137,11 +137,10 @@ public class Event extends AbstractModel implements IEvent {
      * Removes stage from all programs and from the list of stages
      * Removes stage, if it has no set time slots and the number of stages > 1
      *
-     * @param id id, on which the stage should be removed
      * @return true, if the stage is removed, otherwise false
      */
-    public boolean removeStage(int id) {
-        return lineUp.removeStage(id);
+    public boolean removeStage(String stageName) {
+        return lineUp.removeStage(stageName);
     }
 
     /**

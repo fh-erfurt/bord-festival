@@ -150,13 +150,12 @@ public class Program extends AbstractModel {
     /**
      * Checks if there is a band subscribed to a stage
      *
-     * @param id id of the stage
      * @return if a band plays on the stage: true, otherwise: false
      */
-    public boolean existOnStageTimeSlots(int id) {
+    public boolean existOnStageTimeSlots(String stageName) {
         for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
             Stage currentStage = entry.getKey();
-            if (currentStage.getIdentifier() == id) {
+            if (currentStage.getStageName().equals(stageName)) {
                 return !entry.getValue().getTimeSlots().isEmpty();
             }
         }
@@ -167,10 +166,9 @@ public class Program extends AbstractModel {
      * Removes stage from program
      * Condition: only one stage exists in the list with the same id
      *
-     * @param id id of the stage
      */
-    public void removeStage(int id) {
-        programsForStages.entrySet().removeIf(entry->entry.getKey().getIdentifier()==id);
+    public void removeStage(String stageName) {
+        programsForStages.entrySet().removeIf(entry->entry.getKey().getStageName().equals(stageName));
     }
 
     /**
@@ -183,13 +181,12 @@ public class Program extends AbstractModel {
 
         for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
             List<TimeSlot> timeSlotsPerStage = entry.getValue().getTimeSlots();
-            for (int i = 0; i < timeSlotsPerStage.size(); i++) {
-                if (isTheSameBand(timeSlotsPerStage.get(i), band)) {
-                    timeSlotsPerStage.remove(timeSlotsPerStage.get(i));
-                }
 
-            }
+            timeSlotsPerStage.removeIf(s -> isTheSameBand(s, band));
+
         }
+
+
     }
 
     /**

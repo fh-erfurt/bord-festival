@@ -381,12 +381,6 @@
                                        type="text" id="stagename"/>
                                 <p class="error" th:if="${#fields.hasErrors('stageName')}" th:errors="*{stageName}"></p>
                             </div>
-                            <div class="col-2">
-                                <input th:disabled="!${eventInFuture}" class="form-control" th:field="*{identifier}"
-                                       type="number" id="Identifier"/>
-                                <p class="error" th:if="${#fields.hasErrors('identifier')}"
-                                   th:errors="*{identifier}"></p>
-                            </div>
                         </div>
                     </div>
                 </div>

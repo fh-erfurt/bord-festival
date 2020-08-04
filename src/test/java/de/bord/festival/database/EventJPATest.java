@@ -72,7 +72,7 @@ public class EventJPATest {
         eventRepository.save(this.event);
         Event databaseEvent = eventRepository.findById(1);
         event.addBand(helper.getBand());
-        event.addStage(helper.getStage(2));
+        event.addStage(helper.getStage("Stage2"));
         databaseEvent = eventRepository.save(event);
         //then
 
@@ -92,14 +92,14 @@ public class EventJPATest {
     void should_update_event_1() throws BudgetOverflowException, TimeSlotCantBeFoundException {
         //when
         event.addBand(helper.getBand());
-        event.addStage(helper.getStage(2));
+        event.addStage(helper.getStage("Stage2"));
 
 
         eventRepository.save(this.event);
 
         Event databaseEvent = eventRepository.findById(1);
         event.removeBand(helper.getBand());
-        event.removeStage(1);
+        event.removeStage("Stage1");
         databaseEvent = eventRepository.save(event);
         //then
         assertEquals("Bord", databaseEvent.getName());
