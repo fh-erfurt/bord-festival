@@ -18,6 +18,10 @@ public abstract class AbstractModel {
         return this.id;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
     @Version
     private Long version;
 

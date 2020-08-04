@@ -12,7 +12,9 @@
             <h2>Program</h2>
             <div th:if="${param.successAddBand}" class="alert alert-success" role="alert">You successfully added a band to your program</div>
             <div th:if="${param.successRemoveBand}" class="alert alert-success" role="alert">You successfully removed a band from your program</h4></div>
-            <div th:if="${param.successAddStage}" class="alert alert-success" role="alert">You successfully removed a band from your program</h4></div>
+            <div th:if="${param.successAddStage}" class="alert alert-success" role="alert">You successfully added a stage to your program</h4></div>
+            <div th:if="${param.successRemoveStage}" class="alert alert-success" role="alert">You successfully removed a stage from your program</h4></div>
+
             <div th:if="${param.successCreate}" class="alert alert-success" role="alert">
                 Festival created successfully
             </div>

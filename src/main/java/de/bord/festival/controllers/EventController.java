@@ -261,6 +261,7 @@ public class EventController {
         }
         long eventIdLong = Long.parseLong(eventId);
         Event event = eventRepository.findById(eventIdLong);
+        event.sortPrograms();
 
         //check if stage values are right
         if (bindingResult.hasErrors()) {
@@ -397,12 +398,7 @@ public class EventController {
     String addBand(Event event, Band band, Model model, BindingResult bindingResult) {
 
         try {
-            //to work with the same object we take existing band from event list
-            if (event.containsBand(band)) {
-                event.addBand(event.getBand(band));
-            } else {
-                event.addBand(band);
-            }
+            event.addBand(band);
             eventRepository.save(event);
             model.addAttribute("programs", event.getPrograms());
             return "redirect:/program?successAddBand&eventId=" + event.getId();

@@ -13,10 +13,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -132,7 +129,16 @@ public class LineUp extends AbstractModel {
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
             Program programOnCurrentDate = entry.getValue();
             LocalDate currentDate = entry.getKey();
-            EventInfo timeSlotWithStage = programOnCurrentDate.addBand(band);
+            //to work with the same object we take existing band from event list
+            EventInfo timeSlotWithStage;
+            if (event.containsBand(band)) {
+                Band oldBand=event.getBand(band);
+                oldBand.setMinutesOnStage(band.getMinutesOnStage());
+                timeSlotWithStage = programOnCurrentDate.addBand(oldBand);
+            } else {
+                timeSlotWithStage = programOnCurrentDate.addBand(band);
+            }
+
             if (timeSlotWithStage != null) {
                 return actionIfTimeSlotFound(band, timeSlotWithStage, currentDate);
             }
@@ -360,5 +366,18 @@ public class LineUp extends AbstractModel {
 
     public void setBreakBetweenTwoBandsInMinutes(long breakBetweenTwoBandsInMinutes) {
         this.breakBetweenTwoBandsInMinutes = breakBetweenTwoBandsInMinutes;
+    }
+
+    public void sortPrograms() {
+/*
+        programsForStages.entrySet().stream().sorted(Comparator.comparing((stage1)->stage.getCreatedAt()));
+*/
+        /*dayPrograms.entrySet().stream().forEach((Program program)->{
+            program.getProgramsForStages().entrySet().stream().sorted(Comparator.comparing((Stage stage)->stage.getCreatedAt());
+        });*/
+/*
+        programsForStages.getProgramsForStages().entrySet().stream().forEach().sorted(Comparator.comparing((program)->program.getKey()));
+*/
+
     }
 }
