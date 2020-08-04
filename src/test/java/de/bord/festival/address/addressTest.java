@@ -1,5 +1,5 @@
 package de.bord.festival.address;
-import de.bord.festival.help.HelpClasses;
+import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.models.Address;
 import de.bord.festival.models.Stage;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,7 @@
 package de.bord.festival.controllers;
 
-import de.bord.festival.controllers.help.HelpClasses;
+import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.exception.*;
-import de.bord.festival.models.Client;
 import de.bord.festival.models.Event;
 import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
