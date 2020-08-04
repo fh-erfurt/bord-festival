@@ -19,7 +19,7 @@
 
             <a href="events" class="btn btn-primary">See All Events</a>
             <th:block th:each="dayProgram : ${dayPrograms}">
-                <h4 class="clear-left" th:text="${dayProgram.getKey().getDayOfMonth()} + '.' + ${dayProgram.getKey().getMonthValue()} + '.'"></h4>
+                <h4 class="clear-left" th:text="${dayProgram.getKey().getDayOfMonth()} + '.' + ${dayProgram.getKey().getMonthValue()} + '.' + ${dayProgram.getKey().getYear()%100}"></h4>
                 <div class="program-wrapper mb-3">
                     <th:block th:each="program : ${dayProgram.getValue().getProgramsForStages()}">
                         <div class="program-card">
