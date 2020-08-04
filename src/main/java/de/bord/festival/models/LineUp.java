@@ -3,10 +3,7 @@ package de.bord.festival.models;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -23,6 +20,7 @@ import java.util.*;
 @Entity
 public class LineUp extends AbstractModel {
     @OneToMany(cascade = CascadeType.ALL)
+    @OrderBy("id")
     private Map<LocalDate, Program> dayPrograms;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Stage> stages;
