@@ -1,12 +1,12 @@
-package de.bord.festival.models;
-import de.bord.festival.helper.HelpClasses;
+package de.bord.festival.address;
+import de.bord.festival.help.HelpClasses;
 import de.bord.festival.models.Address;
 import de.bord.festival.models.Stage;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AddressTest {
+public class addressTest {
     HelpClasses helper = new HelpClasses();
     Address address = helper.getAddress();
 

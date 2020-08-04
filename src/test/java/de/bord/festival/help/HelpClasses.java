@@ -1,4 +1,4 @@
-package de.bord.festival.helper;
+package de.bord.festival.help;
 
 import de.bord.festival.models.*;
 import de.bord.festival.models.Band;
@@ -8,6 +8,7 @@ import de.bord.festival.models.LineUp;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.Stage;
 import de.bord.festival.ticket.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import java.math.BigDecimal;

@@ -3,6 +3,7 @@ package de.bord.festival.ticket;
 import de.bord.festival.models.Client;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.PriceLevel;
+import de.bord.festival.models.Ticket;
 import de.bord.festival.models.TicketManager;
 import de.bord.festival.repository.PriceLevelRepository;
 import de.bord.festival.repository.TicketManagerRepository;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import de.bord.festival.helper.HelpClasses;
+import de.bord.festival.help.HelpClasses;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class TicketTest {

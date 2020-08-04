@@ -1,7 +1,7 @@
 package de.bord.festival.database;
 
 import de.bord.festival.exception.*;
-import de.bord.festival.helper.HelpClasses;
+import de.bord.festival.help.HelpClasses;
 import de.bord.festival.models.Band;
 import de.bord.festival.models.Event;
 import de.bord.festival.models.EventInfo;
@@ -11,8 +11,11 @@ import de.bord.festival.repository.EventRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.math.BigDecimal;
 import java.time.LocalTime;

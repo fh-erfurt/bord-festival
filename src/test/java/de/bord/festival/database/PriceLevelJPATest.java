@@ -1,7 +1,7 @@
 package de.bord.festival.database;
 
 import de.bord.festival.exception.*;
-import de.bord.festival.helper.HelpClasses;
+import de.bord.festival.help.HelpClasses;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.PriceLevelRepository;
@@ -14,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.transaction.annotation.Transactional;
 
