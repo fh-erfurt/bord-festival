@@ -3,20 +3,14 @@ package de.bord.festival.models;
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -26,6 +20,7 @@ import java.util.Map;
 @Entity
 public class LineUp extends AbstractModel {
     @OneToMany(cascade = CascadeType.ALL)
+    @OrderBy("id")
     private Map<LocalDate, Program> dayPrograms;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Stage> stages;
@@ -132,7 +127,16 @@ public class LineUp extends AbstractModel {
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
             Program programOnCurrentDate = entry.getValue();
             LocalDate currentDate = entry.getKey();
-            EventInfo timeSlotWithStage = programOnCurrentDate.addBand(band);
+            //to work with the same object we take existing band from event list
+            EventInfo timeSlotWithStage;
+            if (event.containsBand(band)) {
+                Band oldBand=event.getBand(band);
+                oldBand.setMinutesOnStage(band.getMinutesOnStage());
+                timeSlotWithStage = programOnCurrentDate.addBand(oldBand);
+            } else {
+                timeSlotWithStage = programOnCurrentDate.addBand(band);
+            }
+
             if (timeSlotWithStage != null) {
                 return actionIfTimeSlotFound(band, timeSlotWithStage, currentDate);
             }
@@ -310,7 +314,7 @@ public class LineUp extends AbstractModel {
      * @param band
      * @return if band is already subscribed to a timeslot: true, otherwise: false
      */
-    private boolean containsBand(Band band) {
+    public boolean containsBand(Band band) {
         boolean check = false;
         for (Band value : bands) {
             if (value.equals(band)) {
@@ -319,6 +323,15 @@ public class LineUp extends AbstractModel {
             }
         }
         return check;
+    }
+    public Band getBand(Band band) {
+        boolean check = false;
+        for (Band value : bands) {
+            if (value.equals(band)) {
+                return value;
+            }
+        }
+        return null;
     }
 
     public List<Band> getBands() {
@@ -352,4 +365,6 @@ public class LineUp extends AbstractModel {
     public void setBreakBetweenTwoBandsInMinutes(long breakBetweenTwoBandsInMinutes) {
         this.breakBetweenTwoBandsInMinutes = breakBetweenTwoBandsInMinutes;
     }
+
+
 }

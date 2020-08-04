@@ -46,10 +46,19 @@
                 <!-- Print info for event, if update case -->
                 <th:block th:object="${event}">
                     <th:block th:if="${event.getId()}!=0 and ${event.getLineUp()}">
-                        Budget<p th:text="*{budget}"></p>
+                        Start Budget<p th:text="*{budget}"></p>
+                        <div th:with="result=${event.budget-event.actualCosts}">
+
+                            Remaining Budget<p th:text="${result}"></p>
+
+                        </div>
+
                         Start Date<p th:text="${#temporals.format(event.startDate, 'dd-MM-yyyy')}"></p>
 
                         End Date<p th:text="${#temporals.format(event.endDate, 'dd-MM-yyyy')}"></p>
+                        Start Time<p th:text="${#temporals.format(event.startTime, 'H:mm')}"></p>
+
+                        End Time<p th:text="${#temporals.format(event.endTime, 'H:mm')}"></p>
                         Break between 2 bands<p th:text="*{breakBetweenTwoBandsInMinutes}"></p>
 
                     </th:block>

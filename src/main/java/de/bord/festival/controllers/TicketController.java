@@ -1,7 +1,6 @@
 package de.bord.festival.controllers;
 
 import de.bord.festival.controllers.dataContainers.TicketCounter;
-import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.ClientRepository;

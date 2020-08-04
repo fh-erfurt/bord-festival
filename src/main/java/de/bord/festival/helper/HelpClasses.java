@@ -1,15 +1,11 @@
-package de.bord.festival.help;
+package de.bord.festival.helper;
 
-import de.bord.festival.models.*;
-import de.bord.festival.models.Band;
-import de.bord.festival.models.EventInfo;
-import de.bord.festival.models.Event;
-import de.bord.festival.models.LineUp;
 import de.bord.festival.exception.*;
-import de.bord.festival.models.Stage;
-import de.bord.festival.ticket.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
+import de.bord.festival.models.*;
+import de.bord.festival.ticket.CampingTicket;
+import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.ticket.Type;
+import de.bord.festival.ticket.VIPTicket;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,23 +14,25 @@ import java.util.ArrayList;
 
 public class HelpClasses {
     public Band getBand() {
-        return new Band("GOD IS AN ASTRONAUT", "920", 500, 200);
+        return new Band("GOD IS AN ASTRONAUT", "920", 500,200);
 
     }
-
-    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateDisorderException, PriceLevelException, TimeDisorderException {
-        Stage stage = getStage();
-        return new LineUp(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, startDate, endDate, stage, getValidNDaysEvent(1));
-
-    }
-
-
     public Band getBand(String name, double priceProEvent, long minutesOnStage) {
         return new Band(name, "911", priceProEvent, minutesOnStage);
 
     }
     public Band getBand(long minutesOnStage) {
         return new Band("Band lolo", "911", 200, minutesOnStage);
+
+    }
+    public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateDisorderException, PriceLevelException, TimeDisorderException {
+        Stage stage = getStage();
+        return new LineUp(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, startDate, endDate, stage, getValidNDaysEvent(1));
+
+    }
+
+    public Band getBand(String name, double priceProEvent) {
+        return new Band(name, "911", priceProEvent, 200);
 
     }
 
@@ -48,11 +46,32 @@ public class HelpClasses {
         return new Stage(id,"stage1");
 
     }
+    public Stage getStage(int id, String name) {
+
+        return new Stage(id,name);
+
+    }
 
     public Event getValidNDaysEvent(int numberOfDays) throws DateDisorderException, PriceLevelException, TimeDisorderException {
 
         return Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2018, 01, 01),
                 LocalDate.of(2018, 01, numberOfDays), "Bord", BigDecimal.valueOf(2019),
+                getStage(),exampleTicketManager(), getAddress());
+
+
+    }
+    public Event getValidNDaysEvent1(int numberOfDays) throws DateDisorderException, PriceLevelException, TimeDisorderException {
+
+        return Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2020, 01, 01),
+                LocalDate.of(2020, 01, numberOfDays), "Bord", BigDecimal.valueOf(2019),
+                getStage(),exampleTicketManager(), getAddress());
+
+
+    }
+    public Event getValidNDaysEvent2(int numberOfDays) throws DateDisorderException, PriceLevelException, TimeDisorderException {
+
+        return Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2025, 01, 01),
+                LocalDate.of(2025, 01, numberOfDays), "Bord", BigDecimal.valueOf(2019),
                 getStage(),exampleTicketManager(), getAddress());
 
 
@@ -68,10 +87,10 @@ public class HelpClasses {
         lineUp.addStage(getStage());
 
 
-        Band band1 = getBand("band1", 40, 200);
-        Band band2 = getBand("band2", 40, 200);
-        Band band3 = getBand("band3", 40, 200);
-        Band band4 = getBand("band4", 40, 200);
+        Band band1 = getBand("band1", 40);
+        Band band2 = getBand("band2", 40);
+        Band band3 = getBand("band3", 40);
+        Band band4 = getBand("band4", 40);
         lineUp.addBand(band1);
         lineUp.addBand(band2);
         lineUp.addBand(band3);
@@ -106,9 +125,9 @@ public class HelpClasses {
         priceLevels.add(p2);
         priceLevels.add(p3);
 
-        DayTicket dayTicket = new DayTicket("day test", 30.99);
-        CampingTicket campingTicket = new CampingTicket("camping test", 80.00);
-        VIPTicket vipTicket = new VIPTicket("vip test", 101.99);
+        DayTicket dayTicket = new DayTicket("Sommerfest:Erfurt:2020-08-20:day:Tag", 30.99);
+        CampingTicket campingTicket = new CampingTicket("Sommerfest:Erfurt:2020-08-20:day:Camp", 80.00);
+        VIPTicket vipTicket = new VIPTicket("Sommerfest:Erfurt:2020-08-20:day:VIP", 101.99);
 
         return new TicketManager(priceLevels, 10,20,30, dayTicket, campingTicket, vipTicket);
     }
@@ -164,8 +183,7 @@ public class HelpClasses {
     }
 
     public Client exampleClient() throws MailException, ClientNameException {
-        Address address = getAddress();
-        return Client.getNewClient("Max", "Muster","max@test.de", "pass123", address, Role.USER);
+        return Client.getNewClient("Max", "Muster","max@test.de", "pass123", getAddress(), Role.USER);
     }
 
 }
