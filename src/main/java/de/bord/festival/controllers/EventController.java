@@ -4,7 +4,6 @@ import de.bord.festival.controllers.dataContainers.BandTimeSlotContainer;
 import de.bord.festival.controllers.dataContainers.DateTimeContainer;
 import de.bord.festival.controllers.dataContainers.StageIdContainer;
 import de.bord.festival.controllers.dataContainers.TicketManagerContainer;
-import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.BandRepository;

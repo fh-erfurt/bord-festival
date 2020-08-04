@@ -3,7 +3,7 @@ package de.bord.festival.database;
 import de.bord.festival.exception.DateDisorderException;
 import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.exception.TimeDisorderException;
-import de.bord.festival.help.HelpClasses;
+import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.models.LineUp;
 import de.bord.festival.repository.LineUpRepository;
 import org.junit.jupiter.api.BeforeEach;

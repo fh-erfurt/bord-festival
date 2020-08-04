@@ -1,7 +1,7 @@
-package de.bord.festival.eventManagement;
+package de.bord.festival.models;
 
 import de.bord.festival.exception.*;
-import de.bord.festival.help.HelpClasses;
+import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.models.*;
 import org.junit.jupiter.api.Test;
 

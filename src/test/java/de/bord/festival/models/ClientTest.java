@@ -1,16 +1,4 @@
-package de.bord.festival.client;
-
-import de.bord.festival.models.Address;
-import de.bord.festival.exception.ClientNameException;
-import de.bord.festival.exception.MailException;
-import de.bord.festival.help.HelpClasses;
-import de.bord.festival.models.Client;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import static org.junit.jupiter.api.Assertions.*;
+package de.bord.festival.models;
 
 
 public class ClientTest {

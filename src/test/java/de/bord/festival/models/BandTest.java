@@ -1,6 +1,6 @@
-package de.bord.festival.band;
+package de.bord.festival.models;
 
-import de.bord.festival.help.HelpClasses;
+import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.models.Band;
 import org.junit.jupiter.api.Test;
 

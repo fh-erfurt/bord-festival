@@ -1,4 +1,4 @@
-package de.bord.festival.help;
+package de.bord.festival.helper;
 
 import de.bord.festival.models.*;
 import de.bord.festival.models.Band;
@@ -8,7 +8,6 @@ import de.bord.festival.models.LineUp;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.Stage;
 import de.bord.festival.ticket.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 import java.math.BigDecimal;
@@ -53,6 +52,14 @@ public class HelpClasses {
 
         return Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2018, 01, 01),
                 LocalDate.of(2018, 01, numberOfDays), "Bord", BigDecimal.valueOf(2019),
+                getStage(),exampleTicketManager(), getAddress());
+
+
+    }
+    public Event getValidNDaysEvent2(int numberOfDays) throws DateDisorderException, PriceLevelException, TimeDisorderException {
+
+        return Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2025, 01, 01),
+                LocalDate.of(2025, 01, numberOfDays), "Bord", BigDecimal.valueOf(2019),
                 getStage(),exampleTicketManager(), getAddress());
 
 
