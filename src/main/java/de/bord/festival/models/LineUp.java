@@ -310,7 +310,7 @@ public class LineUp extends AbstractModel {
      * @param band
      * @return if band is already subscribed to a timeslot: true, otherwise: false
      */
-    private boolean containsBand(Band band) {
+    public boolean containsBand(Band band) {
         boolean check = false;
         for (Band value : bands) {
             if (value.equals(band)) {
@@ -319,6 +319,15 @@ public class LineUp extends AbstractModel {
             }
         }
         return check;
+    }
+    public Band getBand(Band band) {
+        boolean check = false;
+        for (Band value : bands) {
+            if (value.equals(band)) {
+                return value;
+            }
+        }
+        return null;
     }
 
     public List<Band> getBands() {

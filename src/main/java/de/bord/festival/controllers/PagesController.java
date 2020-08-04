@@ -1,7 +1,9 @@
 package de.bord.festival.controllers;
 
+import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.Client;
+import de.bord.festival.models.Event;
 import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,9 @@ public class PagesController {
     public String index(Model model) throws BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException, TimeDisorderException, DateDisorderException {
         model.addAttribute("title", "Home");
 
-        /*HelpClasses helpClasses = new HelpClasses();
+        HelpClasses helpClasses = new HelpClasses();
         Event event1 = helpClasses.getValidNDaysEvent2(1);
-        eventRepository.save(event1);*/
+        eventRepository.save(event1);
 
         return "index";
     }

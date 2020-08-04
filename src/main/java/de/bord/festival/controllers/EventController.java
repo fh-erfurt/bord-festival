@@ -37,16 +37,15 @@ import java.util.List;
 /**
  * Controller class to manage admin sector
  * Is responsible for:
- *      Create event- with ticket manager, lineup and programs
- *      Update event- only fields that do not break event complex structure: dates, times, price
- *                    levels are can not be changed
- *      Show events-  list of events with link to information and update possebility
- *      Update event program:
- *          add band from all timeslots of program
- *          remove band only from one timeslot
- *          add stage
- *          remove stage
- *
+ * Create event- with ticket manager, lineup and programs
+ * Update event- only fields that do not break event complex structure: dates, times, price
+ * levels are can not be changed
+ * Show events-  list of events with link to information and update possebility
+ * Update event program:
+ * add band from all timeslots of program
+ * remove band only from one timeslot
+ * add stage
+ * remove stage
  */
 @Controller
 public class EventController {
@@ -63,7 +62,6 @@ public class EventController {
 
 
     /**
-     *
      * Mapping for showing create event or update event form
      *
      * @param eventId required only if goal is to update event
@@ -71,8 +69,7 @@ public class EventController {
      */
     @GetMapping("event")
     public String eventForm(@RequestParam(required = false) String eventId, Model model) {
-        if(eventId == null)
-        {
+        if (eventId == null) {
             model.addAttribute("tmk", new TicketManagerContainer());
             model.addAttribute("event", new Event());
             model.addAttribute("dateTimeContainer", new DateTimeContainer());
@@ -81,9 +78,7 @@ public class EventController {
             model.addAttribute("title", "Create event");
             model.addAttribute("newEvent", true);
             model.addAttribute("eventInFuture", true);
-        }
-        else
-        {
+        } else {
             if (!isLong(eventId)) {
                 return "error404";
             }
@@ -93,18 +88,16 @@ public class EventController {
 
             if (event == null) {
                 return "error404";
-            }
-            else {
+            } else {
                 boolean result = setExistingEvent(model, event);
-                if(!result) {
+                if (!result) {
                     return "error404";
                 }
 
-                if(event.getStartDate().isAfter(LocalDate.now())) {
+                if (event.getStartDate().isAfter(LocalDate.now())) {
                     model.addAttribute("eventInFuture", true);
                     model.addAttribute("title", "Update event \"" + event.getName() + "\"");
-                }
-                else {
+                } else {
                     model.addAttribute("eventInFuture", false);
                     model.addAttribute("title", "View event \"" + event.getName() + "\"");
                 }
@@ -118,13 +111,13 @@ public class EventController {
 
     /**
      * Mapping for sent form to create or update the event
-     *
+     * <p>
      * All input parameter are used to fill event constructor with necessary objects and fields
      * all binding results are used to validate these fields
      *
      * @param eventId to update existing event
      * @return program file, if new event was created
-     *         event_form in the case event was updates
+     * event_form in the case event was updates
      */
     @PostMapping("/event")
     public String createEvent(@Valid Event event, BindingResult bindingResultEvent,
@@ -165,10 +158,9 @@ public class EventController {
                 Event newEvent = Event.getNewEvent(startTime, endTime, breakBetweenTwoBands, startDate,
                         endDate, name, budget, stage, ticketManager, address);
                 //update event case
-                if (isEventIdValid(eventId)){
+                if (isEventIdValid(eventId)) {
                     return updateEvent(model, newEvent, eventId, bindingResultDateTimeContainer);
-                }
-                else{
+                } else {
                     eventRepository.save(newEvent);
                     model.addAttribute("title", "Create event");
                     model.addAttribute("newEvent", true);
@@ -183,7 +175,7 @@ public class EventController {
 
         }
         //update case
-        if (isEventIdValid(eventId)){
+        if (isEventIdValid(eventId)) {
             event.setId(Long.parseLong(eventId));
             model.addAttribute("event", event);
         }
@@ -209,13 +201,13 @@ public class EventController {
     }
 
     /**
-     *
      * Mapping shows events program with bands, stages, times and dates
+     *
      * @param eventId to show program of certain event
      * @return program, if eventId is valid, otherwise error404
      */
     @GetMapping("program")
-    public String showProgram(@RequestParam String eventId, Model model){
+    public String showProgram(@RequestParam String eventId, Model model) {
         model.addAttribute("title", "Program");
 
 
@@ -231,6 +223,7 @@ public class EventController {
 
     /**
      * Mapping adds band to the program of certain event
+     *
      * @return program with added timeslot otherwise error404
      */
     @PostMapping("band_add")
@@ -253,8 +246,8 @@ public class EventController {
 
 
     /**
-     *
      * Model adds stage to the event program
+     *
      * @return program with added new stage, otherwise error404
      */
     @PostMapping("stage_add")
@@ -292,6 +285,7 @@ public class EventController {
      * Removes band from event program, if it exists
      * Case 1: band without timeslot: band will be removed from all timeslots
      * Case 2: band with a timeslot: band will be removed only from this timeslot
+     *
      * @return program with removed band
      */
     @PostMapping("band_remove")
@@ -326,8 +320,8 @@ public class EventController {
     }
 
     /**
-     *
      * Mapping removes stage from event program, if on this stage are no timeslots
+     *
      * @return program with removed stage
      */
     @PostMapping("stage_remove")
@@ -344,7 +338,7 @@ public class EventController {
         String stageId = stageIdContainer.getStageId();
 
         boolean removed;
-        if (!isLong(stageId)){
+        if (!isLong(stageId)) {
             return "error404";
         }
 
@@ -377,11 +371,11 @@ public class EventController {
 
     private String updateEvent(Model model, Event newEvent, String eventId, BindingResult bindingResultDateTimeContainer) {
         //only future events can be updated
-        if(newEvent.getStartDate().isBefore(LocalDate.now())){
+        if (newEvent.getStartDate().isBefore(LocalDate.now())) {
             bindingResultDateTimeContainer.rejectValue("mainErrorContainer", "error.dateTimeContainer", "Event of the past can not be updated");
             return "event_form";
         }
-        Event event=eventRepository.findById(Long.parseLong(eventId));
+        Event event = eventRepository.findById(Long.parseLong(eventId));
 
         event.setName(newEvent.getName());
         event.getAddress().update(newEvent.getAddress());
@@ -394,6 +388,7 @@ public class EventController {
         model.addAttribute("title", "Update event \"" + event.getName() + "\"");
         return "redirect:/event?successUpdate&eventId=" + event.getId();
     }
+
     /**
      * adds band and save event if there are no other exceptions
      * returns success query parameter if there are no exceptions
@@ -402,7 +397,12 @@ public class EventController {
     String addBand(Event event, Band band, Model model, BindingResult bindingResult) {
 
         try {
-            event.addBand(band);
+            //to work with the same object we take existing band from event list
+            if (event.containsBand(band)) {
+                event.addBand(event.getBand(band));
+            } else {
+                event.addBand(band);
+            }
             eventRepository.save(event);
             model.addAttribute("programs", event.getPrograms());
             return "redirect:/program?successAddBand&eventId=" + event.getId();
@@ -416,6 +416,7 @@ public class EventController {
         }
         return "program";
     }
+
     boolean setExistingEvent(Model model, Event event) {
         try {
             DateTimeContainer dtc = new DateTimeContainer();
@@ -446,8 +447,7 @@ public class EventController {
             model.addAttribute("stage", stage);
 
             return true;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
