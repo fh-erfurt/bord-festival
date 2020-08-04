@@ -46,21 +46,33 @@
                 <!-- Print info for event, if update case -->
                 <th:block th:object="${event}">
                     <th:block th:if="${event.getId()}!=0 and ${event.getLineUp()}">
-                        Start Budget<p th:text="*{budget}"></p>
-                        <div th:with="result=${event.budget-event.actualCosts}">
-
-                            Remaining Budget<p th:text="${result}"></p>
-
+                        <div class="row mt-3">
+                            <div class="col-md-4">
+                                <b>Start Budget</b><p th:text="*{budget}"></p>
+                            </div>
+                            <div class="col-md-4" th:with="result=${event.budget-event.actualCosts}">
+                                <b>Remaining Budget</b><p th:text="${result}"></p>
+                            </div>
                         </div>
-
-                        Start Date<p th:text="${#temporals.format(event.startDate, 'dd-MM-yyyy')}"></p>
-
-                        End Date<p th:text="${#temporals.format(event.endDate, 'dd-MM-yyyy')}"></p>
-                        Start Time<p th:text="${#temporals.format(event.startTime, 'H:mm')}"></p>
-
-                        End Time<p th:text="${#temporals.format(event.endTime, 'H:mm')}"></p>
-                        Break between 2 bands<p th:text="*{breakBetweenTwoBandsInMinutes}"></p>
-
+                        <div class="row">
+                            <div class="col-md-4">
+                                <b>Start Date</b><p th:text="${#temporals.format(event.startDate, 'dd-MM-yyyy')}"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <b>End Date</b><p th:text="${#temporals.format(event.endDate, 'dd-MM-yyyy')}"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <b>Start Time</b><p th:text="${#temporals.format(event.startTime, 'H:mm')}"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <b>End Time</b><p th:text="${#temporals.format(event.endTime, 'H:mm')}"></p>
+                            </div>
+                            <div class="col-md-4">
+                                <b>Break between 2 bands</b><p th:text="*{breakBetweenTwoBandsInMinutes} + ' Minutes'"></p>
+                            </div>
+                        </div>
                     </th:block>
 
                     <div class="form-group">
