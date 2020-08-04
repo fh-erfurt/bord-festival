@@ -280,7 +280,7 @@ public class EventController {
             eventRepository.save(event);
             return "redirect:/program?successAddStage&eventId=" + event.getId();
         } else {
-            bindingResult.rejectValue("identifier", "error.stage", "Stage with this identifier already exists");
+            bindingResult.rejectValue("stageName", "error.stage", "Stage with this name already exists");
             fillModelWithAttributesForProgram(new Band(), event, model, new BandTimeSlotContainer(), stage, new StageIdContainer());
             model.addAttribute("showAddStageModal", true);
             model.addAttribute("title", "Program");
@@ -354,7 +354,7 @@ public class EventController {
         }
 
         Stage stage = stageRepository.findById(Long.parseLong(stageId));
-        removed = event.removeStage(stage.getIdentifier());
+        removed = event.removeStage(stage.getStageName());
 
         if (removed) {
             eventRepository.save(event);

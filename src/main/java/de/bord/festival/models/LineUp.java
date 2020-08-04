@@ -103,7 +103,7 @@ public class LineUp extends AbstractModel {
      */
     public boolean addStage(Stage stage) {
 
-        if (findStage(stage.getIdentifier()) != null) {
+        if (findStage(stage.getStageName()) != null) {
             return false;
         }
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
@@ -198,27 +198,26 @@ public class LineUp extends AbstractModel {
      * Removes stage from all programs and from the list of stages
      * Removes stage, if it has no set time slots and the number of stages > 1
      *
-     * @param id id, on which the stage should be removed
      * @return true, if the stage is removed, otherwise false
      */
-    public boolean removeStage(int id) {
+    public boolean removeStage(String stageName) {
         //in the event should exist minimum one stage
         if (isStageLast()) {
             return false;
         }
-        Stage foundStage = findStage(id);
-        if ((foundStage == null) || !isStageInAllProgramsEmpty(id)) {
+        Stage foundStage = findStage(stageName);
+        if ((foundStage == null) || !isStageInAllProgramsEmpty(stageName)) {
             return false;
         }
         //if the stage exists and is free, than we can remove it
-        removeStageFromAllPrograms(id);
+        removeStageFromAllPrograms(stageName);
         stages.remove(foundStage);
         return true;
     }
 
-    private void removeStageFromAllPrograms(int id) {
+    private void removeStageFromAllPrograms(String stageName) {
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
-            entry.getValue().removeStage(id);
+            entry.getValue().removeStage(stageName);
         }
     }
 
@@ -226,10 +225,10 @@ public class LineUp extends AbstractModel {
         return (stages.size() == 1);
     }
 
-    private boolean isStageInAllProgramsEmpty(int stageId) {
+    private boolean isStageInAllProgramsEmpty(String stageName) {
 
         for (Map.Entry<LocalDate, Program> entry : dayPrograms.entrySet()) {
-            if (entry.getValue().existOnStageTimeSlots(stageId)) {
+            if (entry.getValue().existOnStageTimeSlots(stageName)) {
                 return false;
             }
         }
@@ -239,12 +238,11 @@ public class LineUp extends AbstractModel {
     /**
      * Looks for a stage with given id
      *
-     * @param id
      * @return if stage exists in event: Stage, otherwise: null
      */
-    public Stage findStage(int id) {
+    public Stage findStage(String stageName) {
         for (int i = 0; i < stages.size(); i++) {
-            if (stages.get(i).getIdentifier() == id) {
+            if (stages.get(i).getStageName().equals(stageName)) {
                 return stages.get(i);
             }
         }
@@ -273,6 +271,7 @@ public class LineUp extends AbstractModel {
             currentProgram.removeBand(band);
         }
     }
+
 
     /**
      * removes band from specified timeslot
