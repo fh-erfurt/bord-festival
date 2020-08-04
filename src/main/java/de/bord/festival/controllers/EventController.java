@@ -217,6 +217,10 @@ public class EventController {
     @GetMapping("program")
     public String showProgram(@RequestParam String eventId, Model model){
         model.addAttribute("title", "Program");
+        model.addAttribute("showAddBandModal", false);
+        model.addAttribute("showAddStageModal", false);
+        model.addAttribute("showRemoveFromAllTimeslotsModal", false);
+        model.addAttribute("showRemoveFromTimeslotModal", false);
 
 
         if (!isEventIdValid(eventId)) {
@@ -246,6 +250,7 @@ public class EventController {
         //check if band values are right
         if (bindingResult.hasErrors()) {
             fillModelWithAttributesForProgram(band, event, model, new BandTimeSlotContainer(), new Stage(), new StageIdContainer());
+            model.addAttribute("showAddBandModal", true);
             return "program";
         }
         return addBand(event, band, model, bindingResult);
@@ -272,6 +277,7 @@ public class EventController {
         //check if stage values are right
         if (bindingResult.hasErrors()) {
             fillModelWithAttributesForProgram(new Band(), event, model, new BandTimeSlotContainer(), stage, new StageIdContainer());
+            model.addAttribute("showAddStageModal", true);
             return "program";
         }
 
@@ -282,6 +288,7 @@ public class EventController {
         } else {
             bindingResult.rejectValue("identifier", "error.stage", "Stage with this identifier already exists");
             fillModelWithAttributesForProgram(new Band(), event, model, new BandTimeSlotContainer(), stage, new StageIdContainer());
+            model.addAttribute("showAddStageModal", true);
             return "program";
         }
 
@@ -312,6 +319,7 @@ public class EventController {
         //check if date time is set
         if (bindingResult.hasErrors()) {
             fillModelWithAttributesForProgram(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
+            model.addAttribute("showRemoveFromAllTimeslotsModal", true);
             return "program";
         }
         Band band = bandRepository.findById(Long.parseLong(bandId));
@@ -319,6 +327,7 @@ public class EventController {
         if (band == null) {
             bindingResult.rejectValue("bandId", "error.bandTimeSlotContainer", "there is no band with this name");
             fillModelWithAttributesForProgram(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
+            model.addAttribute("showRemoveFromTimeslotModal", true);
             return "program";
         }
 

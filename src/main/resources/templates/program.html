@@ -239,6 +239,27 @@
                     </div>
                 </div>
             </div>
+            <script type="text/javascript" th:inline="javascript">
+                document.addEventListener("DOMContentLoaded", function () {
+                    if([[${showAddBandModal}]]) {
+                        $('#addBandModal').modal('show');
+                    }
+                    if([[${showAddStageModal}]]) {
+                        $('#addStageModal').modal('show');
+                    }
+                    if([[${showRemoveFromAllTimeslotsModal}]]) {
+                        $('#removeFromAllTimeslotsModal').modal('show');
+                    }
+                    if([[${showRemoveFromTimeslotModal}]]) {
+                        $('#removeFromTimeslotModal').modal('show');
+                    }
+
+                    console.log([[${showAddBandModal}]]);
+                    console.log([[${showAddStageModal}]]);
+                    console.log([[${showRemoveFromAllTimeslotsModal}]]);
+                    console.log([[${showRemoveFromTimeslotModal}]]);
+                });
+            </script>
         </div>
     </div>
 </div>
