@@ -239,6 +239,7 @@ public class EventController {
         //check if band values are right
         if (bindingResult.hasErrors()) {
             fillModelWithAttributesForProgram(band, event, model, new BandTimeSlotContainer(), new Stage(), new StageIdContainer());
+            model.addAttribute("title", "Program");
             return "program";
         }
         return addBand(event, band, model, bindingResult);
@@ -261,11 +262,11 @@ public class EventController {
         }
         long eventIdLong = Long.parseLong(eventId);
         Event event = eventRepository.findById(eventIdLong);
-        event.sortPrograms();
 
         //check if stage values are right
         if (bindingResult.hasErrors()) {
             fillModelWithAttributesForProgram(new Band(), event, model, new BandTimeSlotContainer(), stage, new StageIdContainer());
+            model.addAttribute("title", "Program");
             return "program";
         }
 
@@ -276,6 +277,7 @@ public class EventController {
         } else {
             bindingResult.rejectValue("identifier", "error.stage", "Stage with this identifier already exists");
             fillModelWithAttributesForProgram(new Band(), event, model, new BandTimeSlotContainer(), stage, new StageIdContainer());
+            model.addAttribute("title", "Program");
             return "program";
         }
 
@@ -314,6 +316,7 @@ public class EventController {
         if (band == null) {
             bindingResult.rejectValue("bandId", "error.bandTimeSlotContainer", "there is no band with this name");
             fillModelWithAttributesForProgram(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
+            model.addAttribute("title", "Program");
             return "program";
         }
 
@@ -353,6 +356,7 @@ public class EventController {
         } else {
             bindingResult.rejectValue("stageId", "error.stageIdContainer", "This stage can not be deleted");
             fillModelWithAttributesForProgram(new Band(), event, model, new BandTimeSlotContainer(), new Stage(), stageIdContainer);
+            model.addAttribute("title", "Program");
             return "program";
         }
     }
@@ -410,6 +414,7 @@ public class EventController {
         } finally {
             fillModelWithAttributesForProgram(band, event, model, new BandTimeSlotContainer(), new Stage(), new StageIdContainer());
         }
+        model.addAttribute("title", "Program");
         return "program";
     }
 
@@ -457,6 +462,7 @@ public class EventController {
             if (bandTimeSlotContainer.getDateTimeToDeleteBand().equals("")) {
                 bindingResult.rejectValue("dateTimeToDeleteBand", "error.bandTimeSlotContainer", "Please choose a certain date");
                 fillModelWithAttributesForProgram(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
+                model.addAttribute("title", "Program");
                 return "program";
             }
             LocalDateTime localDateTime = LocalDateTime.parse(bandTimeSlotContainer.getDateTimeToDeleteBand());
@@ -472,6 +478,7 @@ public class EventController {
         } else {
             bindingResult.rejectValue("dateTimeToDeleteBand", "error.bandTimeSlotContainer", "There is no time slot with this band combination found");
             fillModelWithAttributesForProgram(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
+            model.addAttribute("title", "Program");
             return "program";
         }
     }

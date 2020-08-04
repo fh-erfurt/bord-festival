@@ -368,16 +368,5 @@ public class LineUp extends AbstractModel {
         this.breakBetweenTwoBandsInMinutes = breakBetweenTwoBandsInMinutes;
     }
 
-    public void sortPrograms() {
-/*
-        programsForStages.entrySet().stream().sorted(Comparator.comparing((stage1)->stage.getCreatedAt()));
-*/
-        /*dayPrograms.entrySet().stream().forEach((Program program)->{
-            program.getProgramsForStages().entrySet().stream().sorted(Comparator.comparing((Stage stage)->stage.getCreatedAt());
-        });*/
-/*
-        programsForStages.getProgramsForStages().entrySet().stream().forEach().sorted(Comparator.comparing((program)->program.getKey()));
-*/
 
-    }
 }

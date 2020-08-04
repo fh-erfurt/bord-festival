@@ -405,7 +405,5 @@ public class Event extends AbstractModel implements IEvent {
         return this.lineUp.getBand(band);
     }
 
-    public void sortPrograms() {
-        this.lineUp.sortPrograms();
-    }
+
 }
