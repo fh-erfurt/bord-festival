@@ -75,9 +75,8 @@ code {
     border-radius: 4px;
     padding: 10px;
     border: 1px solid black;
-    cursor: pointer;
     width: 220px;
-    height: 200px;
+    max-height: 200px;
     margin-right: 5px;
     text-decoration: none;
     color: black;
