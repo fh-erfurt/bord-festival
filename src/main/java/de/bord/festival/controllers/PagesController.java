@@ -24,10 +24,10 @@ public class PagesController {
     public String index(Model model) throws BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException, TimeDisorderException, DateDisorderException {
         model.addAttribute("title", "Home");
 
-        HelpClasses helpClasses = new HelpClasses();
+        /*HelpClasses helpClasses = new HelpClasses();
         Event event1 = helpClasses.getValidNDaysEvent2(5);
         event1.addStage(helpClasses.getStage());
-        Event newEvent= eventRepository.save(event1);
+        Event newEvent= eventRepository.save(event1);*/
 
         return "index";
     }

@@ -56,6 +56,9 @@
                         Start Date<p th:text="${#temporals.format(event.startDate, 'dd-MM-yyyy')}"></p>
 
                         End Date<p th:text="${#temporals.format(event.endDate, 'dd-MM-yyyy')}"></p>
+                        Start Time<p th:text="${#temporals.format(event.startTime, 'H:mm')}"></p>
+
+                        End Time<p th:text="${#temporals.format(event.endTime, 'H:mm')}"></p>
                         Break between 2 bands<p th:text="*{breakBetweenTwoBandsInMinutes}"></p>
 
                     </th:block>
