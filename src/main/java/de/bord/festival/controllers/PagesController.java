@@ -1,7 +1,8 @@
 package de.bord.festival.controllers;
 
+import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.exception.*;
-import de.bord.festival.models.Client;
+import de.bord.festival.models.Event;
 import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,9 @@ public class PagesController {
         model.addAttribute("title", "Home");
 
         /*HelpClasses helpClasses = new HelpClasses();
-        Event event1 = helpClasses.getValidNDaysEvent2(1);
-        eventRepository.save(event1);*/
+        Event event1 = helpClasses.getValidNDaysEvent2(5);
+        event1.addStage(helpClasses.getStage());
+        Event newEvent= eventRepository.save(event1);*/
 
         return "index";
     }

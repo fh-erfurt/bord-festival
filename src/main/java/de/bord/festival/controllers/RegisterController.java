@@ -4,6 +4,7 @@ import de.bord.festival.exception.ClientNameException;
 import de.bord.festival.exception.MailException;
 import de.bord.festival.models.Address;
 import de.bord.festival.models.Client;
+import de.bord.festival.models.Role;
 import de.bord.festival.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,12 +15,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.RollbackException;
 import javax.validation.Valid;
 
 @Controller
 public class RegisterController {
     private final ClientRepository clientRepository;
 
+    @Autowired
     PasswordEncoder passwordEncoder;
 
 
@@ -39,7 +42,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public RedirectView register(@Valid Address address, BindingResult bindingResultAddress,
+    public String register(@Valid Address address, BindingResult bindingResultAddress,
                                  @Valid Client client, BindingResult bindingResultClient)
     {
         if (!bindingResultAddress.hasErrors() && !bindingResultClient.hasErrors())
@@ -49,10 +52,10 @@ public class RegisterController {
 
             client.setAddress(address);
             client.setPassword(passwordHash);
-            client.setRole("USER");
+            client.setRole(Role.USER);
             clientRepository.save(client);
         }
         // Client signing in himself is automatically a user
-        return new RedirectView("/user_menu");
+        return "user_menu";
     }
 }

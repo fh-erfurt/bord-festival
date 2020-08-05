@@ -1,6 +1,7 @@
 package de.bord.festival.models;
 
 import de.bord.festival.exception.TimeSlotCantBeFoundException;
+import org.springframework.security.core.parameters.P;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -18,20 +19,26 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 public class Program extends AbstractModel {
     //hibernate can not save collection of collections
     @OneToMany(cascade = CascadeType.ALL)
+    @OrderBy("createdAt")
     private Map<Stage, TimeSlotList> programsForStages;
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;//to access the lineUp fields
 
-    public Map<Stage, TimeSlotList> getProgramsForStages() {
-        return programsForStages;
-    }
 
     public Program(){
 
     }
     public Program(Stage stage, LineUp lineUp) {
         this.lineUp = lineUp;
-        programsForStages = new LinkedHashMap<>();
+        programsForStages = new TreeMap<>((o1, o2) -> {
+            if (o1.getCreatedAt()!=null && o2.getCreatedAt()!=null){
+                return o1.getCreatedAt().compareTo(o2.getCreatedAt());
+            }
+            else{
+                return 1;
+            }
+
+        });
         programsForStages.put(stage, new TimeSlotList());
 
     }
@@ -67,7 +74,6 @@ public class Program extends AbstractModel {
             TimeSlot previousTimeSlot = currentListOfTimeSlots.get(currentListOfTimeSlots.size()-1);
             LocalTime newTime = getNewTime(previousTimeSlot, minutesOnStage);
             if (newTimeIsFound(newTime)) {
-                doesAlreadyPlay(band, newTime);
                 TimeSlot newTimeSlot = new TimeSlot(newTime, band, minutesOnStage);
                 currentListOfTimeSlots.add(newTimeSlot);
                 return new EventInfo(newTime, currentStage);
@@ -93,7 +99,6 @@ public class Program extends AbstractModel {
     private EventInfo createEventInfoWithTimeSlotAtStart(List<TimeSlot> currentListOfTimeSlots, Band band, Stage currentStage, long minutesOnStage) throws TimeSlotCantBeFoundException {
         // It will be at start time of the first day of festival
         LocalTime time = this.lineUp.getStartTime();
-        doesAlreadyPlay(band, time);//throws exception
         if (canPlayBeforeTheEndOfDay(minutesOnStage, time)) {
             TimeSlot timeSlot = new TimeSlot(time, band, minutesOnStage);
             currentListOfTimeSlots.add(timeSlot);
@@ -104,26 +109,6 @@ public class Program extends AbstractModel {
     }
 
 
-    /**
-     * Checks if the band plays on another stage at the same time
-     *
-     * @param band band should be checked
-     * @param time time should be checked
-     * @throws TimeSlotCantBeFoundException if the band plays on another stage at the same time
-     */
-    private void doesAlreadyPlay(Band band, LocalTime time) throws TimeSlotCantBeFoundException {
-
-        for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
-            for (int i = 0; i < entry.getValue().getTimeSlots().size(); i++) {
-                LocalTime timeInTimeSlot = entry.getValue().getTimeSlots().get(i).getTime();
-                String nameOfBandInTimeSlot = entry.getValue().getTimeSlots().get(i).getNameOfBand();
-                //if the same time and band name exist on another stage
-                if ((time.compareTo(timeInTimeSlot) == 0) && (band.getName().equals(nameOfBandInTimeSlot))) {
-                    throw new TimeSlotCantBeFoundException("This band plays already on another stage");
-                }
-            }
-        }
-    }
 
     /**
      * Provides new time on the given day
@@ -165,13 +150,12 @@ public class Program extends AbstractModel {
     /**
      * Checks if there is a band subscribed to a stage
      *
-     * @param id id of the stage
      * @return if a band plays on the stage: true, otherwise: false
      */
-    public boolean existOnStageTimeSlots(int id) {
+    public boolean existOnStageTimeSlots(String stageName) {
         for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
             Stage currentStage = entry.getKey();
-            if (currentStage.getIdentifier() == id) {
+            if (currentStage.getStageName().equals(stageName)) {
                 return !entry.getValue().getTimeSlots().isEmpty();
             }
         }
@@ -182,10 +166,9 @@ public class Program extends AbstractModel {
      * Removes stage from program
      * Condition: only one stage exists in the list with the same id
      *
-     * @param id id of the stage
      */
-    public void removeStage(int id) {
-        programsForStages.entrySet().removeIf(entry->entry.getKey().getIdentifier()==id);
+    public void removeStage(String stageName) {
+        programsForStages.entrySet().removeIf(entry->entry.getKey().getStageName().equals(stageName));
     }
 
     /**
@@ -198,13 +181,12 @@ public class Program extends AbstractModel {
 
         for (Map.Entry<Stage, TimeSlotList> entry : programsForStages.entrySet()) {
             List<TimeSlot> timeSlotsPerStage = entry.getValue().getTimeSlots();
-            for (int i = 0; i < timeSlotsPerStage.size(); i++) {
-                if (isTheSameBand(timeSlotsPerStage.get(i), band)) {
-                    timeSlotsPerStage.remove(timeSlotsPerStage.get(i));
-                }
 
-            }
+            timeSlotsPerStage.removeIf(s -> isTheSameBand(s, band));
+
         }
+
+
     }
 
     /**
@@ -256,6 +238,9 @@ public class Program extends AbstractModel {
             }
         }
         return false;
+    }
+    public Map<Stage, TimeSlotList> getProgramsForStages() {
+        return programsForStages;
     }
 
 

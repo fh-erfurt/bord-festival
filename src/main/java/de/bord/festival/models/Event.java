@@ -41,17 +41,15 @@ public class Event extends AbstractModel implements IEvent {
     @Size(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
     private String name;
     @NotNull
-    @Min(value=1, message = "Budget should be more than zero")
+    @Min(value = 1, message = "Budget should be more than zero")
     private BigDecimal budget;
-    @Transient
     private double actualCosts = 0;
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
-
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Client> clients;
 
-    public void addClient(Client client){
+    public void addClient(Client client) {
         this.clients.add(client);
     }
 
@@ -69,7 +67,7 @@ public class Event extends AbstractModel implements IEvent {
     }
 
 
-    //@NotNull
+
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
@@ -112,17 +110,6 @@ public class Event extends AbstractModel implements IEvent {
 
     }
 
-    public int getNumberOfBands() {
-        return lineUp.getNumberOfBands();
-    }
-
-    public int getNumberOfStages() {
-        return lineUp.getNumberOfStages();
-    }
-
-    public int getNumberOfDays() {
-        return lineUp.getNumberOfDays();
-    }
 
     /**
      * detects if the price of band is affordable for the event budget
@@ -131,6 +118,9 @@ public class Event extends AbstractModel implements IEvent {
      * @return true if the band is affordable for the budget of an event, otherwise false
      */
     private boolean isNewBandAffordable(Band band) {
+        if (containsBand(band)){
+            return true;
+        }
         return actualCosts + band.getPricePerEvent() <= budget.doubleValue();
     }
 
@@ -148,17 +138,16 @@ public class Event extends AbstractModel implements IEvent {
      * Removes stage from all programs and from the list of stages
      * Removes stage, if it has no set time slots and the number of stages > 1
      *
-     * @param id id, on which the stage should be removed
      * @return true, if the stage is removed, otherwise false
      */
-    public boolean removeStage(int id) {
-        return lineUp.removeStage(id);
+    public boolean removeStage(String stageName) {
+        return lineUp.removeStage(stageName);
     }
 
     /**
      * Adds band to the event
      *
-     * @param band           object, which should be added
+     * @param band object, which should be added
      * @return the information, which is relevant for band: stage, date, time, if the timeSlot is found,
      * otherwise null
      * @throws BudgetOverflowException,      if the band is to expensive
@@ -228,6 +217,9 @@ public class Event extends AbstractModel implements IEvent {
         actualCosts += amount;
     }
 
+    public boolean containsBand(Band band) {
+        return this.lineUp.containsBand(band);
+    }
     public int getNumberOfDayTickets() {
         return ticketManager.getNumberOfDayTickets();
     }
@@ -336,7 +328,7 @@ public class Event extends AbstractModel implements IEvent {
         return ticketManager.setPriceLevel(index);
     }
 
-    public PriceLevel getTheActualPricelevel(){
+    public PriceLevel getTheActualPricelevel() {
         return ticketManager.getTheActualPriceLevel();
     }
 
@@ -393,14 +385,31 @@ public class Event extends AbstractModel implements IEvent {
         return this.lineUp.getStages();
     }
 
-
-    public TicketManager getTicketManager(){
+    public TicketManager getTicketManager() {
         return ticketManager;
     }
 
     public Stage getFirstStage() {
         return this.lineUp.getFirstStage();
     }
+
+    public int getNumberOfBands() {
+        return lineUp.getNumberOfBands();
+    }
+
+    public int getNumberOfStages() {
+        return lineUp.getNumberOfStages();
+    }
+
+    public int getNumberOfDays() {
+        return lineUp.getNumberOfDays();
+    }
+
+    public Band getBand(Band band) {
+        return this.lineUp.getBand(band);
+    }
+
+
 
     public List<Client> getClients() {
         return clients;

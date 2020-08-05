@@ -1,4 +1,4 @@
-package de.bord.festival.controllers.help;
+package de.bord.festival.helper;
 
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
@@ -17,7 +17,14 @@ public class HelpClasses {
         return new Band("GOD IS AN ASTRONAUT", "920", 500,200);
 
     }
+    public Band getBand(String name, double priceProEvent, long minutesOnStage) {
+        return new Band(name, "911", priceProEvent, minutesOnStage);
 
+    }
+    public Band getBand(long minutesOnStage) {
+        return new Band("Band lolo", "911", 200, minutesOnStage);
+
+    }
     public LineUp getLineUp(LocalDate startDate, LocalDate endDate) throws DateDisorderException, PriceLevelException, TimeDisorderException {
         Stage stage = getStage();
         return new LineUp(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, startDate, endDate, stage, getValidNDaysEvent(1));
@@ -31,17 +38,13 @@ public class HelpClasses {
 
     public Stage getStage() {
 
-        return new Stage(1,"stage1");
+        return new Stage("Stage1");
 
     }
-    public Stage getStage(int id) {
 
-        return new Stage(id,"stage1");
+    public Stage getStage(String name) {
 
-    }
-    public Stage getStage(int id, String name) {
-
-        return new Stage(id,name);
+        return new Stage(name);
 
     }
 
@@ -176,7 +179,7 @@ public class HelpClasses {
     }
 
     public Client exampleClient() throws MailException, ClientNameException {
-        return Client.getNewClient("Max", "Muster","max@test.de", "pass123", getAddress(), "USER");
+        return Client.getNewClient("Max", "Muster","max@test.de", "pass123", getAddress(), Role.USER);
     }
 
 }

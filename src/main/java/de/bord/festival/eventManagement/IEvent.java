@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public interface IEvent {
 
     boolean addStage(Stage stage);
-    boolean removeStage(int id);
+    boolean removeStage(String stageName);
     EventInfo addBand(Band band) throws BudgetOverflowException, TimeSlotCantBeFoundException;
     boolean removeBand(Band band);
     boolean removeBand(Band band, LocalDateTime dateAndTime);

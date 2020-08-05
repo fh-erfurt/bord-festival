@@ -1,7 +1,7 @@
 package de.bord.festival.eventManagement;
 
+import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.exception.*;
-import de.bord.festival.help.HelpClasses;
 import de.bord.festival.models.*;
 import org.junit.jupiter.api.Test;
 
@@ -51,7 +51,7 @@ class EventTest {
         Event event = help.getValidNDaysEvent(3);
         Stage stage = help.getStage();
         event.addStage(stage);
-        event.removeStage(stage.getIdentifier());
+        event.removeStage(stage.getStageName());
         assertEquals(1, event.getNumberOfStages());
     }
 
@@ -136,7 +136,7 @@ class EventTest {
         event.addBand(band2);
         //then
 
-        assertFalse(event.removeStage(1));
+        assertFalse(event.removeStage("Stage1"));
 
 
     }
@@ -203,7 +203,7 @@ class EventTest {
 
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
-        Stage stage=new Stage(2,"name");//stages with different index are not the same
+        Stage stage=new Stage("name");//stages with different index are not the same
         assertTrue(lineUp.addStage(stage));
     }
 
@@ -212,7 +212,7 @@ class EventTest {
         //Given
         LineUp lineUp = help.getLineUp(LocalDate.of(2020, 12, 12),
                 LocalDate.of(2020, 12, 12));
-        Stage stage = new Stage(2, "name");//stages with different index are not the same
+        Stage stage = new Stage("name");//stages with different index are not the same
         //When
         lineUp.addStage(stage);
         //Than

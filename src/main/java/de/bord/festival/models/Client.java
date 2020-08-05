@@ -6,6 +6,7 @@ import de.bord.festival.exception.MailException;
 import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.Type;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -21,9 +22,8 @@ public class Client extends AbstractModel implements IClient {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
     private String mail;
-
     private String password;
-    private String role;
+    private Role role;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Ticket> inventory;
     @OneToMany(cascade = CascadeType.ALL)
@@ -36,7 +36,7 @@ public class Client extends AbstractModel implements IClient {
 
     public Client(){}
 
-    public Client(String firstname, String lastname, String mail, String password, Address address, String role)
+    public Client(String firstname, String lastname, String mail, String password, Address address, Role role)
     {
         inventory = new LinkedList<Ticket>();
         cart = new LinkedList<Ticket>();
@@ -49,7 +49,7 @@ public class Client extends AbstractModel implements IClient {
         this.role = role;
     }
 
-    public static Client getNewClient(String firstname, String lastname, String mail, String password, Address address, String role)
+    public static Client getNewClient(String firstname, String lastname, String mail, String password, Address address, Role role)
             throws ClientNameException, MailException {
         nameCheck(firstname);
         nameCheck(lastname);
@@ -201,7 +201,8 @@ public class Client extends AbstractModel implements IClient {
     public String getMail() { return this.mail; }
     public Address getAddress() {return this.address; }
     public String getPassword() { return this.password; }
-    public String getRole() { return this.role; }
+    public Role getRole() { return this.role; }
+    public String getAuthorities() { return "ROLE_" + role; }
 
 
     public void setFirstname(String firstname){ this.firstname=firstname; }
@@ -229,5 +230,6 @@ public class Client extends AbstractModel implements IClient {
             expenditureBasket += ticket.getStdPrice();
         }
     }
+    public void setRole(Role role) { this.role=role; }
 }
 

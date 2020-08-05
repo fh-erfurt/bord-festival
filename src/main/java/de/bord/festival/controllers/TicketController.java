@@ -1,7 +1,6 @@
 package de.bord.festival.controllers;
 
 import de.bord.festival.controllers.dataContainers.TicketCounter;
-import de.bord.festival.controllers.help.HelpClasses;
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.ClientRepository;
@@ -32,6 +31,8 @@ public class TicketController {
     private Exception exception;
     private TicketCounter ticketCounter = null;
 
+    ClientControllerAdvice clientControllerAdvice = new ClientControllerAdvice();
+
     private final EventRepository eventRepository;
     @Autowired PriceLevelRepository priceLevelRepository;
 
@@ -46,6 +47,8 @@ public class TicketController {
 
     @GetMapping("user_menu")
     public String createEventOverview(ModelMap model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
+        long clientId = clientControllerAdvice.getClientId();
+
        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        //Object principal = authentication.getPrincipal();
 
