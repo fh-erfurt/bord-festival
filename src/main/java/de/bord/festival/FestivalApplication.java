@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Optional;
+
 @SpringBootApplication
 public class FestivalApplication {
 
@@ -26,8 +28,15 @@ public class FestivalApplication {
         Client userClient = helper.exampleClientAsUser();
         Client adminClient = helper.exampleClientAsAdmin();
 
-        clientRepository.save(userClient);
-        clientRepository.save(adminClient);
+        Optional<Client> userExists = clientRepository.findByMail(userClient.getMail());
+        Optional<Client> adminExists = clientRepository.findByMail(adminClient.getMail());
+
+        if(!userExists.isPresent()) {
+            clientRepository.save(userClient);
+        }
+        if(!adminExists.isPresent()) {
+            clientRepository.save(adminClient);
+        }
     }
 
 
