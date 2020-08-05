@@ -35,6 +35,7 @@ public class RegisterController {
     @GetMapping("/register")
     public String registerForm(Model model)
     {
+        model.addAttribute("title", "Register");
         model.addAttribute("client", new Client());
         model.addAttribute("address", new Address());
 
@@ -52,10 +53,10 @@ public class RegisterController {
 
             client.setAddress(address);
             client.setPassword(passwordHash);
+            // Client signing in himself is automatically a user
             client.setRole(Role.USER);
             clientRepository.save(client);
         }
-        // Client signing in himself is automatically a user
-        return "user_menu";
+        return "index";
     }
 }

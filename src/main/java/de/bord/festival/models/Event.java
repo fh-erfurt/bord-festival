@@ -2,9 +2,7 @@ package de.bord.festival.models;
 
 import de.bord.festival.eventManagement.IEvent;
 import de.bord.festival.exception.*;
-import de.bord.festival.ticket.DayTicket;
 import de.bord.festival.ticket.Type;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -12,13 +10,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.chrono.ChronoLocalDate;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
-import static javax.persistence.TemporalType.DATE;
 
 /**
  * Represents a festival with required features

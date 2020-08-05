@@ -29,31 +29,42 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new HttpSessionEventPublisher();
     }
 
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new CustomAccessDeniedHandler();
+    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(clientDetailsService);
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/**", "/index", "/contact_details", "/register", "fragments/**", "/js/**", "/css/**", "/images/**", "/console/**").permitAll()
+                .antMatchers("/", "/index", "/contact_details", "/register", "fragments/**", "/js/**", "/css/**", "/images/**", "/console/**").permitAll()
                 .antMatchers("/user_menu", "/buy_ticket_user", "/information_user", "/ticket_buy_error", "/ticket_buy_ok").hasRole("USER")
                 .antMatchers("/admin_menu", "/events", "/event_form", "/program").hasRole("ADMIN")
-                .and()
 
+                .and()
                 .formLogin()
                 .loginPage("/login")
                 .failureUrl("/login?error")
                 .usernameParameter("username").passwordParameter("password")
                 .defaultSuccessUrl("/loginSuccess",true)
                 .permitAll()
+
+                .and()
+                .exceptionHandling()
+                .accessDeniedHandler(accessDeniedHandler())
+
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
+
                 .permitAll();
 
         http.csrf().ignoringAntMatchers("/console/**")
