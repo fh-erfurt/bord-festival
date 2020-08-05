@@ -6,9 +6,17 @@ import de.bord.festival.models.Event;
 import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Container for all pages that have no certain mapping for its functionalities
@@ -16,10 +24,16 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class PagesController {
+
     @Autowired
     EventRepository eventRepository;
+
     @Autowired
-    private ClientRepository clientRepository;
+    ClientRepository clientRepository;
+
+    @Autowired
+    ClientControllerAdvice clientControllerAdvice = new ClientControllerAdvice();
+
     @GetMapping("/")
     public String index(Model model) throws BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException, TimeDisorderException, DateDisorderException {
         model.addAttribute("title", "Home");
@@ -31,11 +45,20 @@ public class PagesController {
 
         return "index";
     }
+
     @GetMapping("/error404")
-    public String error(Model model) {
+    public String error404(Model model) {
         model.addAttribute("title", "Error Page");
-        return "error";
+        return "error404";
     }
+
+    @GetMapping("/error403")
+    public String error403(Model model) {
+        model.addAttribute("title", "Error Page");
+
+        return "error403";
+    }
+
     @GetMapping("/admin_menu")
     public String adminMenu(Model model) {
         model.addAttribute("title", "Menu");

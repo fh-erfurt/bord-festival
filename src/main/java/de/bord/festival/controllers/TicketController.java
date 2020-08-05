@@ -46,6 +46,9 @@ public class TicketController {
 
     @GetMapping("user_menu")
     public String createEventOverview(ModelMap model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
+
+        model.addAttribute("title", "Menu");
+
         long clientId = clientControllerAdvice.getClientId();
 
         eventId = -1;
@@ -64,9 +67,13 @@ public class TicketController {
 
     @GetMapping("/buy_ticket_user")
     public String chooseEvent( @RequestParam (value = "eventId", required = false) long eventId, ModelMap model){
-        if(this.eventId == -1){
+
+        model.addAttribute("title", "Buy ticket");
+
+        if(this.eventId == -1) {
             this.eventId = eventId;
         }
+
         Event event1 =  eventRepository.findById(this.eventId);
         event = event1;
         model.addAttribute("theEvent", event1);

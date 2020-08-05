@@ -30,13 +30,15 @@ public class LoginController {
     ClientRepository clientRepository;
 
     @GetMapping("login")
-    public String loginForm(){
+    public String loginForm(Model model){
 
+        model.addAttribute("title","Log in");
         return "login";
     }
 
     @GetMapping(value = "/loginSuccess")
-    public String currentClient(Authentication authentication) {
+    public String currentClient() {
+
         long clientId = clientControllerAdvice.getClientId();
         Client client = clientRepository.findById(clientId);
 
