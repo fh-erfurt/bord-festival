@@ -1,6 +1,7 @@
-package de.bord.festival.ticket;
+package de.bord.festival.models;
 
 import de.bord.festival.models.Ticket;
+import de.bord.festival.ticket.Type;
 
 import javax.persistence.Entity;
 

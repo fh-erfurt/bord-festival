@@ -53,10 +53,10 @@ public class RegisterController {
 
             client.setAddress(address);
             client.setPassword(passwordHash);
+            // Client signing in himself is automatically a user
             client.setRole(Role.USER);
             clientRepository.save(client);
         }
-        // Client signing in himself is automatically a user
-        return "user_menu";
+        return "index";
     }
 }

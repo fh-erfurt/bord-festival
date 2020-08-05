@@ -2,10 +2,10 @@ package de.bord.festival.helper;
 
 import de.bord.festival.exception.*;
 import de.bord.festival.models.*;
-import de.bord.festival.ticket.CampingTicket;
-import de.bord.festival.ticket.DayTicket;
+import de.bord.festival.models.CampingTicket;
+import de.bord.festival.models.DayTicket;
 import de.bord.festival.ticket.Type;
-import de.bord.festival.ticket.VIPTicket;
+import de.bord.festival.models.VIPTicket;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
