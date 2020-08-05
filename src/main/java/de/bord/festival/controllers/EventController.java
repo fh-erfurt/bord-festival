@@ -53,12 +53,14 @@ public class EventController {
     private final EventRepository eventRepository;
     private final BandRepository bandRepository;
     private final StageRepository stageRepository;
+    private final ClientRepository clientRepository; //////////
 
     @Autowired
-    public EventController(StageRepository stageRepository, EventRepository eventRepository, BandRepository bandRepository) {
+    public EventController(StageRepository stageRepository, EventRepository eventRepository, BandRepository bandRepository, ClientRepository clientRepository) {
         this.eventRepository = eventRepository;
         this.bandRepository = bandRepository;
         this.stageRepository = stageRepository;
+        this.clientRepository = clientRepository; ////////
     }
 
 
@@ -196,8 +198,13 @@ public class EventController {
      * Mapping shows list of all existing events
      */
     @GetMapping("events")
-    public String getEvents(Model model) {
+    public String getEvents(Model model) throws MailException, ClientNameException, PriceLevelException, TimeDisorderException, DateDisorderException {
 
+        HelpClasses h1 = new HelpClasses();
+        eventRepository.save(h1.getValidNDaysEvent(2));
+
+        Client client1 = h1.exampleClient();
+        clientRepository.save(client1);
 
         List<Event> events = eventRepository.findAll();
         Collections.sort(events, Comparator.comparing(Event::getStartDate));

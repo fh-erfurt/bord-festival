@@ -7,10 +7,7 @@ import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.Type;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -34,12 +31,16 @@ public class Client extends AbstractModel implements IClient {
     private double expenditure = 0.0;
     private double expenditureBasket = 0.0;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Order> orders;
+
     public Client(){}
 
     public Client(String firstname, String lastname, String mail, String password, Address address, String role)
     {
         inventory = new LinkedList<Ticket>();
         cart = new LinkedList<Ticket>();
+        orders = new LinkedList<Order>();
         this.firstname = firstname;
         this.lastname = lastname;
         this.mail = mail;
@@ -156,7 +157,7 @@ public class Client extends AbstractModel implements IClient {
      * Adds to the expenditure attribute of Client
      * @param expenditure
      */
-    public void setExpenditure(double expenditure) { this.expenditure = expenditure; }
+    public void setExpenditure(double expenditure) { this.expenditure += expenditure; }
 
     public double getExpenditure(){return expenditure;}
 
@@ -212,6 +213,21 @@ public class Client extends AbstractModel implements IClient {
 
     public double getExpenditureBasket() {
         return expenditureBasket;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void addOrder(){
+        Order order = new Order(cart);
+        this.orders.add(order);
+    }
+
+    public void getExpenditureByPricesFromCart(){
+        for(Ticket ticket : this.cart){
+            expenditureBasket += ticket.getStdPrice();
+        }
     }
 }
 

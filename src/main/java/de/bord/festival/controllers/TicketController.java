@@ -48,6 +48,10 @@ public class TicketController {
     public String createEventOverview(ModelMap model) throws PriceLevelException, TimeDisorderException, DateDisorderException {
        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
        //Object principal = authentication.getPrincipal();
+
+        List <Client> clients = clientRepository.findAll();
+        client = clients.get(0);
+
         eventId = -1;
         List<Event> events = eventRepository.findAll();
 
@@ -59,8 +63,11 @@ public class TicketController {
             client = (Client)principal;
         }
 */
-
+       ticketCounter = null;
        ticketCounter = new TicketCounter();
+       client.clearExpenditureBasket();
+       client.getExpenditureByPricesFromCart();
+       clientRepository.save(client);
 
 
         return "user_menu";
@@ -124,13 +131,22 @@ public class TicketController {
 
         List <Client> clients = clientRepository.findAll();
         Client client1 = clients.get(0);
+        client = client1;
 
         try {
             if(!ticketCounter.areNoTicketsInCart()){
                 client2 = client1;
                 event.sellTickets(client1);
-                event.addClient(client1);
-                eventRepository.save(event);
+
+                if(isClientNotInEventlist()){
+                    event.addClient(client1);
+                    eventRepository.save(event);
+                }
+                else{
+                    clientRepository.save(client1);
+                }
+
+
                 client= client1;
                 // model.addAttribute("client", client1);
                 return "redirect:/ticket_buy_ok?eventId=" +eventId;
@@ -175,6 +191,16 @@ public class TicketController {
       model.addAttribute("client", client1);
 
         return "information_user";
+    }
+
+    public boolean isClientNotInEventlist(){
+        for(Client client1 : this.event.getClients()){
+            if(this.client.getId() == client1.getId()){
+                return false;
+            }
+
+        }
+        return true;
     }
 
 

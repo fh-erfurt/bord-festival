@@ -47,6 +47,7 @@ public class Event extends AbstractModel implements IEvent {
     private double actualCosts = 0;
     @OneToOne(cascade = CascadeType.ALL)
     private LineUp lineUp;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Client> clients;
 
@@ -399,5 +400,9 @@ public class Event extends AbstractModel implements IEvent {
 
     public Stage getFirstStage() {
         return this.lineUp.getFirstStage();
+    }
+
+    public List<Client> getClients() {
+        return clients;
     }
 }
