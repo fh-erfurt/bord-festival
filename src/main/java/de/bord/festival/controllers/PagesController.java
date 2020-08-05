@@ -1,22 +1,12 @@
 package de.bord.festival.controllers;
 
-import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.exception.*;
-import de.bord.festival.models.Event;
 import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Container for all pages that have no certain mapping for its functionalities
