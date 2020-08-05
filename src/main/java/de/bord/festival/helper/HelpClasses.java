@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class HelpClasses {
+
     public Band getBand() {
         return new Band("GOD IS AN ASTRONAUT", "920", 500,200);
 
@@ -180,6 +181,14 @@ public class HelpClasses {
 
     public Client exampleClient() throws MailException, ClientNameException {
         return Client.getNewClient("Max", "Muster","max@test.de", "pass123", getAddress(), Role.USER);
+    }
+
+    public Client exampleClientAsUser() throws MailException, ClientNameException {
+        return Client.getNewClient("Example", "User","user@gmail.com", "$2a$10$gYNNE/iTPxyNvwPI5Hym6eCTPZySL.h2b8IZ.J009MtI5PaYmtEkG", getAddress(), Role.USER);
+    }
+
+    public Client exampleClientAsAdmin() throws MailException, ClientNameException {
+        return Client.getNewClient("Example", "Admin","admin@gmail.com", "$2a$10$yormxATu/i0K1TBp1kTeFeN5DZWIZfN1Qt5eZSDZF24kNRC6FFfoi", getAddress(), Role.ADMIN);
     }
 
 }
