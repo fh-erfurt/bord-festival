@@ -40,13 +40,17 @@ public class LoginController {
     public String currentClient() {
 
         long clientId = clientControllerAdvice.getClientId();
-        Client client = clientRepository.findById(clientId);
 
-        if(client.getRole() == Role.ADMIN) {
-            return "admin_menu";
-        }
-        else if(client.getRole() == Role.USER) {
-            return "user_menu";
+        if(clientId != 0) {
+            Client client = clientRepository.findById(clientId);
+            if(client != null) {
+                if(client.getRole() == Role.ADMIN) {
+                    return "admin_menu";
+                }
+                else if(client.getRole() == Role.USER) {
+                    return "user_menu";
+                }
+            }
         }
 
         return "redirect:/";
