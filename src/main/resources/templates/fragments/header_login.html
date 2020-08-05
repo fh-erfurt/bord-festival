@@ -1,0 +1,21 @@
+<header th:fragment="header_login">
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/"><span class="bord-header">BORD</span>-<span class="bord-header">F</span>estival</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/events">Events</a>
+                </li>
+            </ul>
+            <a href="/register" class="btn btn-outline-danger my-2 my-sm-0 mr-3">Register</a>
+            <a href="/login" class="btn btn-outline-danger my-2 my-sm-0">Login</a>
+        </div>
+    </nav>
+</header>

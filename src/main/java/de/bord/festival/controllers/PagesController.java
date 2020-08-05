@@ -2,7 +2,9 @@ package de.bord.festival.controllers;
 
 import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.exception.*;
+import de.bord.festival.models.Client;
 import de.bord.festival.models.Event;
+import de.bord.festival.models.Role;
 import de.bord.festival.repository.ClientRepository;
 import de.bord.festival.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class PagesController {
+    ClientControllerAdvice clientControllerAdvice = new ClientControllerAdvice();
     @Autowired
     EventRepository eventRepository;
     @Autowired
@@ -24,10 +27,19 @@ public class PagesController {
     public String index(Model model) throws BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException, TimeDisorderException, DateDisorderException {
         model.addAttribute("title", "Home");
 
-        /*HelpClasses helpClasses = new HelpClasses();
-        Event event1 = helpClasses.getValidNDaysEvent2(5);
-        event1.addStage(helpClasses.getStage());
-        Event newEvent= eventRepository.save(event1);*/
+        long clientId = clientControllerAdvice.getClientId();
+
+        if(clientId != 0) {
+            Client client = clientRepository.findById(clientId);
+            if(client != null) {
+                if(client.getRole() == Role.ADMIN) {
+                    return "admin_menu";
+                }
+                else if(client.getRole() == Role.USER) {
+                    return "user_menu";
+                }
+            }
+        }
 
         return "index";
     }
