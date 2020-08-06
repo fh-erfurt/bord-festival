@@ -419,6 +419,7 @@ public class EventController {
             bindingResult.rejectValue("minutesOnStage", "error.band", e.getMessage());
         } finally {
             fillModelWithAttributesForProgram(band, event, model, new BandTimeSlotContainer(), new Stage(), new StageIdContainer());
+            model.addAttribute("showAddBandModal", true);
         }
         model.addAttribute("title", "Program");
         return "program";
