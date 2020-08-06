@@ -4,21 +4,18 @@
     <head th:replace="fragments/head :: head">
     </head>
 
-    <body class="d-flex flex-column h-100">
+    <body class="h-100">
         <header th:replace="fragments/header :: header">
         </header>
-
-
-            <div class="container h-100">
-                <div class="container stretch-to-bottom">
-                    <div class="row h-100 align-items-center justify-content-center">
-                        <div class="col-lg-4 col-sm-12">
+            <div class="container stretch-to-bottom">
+                <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-8 col-sm-12 mb-3">
                         <h3>Choose your ticket</h3>
                         <div class="buy_ticket">
 
-                            <div class="only" th:if="${ticketCounter.isCartFull()}"><p>Only 10 tickets allowed</p></div>
+                            <div class="only" th:if="${ticketCounter.isCartFull()}"><div class="alert alert-warning" role="alert">Only 10 tickets allowed</div></div>
 
-                            <div th:if="${ticketCounter.areNoTicketsInCart()}"><p>Please choose a ticket</p></div>
+                            <div th:if="${ticketCounter.areNoTicketsInCart()}"><div class="alert alert-warning" role="alert">Please choose a ticket</div></div>
 
 
                             <div>Event: <p th:text="${theEvent.getName()}"> </p></div>
@@ -72,7 +69,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
 
