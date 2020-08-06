@@ -45,11 +45,10 @@ verwaltet
 
 Des Weiteren organisiert das Event:
 * Verwaltung von Bands
-* Kapazität der einzelnen Bühnen
+* Verwaltung von Stages
 
 ### b) Ticketverwaltung
 * Preisverwaltung der Tickets (Anpassung der Preisstufen)
-    * Anpassung der Preisstufen automatisch oder manuell
 * Allgemeine Informationen über den Ticketbestand
 * Ticketverkauf
 * Ticketanzahl pro User auf 10 Stück beschränkt
