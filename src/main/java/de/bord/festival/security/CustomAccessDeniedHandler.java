@@ -14,12 +14,24 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-
+/**
+ * This class implements the spring security AccessDeniedHandler
+ *
+ * Handles the http-response in case of an unauthorized access
+ * Redirects to the error403 page.
+ */
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     public static final Logger LOG
             = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
 
+    /**
+     * @param request
+     * @param response
+     * @param exc
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void handle(
             HttpServletRequest request,

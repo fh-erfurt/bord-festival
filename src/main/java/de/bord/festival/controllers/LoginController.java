@@ -1,26 +1,18 @@
 package de.bord.festival.controllers;
 
-import de.bord.festival.exception.ClientNameException;
-import de.bord.festival.exception.MailException;
-import de.bord.festival.models.Address;
 import de.bord.festival.models.Client;
 import de.bord.festival.models.Role;
 import de.bord.festival.repository.ClientRepository;
-import de.bord.festival.security.ClientDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.validation.Valid;
-import java.util.Collection;
-
+/**
+ * This controller handles the login page.
+ *
+ * Redirects client to the menu corresponding with his authorities
+ */
 @Controller
 public class LoginController {
 
@@ -29,6 +21,12 @@ public class LoginController {
     @Autowired
     ClientRepository clientRepository;
 
+    /**
+     * Redirects client to login form.
+     *
+     * @param model
+     * @return login
+     */
     @GetMapping("login")
     public String loginForm(Model model) {
 
@@ -36,6 +34,11 @@ public class LoginController {
         return "login";
     }
 
+    /**
+     * Redirects client on loginSuccess to either admin_menu or user_menu, depending on his role.
+     *
+     * @return admin_menu / user_menu
+     */
     @GetMapping(value = "/loginSuccess")
     public String currentClient(Model model) {
         model.addAttribute("title", "Log in");

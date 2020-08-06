@@ -7,10 +7,7 @@ import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.Type;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;

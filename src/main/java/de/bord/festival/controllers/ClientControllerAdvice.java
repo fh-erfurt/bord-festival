@@ -14,12 +14,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Collection;
 
+/**
+ * This controller is accessed every time a new View is rendered.
+ *
+ * It's purpose is to store information about the current user in the Model class and create
+ * a convenient way to access the clientId in other controllers.
+ */
 @ControllerAdvice
 public class ClientControllerAdvice {
 
     @Autowired
     ClientRepository clientRepository;
 
+    /**
+     * Casts the authentication principal of the current client into ClientDetails, making the relevant data
+     * about the current session available. It the adds clientId, clientMail and authorities to model, making
+     * them usable as attributes in every html file.
+     * @param model
+     */
     @ModelAttribute
     public void setCurrentClient(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -40,6 +52,11 @@ public class ClientControllerAdvice {
         }
     }
 
+    /**
+     * Help-function for convenient access of the Id of current client
+     *
+     * @return clientId
+     */
     public long getClientId() {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

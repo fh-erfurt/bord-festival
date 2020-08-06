@@ -14,8 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+/**
+ * This controller handles the signing up of new clients
+ *
+ * Only Users use the register function on our website, admin-accounts are generated manually
+ * by developers, so every new account created by the register site is automatically a user.
+ */
 @Controller
 public class RegisterController {
+
     private final ClientRepository clientRepository;
 
     @Autowired
@@ -27,6 +34,12 @@ public class RegisterController {
         this.clientRepository = clientRepository;
     }
 
+    /**
+     * Redirects to register form.
+     *
+     * @param model
+     * @return register
+     */
     @GetMapping("/register")
     public String registerForm(Model model) {
         model.addAttribute("title", "Register");
@@ -36,18 +49,37 @@ public class RegisterController {
         return "register";
     }
 
+    /**
+     * Checks for errors in the input fields, checks for unique property of the mail-field,
+     * saves client on successful signing up in the client repository and redirects user to
+     * the index site.
+     *
+     * @param model
+     * @param address
+     * @param bindingResultAddress
+     * @param client
+     * @param bindingResultClient
+     * @return index / register
+     */
     @PostMapping("/register")
-    public String register(@Valid Address address, BindingResult bindingResultAddress,
+    public String register(Model model, @Valid Address address, BindingResult bindingResultAddress,
                            @Valid Client client, BindingResult bindingResultClient) {
+
         if (!bindingResultAddress.hasErrors() && !bindingResultClient.hasErrors()) {
 
-            String passwordHash = passwordEncoder.encode(client.getPassword());
+            if(!clientRepository.findByMail(client.getMail()).isPresent()) {
+                model.addAttribute("mailError", false);
 
-            client.setAddress(address);
-            client.setPassword(passwordHash);
-            // Client signing in himself is automatically a user
-            client.setRole(Role.USER);
-            clientRepository.save(client);
+                String passwordHash = passwordEncoder.encode(client.getPassword());
+                client.setAddress(address);
+                client.setPassword(passwordHash);
+                client.setRole(Role.USER);
+                clientRepository.save(client);
+            }
+            else {
+                model.addAttribute("mailError", true);
+                return "register";
+            }
         }
         return "index";
     }
