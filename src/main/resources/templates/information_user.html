@@ -7,50 +7,43 @@
         <header th:replace="fragments/header :: header">
         </header>
 
-        <main role="main" class="flex-shrink-0">
-            <div class="container">
-                <h3>Your Tickets</h3>
-                <h4>Your Event</h4>
-                <div class="row justify-content-start">
-                    <div class="col-md-6 col-sm-12">
+        <div class="container stretch-to-bottom">
+            <div class="container h-100">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-lg-6 col-sm-12">
+
+                    <h3>Your Tickets for your event</h3></br> </br>
+
+                    <div class="row justify-content-start">
                         <div th:each="order: ${client.getOrders_()}" class="row">
                             <div th:if="${!order.getDayTickets().isEmpty()}" class="col-4" >Description
                                 <p th:text="${order.getDayTickets().get(0).ticketType}"></p>
                                 <p th:text="${order.getDayTickets().get(0).getStdPrice()}"></p>
                                 <p th:text="${order.getDayTickets().size()}"></p>
                             </div>
-                                <div th:if="${!order.getCampingTickets().isEmpty()}" class="col-4" >Description
+                            <div th:if="${!order.getCampingTickets().isEmpty()}" class="col-4" >Description
                                 <p th:text="${order.getCampingTickets().get(0).getDescription()}"></p>
-                                </div>
-                                    <div th:if="${!order.getVipTickets().isEmpty()}" class="col-4" >Description
+                            </div>
+                            <div th:if="${!order.getVipTickets().isEmpty()}" class="col-4" >Description
                                 <p th:text="${order.getVipTickets().get(0).getDescription()}"></p>
                             </div>
                         </div>
-                            <div class="col-8">Event Description blablabla
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Date
-                            </div>
-                            <div class="col-8">Event Date
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Ticket type
-                            </div>
-                            <div class="col-8">Camping
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Price
-                            </div>
-                            <div class="col-8">129,99€
-                            </div>
-                        </div>
+                    </div>
+
+                    <div>Description:<!-- getDescription -->
+                    </div></br> </br>
+                    <div>Price:<!-- getPrice -->
+                    </div></br> </br>
+                    <div>Number:<!-- getNumber -->
+                    </div>
+
                     </div>
                 </div>
             </div>
-        </main>
+        </div>
+
+
+
 
         <footer th:replace="fragments/footer :: footer">
         </footer>
