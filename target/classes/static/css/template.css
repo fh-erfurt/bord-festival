@@ -64,6 +64,45 @@ code {
     margin-top: 5px !important;
     margin-bottom: 5px !important;
 }
+.program-wrapper {
+    overflow-y: hidden;
+    overflow-x: auto;
+    width: 100%;
+    white-space: nowrap;
+}
+.program-card {
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid black;
+    width: 220px;
+    max-height: 200px;
+    margin-right: 5px;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 5px;
+    display: inline-block;
+    overflow-y: auto;
+}
+.program-card p {
+    margin: 0;
+}
+.program-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.program-card-timeslot {
+    font-weight: bold;
+    padding-right: 5px;
+    float: left;
+}
+.program-card-band {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .clear-left {
     clear: left;
 }

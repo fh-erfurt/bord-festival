@@ -13,7 +13,7 @@
             <h3>Choose your ticket for</h3>
             <div class="buy_ticket">
 
-                <div th:if="${ticketCounter.isTest()}"><p>Only 10 tickets allowed</p></div>
+                <div th:if="${ticketCounter.isCartFull()}"><p>Only 10 tickets allowed</p></div>
                 <br>
                 <div th:if="${ticketCounter.areNoTicketsInCart()}"><p>Please choose a ticket</p></div>
                 <br>
@@ -55,7 +55,7 @@
                     </form>
                 </div>
                 <br/><br>
-                <label th:text="${'Your Price:'+ #numbers.formatDecimal(client.getExpenditureBasket(),3,2,'COMMA')}"> <!-- getPrice --> </label>
+                <label th:text="${'Your Price:'+ #numbers.formatDecimal(client.getExpenditureByPricesFromCart(),3,2,'COMMA')}"> <!-- getPrice --> </label>
                 <br><br><br>
 
                 <div class="form-group">
