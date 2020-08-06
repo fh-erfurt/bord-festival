@@ -52,7 +52,7 @@ public class HelpClasses {
     public Event getValidNDaysEvent(int numberOfDays) throws DateDisorderException, PriceLevelException, TimeDisorderException {
 
         return Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2018, 01, 01),
-                LocalDate.of(2018, 01, numberOfDays), "Bord", BigDecimal.valueOf(2019),
+                LocalDate.of(2018, 01, numberOfDays), "Weinfest", BigDecimal.valueOf(2019),
                 getStage(),exampleTicketManager(), getAddress());
 
 
@@ -60,7 +60,7 @@ public class HelpClasses {
     public Event getValidNDaysEvent1(int numberOfDays) throws DateDisorderException, PriceLevelException, TimeDisorderException {
 
         return Event.getNewEvent(LocalTime.of(10, 30), LocalTime.of(23, 59), 30, LocalDate.of(2020, 01, 01),
-                LocalDate.of(2020, 01, numberOfDays), "Bord", BigDecimal.valueOf(2019),
+                LocalDate.of(2020, 01, numberOfDays), "Sommerfest", BigDecimal.valueOf(2019),
                 getStage(),exampleTicketManager(), getAddress());
 
 
