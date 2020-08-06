@@ -5,6 +5,7 @@ import de.bord.festival.controllers.dataContainers.DateTimeContainer;
 import de.bord.festival.controllers.dataContainers.StageIdContainer;
 import de.bord.festival.controllers.dataContainers.TicketManagerContainer;
 import de.bord.festival.exception.*;
+import de.bord.festival.helper.HelpClasses;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.BandRepository;
 import de.bord.festival.repository.ClientRepository;
@@ -190,12 +191,6 @@ public class EventController {
      */
     @GetMapping("events")
     public String getEvents(Model model) throws MailException, ClientNameException, PriceLevelException, TimeDisorderException, DateDisorderException {
-
-        HelpClasses h1 = new HelpClasses();
-        eventRepository.save(h1.getValidNDaysEvent(2));
-
-        Client client1 = h1.exampleClient();
-        clientRepository.save(client1);
 
         List<Event> events = eventRepository.findAll();
         Collections.sort(events, Comparator.comparing(Event::getStartDate));

@@ -397,7 +397,7 @@ public class TicketManager extends AbstractModel implements ITicketManager {
         this.numberOfCampingTicketsLeft -= numberOfCampingTicketsSold;
         this.numberOfVipTicketsLeft -= numberOfVipTicketsSold;
 
-       // client.addOrder();
+     //  client.addOrder();
         client.addCartToInventory();
         client.clearCart();
         updateIncomeTicketSales(ticketIncome);

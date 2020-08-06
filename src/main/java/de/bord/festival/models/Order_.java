@@ -5,14 +5,34 @@ import de.bord.festival.ticket.DayTicket;
 import de.bord.festival.ticket.Type;
 import de.bord.festival.ticket.VIPTicket;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
+import javax.persistence.*;
 
 @Entity
-public class Order extends AbstractModel {
+@Table(name="orders")
+public class Order_ extends AbstractModel {
+
+
+
+    @OneToMany (cascade = CascadeType.ALL)
+    private List<Ticket> dayTickets;
+
+    @OneToMany (cascade = CascadeType.ALL)
+    private List<Ticket> campingTickets;
+
+    @OneToMany (cascade = CascadeType.ALL)
+    private List<Ticket> vipTickets;
+
+    public Order_(){}
+
+    public Order_(List<Ticket> tickets){
+        this.dayTickets = new LinkedList<>();
+        this.campingTickets = new LinkedList<>();
+        this.vipTickets = new LinkedList<>();
+        setTicketList(tickets);
+    }
 
     public List<Ticket> getDayTickets() {
         return dayTickets;
@@ -24,24 +44,6 @@ public class Order extends AbstractModel {
 
     public List<Ticket> getVipTickets() {
         return vipTickets;
-    }
-
-    @OneToMany (cascade = CascadeType.ALL)
-    private List<Ticket> dayTickets;
-
-    @OneToMany (cascade = CascadeType.ALL)
-    private List<Ticket> campingTickets;
-
-    @OneToMany (cascade = CascadeType.ALL)
-    private List<Ticket> vipTickets;
-
-    public Order(){}
-
-    public Order(List<Ticket> tickets){
-        this.dayTickets = new LinkedList<>();
-        this.campingTickets = new LinkedList<>();
-        this.vipTickets = new LinkedList<>();
-        setTicketList(tickets);
     }
 
     private void setTicketList(List<Ticket> tickets){

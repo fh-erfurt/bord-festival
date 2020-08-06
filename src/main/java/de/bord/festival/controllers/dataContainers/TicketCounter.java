@@ -9,7 +9,7 @@ public class TicketCounter {
     private int dayTicketCounter;
     private int campingTicketCounter;
     private int vipTicketCounter;
-    private boolean test = false;
+    private boolean isCartFull = false;
 
     public TicketCounter(){
         dayTicketCounter = 0;
@@ -21,24 +21,12 @@ public class TicketCounter {
         return dayTicketCounter;
     }
 
-    public void setDayTicketCounter(int dayTicketCounter) {
-        this.dayTicketCounter = dayTicketCounter;
-    }
-
     public int getCampingTicketCounter() {
         return campingTicketCounter;
     }
 
-    public void setCampingTicketCounter(int campingTicketCounter) {
-        this.campingTicketCounter = campingTicketCounter;
-    }
-
     public int getVipTicketCounter() {
         return vipTicketCounter;
-    }
-
-    public void setVipTicketCounter(int vipTicketCounter) {
-        this.vipTicketCounter = vipTicketCounter;
     }
 
     public void setTicketCounter(Client client){
@@ -68,21 +56,21 @@ public class TicketCounter {
 
     public boolean toManyTickets(){
         if(campingTicketCounter + vipTicketCounter + dayTicketCounter == 10){
-            test = true;
+            isCartFull = true;
             return true;
 
         }
         return false;
     }
     public void setTest(){
-        test = false;
+        isCartFull = false;
         if (toManyTickets()){
-            test = true;
+            isCartFull = true;
         }
     }
 
-    public boolean isTest() {
-        return test;
+    public boolean isCartFull() {
+        return isCartFull;
     }
 
     public boolean areNoTicketsInCart(){

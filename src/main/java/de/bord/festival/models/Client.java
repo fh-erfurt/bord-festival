@@ -6,7 +6,6 @@ import de.bord.festival.exception.MailException;
 import de.bord.festival.exception.PriceLevelException;
 import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.Type;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -24,15 +23,16 @@ public class Client extends AbstractModel implements IClient {
     private String mail;
     private String password;
     private Role role;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Ticket> inventory;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Ticket> cart;
     private double expenditure = 0.0;
     private double expenditureBasket = 0.0;
 
+
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Order> orders;
+     private List<Order_> orders_;
 
     public Client(){}
 
@@ -40,7 +40,7 @@ public class Client extends AbstractModel implements IClient {
     {
         inventory = new LinkedList<Ticket>();
         cart = new LinkedList<Ticket>();
-        orders = new LinkedList<Order>();
+       orders_ = new LinkedList<Order_>();
         this.firstname = firstname;
         this.lastname = lastname;
         this.mail = mail;
@@ -210,26 +210,31 @@ public class Client extends AbstractModel implements IClient {
     public void setMail(String mail){ this.mail=mail; }
     public void setAddress(Address address) { this.address=address; }
     public void setPassword(String password) { this.password=password; }
-    public void setRole(String role) { this.role=role; }
+   // public void setRole(String role) { this.role=role; }
 
     public double getExpenditureBasket() {
         return expenditureBasket;
     }
 
-    public List<Order> getOrders() {
-        return orders;
+   public List<Order_> getOrders_() {
+        return orders_;
     }
 
     public void addOrder(){
-        Order order = new Order(cart);
-        this.orders.add(order);
+        Order_ order = new Order_(cart);
+        this.orders_.add(order);
     }
 
-    public void getExpenditureByPricesFromCart(){
+
+    public double getExpenditureByPricesFromCart(){
+        double  expenditureBasket_ = 0.0;
         for(Ticket ticket : this.cart){
-            expenditureBasket += ticket.getStdPrice();
+
+            expenditureBasket_ += ticket.getStdPrice();
         }
+        return expenditureBasket_;
     }
+
     public void setRole(Role role) { this.role=role; }
 }
 
