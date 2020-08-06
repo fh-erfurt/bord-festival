@@ -60,8 +60,7 @@ public class TicketController {
         model.addAttribute("title", "Menu");
         clientId = clientControllerAdvice.getClientId();
 
-        List <Client> clients = clientRepository.findAll();
-        client = clients.get(clientId.intValue());
+        client = clientRepository.findById(clientId.intValue());
 
         List<Event> events = eventRepository.findAll();
 

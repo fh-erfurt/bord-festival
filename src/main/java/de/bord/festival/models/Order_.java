@@ -1,9 +1,8 @@
 package de.bord.festival.models;
 
-import de.bord.festival.ticket.CampingTicket;
-import de.bord.festival.ticket.DayTicket;
+
 import de.bord.festival.ticket.Type;
-import de.bord.festival.ticket.VIPTicket;
+
 
 import javax.persistence.*;
 import java.util.LinkedList;
