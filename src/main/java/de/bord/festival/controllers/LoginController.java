@@ -30,21 +30,27 @@ public class LoginController {
     ClientRepository clientRepository;
 
     @GetMapping("login")
-    public String loginForm(){
+    public String loginForm(Model model){
 
+        model.addAttribute("title","Log in");
         return "login";
     }
 
     @GetMapping(value = "/loginSuccess")
-    public String currentClient(Authentication authentication) {
-        long clientId = clientControllerAdvice.getClientId();
-        Client client = clientRepository.findById(clientId);
+    public String currentClient() {
 
-        if(client.getRole() == Role.ADMIN) {
-            return "admin_menu";
-        }
-        else if(client.getRole() == Role.USER) {
-            return "user_menu";
+        long clientId = clientControllerAdvice.getClientId();
+
+        if(clientId != 0) {
+            Client client = clientRepository.findById(clientId);
+            if(client != null) {
+                if(client.getRole() == Role.ADMIN) {
+                    return "admin_menu";
+                }
+                else if(client.getRole() == Role.USER) {
+                    return "user_menu";
+                }
+            }
         }
 
         return "redirect:/";
