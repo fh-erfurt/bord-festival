@@ -36,7 +36,7 @@ public class PagesController {
                 if (client.getRole() == Role.ADMIN) {
                     return "admin_menu";
                 } else if (client.getRole() == Role.USER) {
-                    return "user_menu";
+                    return "redirect:/user_menu";
                 }
             }
         }
