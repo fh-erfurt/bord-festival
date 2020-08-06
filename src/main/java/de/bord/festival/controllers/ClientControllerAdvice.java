@@ -1,7 +1,9 @@
 package de.bord.festival.controllers;
 
-import de.bord.festival.repository.ClientRepository;
+import de.bord.festival.models.Client;
+import de.bord.festival.models.Role;
 import de.bord.festival.security.ClientDetails;
+import de.bord.festival.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
