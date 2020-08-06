@@ -1,6 +1,17 @@
 [![Build Status](https://github.com/fh-erfurt/bord-festival/workflows/bord-festival/badge.svg)](https://github.com/fh-erfurt/bord-festival/actions)
 ![Heroku](https://pyheroku-badge.herokuapp.com/?app=example&style=flat)
 
+### [Link zur Heroku-Website](https://bord-festival.herokuapp.com/)
+## Test-Logindaten
+### User
+User: `user@gmail.com`
+
+Passwort: `user`
+
+### Admin
+User: `admin@gmail.com`
+
+Passwort: `admin`
 
 # BORD - Festival Management System
 
@@ -18,7 +29,7 @@ Aus einem ursprünglichen Verwaltungs- und Planungssystem für das „BORD-Festi
 
 Das Festival als solches besteht aus mehreren Stages (Bühnen), welche jeweils verschiedene Programme anbieten.
 
-Das System muss Tickets, Kunden, die verschiedenen Bands und Stages sowie das Event an sich verwalten.
+Das System muss Tickets, Kunden, die verschiedenen Bands und Stages sowie die Events an sich verwalten.
 Kunden haben eine Adresse und können Tickets für das Festival kaufen. Es gibt Tagestickets, Campingtickets und VIP-Tickets.
 
 Im Verwaltungssystem wird erfasst, wann welche Band spielt und auf welcher Stage sie spielen (Programmplanung). 
@@ -54,10 +65,8 @@ Des Weiteren organisiert das Event:
 * Ticketanzahl pro User auf 10 Stück beschränkt
 
 ### c) Kundenverwaltung
-* Verwaltung der Kundenaccounts
 * Warenkorb
 * Ticketkauf
-* Verwaltung der Adresse
 * Möglichkeit zum registrieren und einloggen
 
 ## 2.2 Abgrenzungskriterien
@@ -78,15 +87,15 @@ Gekaufte Tickets können nicht vom Kunden zurückgegeben werden.
 ## 3.2 Stakeholder
 * Festival-Veranstalter
 * Entwickler
-* Festival- Besucher
+* Festival-Besucher
 
 # 4. Programmfunktionalitäten
 ## 4.1 Eventverwaltung
-Im Festival existiert ein einheitliches Line-Up in dem alle Bands eingetragen sind und zu Bühnen zugeteilt werden. Bands erhalten für die Teilnahme am Festival ein Budget. Dies wird ihnen automatisch zugeteilt, wenn sie dem Event zugewiesen werden. Dadurch steigen die Ausgaben des Events. Die Ausgaben dürfen das Maximalbudget nicht überschreiten.
+Für jedes Event existiert ein Line-Up in dem alle Bands eingetragen sind und zu Bühnen zugeteilt werden. Bands erhalten für die Teilnahme am Festival ein Budget. Dies wird ihnen automatisch zugeteilt, wenn sie dem Event zugewiesen werden. Dadurch steigen die Ausgaben des Events. Die Ausgaben dürfen das Maximalbudget nicht überschreiten.
 
 Für den geregelten Programmablauf hat jede Bühne Zeitslots, denen jeweils eine Band zugewiesen werden kann.
 
-Falls eine Band nicht auftritt, müssen alle Zeitslots gelöscht werden, damit zählt das Budget der Band nicht mehr als Ausgabe.
+Falls eine Band nicht auftritt, müssen alle Zeitslots der Band gelöscht werden, damit zählt das Budget der Band nicht mehr als Ausgabe.
 Die Band wird unabhängig von der Anzahl der Auftritte bezahlt.
 
 Die Bühnenanzahl ist beliebig, es können jederzeit Bühnen hinzugefügt werden. Bühnen können gelöscht werden, wenn keine Bands zugewiesen sind.
@@ -109,7 +118,7 @@ Das Programm
 * Bühnen sind im Tagesprogramm erfasst, den Bühnen können Bands zugewiesen werden
 
 ### 4.1.2 TimeSlot
-* Besteht aus Startzeit (Stunden, Minuten, Sekunden), Dauer und spielende Band
+* Besteht aus Startzeit (Stunden, Minuten, Sekunden), Dauer und spielender Band
 
 ### 4.1.3 Geschäftsregeln
 * Event verfügt über Start und Enddatum, Start und Endzeit für jeden Tag und eine einheitliche Pause in Minuten (z.B. 30Min.).
@@ -117,7 +126,7 @@ Das Programm
 * Im Line-Up sind die Start- und die Endzeit eines Bandauftritts konfigurierbar.
 * Die Spieldauer kann beliebig lang sein und muss in Minuten angegeben werden.
 * Wenn die Spieldauer die Endzeit des tägliches Konzerts überschreitet, dann wird eine DateException zurückgegeben
-    * Falls die Spieldauer die maximale Konzertlänge überschreitet, dann wird der Zeitslots nicht gespeichert und eine Meldung zurückgegeben.
+    * Falls die Spieldauer die maximale Konzertlänge überschreitet, dann wird der Zeitslot nicht gespeichert und eine Meldung zurückgegeben.
 * Jedes Event benötigt mindestens eine Bühne.
 * Start- und Endzeit des jeweiligen Konzerts soll an jedem Festivaltag gleich sein.
 * Die Konzerte gehen täglich bis maximal 23:59:59 Uhr.
