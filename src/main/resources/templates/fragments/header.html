@@ -1,4 +1,4 @@
-<header th:fragment="header">
+<header th:fragment="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.w3.org/1999/xhtml">
     <!-- Fixed navbar -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/"><span class="bord-header">BORD</span>-<span class="bord-header">F</span>estival</a>
@@ -10,12 +10,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
-                <li class="nav-item">
+                <li sec:authorize="hasRole('ADMIN')" class="nav-item">
                     <a class="nav-link" href="/events">Events</a>
                 </li>
             </ul>
-            <form th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0">
-                <input class="btn btn-outline-danger my-2 my-sm-0" type="submit" value="Logout"/>
+            <a sec:authorize="!isAuthenticated()" href="/register" class="btn btn-outline-danger my-2 my-sm-0 mr-3">Register</a>
+            <a sec:authorize="!isAuthenticated()" href="/login" class="btn btn-outline-danger my-2 my-sm-0">Login</a>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" class="form-inline mt-2 mt-md-0">
+                <input sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0" type="submit" value="Logout"/>
             </form>
         </div>
     </nav>

@@ -10,6 +10,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class implements the core spring security class UserDetails
+ *
+ * It stores relevant information about clients (Id, mail, password authorities) in a convenient way,
+ * making the authentication principal of the current client castable into this class.
+ */
 public class ClientDetails implements UserDetails {
     private Long Id;
     private String mail;

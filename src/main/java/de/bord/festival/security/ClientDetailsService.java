@@ -10,12 +10,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+/**
+ * This implements the spring security UserDetailsService.
+ *
+ * Is used to retrieve client related data.
+ */
 @Service
 public class ClientDetailsService implements UserDetailsService {
 
     @Autowired
     ClientRepository clientRepository;
 
+    /**
+     * Returns Client corresponding to mail.
+     *
+     * @param mail
+     * @return Client
+     */
     @Override
     public UserDetails loadUserByUsername(String mail) {
         Optional<Client> client = clientRepository.findByMail(mail);

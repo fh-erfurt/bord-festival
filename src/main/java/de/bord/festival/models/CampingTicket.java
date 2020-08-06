@@ -1,30 +1,29 @@
-package de.bord.festival.ticket;
+package de.bord.festival.models;
 
 import de.bord.festival.models.Ticket;
+import de.bord.festival.ticket.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 
 /**
  * gives information about ticket price and current price level
- * ticketType = TicketType.VIP
+ * ticketType = TicketType.CAMPING
  */
 @Entity
-public class VIPTicket extends Ticket {
+public class CampingTicket extends Ticket {
     @Enumerated
     private Type ticketType;
 
-    public VIPTicket(String description,
-                      double standardPrice){
+    public CampingTicket( String description, double standardPrice){
 
         super(description, standardPrice);
-        this.ticketType = Type.VIP;
+        this.ticketType = Type.CAMPING;
     }
-    public VIPTicket(){}
+    public CampingTicket(){}
 
     @Override
     public Type getTicketType() {
-        return Type.VIP;
+        return Type.CAMPING;
     }
-
 }

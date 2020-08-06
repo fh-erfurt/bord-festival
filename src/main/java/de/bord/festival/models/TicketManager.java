@@ -5,7 +5,6 @@ import de.bord.festival.exception.TicketNotAvailableException;
 import de.bord.festival.ticket.*;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.util.*;
 /**
  * The class is created together with the event
