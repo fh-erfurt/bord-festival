@@ -12,9 +12,11 @@ Olga Klassen, Benjamin Swarovsky, Daniel Depta, Raphael Freybe, Franziska Schmid
 
 # 1. Einleitung
 
-BORD steht für die Anfangsbuchstaben unserer Vornamen (Benjamin, Olga, Raphael, Daniel)
+BORD wurde zu BORD-Festival erweitert und steht für die Anfangsbuchstaben unserer Vornamen (Benjamin, Olga, Raphael, Daniel, Franziska)
 
-Es soll ein Verwaltungs- und Planungssystem für das „BORD-Festival“ entwickelt werden. Das Festival als solches besteht aus mehreren Stages (Bühnen), welche jeweils verschiedene Programme anbieten.
+Aus einem ursprünglichen Verwaltungs- und Planungssystem für das „BORD-Festival“ hat sich eine Software für verschiedene Events auf der Bord-Festival Plattform entwickelt. Es ist nun möglich sich als Nutzer oder Admin zu registrieren und einzuloggen.
+
+Das Festival als solches besteht aus mehreren Stages (Bühnen), welche jeweils verschiedene Programme anbieten.
 
 Das System muss Tickets, Kunden, die verschiedenen Bands und Stages sowie das Event an sich verwalten.
 Kunden haben eine Adresse und können Tickets für das Festival kaufen. Es gibt Tagestickets, Campingtickets und VIP-Tickets.
@@ -51,12 +53,14 @@ Des Weiteren organisiert das Event:
     * Anpassung der Preisstufen automatisch oder manuell
 * Allgemeine Informationen über den Ticketbestand
 * Ticketverkauf
+* Ticketanzahl pro User auf 10 Stück beschränkt
 
 ### c) Kundenverwaltung
 * Verwaltung der Kundenaccounts
 * Warenkorb
 * Ticketkauf
 * Verwaltung der Adresse
+* Möglichkeit zum registrieren und einloggen
 
 ## 2.2 Abgrenzungskriterien
 
@@ -69,13 +73,14 @@ Gekaufte Tickets können nicht vom Kunden zurückgegeben werden.
 ![Akteure](https://raw.githubusercontent.com/fh-erfurt/bord-festival/master/docs/usecase.PNG)
 
 ## 3.1 Akteure
-* Clients (sind die Kunden des Festivals, können einen Account erstellen und Tickets kaufen)
-* Organizer (verwaltet und plant das Festival, legt Ticketpreise fest)
+* Users (sind die Kunden des Festivals, können einen Account erstellen und Tickets kaufen)
+* Admin (verwaltet und plant das Festival, legt Ticketpreise fest)
 
 
 ## 3.2 Stakeholder
 * Festival-Veranstalter
 * Entwickler
+* Festival- Besucher
 
 # 4. Programmfunktionalitäten
 ## 4.1 Eventverwaltung
@@ -133,6 +138,7 @@ Jede Ticketkategorie hat die gleichen Preisklassen.
 Bei der Eventerstellung wird das Ticketkontingent festgelegt, es kann später wieder angezeigt, aber nicht geändert werden.
 
 Die Anzahl der verkauften Tickets und der noch übrigen Tickets kann zurückgegeben werden, diese Werte werden nach einem Ticketverkauf aktualisiert.
+Jeder Kunde kann höchstens 10 Tickets pro Ticketkategorie kaufen.
 
 ### 4.2.1 Geschäftsregeln
 * Event hat Einnahmen durch Ticketverkäufe, diese Werte werden nach einem Ticketverkauf aktualisiert
