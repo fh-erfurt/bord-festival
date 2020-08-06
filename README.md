@@ -37,10 +37,9 @@ Die zu etablierenden Systemabschnitte lassen sich in die Programmplanung und die
 ### a) Eventverwaltung
 
 Für das Event an sich werden Eckdaten wie 
-* Datum des Festivals
-* Maximalkapazität 
-* Noch verfügbare Karten
+* Datum und Zeit des Festivals
 * Budget Ein- und Ausgaben
+* Adresse
 
 verwaltet
 
