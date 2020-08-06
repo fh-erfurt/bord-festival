@@ -5,7 +5,9 @@ import de.bord.festival.exception.*;
 import de.bord.festival.ticket.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -60,7 +62,6 @@ public class Event extends AbstractModel implements IEvent {
     }
 
 
-
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
@@ -111,7 +112,7 @@ public class Event extends AbstractModel implements IEvent {
      * @return true if the band is affordable for the budget of an event, otherwise false
      */
     private boolean isNewBandAffordable(Band band) {
-        if (containsBand(band)){
+        if (containsBand(band)) {
             return true;
         }
         return actualCosts + band.getPricePerEvent() <= budget.doubleValue();
@@ -213,6 +214,7 @@ public class Event extends AbstractModel implements IEvent {
     public boolean containsBand(Band band) {
         return this.lineUp.containsBand(band);
     }
+
     public int getNumberOfDayTickets() {
         return ticketManager.getNumberOfDayTickets();
     }

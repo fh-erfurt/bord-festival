@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="de" class="h-100">
+<head th:replace="fragments/head :: head">
+</head>
+<body class="d-flex flex-column h-100">
+<header th:replace="fragments/header :: header">
+</header>
+
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        <div class="alert alert-danger" role="alert">
+            <h1>Error 404: Page not found</h1>
+            <a th:href="index" class="btn btn-outline-danger">Start Page</a>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/footer :: footer">
+</footer>
+<th:block th:include="fragments/javascript :: javascript"></th:block>
+</body>
+</html>

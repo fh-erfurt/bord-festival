@@ -4,15 +4,15 @@ import de.bord.festival.controllers.dataContainers.BandTimeSlotContainer;
 import de.bord.festival.controllers.dataContainers.DateTimeContainer;
 import de.bord.festival.controllers.dataContainers.StageIdContainer;
 import de.bord.festival.controllers.dataContainers.TicketManagerContainer;
-import de.bord.festival.exception.*;
+import de.bord.festival.exception.BudgetOverflowException;
+import de.bord.festival.exception.DateDisorderException;
+import de.bord.festival.exception.TimeDisorderException;
+import de.bord.festival.exception.TimeSlotCantBeFoundException;
 import de.bord.festival.models.*;
 import de.bord.festival.repository.BandRepository;
 import de.bord.festival.repository.EventRepository;
 import de.bord.festival.repository.StageRepository;
-import de.bord.festival.models.CampingTicket;
-import de.bord.festival.models.DayTicket;
 import de.bord.festival.ticket.Type;
-import de.bord.festival.models.VIPTicket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,18 +78,18 @@ public class EventController {
             model.addAttribute("eventInFuture", true);
         } else {
             if (!isLong(eventId)) {
-                return "error404";
+                return "error/404";
             }
 
             long eventIdLong = Long.parseLong(eventId);
             Event event = eventRepository.findById(eventIdLong);
 
             if (event == null) {
-                return "error404";
+                return "error/404";
             } else {
                 boolean result = setExistingEvent(model, event);
                 if (!result) {
-                    return "error404";
+                    return "error/404";
                 }
 
                 if (event.getStartDate().isAfter(LocalDate.now())) {
@@ -118,13 +118,13 @@ public class EventController {
      * event_form in the case event was updates
      */
     @PostMapping("/event")
-    public String createEvent(@Valid Event event, BindingResult bindingResultEvent,
-                              @Valid DateTimeContainer dateTimeContainer, BindingResult bindingResultDateTimeContainer,
-                              @Valid Address address, BindingResult bindingResultAddress,
-                              @Valid @ModelAttribute("tmk") TicketManagerContainer tmk, BindingResult bindingResultTmk,
-                              @Valid Stage stage, BindingResult bindingResultStage, Model model, @RequestParam(required = false) String eventId) {
+    public String createOrUpdateEvent(@Valid Event event, BindingResult bindingResultEvent,
+                                      @Valid DateTimeContainer dateTimeContainer, BindingResult bindingResultDateTimeContainer,
+                                      @Valid Address address, BindingResult bindingResultAddress,
+                                      @Valid @ModelAttribute("tmk") TicketManagerContainer tmk, BindingResult bindingResultTmk,
+                                      @Valid Stage stage, BindingResult bindingResultStage, Model model, @RequestParam(required = false) String eventId) {
         model.addAttribute("eventInFuture", true);
-
+        model.addAttribute("title", "Create event");
         if (noErrors(bindingResultEvent, bindingResultDateTimeContainer,
                 bindingResultAddress, bindingResultTmk, bindingResultStage)) {
 
@@ -160,7 +160,6 @@ public class EventController {
                     return updateEvent(model, newEvent, eventId, bindingResultDateTimeContainer);
                 } else {
                     eventRepository.save(newEvent);
-                    model.addAttribute("title", "Create event");
                     model.addAttribute("newEvent", true);
                     return "redirect:/program?successCreate&eventId=" + newEvent.getId();
                 }
@@ -176,6 +175,7 @@ public class EventController {
         if (isEventIdValid(eventId)) {
             event.setId(Long.parseLong(eventId));
             model.addAttribute("event", event);
+            model.addAttribute("title", "Update event");
         }
         //create case
         return "event_form";
@@ -214,7 +214,7 @@ public class EventController {
 
 
         if (!isEventIdValid(eventId)) {
-            return "error404";
+            return "error/404";
         }
         long eventIdLong = Long.parseLong(eventId);
         Event event1 = eventRepository.findById(eventIdLong);
@@ -234,7 +234,7 @@ public class EventController {
                           Model model) {
 
         if (!isEventIdValid(eventId)) {
-            return "error404";
+            return "error/404";
         }
         long eventIdLong = Long.parseLong(eventId);
         Event event = eventRepository.findById(eventIdLong);
@@ -261,7 +261,7 @@ public class EventController {
                            Model model) {
 
         if (!isEventIdValid(eventId)) {
-            return "error404";
+            return "error/404";
         }
         long eventIdLong = Long.parseLong(eventId);
         Event event = eventRepository.findById(eventIdLong);
@@ -293,22 +293,23 @@ public class EventController {
      * Removes band from event program, if it exists
      * Case 1: band without timeslot: band will be removed from all timeslots
      * Case 2: band with a timeslot: band will be removed only from this timeslot
+     *
      * @return program with removed band
      */
     @PostMapping("band_remove")
     public String removeBand(@Valid BandTimeSlotContainer bandTimeSlotContainer, BindingResult bindingResult,
                              Model model, String eventId) {
         if (!isEventIdValid(eventId)) {
-            return "error404";
+            return "error/404";
         }
 
         long eventIdLong = Long.parseLong(eventId);
         Event event = eventRepository.findById(eventIdLong);
 
         String bandId = bandTimeSlotContainer.getBandId();
-        //check if band id was not manipulated
+        //check if band id was not manipulated or no band is marked
         if (!isLong(bandId)) {
-            return "error404";
+            return "error/404";
         }
         //check if date time is set
         if (bindingResult.hasErrors()) {
@@ -321,7 +322,6 @@ public class EventController {
         if (band == null) {
             bindingResult.rejectValue("bandId", "error.bandTimeSlotContainer", "there is no band with this name");
             fillModelWithAttributesForProgram(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
-            model.addAttribute("showRemoveFromTimeslotModal", true);
             model.addAttribute("title", "Program");
             return "program";
         }
@@ -339,7 +339,7 @@ public class EventController {
                               Model model, String eventId) {
 
         if (!isEventIdValid(eventId)) {
-            return "error404";
+            return "error/404";
         }
 
         long eventIdLong = Long.parseLong(eventId);
@@ -349,7 +349,7 @@ public class EventController {
 
         boolean removed;
         if (!isLong(stageId)) {
-            return "error404";
+            return "error/404";
         }
 
         Stage stage = stageRepository.findById(Long.parseLong(stageId));
@@ -468,6 +468,7 @@ public class EventController {
             if (bandTimeSlotContainer.getDateTimeToDeleteBand().equals("")) {
                 bindingResult.rejectValue("dateTimeToDeleteBand", "error.bandTimeSlotContainer", "Please choose a certain date");
                 fillModelWithAttributesForProgram(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
+                model.addAttribute("showRemoveFromTimeslotModal", true);
                 model.addAttribute("title", "Program");
                 return "program";
             }
@@ -483,6 +484,7 @@ public class EventController {
             return "redirect:/program?successRemoveBand&eventId=" + event.getId();
         } else {
             bindingResult.rejectValue("dateTimeToDeleteBand", "error.bandTimeSlotContainer", "There is no time slot with this band combination found");
+            model.addAttribute("showRemoveFromTimeslotModal", true);
             fillModelWithAttributesForProgram(new Band(), event, model, bandTimeSlotContainer, new Stage(), new StageIdContainer());
             model.addAttribute("title", "Program");
             return "program";

@@ -1,6 +1,5 @@
 package de.bord.festival.controllers;
 
-import de.bord.festival.exception.*;
 import de.bord.festival.models.Client;
 import de.bord.festival.models.Role;
 import de.bord.festival.repository.ClientRepository;
@@ -26,18 +25,17 @@ public class PagesController {
     ClientControllerAdvice clientControllerAdvice = new ClientControllerAdvice();
 
     @GetMapping("/")
-    public String index(Model model) throws BudgetOverflowException, TimeSlotCantBeFoundException, PriceLevelException, TimeDisorderException, DateDisorderException {
+    public String index(Model model) {
         model.addAttribute("title", "Home");
 
         long clientId = clientControllerAdvice.getClientId();
 
-        if(clientId != 0) {
+        if (clientId != 0) {
             Client client = clientRepository.findById(clientId);
-            if(client != null) {
-                if(client.getRole() == Role.ADMIN) {
+            if (client != null) {
+                if (client.getRole() == Role.ADMIN) {
                     return "admin_menu";
-                }
-                else if(client.getRole() == Role.USER) {
+                } else if (client.getRole() == Role.USER) {
                     return "user_menu";
                 }
             }
@@ -46,11 +44,6 @@ public class PagesController {
         return "index";
     }
 
-    @GetMapping("/error404")
-    public String error404(Model model) {
-        model.addAttribute("title", "Error Page");
-        return "error404";
-    }
 
     @GetMapping("/error403")
     public String error403(Model model) {

@@ -1,9 +1,7 @@
 package de.bord.festival.controllers;
 
-import de.bord.festival.models.Client;
-import de.bord.festival.models.Role;
-import de.bord.festival.security.ClientDetails;
 import de.bord.festival.repository.ClientRepository;
+import de.bord.festival.security.ClientDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Collection;
-import java.util.Optional;
 
 @ControllerAdvice
 public class ClientControllerAdvice {
@@ -25,10 +22,10 @@ public class ClientControllerAdvice {
     public void setCurrentClient(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if(authentication != null) {
+        if (authentication != null) {
             Object principal = authentication.getPrincipal();
 
-            if(principal instanceof ClientDetails) {
+            if (principal instanceof ClientDetails) {
                 ClientDetails clientDetails = (ClientDetails) principal;
                 Long clientId = clientDetails.getId();
                 String clientMail = clientDetails.getUsername();
