@@ -47,7 +47,7 @@ public class EventJPATest {
         //when
         Event databaseEvent = eventRepository.save(this.event);
         //then
-        assertEquals("Bord", databaseEvent.getName());
+        assertEquals("Weinfest", databaseEvent.getName());
         assertEquals(BigDecimal.valueOf(2019), databaseEvent.getBudget());
         assertEquals("Germany", databaseEvent.getAddress().getCountry());
         assertEquals("Berlin", databaseEvent.getAddress().getCity());
@@ -76,7 +76,7 @@ public class EventJPATest {
         databaseEvent = eventRepository.save(event);
         //then
 
-        assertEquals("Bord", databaseEvent.getName());
+        assertEquals("Weinfest", databaseEvent.getName());
         assertEquals(BigDecimal.valueOf(2019), databaseEvent.getBudget());
         assertEquals(LocalTime.of(10, 30), databaseEvent.getStartTime());
         assertEquals(LocalTime.of(23, 59), databaseEvent.getEndTime());
@@ -102,7 +102,7 @@ public class EventJPATest {
         event.removeStage("Stage1");
         databaseEvent = eventRepository.save(event);
         //then
-        assertEquals("Bord", databaseEvent.getName());
+        assertEquals("Weinfest", databaseEvent.getName());
         assertEquals(BigDecimal.valueOf(2019), databaseEvent.getBudget());
         assertEquals(LocalTime.of(10, 30), databaseEvent.getStartTime());
         assertEquals(LocalTime.of(23, 59), databaseEvent.getEndTime());

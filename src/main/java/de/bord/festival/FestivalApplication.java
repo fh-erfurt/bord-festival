@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -32,9 +33,12 @@ public class FestivalApplication {
         Event event1 = helper.getValidNDaysEvent(3);
         Event event2 = helper.getValidNDaysEvent1(4);
         Event event3 = helper.getValidNDaysEvent2(5);
-        eventRepository.save(event1);
-        eventRepository.save(event2);
-        eventRepository.save(event3);
+
+        if(eventRepository.findAll().size() == 0) {
+            eventRepository.save(event1);
+            eventRepository.save(event2);
+            eventRepository.save(event3);
+        }
 
         Client userClient = helper.exampleClientAsUser();
         Client adminClient = helper.exampleClientAsAdmin();
