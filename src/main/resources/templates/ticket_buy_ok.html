@@ -9,7 +9,7 @@
 
 <div class="container h-100">
     <div class="row h-100 align-items-center justify-content-center">
-        <div class="col-lg-4 col-sm-12">
+        <div class="col-lg-8 col-sm-12">
             <h3 class="ok">Congratulation!</br>
                 Your purchase was successful</h3>
             <div class="buy_ticket">
@@ -23,7 +23,7 @@
                 <label>VIP-Ticket</label>
                 <div th:text="${'Number: '+ticketCounter.getVipTicketCounter()+ ' pieces'}"></div>
                 <br/><br>
-                <label th:text="${'Your Price: '+ #numbers.formatDecimal(client.getExpenditureBasket(),0, 'COMMA', 2, 'POINT') +' €'}"></label>
+                <label th:text="${'Your Price: '+ #numbers.formatDecimal(expenditureClient,0, 'COMMA', 2, 'POINT') +' €'}"></label>
                 <br><br><br>
 
                 <div class="form-group">

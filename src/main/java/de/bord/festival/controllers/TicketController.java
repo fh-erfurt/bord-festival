@@ -8,17 +8,12 @@ import de.bord.festival.repository.EventRepository;
 import de.bord.festival.repository.PriceLevelRepository;
 import de.bord.festival.ticket.Type;
 import org.hibernate.Hibernate;
-import org.hibernate.proxy.HibernateProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * The class controls the management of the shopping cart
@@ -28,10 +23,9 @@ import java.util.Optional;
 @Controller
 public class TicketController {
 
-
     private Client client;  // the client which is logged in
 
-    private Client client2; // used for ticketBuyOk()
+    private Double expenditureClient; // used for ticketBuyOk()
 
     private Event event = null;
     private long eventId = -1;
@@ -39,11 +33,10 @@ public class TicketController {
     private Exception exception;
     private TicketCounter ticketCounter = null;
 
-   ClientControllerAdvice clientControllerAdvice = new ClientControllerAdvice();
+    ClientControllerAdvice clientControllerAdvice = new ClientControllerAdvice();
 
+    @Autowired EventRepository eventRepository;
 
-
-    private final EventRepository eventRepository;
     @Autowired PriceLevelRepository priceLevelRepository;
 
     @Autowired
@@ -54,9 +47,9 @@ public class TicketController {
         this.eventRepository = eventRepository;
     }
 
-
     @GetMapping("user_menu")
     public String createEventOverview(ModelMap model)  {
+
         model.addAttribute("title", "Menu");
         clientId = clientControllerAdvice.getClientId();
 
@@ -67,20 +60,17 @@ public class TicketController {
         model.addAttribute("events", events);
         model.addAttribute("title", "Menu");
 
-       eventId = -1;
-       ticketCounter = null;
-       ticketCounter = new TicketCounter();
-      // client.clearExpenditureBasket();
-       //client.getExpenditureByPricesFromCart();
-       clientRepository.save(client);
+        eventId = -1;
+        ticketCounter = null;
+        ticketCounter = new TicketCounter();
 
+        clientRepository.save(client);
 
         return "user_menu";
     }
 
-
     @GetMapping("/buy_ticket_user")
-    public String chooseEvent( @RequestParam (value = "eventId", required = false) long eventId, ModelMap model){
+    public String getBuyTicketUser( @RequestParam (value = "eventId", required = false) long eventId, ModelMap model){
 
         model.addAttribute("title", "Buy ticket");
 
@@ -88,7 +78,7 @@ public class TicketController {
             this.eventId = eventId;
         }
         client = clientRepository.findById(clientId.intValue());
-        client2 = null;
+        expenditureClient = null;
         Event event1 =  eventRepository.findById(this.eventId);
         event = event1;
         model.addAttribute("theEvent", event1);
@@ -104,11 +94,6 @@ public class TicketController {
 
     @PostMapping("/addToBasket")
     public String addTicketToBasket(Type ticketType, ModelMap model) throws MailException, ClientNameException, TicketNotAvailableException, PriceLevelException {
-
-
-     //  List <Client> clients = clientRepository.findAll();
-    //    Client client1 = clients.get(0);
-
         if(!ticketCounter.toManyTickets()){
             client.addTicket(ticketType, event.getTicketManager());
             clientRepository.save(client);
@@ -119,32 +104,20 @@ public class TicketController {
 
     @PostMapping("/resetBasket")
     public String resetBasket(Type ticketType, ModelMap model) throws MailException, ClientNameException, TicketNotAvailableException {
-
-
-      //  List <Client> clients = clientRepository.findAll();
-  //      Client client1 = clients.get(0);
-
-     client.clearCart();
-     client.clearExpenditureBasket();
-     clientRepository.save(client);
-     ticketCounter = new TicketCounter();
-
-
+        client.clearCart();
+        client.clearExpenditureBasket();
+        clientRepository.save(client);
+        ticketCounter = new TicketCounter();
 
         return "redirect:/buy_ticket_user?eventId=" +eventId;
     }
 
     @PostMapping("/buy_ticket")
-    public String buyTicket(ModelMap model)  {
-
-      //  List <Client> clients = clientRepository.findAll();
-      //  Client client1 = clients.get(0);
-       // client = client1;
+    public String buyTicket()  {
 
         try {
             if(!ticketCounter.areNoTicketsInCart()){
-                client2 = client;
-                Hibernate.initialize(client);
+                expenditureClient = client.getExpenditureByPricesFromCart();
                 event.sellTickets(client);
 
                 if(isClientNotInEventlist()){
@@ -155,15 +128,11 @@ public class TicketController {
                     clientRepository.save(client);
                 }
 
-
-              //  client= client1;
-                // model.addAttribute("client", client1);
                 return "redirect:/ticket_buy_ok?eventId=" +eventId;
             }
+
             else{
-
                 return "redirect:/buy_ticket_user?eventId=" +eventId;
-
             }
 
         }
@@ -176,28 +145,26 @@ public class TicketController {
 
     @GetMapping("/ticket_buy_ok")
     public String getTicketBuyOk(ModelMap model){
-        model.addAttribute("client", client2);
+        model.addAttribute("expenditureClient", expenditureClient);
         model.addAttribute("ticketCounter", ticketCounter);
+        model.addAttribute("title", "Purchase successful");
         return "ticket_buy_ok";
     }
 
-
-
-   @GetMapping("/ticket_buy_error")
+    @GetMapping("/ticket_buy_error")
     public String getTicketBuyError(ModelMap model){
 
         model.addAttribute("event", event);
         model.addAttribute("exception", exception);
+        model.addAttribute("title", "Purchase error");
         return "ticket_buy_error";
     }
 
     @GetMapping("/information_user")
     public String getInformationUser(ModelMap model){
 
-       // List <Client> clients = clientRepository.findAll();
-      //  Client client1 = clients.get(0);
-
-      model.addAttribute("client", client);
+        model.addAttribute("client", client);
+        model.addAttribute("title", "Ticket Information");
 
         return "information_user";
     }
@@ -211,7 +178,4 @@ public class TicketController {
         }
         return true;
     }
-
-
-
 }

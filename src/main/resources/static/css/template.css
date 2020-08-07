@@ -33,6 +33,34 @@ code {
 .bord-header {
     color: rgb(202, 13, 60);
 }
+.ticket-card {
+    background-color: white;
+    border-radius: 4px;
+    padding: 15px;
+    border: 1px solid black;
+    width: 170px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ticket-card p {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.ticket-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+
 .event-card {
     background-color: white;
     border-radius: 4px;

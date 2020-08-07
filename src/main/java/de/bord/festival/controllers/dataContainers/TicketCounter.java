@@ -3,8 +3,11 @@ package de.bord.festival.controllers.dataContainers;
 import de.bord.festival.models.Client;
 import de.bord.festival.ticket.Type;
 
-public class TicketCounter {
+/**
+ * the class provides information about the data (number of tickets) in the shopping cart
+ */
 
+public class TicketCounter {
 
     private int dayTicketCounter;
     private int campingTicketCounter;
@@ -47,13 +50,6 @@ public class TicketCounter {
 
     }
 
-    public boolean checkTicketCounter(){
-        if(campingTicketCounter==0 && vipTicketCounter==0 && dayTicketCounter == 0){
-            return true;
-        }
-        return false;
-    }
-
     public boolean toManyTickets(){
         if(campingTicketCounter + vipTicketCounter + dayTicketCounter == 10){
             isCartFull = true;
@@ -61,12 +57,6 @@ public class TicketCounter {
 
         }
         return false;
-    }
-    public void setTest(){
-        isCartFull = false;
-        if (toManyTickets()){
-            isCartFull = true;
-        }
     }
 
     public boolean isCartFull() {
