@@ -152,8 +152,8 @@ Jeder Kunde kann höchstens 10 Tickets pro Ticketkategorie kaufen.
 * Tickets können nicht zurückgegeben werden
 * Das Preislevel ist eine Ganzzahl von 0 bis n
 
-## 4.3 Kundenverwaltung
-Die Kundenverwaltung bietet folgende Funktionalitäten:
+## 4.3 Accountverwaltung
+Die Accountverwaltung bietet folgende Funktionalitäten:
 * Registrierung, Einloggen von Kundenaccounts
 * Unterteilung in User und Admin Accounts
 * Validierung von E-Mail, Vorname und Nachname
@@ -161,10 +161,10 @@ Die Kundenverwaltung bietet folgende Funktionalitäten:
 * Hinzufügen von Tickets zum Warenkorb
 * Kaufen von Tickets
 * Hinzufügen von gekauften Tickets zum Kundeninventar
-* Hinzufügen einer Adresse
+* Hinzufügen einer Adresse während der Registrierung
 
 ### 4.3.1 Adressverwaltung
-Die Adressverwaltung bietet folgende Funktionalitäten:
+Die Adressverwaltung bietet folgende Funktionalitäten im Backend (aber auf der Website nicht umgesetzt):
 * Adressinformationen können erfasst, geändert, gelöscht und zurückgegeben werden
 
 ### 4.3.2 Geschäftsregeln
