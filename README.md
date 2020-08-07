@@ -154,8 +154,10 @@ Jeder Kunde kann höchstens 10 Tickets pro Ticketkategorie kaufen.
 
 ## 4.3 Kundenverwaltung
 Die Kundenverwaltung bietet folgende Funktionalitäten:
-* Kundendaten zurückgeben, bearbeiten und anlegen
+* Registrierung, Einloggen von Kundenaccounts
+* Unterteilung in User und Admin Accounts
 * Validierung von E-Mail, Vorname und Nachname
+* Validierung des Unique-Properties der E-Mail
 * Hinzufügen von Tickets zum Warenkorb
 * Kaufen von Tickets
 * Hinzufügen von gekauften Tickets zum Kundeninventar
@@ -164,9 +166,11 @@ Die Kundenverwaltung bietet folgende Funktionalitäten:
 ### 4.3.1 Adressverwaltung
 Die Adressverwaltung bietet folgende Funktionalitäten:
 * Adressinformationen können erfasst, geändert, gelöscht und zurückgegeben werden
-* Zwei Adressen können zur Überprüfung miteinander verglichen werden
 
 ### 4.3.2 Geschäftsregeln
-* Beim Ticketverkauf wird der Warenkorb des Kunden geleert und die gekauften Tickets werden seinem Inventar hinzugefügt
-* Die Ausgaben des Kunden werden erfasst
+* Ein Client ist entweder ein User oder ein Admin
+* User sind die Festival-Kunden, welche Tickets kaufen
+* Admins sind die Event-Ersteller, welche neue Events kreieren und aktualisieren können
+* Beim Ticketverkauf wird der Warenkorb des Users geleert und die gekauften Tickets werden seinem Inventar hinzugefügt
+* Die Ausgaben des Users werden erfasst
 * Die Kosten für den Ticketkauf werden seinen Ausgaben hinzugerechnet
